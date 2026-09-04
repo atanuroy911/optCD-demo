@@ -3,6 +3,23 @@ from bisect import bisect_right
 import yaml
 
 
+def _resolve_directory_timestamp(unused_dir: str, timestamps: dict[str, str]) -> str | None:
+    """Returns when `unused_dir` started being populated.
+
+    Prefers the directory's own creation timestamp, but that entry gets
+    silently erased whenever inotify also reports an IN_ACCESS on the
+    directory itself -- which InotifyTree does as a side effect of opening
+    a newly-created subdirectory to set up its recursive watch, unrelated to
+    anything actually reading the directory's contents. When that happens,
+    fall back to the earliest timestamp among the files still recorded
+    under this directory.
+    """
+    if unused_dir in timestamps:
+        return timestamps[unused_dir]
+    nested = [ts for path, ts in timestamps.items() if path.startswith(unused_dir)]
+    return min(nested, key=parser.isoparse) if nested else None
+
+
 def get_responsible_plugins(log: str, unused_dirs: list[str], timestamps: dict[str, str], input_yaml_filename: str, job_name: str) -> list[tuple[str, str, str, str]]:
     dummy_file_timestamps = []
     for file, timestamp in timestamps.items():
@@ -48,10 +65,15 @@ def get_responsible_plugins(log: str, unused_dirs: list[str], timestamps: dict[s
         tmp_plugin_names.append(name)
 
     for unused_dir in unused_dirs:
-        if unused_dir not in timestamps:
+        dir_timestamp = _resolve_directory_timestamp(unused_dir, timestamps)
+        if dir_timestamp is None:
             continue
-        timestamp = parser.isoparse(timestamps[unused_dir])
-        j = bisect_right(dummy_file_timestamps, timestamp)
+        timestamp = parser.isoparse(dir_timestamp)
+        # bisect_right can return one-past-the-end when the directory's
+        # timestamp falls after the last step-boundary marker (e.g. files
+        # still being written right as the final instrumented step starts).
+        # Clamp to the last known step rather than index out of range.
+        j = min(bisect_right(dummy_file_timestamps, timestamp), len(run_commands_in_steps) - 1)
         for k in range(len(plugin_timestamps)):
             i = bisect_right(plugin_timestamps[k], timestamp)
             if 0 < i < len(plugin_timestamps[k]):

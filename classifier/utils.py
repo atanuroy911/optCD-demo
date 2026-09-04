@@ -1,4 +1,8 @@
-import os
+# Paths in the inotify log always come from the GitHub Actions Linux
+# runner, regardless of what OS this analysis code itself runs on -- so the
+# separator must always be '/', never os.sep (which is '\\' on Windows and
+# would corrupt every path below when this runs on a Windows host).
+PATH_SEP = '/'
 
 
 def classify_files(inotify_log: str) -> tuple[set[str], set[str], dict[str, str]]:
@@ -8,12 +12,12 @@ def classify_files(inotify_log: str) -> tuple[set[str], set[str], dict[str, str]
 
     for line in inotify_log.splitlines():
         timestamp, directory, filename, event = line.split(';')
-        directory += os.sep
+        directory += PATH_SEP
 
         event = event.split(',')
         full_path = directory + filename
         if 'IN_ISDIR' in event and filename != '':
-            full_path += os.sep
+            full_path += PATH_SEP
 
         if 'IN_CREATE' in event:
             used_files.discard(full_path)

@@ -5,16 +5,19 @@ import time
 
 import requests
 
+from optcd import run_logger
 
-def _gh(args: list[str]) -> str:
+
+def _gh(args: list[str], check: bool = True) -> subprocess.CompletedProcess:
     result = subprocess.run(["gh", *args], capture_output=True, text=True)
-    if result.returncode != 0:
+    run_logger.log_gh(args, result.returncode, result.stdout, result.stderr)
+    if check and result.returncode != 0:
         raise RuntimeError(f"gh {' '.join(args)} failed:\n{result.stderr}")
-    return result.stdout.strip()
+    return result
 
 
 def _gh_json(args: list[str]):
-    out = _gh(args)
+    out = _gh(args).stdout.strip()
     return json.loads(out) if out else None
 
 
@@ -47,7 +50,7 @@ def wait_for_completion(owner: str, repo: str, run_id, poll_interval: int = 10) 
         if status == "completed":
             return
         if status != last_status:
-            print(f"Run status of modified workflow (run_id: {run_id}) is: {status}")
+            run_logger.log_step(f"Run status of modified workflow (run_id: {run_id}) is: {status}")
         last_status = status
         time.sleep(poll_interval)
 
@@ -72,10 +75,7 @@ def cancel_sibling_runs(owner: str, repo: str, run_to_keep: dict) -> None:
         ]) or []
         for run in runs:
             if run["headSha"] == head_sha and run["databaseId"] != run_id_to_keep:
-                subprocess.run(
-                    ["gh", "run", "cancel", str(run["databaseId"]), "--repo", f"{owner}/{repo}"],
-                    capture_output=True, text=True,
-                )
+                _gh(["run", "cancel", str(run["databaseId"]), "--repo", f"{owner}/{repo}"], check=False)
 
 
 def get_jobs(owner: str, repo: str, run_id) -> list[dict]:
@@ -85,10 +85,7 @@ def get_jobs(owner: str, repo: str, run_id) -> list[dict]:
 
 def download_artifacts(owner: str, repo: str, run_id, dest_dir: str) -> None:
     os.makedirs(dest_dir, exist_ok=True)
-    subprocess.run(
-        ["gh", "run", "download", str(run_id), "--repo", f"{owner}/{repo}", "-D", dest_dir],
-        capture_output=True, text=True,
-    )
+    _gh(["run", "download", str(run_id), "--repo", f"{owner}/{repo}", "-D", dest_dir], check=False)
 
 
 def fetch_job_log(owner: str, repo: str, job_id, github_api_token: str) -> str:
@@ -99,5 +96,6 @@ def fetch_job_log(owner: str, repo: str, job_id, github_api_token: str) -> str:
         "X-GitHub-Api-Version": "2022-11-28",
     }
     response = requests.get(url, headers=headers)
+    run_logger.log_http("GET", url, response.status_code, len(response.content))
     response.raise_for_status()
     return response.text

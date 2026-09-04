@@ -5,6 +5,10 @@ __pycache__/
 
 .env
 .claude/
+/run-history/
+out.txt
+temp_out.txt
+responsible_plugins.json
 
 # C extensions
 *.so

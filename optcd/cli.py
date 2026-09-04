@@ -7,7 +7,7 @@ from pathlib import Path
 import yaml
 
 import logger.utils
-from optcd import analyze, fixer, git_ops, gh_ops
+from optcd import analyze, fixer, git_ops, gh_ops, run_logger
 
 
 def split_output_path(output_yaml_filename: str) -> tuple[str, str]:
@@ -53,15 +53,15 @@ def run_and_analyze(
     baseline_id = baseline["databaseId"] if baseline else None
 
     git_ops.push_modified_yaml(path_to_local_repo, branch, path_to_yaml_file)
-    print("Pushed the modified YAML file to remote repository.")
+    run_logger.log_step("Pushed the modified YAML file to remote repository.")
 
-    print("Waiting until modified YAML workflow starts.")
+    run_logger.log_step("Waiting until modified YAML workflow starts.")
     run = gh_ops.wait_for_new_run(owner, repo, path_to_yaml_file, baseline_id)
-    print(f"Modified YAML workflow started with run_id: {run['databaseId']}")
+    run_logger.log_step(f"Modified YAML workflow started with run_id: {run['databaseId']}")
 
-    print("Waiting until modified YAML workflow is completed.")
+    run_logger.log_step("Waiting until modified YAML workflow is completed.")
     gh_ops.wait_for_completion(owner, repo, run["databaseId"])
-    print("Modified YAML workflow completed.")
+    run_logger.log_step("Modified YAML workflow completed.")
 
     gh_ops.cancel_sibling_runs(owner, repo, run)
 
@@ -76,7 +76,7 @@ def run_and_analyze(
         job_id, name = job["databaseId"], job["name"]
 
         if "windows" in name or "mac" in name:
-            print(f"Skipped incompatible job {name}")
+            run_logger.log_step(f"Skipped incompatible job {name}")
             analyze.append_report(output_file, f"Skipped incompatible job {name}\n")
             continue
 
@@ -87,8 +87,10 @@ def run_and_analyze(
 
         responsible_plugins = analyze.analyze_job(inotify_csv, log_text, input_yaml_filename, name)
         if responsible_plugins is None:
+            run_logger.log_step(f"No inotify log found for job {name} (inotify_csv={inotify_csv})")
             continue
 
+        run_logger.log_step(f"Analysis for job {name}: {json.dumps(responsible_plugins)}")
         analyze.append_report(output_file, analyze.format_table(responsible_plugins))
         responsible_plugins_maven.extend(analyze.to_maven_dicts(responsible_plugins))
 
@@ -102,10 +104,20 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("owner", nargs="?", default=None, help="GitHub owner/org (auto-detected from git remote if omitted)")
     parser.add_argument("repo", nargs="?", default=None, help="GitHub repo name (auto-detected from git remote if omitted)")
     parser.add_argument("output_file", nargs="?", default="out.txt", help="Path to write the human-readable report (default: out.txt)")
+    parser.add_argument(
+        "--log-dir", default=os.environ.get("OPTCD_RUN_HISTORY_DIR", "run-history"),
+        help="Base directory for this run's persisted git/gh/Gemini transcript "
+             "(default: $OPTCD_RUN_HISTORY_DIR or ./run-history). A timestamped "
+             "subdirectory is created under it for every invocation.",
+    )
     args = parser.parse_args(argv)
 
+    log_dir = run_logger.init(args.log_dir)
+    print(f"Logging this run's full git/gh/Gemini transcript to: {os.path.abspath(log_dir)}")
+    run_logger.log_step(f"Invocation: optcd.py {' '.join(argv if argv is not None else sys.argv[1:])}")
+
     if not os.path.isfile(args.input_yaml):
-        print(f"Input YAML file not found: {args.input_yaml}")
+        run_logger.log_step(f"Input YAML file not found: {args.input_yaml}")
         return 1
 
     path_to_yaml_file, path_to_local_repo = split_output_path(args.output_yaml)
@@ -123,7 +135,7 @@ def main(argv: list[str] | None = None) -> int:
             os.remove(stale)
 
     write_instrumented_yaml(args.input_yaml, args.output_yaml, repo)
-    print("Finished modifying the original YAML file to find unused directories.")
+    run_logger.log_step("Finished modifying the original YAML file to find unused directories.")
 
     responsible_plugins_maven = run_and_analyze(
         owner, repo, path_to_yaml_file, branch, workflow_file,
@@ -132,12 +144,13 @@ def main(argv: list[str] | None = None) -> int:
 
     with open("responsible_plugins.json", "w") as f:
         json.dump(responsible_plugins_maven, f, indent=2)
+    run_logger.log_step(f"responsible_plugins_maven: {json.dumps(responsible_plugins_maven)}")
 
     if not responsible_plugins_maven:
-        print("No maven-attributable unused directories found; nothing to fix.")
+        run_logger.log_step("No maven-attributable unused directories found; nothing to fix.")
         return 0
 
-    print("Finding and testing fixes for unused directories.")
+    run_logger.log_step("Finding and testing fixes for unused directories.")
 
     def rerun_and_analyze() -> list[dict]:
         return run_and_analyze(
@@ -152,7 +165,8 @@ def main(argv: list[str] | None = None) -> int:
         initial_output_file=args.output_file,
     )
 
-    print(f"The output is written to {args.output_file}.")
+    run_logger.log_step(f"The output is written to {args.output_file}.")
+    run_logger.log_step(f"Full run transcript saved to: {os.path.abspath(log_dir)}")
     return 0
 
 

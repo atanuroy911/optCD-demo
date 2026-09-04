@@ -41,6 +41,58 @@ GitHub account) rather than just reading the paper.
    cancellation to runs sharing the *same commit SHA* as the run being kept,
    which is a strictly narrower and correct condition regardless of timing.
 
+4. **Platform-dependent path separators corrupting every result.** This was
+   the big one, and it's why the tool initially looked like it "worked" but
+   just found nothing. `classifier/utils.py` and `clusterer/utils.py` built
+   file paths using `os.sep`, which is `\` on Windows -- but every path in
+   the inotify log always comes from GitHub's Linux runner and uses `/`,
+   regardless of what OS is running the *analysis* step. Mixing `/` and `\`
+   in the same string silently broke every `startswith`/prefix comparison
+   the clustering algorithm depends on, so it always concluded "no unused
+   directories" without ever raising an error. Fixed by hardcoding POSIX
+   path handling (`posixpath` / literal `'/'`) in both modules, since the
+   input is never platform-dependent even though the code that processes it
+   now can be.
+
+5. **A directory's own "used" status gets clobbered by the watcher's own
+   bookkeeping.** `mapper/utils.py` looked up each unused directory's
+   creation timestamp by exact key match in the timestamps dict. But
+   `inotify.adapters.InotifyTree` (the recursive watcher the Logger
+   injects) itself opens every newly-created subdirectory to register a
+   watch on it -- and that open is indistinguishable from a real
+   `IN_ACCESS`, so the classifier immediately re-marks the directory
+   "used" and erases its creation timestamp seconds after recording it.
+   The directory was never actually read by anything in the build; the
+   watcher just needed to look inside it. This made the mapper skip real
+   unused directories outright. Fixed by falling back to the earliest
+   surviving timestamp among the files still recorded under that directory
+   when the directory's own entry is missing.
+
+6. **Off-by-one in step attribution.** `mapper/utils.py` locates which
+   build step was running when a directory was created by counting how many
+   step-boundary marker files (`touch optcd-N.txt`, inserted between steps)
+   came before it, via `bisect_right`. When a directory's timestamp falls
+   after the *last* marker (e.g. the final instrumented step), this returns
+   an index one past the end of the steps list and crashes with
+   `IndexError` -- an existing latent bug the previous two fixes newly
+   exposed by letting real results reach this code path at all. Fixed by
+   clamping to the last known step.
+
+7. **Deprecated Gemini model.** `gemini-1.5-flash`, hardcoded in the
+   original fixer, has been fully retired by Google since the paper was
+   published; the next fallback we tried (`gemini-2.5-flash`) is also
+   no longer available to new API keys. Updated to `gemini-3.6-flash`,
+   the model Google's own API currently points deprecated callers to. This
+   is exactly the kind of drift an LLM-dependent tool should expect over
+   time and treat as configuration, not a hardcoded constant, going
+   forward.
+
+Bugs 4-6 compounded: each one independently caused the *same* symptom ("0
+unused directories found," no error), so fixing them one at a time and
+re-testing against the same real, already-downloaded inotify data (rather
+than spending a new CI run per attempt) was what made it tractable to find
+all three rather than stopping at the first fix and declaring victory.
+
 ## Documentation/behavior mismatch
 
 The README describes `optcd.sh` as taking `owner`, `repo`, and `output-file`
@@ -52,22 +104,62 @@ lines assigning them were commented out). The rewritten CLI
 are accepted as optional positional args and fall back to git-remote
 auto-detection when omitted.
 
-## Result on current `jsoup`
+## Result: the full pipeline confirmed working end-to-end
 
-Running against `jhy/jsoup` at its current `HEAD` (post-`1.23.2` release),
-using the exact same `mvn -X verify -B --file pom.xml` command shown in the
-README's own captured example output, OptCD found **zero unused
-directories** across all three Linux matrix jobs (JDK 8, 17, 25).
+After fixing bugs 4-7 above, we ran OptCD against `jhy/jsoup` at the commit
+matching the README's own JDK 8/17/21 matrix (`b29ba354`, before JDK 25 was
+added), and it reproduced the README's example almost exactly:
 
-This is a legitimate negative result, not a tool failure: the README's
-sample output (showing `surefire-reports` and `japicmp` as unused) was
-presumably captured against an older `jsoup` commit. Upstream `jsoup`
-appears to have since changed its Maven plugin configuration such that these
-directories are no longer generated, or are now consumed by something. It
-also means our validation run never exercised the Gemini-fixer path
-end-to-end — that would require pointing OptCD at either an older commit of
-`jsoup` (from around when the README example was captured) or a different
-project that currently exhibits this waste.
+- Detected `target/surefire-reports/` and `target/japicmp/` as unused,
+  correctly attributed to `mvn -X verify -B --file pom.xml` in the "Maven
+  Verify" step, across all three matching Linux jobs.
+- Gemini suggested `-DdisableXmlReport=true` and `-Djapicmp.skip=true` — the
+  *same two flags* the README's own captured output shows.
+- Re-ran the build with the patched command on a second real CI run and
+  confirmed both directories no longer appeared.
+
+This is the first time this exercise reached the Gemini-fixer stage at all
+— every earlier attempt (including against current `jsoup` `HEAD`) reported
+zero unused directories, which given bugs 4-6 above was itself unreliable:
+the pipeline was silently returning false negatives, not a real "nothing to
+find" result.
+
+Re-checking current `jsoup` `HEAD` (post-`1.23.2`, JDK 8/17/25 matrix) with
+the fully fixed pipeline confirms this: it also has real unused directories
+(`surefire-reports`, `japicmp`, same as the older commit) — the earlier
+"zero results on HEAD" finding was **wrong**, entirely caused by bugs 4-6.
+There was never a real behavior change in upstream `jsoup`; the tool was
+just broken.
+
+## Confirmed: a "verified" fix can break other jobs in the same build matrix
+
+The Fixer's own verification step only re-analyzes `ubuntu-latest` jobs (the
+only OS the Logger/Classifier support), but the patched Maven command gets
+written into a workflow file shared by the *entire* build matrix — including
+Windows and macOS jobs OptCD never looks at again. We hit this directly,
+twice, on real CI runs against `jsoup`:
+
+- Before the patch: `test (windows-latest, 17)`, `(windows-latest, 8)`, etc.
+  all pass.
+- After OptCD applies Gemini's fix (`-DdisableXmlReport=true
+  -Djapicmp.skip=true`) and reports it as verified (because the `ubuntu-*`
+  jobs it checks now pass and no longer show the unused directories), the
+  *same* Windows jobs fail with
+  `org.apache.maven.lifecycle.LifecyclePhaseNotFoundException: Unknown
+  lifecycle phase ".skip=true"`.
+
+We traced this as far as: the pushed YAML is byte-for-byte correct (verified
+via the run-history transcript — no corruption from Gemini's response or
+from the ruamel YAML round-trip), yet Maven's own debug output on the
+Windows runner shows `Tasks: [verify, .skip=true]` — meaning
+`-Djapicmp.skip=true` arrives at Maven's argument parser split into two
+separate tokens. That split happens somewhere in Windows's default `pwsh`
+shell invoking `mvn.cmd`, outside OptCD's control — but OptCD's design is
+what lets a broken fix get reported as "confirmed working" without anyone
+noticing, since it only ever re-checks the OS it can analyze. **A real
+result from this exercise: never trust an OptCD "fixed" verdict for a
+multi-OS build matrix without separately confirming the non-Linux jobs
+still pass.**
 
 ## Structural limitations (from reading the paper + code, not yet independently re-verified)
 

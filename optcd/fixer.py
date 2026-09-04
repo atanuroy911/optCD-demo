@@ -1,4 +1,5 @@
 import os
+import posixpath
 import time
 import warnings
 from typing import Callable
@@ -6,6 +7,8 @@ from typing import Callable
 import google.generativeai as genai
 from ruamel.yaml import YAML
 from ruamel.yaml.scalarstring import PlainScalarString
+
+from optcd import run_logger
 
 warnings.filterwarnings("ignore")
 
@@ -29,7 +32,7 @@ class GeminiAPI:
     def __init__(self):
         api_key = os.environ["GEMINI_API_KEY"]
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel("gemini-1.5-flash")
+        self.model = genai.GenerativeModel("gemini-3.6-flash")
 
     def ask_prompt(self, prompt: str) -> str:
         response = self.model.generate_content(
@@ -37,7 +40,9 @@ class GeminiAPI:
             generation_config=genai.GenerationConfig(temperature=0.0),
         )
         text = "".join(part.text for part in response.parts)
-        return text.replace("```", "").replace("\n", "")
+        result = text.replace("```", "").replace("\n", "")
+        run_logger.log_gemini(prompt, result)
+        return result
 
 
 def extract_unique_commands(responsible_plugins_maven: list[dict]) -> dict:
@@ -96,25 +101,25 @@ def run_fixer(
         fixed_dir_basenames: set[str] = set()
 
         for unused_dir in unused_dirs:
-            normalized = os.path.normpath(unused_dir)
-            if os.path.basename(normalized) in fixed_dir_basenames:
+            normalized = posixpath.normpath(unused_dir)
+            if posixpath.basename(normalized) in fixed_dir_basenames:
                 continue
 
             plugin = next(
                 (item["Responsible plugin"] for item in responsible_plugins_maven
-                 if os.path.normpath(item["Unused directory"]) == normalized),
+                 if posixpath.normpath(item["Unused directory"]) == normalized),
                 None,
             )
             if not plugin:
-                print(f"No responsible plugin found for unused directory: {unused_dir}")
+                run_logger.log_step(f"No responsible plugin found for unused directory: {unused_dir}")
                 continue
 
             prompt = PROMPT_TEMPLATE.format(command=original_command, unused_dir=unused_dir, plugin=plugin)
             fix_suggestion = gemini.ask_prompt(prompt)
-            print(f"Fix suggestion for the command '{original_command}' is:\n{fix_suggestion}")
+            run_logger.log_step(f"Fix suggestion for the command '{original_command}' is:\n{fix_suggestion}")
             time.sleep(12)  # avoid rate limiting
 
-            fixed_dir_basenames.add(os.path.basename(normalized))
+            fixed_dir_basenames.add(posixpath.basename(normalized))
 
             if not fix_suggestion or fix_suggestion == original_command:
                 with open(initial_output_file, "a", encoding="utf-8") as f:
@@ -126,19 +131,19 @@ def run_fixer(
             fix_args.update(new_args)
 
         fixed_command = original_command + " " + " ".join(sorted(fix_args))
-        print(f"Fix suggestion for the command '{original_command}' is: '{fixed_command}'")
+        run_logger.log_step(f"Fix suggestion for the command '{original_command}' is: '{fixed_command}'")
 
         update_mvn_command_in_workflow(modified_workflow_path, original_command, fixed_command)
 
         old_unused = {
-            os.path.normpath(item["Unused directory"]).rstrip("/")
+            posixpath.normpath(item["Unused directory"]).rstrip("/")
             for item in responsible_plugins_maven
             if item["Responsible command"] == original_command
         }
 
         new_responsible_plugins_maven = rerun_and_analyze()
         new_unused = {
-            os.path.normpath(item["Unused directory"]).rstrip("/")
+            posixpath.normpath(item["Unused directory"]).rstrip("/")
             for item in new_responsible_plugins_maven
         }
 
