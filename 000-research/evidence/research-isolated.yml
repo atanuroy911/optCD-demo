@@ -1,0 +1,48 @@
+name: Research Isolated Consumption
+
+on: [push, workflow_dispatch]
+
+jobs:
+  isolated-test:
+    name: isolated-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Control A: created, never touched again by anything -> expect "unused"
+      - name: Create variant A (never touched)
+        run: |
+          mkdir -p research-artifacts/variant-a
+          echo "control: never read" > research-artifacts/variant-a/data.txt
+
+      # Control B: created, read in the same job via a plain shell command -> expect "used"
+      - name: Create variant B (read in-job)
+        run: |
+          mkdir -p research-artifacts/variant-b
+          echo "control: read in job" > research-artifacts/variant-b/data.txt
+      - name: Read variant B
+        run: cat research-artifacts/variant-b/data.txt
+
+      # Test C: created, uploaded as an artifact, but nothing ever downloads it -> the question
+      - name: Create variant C (orphan upload)
+        run: |
+          mkdir -p research-artifacts/variant-c
+          echo "test: uploaded but never downloaded" > research-artifacts/variant-c/data.txt
+      - name: Upload variant C
+        uses: actions/upload-artifact@v4
+        with:
+          name: variant-c-orphan
+          path: research-artifacts/variant-c/data.txt
+
+      # Test D: created, copied into a Docker image via COPY -> does docker build count as a read?
+      - name: Create variant D (docker COPY)
+        run: |
+          mkdir -p research-artifacts/variant-d
+          echo "test: copied into docker image" > research-artifacts/variant-d/data.txt
+      - name: Docker build consuming variant D
+        run: |
+          cat > Dockerfile.research-d <<'EOF'
+          FROM alpine:3.20
+          COPY research-artifacts/variant-d/data.txt /data.txt
+          EOF
+          docker build -f Dockerfile.research-d -t research-image-d .

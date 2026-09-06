@@ -1,0 +1,16 @@
+2026-09-06T12:17:24.439109Z;/home/runner/work/gson/gson/research-artifacts/variant-a;data.txt;IN_CREATE
+2026-09-06T12:17:24.471594Z;/home/runner/work/gson/gson/research-artifacts;variant-b;IN_CREATE,IN_ISDIR
+2026-09-06T12:17:24.473309Z;/home/runner/work/gson/gson/research-artifacts;variant-b;IN_ACCESS,IN_ISDIR
+2026-09-06T12:17:24.473652Z;/home/runner/work/gson/gson/research-artifacts/variant-b;data.txt;IN_CREATE
+2026-09-06T12:17:24.501228Z;/home/runner/work/gson/gson/research-artifacts/variant-b;data.txt;IN_ACCESS
+2026-09-06T12:17:24.531338Z;/home/runner/work/gson/gson/research-artifacts;variant-c;IN_CREATE,IN_ISDIR
+2026-09-06T12:17:24.531875Z;/home/runner/work/gson/gson/research-artifacts;variant-c;IN_ACCESS,IN_ISDIR
+2026-09-06T12:17:24.532288Z;/home/runner/work/gson/gson/research-artifacts/variant-c;data.txt;IN_CREATE
+2026-09-06T12:17:25.002775Z;/home/runner/work/gson/gson/research-artifacts/variant-c;data.txt;IN_ACCESS
+2026-09-06T12:17:25.520503Z;/home/runner/work/gson/gson/research-artifacts;variant-d;IN_CREATE,IN_ISDIR
+2026-09-06T12:17:25.521456Z;/home/runner/work/gson/gson/research-artifacts;variant-d;IN_ACCESS,IN_ISDIR
+2026-09-06T12:17:26.530297Z;/home/runner/work/gson/gson/research-artifacts;variant-d;IN_ACCESS,IN_ISDIR
+2026-09-06T12:17:26.530693Z;/home/runner/work/gson/gson/research-artifacts/variant-d;;IN_ACCESS,IN_ISDIR
+2026-09-06T12:17:26.531360Z;/home/runner/work/gson/gson/research-artifacts;variant-d;IN_ACCESS,IN_ISDIR
+2026-09-06T12:17:26.531976Z;/home/runner/work/gson/gson/research-artifacts/variant-d;;IN_ACCESS,IN_ISDIR
+2026-09-06T12:17:26.532367Z;/home/runner/work/gson/gson/research-artifacts/variant-d;data.txt;IN_ACCESS

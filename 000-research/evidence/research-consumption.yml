@@ -1,0 +1,40 @@
+name: Research Consumption Paths
+
+on: [push, workflow_dispatch]
+
+jobs:
+  docker-copy-test:
+    name: docker-copy-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Build jar
+        run: mvn -q -B package -DskipTests --projects gson --also-make
+      - name: Docker build consuming jar via COPY
+        run: |
+          cat > Dockerfile.research <<'EOF'
+          FROM alpine:3.20
+          COPY gson/target/*.jar /app.jar
+          EOF
+          docker build -f Dockerfile.research -t research-image .
+
+  orphan-upload-test:
+    name: orphan-upload-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Build jar
+        run: mvn -q -B package -DskipTests --projects gson --also-make
+      - name: Upload artifact that nothing ever downloads
+        uses: actions/upload-artifact@v4
+        with:
+          name: orphan-jar
+          path: gson/target/*.jar
