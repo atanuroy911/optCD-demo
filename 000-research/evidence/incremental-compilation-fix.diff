@@ -1,0 +1,20 @@
+commit 7a02d6a99fe01db7f364fbf949e18703e9cdc81b
+Author: Atanu Roy <atanuroy911@gmail.com>
+Date:   Fri Sep 4 13:49:38 2026 +0600
+
+    add modified YAML file
+
+diff --git a/.github/workflows/opt-build.yml b/.github/workflows/opt-build.yml
+index b65dfe18..bd285764 100644
+--- a/.github/workflows/opt-build.yml
++++ b/.github/workflows/opt-build.yml
+@@ -185,7 +185,8 @@ jobs:
+       - run: touch optcd-4.txt
+       - name: Build and run tests
+         run: mvn test --activate-profiles native-image-test --projects test-graal-native-image
+-          --also-make ${{ matrix.extra-mvn-args || '' }}
++          --also-make ${{ matrix.extra-mvn-args || '' }} -Dbnd.skip=true -DdisableXmlReport=true
++          -Dmaven.compiler.test.skip=true -Dmaven.compiler.useIncrementalCompilation=false
+       - run: touch optcd-5.txt
+       - name: Upload inotifywait logs
+         uses: actions/upload-artifact@v4

@@ -1,0 +1,72 @@
+# Raw excerpt from run-history/20260904T073800Z/run.log (lines 277-330).
+# Real prompts sent to Gemini and its real responses, verbatim, during the
+# fixer stage of a real OptCD run against google/gson (fork:
+# atanuroy911/gson, branch optcd-run). The merged result of these four
+# exchanges was committed as github.com/atanuroy911/gson commit 7a02d6a9
+# (see incremental-compilation-fix.diff in this folder) and actually pushed
+# and re-run on GitHub Actions to verify it.
+#
+# Notable lines:
+#   15-23: Gemini is told /gson/target/maven-status/.../testCompile/ (Maven's
+#          own incremental-compile cache) is "unused" and told to eliminate
+#          it -> responds with -Dmaven.compiler.useIncrementalCompilation=false,
+#          which disables a real build optimization.
+#   28-29: the SAME maven-status directory family, one path deeper, is
+#          attributed to a *different* plugin (bnd:6.4.0:bnd-process) than
+#          line 15-16 (proguard:2.7.0:proguard) -- the multi-module
+#          misattribution issue, visible in the same exchange.
+
+[07:46:25] Gemini prompt:
+The command `mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make ${{ matrix.extra-mvn-args || '' }}` creates the following unused directory:/home/runner/work/gson/gson/gson/target/surefire-reports/
+while running the plugin `surefire:3.5.6:test (default-test) @ gson`:
+We can skip creating any files that are being created in this directory by updating the command. The fix normally include skipping the execution of the plugin responsible.
+Please suggest an updated command to avoid creating this unnecessary directory. Note that your command should not stop the test runs. For example, using -DskipTests would prevent Maven tests from running, which is not acceptable. Therefore, your solution should not include such options.
+A valid fix would disable the generation of the unused directory without affecting the test runs. For example `-DdisableXmlReport=true` would disable generation of surefire reports directory without affecting test runs and is considered a valid fix if unused directory is surefire-reports.
+Provide only the new command without additional explanation, code formatting, or backticks.
+---
+Gemini response:
+mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make -DdisableXmlReport=true ${{ matrix.extra-mvn-args || '' }}
+===
+[07:46:25] Fix suggestion for the command 'mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make ${{ matrix.extra-mvn-args || '' }}' is:
+mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make -DdisableXmlReport=true ${{ matrix.extra-mvn-args || '' }}
+[07:46:45] Gemini prompt:
+The command `mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make ${{ matrix.extra-mvn-args || '' }}` creates the following unused directory:/home/runner/work/gson/gson/gson/target/maven-status/maven-compiler-plugin/testCompile/
+while running the plugin `proguard:2.7.0:proguard (obfuscate-test-class) @ gson`:
+We can skip creating any files that are being created in this directory by updating the command. The fix normally include skipping the execution of the plugin responsible.
+Please suggest an updated command to avoid creating this unnecessary directory. Note that your command should not stop the test runs. For example, using -DskipTests would prevent Maven tests from running, which is not acceptable. Therefore, your solution should not include such options.
+A valid fix would disable the generation of the unused directory without affecting the test runs. For example `-DdisableXmlReport=true` would disable generation of surefire reports directory without affecting test runs and is considered a valid fix if unused directory is surefire-reports.
+Provide only the new command without additional explanation, code formatting, or backticks.
+---
+Gemini response:
+mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make -Dmaven.compiler.useIncrementalCompilation=false ${{ matrix.extra-mvn-args || '' }}
+===
+[07:46:45] Fix suggestion for the command 'mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make ${{ matrix.extra-mvn-args || '' }}' is:
+mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make -Dmaven.compiler.useIncrementalCompilation=false ${{ matrix.extra-mvn-args || '' }}
+[07:47:16] Gemini prompt:
+The command `mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make ${{ matrix.extra-mvn-args || '' }}` creates the following unused directory:/home/runner/work/gson/gson/gson/target/maven-status/maven-compiler-plugin/compile/
+while running the plugin `bnd:6.4.0:bnd-process (default) @ gson`:
+We can skip creating any files that are being created in this directory by updating the command. The fix normally include skipping the execution of the plugin responsible.
+Please suggest an updated command to avoid creating this unnecessary directory. Note that your command should not stop the test runs. For example, using -DskipTests would prevent Maven tests from running, which is not acceptable. Therefore, your solution should not include such options.
+A valid fix would disable the generation of the unused directory without affecting the test runs. For example `-DdisableXmlReport=true` would disable generation of surefire reports directory without affecting test runs and is considered a valid fix if unused directory is surefire-reports.
+Provide only the new command without additional explanation, code formatting, or backticks.
+---
+Gemini response:
+mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make -Dbnd.skip=true ${{ matrix.extra-mvn-args || '' }}
+===
+[07:47:16] Fix suggestion for the command 'mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make ${{ matrix.extra-mvn-args || '' }}' is:
+mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make -Dbnd.skip=true ${{ matrix.extra-mvn-args || '' }}
+[07:48:01] Gemini prompt:
+The command `mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make ${{ matrix.extra-mvn-args || '' }}` creates the following unused directory:/home/runner/work/gson/gson/test-graal-native-image/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/
+while running the plugin `surefire:3.5.6:test (default-test) @ test-graal-native-image`:
+We can skip creating any files that are being created in this directory by updating the command. The fix normally include skipping the execution of the plugin responsible.
+Please suggest an updated command to avoid creating this unnecessary directory. Note that your command should not stop the test runs. For example, using -DskipTests would prevent Maven tests from running, which is not acceptable. Therefore, your solution should not include such options.
+A valid fix would disable the generation of the unused directory without affecting the test runs. For example `-DdisableXmlReport=true` would disable generation of surefire reports directory without affecting test runs and is considered a valid fix if unused directory is surefire-reports.
+Provide only the new command without additional explanation, code formatting, or backticks.
+---
+Gemini response:
+mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make -Dmaven.compiler.test.skip=true ${{ matrix.extra-mvn-args || '' }}
+===
+[07:48:01] Fix suggestion for the command 'mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make ${{ matrix.extra-mvn-args || '' }}' is:
+mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make -Dmaven.compiler.test.skip=true ${{ matrix.extra-mvn-args || '' }}
+[07:49:21] Gemini prompt:
+The command `mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make ${{ matrix.extra-mvn-args || '' }}` creates the following unused directory:/home/runner/work/gson/gson/test-graal-native-image/target/native-test-reports/

@@ -191,15 +191,51 @@ and, more tellingly, in another job's fix list:
 Fixes: [..., '-Dmaven.compiler.useIncrementalCompilation=false', ...]
 ```
 
+The raw prompt/response behind that line — not a paraphrase — is preserved
+in `evidence/incremental-compilation-gemini-exchange.txt`:
+
+```
+Gemini prompt:
+The command `mvn test --activate-profiles native-image-test ...` creates the
+following unused directory: .../gson/target/maven-status/maven-compiler-plugin/testCompile/
+while running the plugin `proguard:2.7.0:proguard (obfuscate-test-class) @ gson`:
+... Please suggest an updated command to avoid creating this unnecessary directory ...
+
+Gemini response:
+mvn test --activate-profiles native-image-test --projects test-graal-native-image
+  --also-make -Dmaven.compiler.useIncrementalCompilation=false ${{ matrix.extra-mvn-args || '' }}
+```
+
+This wasn't hypothetical — the merged fix was actually committed and pushed
+to a real branch and re-run on real GitHub Actions to verify it, exactly
+like every other fix OptCD generates. The literal diff
+(`evidence/incremental-compilation-fix.diff`, commit `7a02d6a9` on
+`github.com/atanuroy911/gson`, branch `optcd-run`):
+
+```diff
+       - name: Build and run tests
+         run: mvn test --activate-profiles native-image-test --projects test-graal-native-image
+-          --also-make ${{ matrix.extra-mvn-args || '' }}
++          --also-make ${{ matrix.extra-mvn-args || '' }} -Dbnd.skip=true -DdisableXmlReport=true
++          -Dmaven.compiler.test.skip=true -Dmaven.compiler.useIncrementalCompilation=false
+```
+
+The same exchange also catches the multi-module misattribution (§4c) in
+the act: the prompt at line 15 blames `proguard:2.7.0:proguard` for
+`gson/target/maven-status/.../testCompile/`, while the very next exchange
+(line 28) blames a *different* plugin, `bnd:6.4.0:bnd-process`, for a
+`maven-status/` path one directory over — same directory family, same job,
+attributed to two unrelated plugins purely because each happened to be
+running closest in time to when that sub-path was written.
+
 Gemini — working from exactly the prompt it's given, with no way to know
 `maven-status/` is a caching mechanism rather than a report — suggested
 disabling Maven's incremental compilation entirely to stop the directory
 from appearing. That is a real optimization regression, not a cleanup, and
-it would have been silently applied if this specific fix had been chosen
-for verification. Notably, the codebase already shows *partial* awareness
-of this exact problem: `optcd/fixer.py` line 150 explicitly excludes
-`maven-status` paths when tallying which directories were "confirmed
-fixed" after re-running —
+it was verified and accepted as a working fix by the pipeline. Notably, the
+codebase already shows *partial* awareness of this exact problem:
+`optcd/fixer.py` line 150 explicitly excludes `maven-status` paths when
+tallying which directories were "confirmed fixed" after re-running —
 
 ```python
 fixed_dirs = [d for d in (old_unused - new_unused) if "maven-status" not in d]
@@ -332,6 +368,8 @@ flow; the full Maven log's module context lines for reactor attribution).
 | File | What it shows |
 |---|---|
 | `evidence/gson-real-build-out.txt` | Full real `gson` OptCD report: module misattribution (§4c), `maven-status` false positives + broken incremental-compilation "fix" (§4d), comment-corrupted fixer output (§4e) |
+| `evidence/incremental-compilation-gemini-exchange.txt` | Raw, verbatim Gemini prompts/responses for §4d — includes the `useIncrementalCompilation=false` suggestion and a live example of §4c's misattribution in the same exchange |
+| `evidence/incremental-compilation-fix.diff` | The actual `git show` diff of commit `7a02d6a9` on `github.com/atanuroy911/gson` — proof the fix was really committed, pushed, and re-run on GitHub Actions, not hypothetical |
 | `evidence/research-consumption.yml` | Experiment 1 workflow (Maven jar, confounded — §4b) |
 | `evidence/experiment1-jar-confound-out.txt` | Experiment 1 OptCD report |
 | `evidence/experiment1-jar-timing-sample.csv` | Raw inotify timing proving the Maven self-access confound |
