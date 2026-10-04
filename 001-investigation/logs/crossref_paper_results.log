@@ -1,0 +1,5 @@
+uploads in paper-analyzed workflows: 39
+  ...in repos with OptCD results:   34
+  ...flagged unused by OptCD:        2
+    apache/nifi [failure-only-diagnostic] if='failure() || cancelled()' path=**/target/failsafe-reports/**/*.txt -> nifi-system-tests/nifi-system-test-suite/target/failsafe-reports
+    apache/nifi [failure-only-diagnostic] if='failure() || cancelled()' path=nifi-system-tests/nifi-system-test-suite/target/failsafe-reports/**/*.txt | nifi-system-tests/nifi-system-test-suite/target/surefire-reports/**/*.txt | nifi-system-tests/nifi-system-test-suite/target/troubleshooting/**/* -> nifi-system-tests/nifi-system-test-suite/target/failsafe-reports

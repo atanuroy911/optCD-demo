@@ -1,0 +1,113 @@
+name: "CI: atmosphere.js"
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'atmosphere.js/**'
+      - '.github/workflows/ci-js.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'atmosphere.js/**'
+      - '.github/workflows/ci-js.yml'
+
+jobs:
+  build-and-test:
+    name: Build & Test Client
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        # jsdom 30 (the vitest environment) requires ^22.13.0 || >=24.0.0, and
+        # Node 20 reached end-of-life in April 2026. The matrix tracks jsdom's
+        # supported range: current LTS plus the line after it.
+        node-version: [22, 24]
+      fail-fast: false
+    
+    defaults:
+      run:
+        working-directory: atmosphere.js
+    
+    steps:
+    - uses: actions/checkout@v7
+    
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v7
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: atmosphere.js/package-lock.json
+    
+    - name: Install Dependencies
+      run: npm ci
+    
+    - name: Lint
+      run: npm run lint
+    
+    - name: Type Check
+      run: npm run typecheck
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Run Tests
+      run: npm test
+    
+    - name: Upload Coverage
+      if: matrix.node-version == 22
+      uses: codecov/codecov-action@v7
+      with:
+        files: ./atmosphere.js/coverage/coverage-final.json
+        flags: atmosphere-js
+        name: atmosphere-js-coverage
+        # A Codecov upload hiccup (service 5xx, missing token) must not fail the
+        # JS build — coverage upload is non-essential. Use the action's own knob
+        # instead of a blanket continue-on-error: this scopes the tolerance to
+        # upload errors only, so a genuine step failure still surfaces.
+        fail_ci_if_error: false
+    
+    - name: Upload Build Artifacts
+      if: matrix.node-version == 22
+      uses: actions/upload-artifact@v7
+      with:
+        name: atmosphere-js-dist
+        path: atmosphere.js/dist/
+
+  bundle-size:
+    name: Check Bundle Size
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: atmosphere.js
+    
+    steps:
+    - uses: actions/checkout@v7
+    
+    - name: Setup Node.js 22
+      uses: actions/setup-node@v7
+      with:
+        node-version: 22
+        cache: 'npm'
+        cache-dependency-path: atmosphere.js/package-lock.json
+    
+    - name: Install Dependencies
+      run: npm ci
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Check Bundle Size
+      run: |
+        ls -lh dist/
+        SIZE=$(stat -f%z dist/index.js 2>/dev/null || stat -c%s dist/index.js)
+        echo "Bundle size: $SIZE bytes"
+        # Cap raised from 40KB → 50KB on 2026-05-12 after the resilience
+        # suite (OfflineQueue, MessageHistorySync, ConnectionStatus,
+        # useOptimistic) legitimately grew the core surface.
+        if [ $SIZE -gt 51200 ]; then
+          echo "❌ Bundle size ($SIZE bytes) exceeds 50KB limit!"
+          exit 1
+        fi
+        echo "✅ Bundle size OK: $SIZE bytes"

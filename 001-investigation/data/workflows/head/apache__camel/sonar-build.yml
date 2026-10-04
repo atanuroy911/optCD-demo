@@ -1,0 +1,126 @@
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+name: SonarBuild
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - README.md
+      - SECURITY.md
+      - Jenkinsfile
+      - Jenkinsfile.*
+      - NOTICE.txt
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sonar-pr-${{ github.event.pull_request.head.repo.full_name }}-${{ github.event.pull_request.head.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    # Temporarily disabled until SonarCloud quality gate is adjusted (INFRA-27808)
+    if: false && github.repository == 'apache/camel'
+    name: Build for Sonar Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Fetch base branch for Scalpel change detection
+        run: |
+          # Scalpel is observational — fetch failures must not break the build.
+          BASE_REF="${GITHUB_BASE_REF:-main}"
+          for depth in 200 1000; do
+            git fetch --no-tags --deepen=$depth origin ${BASE_REF} 2>/dev/null || true
+            git fetch --no-tags --depth=$depth origin "${BASE_REF}:refs/remotes/origin/${BASE_REF}" || true
+            if git merge-base HEAD "origin/${BASE_REF}" >/dev/null 2>&1; then
+              echo "Merge base reachable at depth $depth"
+              break
+            fi
+            echo "Merge base not reachable at depth $depth, deepening..."
+          done
+          # If still not reachable, fetch full history as last resort
+          if ! git merge-base HEAD "origin/${BASE_REF}" >/dev/null 2>&1; then
+            echo "Merge base still not reachable, fetching full history"
+            git fetch --no-tags --unshallow origin ${BASE_REF} 2>/dev/null || true
+            git fetch --no-tags origin "${BASE_REF}:refs/remotes/origin/${BASE_REF}" || true
+          fi
+      - id: install-packages
+        uses: ./.github/actions/install-packages
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+          cache: 'maven'
+
+      - name: Build with Maven
+        run: ./mvnw install -B -Dquickly
+
+      # Run core tests with JaCoCo and generate aggregated coverage report.
+      # The source modules must be in the reactor so report-aggregate can
+      # map execution data from camel-core tests to their classes.
+      # TODO: Once incremental-build.sh supports module detection in the sonar
+      #       workflow, replace the hardcoded -pl with detected affected modules
+      #       to get coverage on components too (see PR #22247).
+      - name: Run tests with coverage and generate report
+        run: >
+          ./mvnw verify -B -Dcoverage
+          -pl core/camel-api,core/camel-util,core/camel-support,core/camel-management-api,core/camel-management,core/camel-base,core/camel-base-engine,core/camel-core-engine,core/camel-core-languages,core/camel-core-model,core/camel-core-processor,core/camel-core-reifier,core/camel-core,core/camel-main,core/camel-health,coverage
+          -Dmaven.test.failure.ignore=true
+
+      - name: Prepare compiled classes artifact
+        shell: bash
+        run: find . -name "target" -type d | tar -czf target.tar.gz -T -
+
+      - name: Upload compiled classes artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        id: target-upload
+        with:
+          name: sonar-target
+          path: target.tar.gz
+          if-no-files-found: error
+          retention-days: 1
+
+      - name: Prepare pull request metadata
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          TARGET_ARTIFACT_ID: ${{ steps.target-upload.outputs.artifact-id }}
+        run: |
+          echo "$PR_NUMBER" > pr-event.txt
+          echo "$PR_HEAD_REF" >> pr-event.txt
+          echo "$PR_BASE_REF" >> pr-event.txt
+          echo "$PR_HEAD_SHA" >> pr-event.txt
+          echo "$TARGET_ARTIFACT_ID" >> pr-event.txt
+
+      - name: Upload pull request metadata
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: sonar-pr-event
+          path: pr-event.txt
+          if-no-files-found: error
+          retention-days: 1

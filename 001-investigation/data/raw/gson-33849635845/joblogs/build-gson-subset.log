@@ -1,0 +1,497 @@
+﻿2026-09-04T07:38:17.5966016Z Current runner version: '2.337.0'
+2026-09-04T07:38:17.5991000Z ##[group]Runner Image Provisioner
+2026-09-04T07:38:17.5991879Z Hosted Compute Agent
+2026-09-04T07:38:17.5992503Z Version: 20260828.587
+2026-09-04T07:38:17.5993200Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-04T07:38:17.5993971Z Build Date: 2026-08-28T16:44:25Z
+2026-09-04T07:38:17.5994641Z Worker ID: {976b8645-a2cb-489f-a268-b70bf12bcf2d}
+2026-09-04T07:38:17.5995410Z Azure Region: westus
+2026-09-04T07:38:17.5996403Z ##[endgroup]
+2026-09-04T07:38:17.5998194Z ##[group]Operating System
+2026-09-04T07:38:17.5998855Z Ubuntu
+2026-09-04T07:38:17.5999361Z 24.04.4
+2026-09-04T07:38:17.5999945Z LTS
+2026-09-04T07:38:17.6000487Z ##[endgroup]
+2026-09-04T07:38:17.6001066Z ##[group]Runner Image
+2026-09-04T07:38:17.6001668Z Image: ubuntu-24.04
+2026-09-04T07:38:17.6002227Z Version: 20260831.293.1
+2026-09-04T07:38:17.6003900Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260831.293/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-04T07:38:17.6005718Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260831.293
+2026-09-04T07:38:17.6006744Z ##[endgroup]
+2026-09-04T07:38:17.6007884Z ##[group]GITHUB_TOKEN Permissions
+2026-09-04T07:38:17.6010039Z Contents: read
+2026-09-04T07:38:17.6010659Z Metadata: read
+2026-09-04T07:38:17.6011333Z ##[endgroup]
+2026-09-04T07:38:17.6013368Z Secret source: Actions
+2026-09-04T07:38:17.6014731Z Prepare workflow directory
+2026-09-04T07:38:17.6414561Z Prepare all required actions
+2026-09-04T07:38:17.6463052Z Getting action download info
+2026-09-04T07:38:17.9917155Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-09-04T07:38:18.1772614Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-09-04T07:38:18.2141116Z Download action repository 'actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95' (SHA:03ad4de0992f5dab5e18fcb136590ce7c4a0ac95)
+2026-09-04T07:38:18.7166039Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-09-04T07:38:18.9464714Z Complete job name: build-gson-subset
+2026-09-04T07:38:19.0366932Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-04T07:38:19.0376023Z ##[group]Run actions/setup-python@v5
+2026-09-04T07:38:19.0376906Z with:
+2026-09-04T07:38:19.0377371Z   python-version: 3.10
+2026-09-04T07:38:19.0377875Z   check-latest: false
+2026-09-04T07:38:19.0381975Z   token: ***
+2026-09-04T07:38:19.0382454Z   update-environment: true
+2026-09-04T07:38:19.0382990Z   allow-prereleases: false
+2026-09-04T07:38:19.0383495Z   freethreaded: false
+2026-09-04T07:38:19.0384718Z env:
+2026-09-04T07:38:19.0385738Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:19.0386525Z ##[endgroup]
+2026-09-04T07:38:19.1798134Z ##[group]Installed versions
+2026-09-04T07:38:19.1866547Z (node:2149) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-04T07:38:19.1868286Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-04T07:38:19.1869505Z Successfully set up CPython (3.10.21)
+2026-09-04T07:38:19.1871049Z ##[endgroup]
+2026-09-04T07:38:19.2155798Z ##[group]Run python -m pip install --upgrade pip
+2026-09-04T07:38:19.2157106Z [36;1mpython -m pip install --upgrade pip[0m
+2026-09-04T07:38:19.2158205Z [36;1mpip install inotify[0m
+2026-09-04T07:38:19.2225022Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:19.2226177Z env:
+2026-09-04T07:38:19.2227454Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:19.2228930Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:19.2230818Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:19.2232334Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:19.2233709Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:19.2235084Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:19.2236744Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:19.2238084Z ##[endgroup]
+2026-09-04T07:38:21.7006232Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.10.21/x64/lib/python3.10/site-packages (26.2.1)
+2026-09-04T07:38:22.3961089Z Collecting inotify
+2026-09-04T07:38:22.4710689Z   Downloading inotify-0.2.12-py2.py3-none-any.whl.metadata (7.2 kB)
+2026-09-04T07:38:22.5103659Z Collecting build (from inotify)
+2026-09-04T07:38:22.5218441Z   Downloading build-1.6.0-py3-none-any.whl.metadata (5.6 kB)
+2026-09-04T07:38:22.5638472Z Collecting packaging>=24.0 (from build->inotify)
+2026-09-04T07:38:22.5774102Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-09-04T07:38:22.6058625Z Collecting pyproject_hooks (from build->inotify)
+2026-09-04T07:38:22.6167635Z   Downloading pyproject_hooks-1.2.0-py3-none-any.whl.metadata (1.3 kB)
+2026-09-04T07:38:22.6782549Z Collecting tomli>=1.1.0 (from build->inotify)
+2026-09-04T07:38:22.6893939Z   Downloading tomli-2.4.1-py3-none-any.whl.metadata (10 kB)
+2026-09-04T07:38:22.7063507Z Downloading inotify-0.2.12-py2.py3-none-any.whl (20 kB)
+2026-09-04T07:38:22.7224096Z Downloading build-1.6.0-py3-none-any.whl (31 kB)
+2026-09-04T07:38:22.7382296Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-09-04T07:38:22.7630159Z Downloading tomli-2.4.1-py3-none-any.whl (14 kB)
+2026-09-04T07:38:22.7763217Z Downloading pyproject_hooks-1.2.0-py3-none-any.whl (10 kB)
+2026-09-04T07:38:22.8136616Z Installing collected packages: tomli, pyproject_hooks, packaging, build, inotify
+2026-09-04T07:38:22.9423150Z 
+2026-09-04T07:38:22.9442113Z Successfully installed build-1.6.0 inotify-0.2.12 packaging-26.3 pyproject_hooks-1.2.0 tomli-2.4.1
+2026-09-04T07:38:22.9932334Z ##[group]Run python3 -c "
+2026-09-04T07:38:22.9932696Z [36;1mpython3 -c "[0m
+2026-09-04T07:38:22.9932946Z [36;1mimport inotify.adapters[0m
+2026-09-04T07:38:22.9933234Z [36;1mimport inotify.constants[0m
+2026-09-04T07:38:22.9933501Z [36;1mimport os[0m
+2026-09-04T07:38:22.9933775Z [36;1mfrom datetime import datetime, timezone[0m
+2026-09-04T07:38:22.9934285Z [36;1mwith open('/home/runner/inotifywait-log-build-gson-subset.csv', 'w') as log_file:[0m
+2026-09-04T07:38:22.9935079Z [36;1m  i = inotify.adapters.InotifyTree('/home/runner/work/gson/gson', inotify.constants.IN_CREATE | inotify.constants.IN_ACCESS)[0m
+2026-09-04T07:38:22.9936054Z [36;1m  for event in i.event_gen(yield_nones=False):[0m
+2026-09-04T07:38:22.9936415Z [36;1m    (_, type_names, path, filename) = event[0m
+2026-09-04T07:38:22.9936863Z [36;1m    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f') + 'Z'[0m
+2026-09-04T07:38:22.9937315Z [36;1m    events = ','.join(type_names)[0m
+2026-09-04T07:38:22.9937727Z [36;1m    log_file.write(f'{now};{path};{filename};{events}\n')[0m
+2026-09-04T07:38:22.9938080Z [36;1m    log_file.flush()[0m
+2026-09-04T07:38:22.9938344Z [36;1m    os.fsync(log_file.fileno())[0m
+2026-09-04T07:38:22.9938615Z [36;1m" &[0m
+2026-09-04T07:38:22.9978487Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:22.9978753Z env:
+2026-09-04T07:38:22.9979056Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:22.9979509Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:22.9979971Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:22.9980431Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:22.9980827Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:22.9981220Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:22.9981612Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:22.9982175Z ##[endgroup]
+2026-09-04T07:38:28.0147913Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-09-04T07:38:28.0148337Z with:
+2026-09-04T07:38:28.0148553Z   persist-credentials: false
+2026-09-04T07:38:28.0148817Z   repository: atanuroy911/gson
+2026-09-04T07:38:28.0151478Z   token: ***
+2026-09-04T07:38:28.0151688Z   ssh-strict: true
+2026-09-04T07:38:28.0151894Z   ssh-user: git
+2026-09-04T07:38:28.0152087Z   clean: true
+2026-09-04T07:38:28.0152296Z   sparse-checkout-cone-mode: true
+2026-09-04T07:38:28.0152557Z   fetch-depth: 1
+2026-09-04T07:38:28.0152759Z   fetch-tags: false
+2026-09-04T07:38:28.0152970Z   show-progress: true
+2026-09-04T07:38:28.0153189Z   lfs: false
+2026-09-04T07:38:28.0153375Z   submodules: false
+2026-09-04T07:38:28.0153587Z   set-safe-directory: true
+2026-09-04T07:38:28.0153835Z   allow-unsafe-pr-checkout: false
+2026-09-04T07:38:28.0154081Z env:
+2026-09-04T07:38:28.0154356Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:28.0154823Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:28.0155260Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:28.0155878Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:28.0156272Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:28.0156647Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:28.0157029Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:28.0157348Z ##[endgroup]
+2026-09-04T07:38:28.1009391Z Syncing repository: atanuroy911/gson
+2026-09-04T07:38:28.1036623Z ##[group]Getting Git version info
+2026-09-04T07:38:28.1037190Z Working directory is '/home/runner/work/gson/gson'
+2026-09-04T07:38:28.1066244Z [command]/usr/bin/git version
+2026-09-04T07:38:28.1202330Z git version 2.55.0
+2026-09-04T07:38:28.1228495Z ##[endgroup]
+2026-09-04T07:38:28.1240957Z Temporarily overriding HOME='/home/runner/work/_temp/144b98d0-5528-4867-9f8f-db90c84dfbbf' before making global git config changes
+2026-09-04T07:38:28.1242106Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-04T07:38:28.1248606Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/gson/gson
+2026-09-04T07:38:28.1304114Z Deleting the contents of '/home/runner/work/gson/gson'
+2026-09-04T07:38:28.1310448Z ##[group]Determining repository object format
+2026-09-04T07:38:28.1311786Z ##[endgroup]
+2026-09-04T07:38:28.1312258Z ##[group]Initializing the repository
+2026-09-04T07:38:28.1320090Z [command]/usr/bin/git init /home/runner/work/gson/gson
+2026-09-04T07:38:28.1473995Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-04T07:38:28.1475126Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-04T07:38:28.1476504Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-04T07:38:28.1477301Z hint: call:
+2026-09-04T07:38:28.1478366Z hint:
+2026-09-04T07:38:28.1479237Z hint: 	git config --global init.defaultBranch <name>
+2026-09-04T07:38:28.1481145Z hint:
+2026-09-04T07:38:28.1481927Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-04T07:38:28.1482853Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-04T07:38:28.1483587Z hint:
+2026-09-04T07:38:28.1484078Z hint: 	git branch -m <name>
+2026-09-04T07:38:28.1484643Z hint:
+2026-09-04T07:38:28.1485402Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-04T07:38:28.1486767Z Initialized empty Git repository in /home/runner/work/gson/gson/.git/
+2026-09-04T07:38:28.1502268Z [command]/usr/bin/git remote add origin https://github.com/atanuroy911/gson
+2026-09-04T07:38:28.1596114Z ##[endgroup]
+2026-09-04T07:38:28.1596946Z ##[group]Disabling automatic garbage collection
+2026-09-04T07:38:28.1601133Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-04T07:38:28.1641531Z ##[endgroup]
+2026-09-04T07:38:28.1642612Z ##[group]Setting up auth
+2026-09-04T07:38:28.1643314Z Removing SSH command configuration
+2026-09-04T07:38:28.1647219Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-04T07:38:28.1687072Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-04T07:38:28.2093970Z Removing HTTP extra header
+2026-09-04T07:38:28.2096318Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-04T07:38:28.2136149Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-04T07:38:28.2369360Z Removing includeIf entries pointing to credentials config files
+2026-09-04T07:38:28.2373107Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-04T07:38:28.2410458Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-04T07:38:28.2656617Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-feee186e-2241-4bcf-aed6-c99056fb5e6e.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-04T07:38:28.2702457Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/gson/gson/.git.path /home/runner/work/_temp/git-credentials-feee186e-2241-4bcf-aed6-c99056fb5e6e.config
+2026-09-04T07:38:28.2742307Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-feee186e-2241-4bcf-aed6-c99056fb5e6e.config
+2026-09-04T07:38:28.2786156Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-feee186e-2241-4bcf-aed6-c99056fb5e6e.config
+2026-09-04T07:38:28.2826200Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-feee186e-2241-4bcf-aed6-c99056fb5e6e.config
+2026-09-04T07:38:28.2861783Z ##[endgroup]
+2026-09-04T07:38:28.2862532Z ##[group]Fetching the repository
+2026-09-04T07:38:28.2869477Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +4dd947df69aa3ea7d3a11b253ef1ecb587454312:refs/remotes/origin/optcd-run
+2026-09-04T07:38:28.9296547Z From https://github.com/atanuroy911/gson
+2026-09-04T07:38:28.9303016Z  * [new ref]         4dd947df69aa3ea7d3a11b253ef1ecb587454312 -> origin/optcd-run
+2026-09-04T07:38:28.9305963Z [command]/usr/bin/git branch --list --remote origin/optcd-run
+2026-09-04T07:38:28.9339463Z   origin/optcd-run
+2026-09-04T07:38:28.9349017Z [command]/usr/bin/git rev-parse refs/remotes/origin/optcd-run
+2026-09-04T07:38:28.9380082Z 4dd947df69aa3ea7d3a11b253ef1ecb587454312
+2026-09-04T07:38:28.9390646Z ##[endgroup]
+2026-09-04T07:38:28.9391426Z ##[group]Determining the checkout info
+2026-09-04T07:38:28.9392217Z ##[endgroup]
+2026-09-04T07:38:28.9393572Z [command]/usr/bin/git sparse-checkout disable
+2026-09-04T07:38:28.9454719Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-04T07:38:28.9496352Z ##[group]Checking out the ref
+2026-09-04T07:38:28.9501295Z [command]/usr/bin/git checkout --progress --force -B optcd-run refs/remotes/origin/optcd-run
+2026-09-04T07:38:28.9949522Z Switched to a new branch 'optcd-run'
+2026-09-04T07:38:28.9950456Z branch 'optcd-run' set up to track 'origin/optcd-run'.
+2026-09-04T07:38:28.9958675Z ##[endgroup]
+2026-09-04T07:38:29.0007346Z [command]/usr/bin/git log -1 --format=%H
+2026-09-04T07:38:29.0043288Z 4dd947df69aa3ea7d3a11b253ef1ecb587454312
+2026-09-04T07:38:29.0052728Z ##[group]Removing auth
+2026-09-04T07:38:29.0053310Z Removing SSH command configuration
+2026-09-04T07:38:29.0059707Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-04T07:38:29.0123289Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-04T07:38:29.0369474Z Removing HTTP extra header
+2026-09-04T07:38:29.0373145Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-04T07:38:29.0411607Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-04T07:38:29.0647654Z Removing includeIf entries pointing to credentials config files
+2026-09-04T07:38:29.0650823Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-04T07:38:29.0685704Z includeif.gitdir:/home/runner/work/gson/gson/.git.path
+2026-09-04T07:38:29.0686734Z includeif.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path
+2026-09-04T07:38:29.0687471Z includeif.gitdir:/github/workspace/.git.path
+2026-09-04T07:38:29.0688350Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-04T07:38:29.0695668Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/gson/gson/.git.path
+2026-09-04T07:38:29.0724898Z /home/runner/work/_temp/git-credentials-feee186e-2241-4bcf-aed6-c99056fb5e6e.config
+2026-09-04T07:38:29.0735046Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/gson/gson/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-feee186e\-2241\-4bcf\-aed6\-c99056fb5e6e\.config
+2026-09-04T07:38:29.0780009Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path
+2026-09-04T07:38:29.0812222Z /home/runner/work/_temp/git-credentials-feee186e-2241-4bcf-aed6-c99056fb5e6e.config
+2026-09-04T07:38:29.0821504Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-feee186e\-2241\-4bcf\-aed6\-c99056fb5e6e\.config
+2026-09-04T07:38:29.0861127Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-09-04T07:38:29.0906603Z /github/runner_temp/git-credentials-feee186e-2241-4bcf-aed6-c99056fb5e6e.config
+2026-09-04T07:38:29.0940451Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-feee186e\-2241\-4bcf\-aed6\-c99056fb5e6e\.config
+2026-09-04T07:38:29.0978813Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-04T07:38:29.1007684Z /github/runner_temp/git-credentials-feee186e-2241-4bcf-aed6-c99056fb5e6e.config
+2026-09-04T07:38:29.1016091Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-feee186e\-2241\-4bcf\-aed6\-c99056fb5e6e\.config
+2026-09-04T07:38:29.1055448Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-04T07:38:29.1296780Z Removing credentials config '/home/runner/work/_temp/git-credentials-feee186e-2241-4bcf-aed6-c99056fb5e6e.config'
+2026-09-04T07:38:29.1304930Z ##[endgroup]
+2026-09-04T07:38:29.1411141Z ##[group]Run touch optcd-3.txt
+2026-09-04T07:38:29.1411453Z [36;1mtouch optcd-3.txt[0m
+2026-09-04T07:38:29.1448315Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:29.1448558Z env:
+2026-09-04T07:38:29.1448845Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:29.1449279Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.1449710Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:29.1450143Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.1450695Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.1451096Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.1451481Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:29.1451801Z ##[endgroup]
+2026-09-04T07:38:29.1631945Z ##[group]Run actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95
+2026-09-04T07:38:29.1632360Z with:
+2026-09-04T07:38:29.1632565Z   distribution: temurin
+2026-09-04T07:38:29.1632794Z   java-version: 21
+2026-09-04T07:38:29.1633002Z   cache: maven
+2026-09-04T07:38:29.1633204Z   java-package: jdk
+2026-09-04T07:38:29.1633421Z   check-latest: false
+2026-09-04T07:38:29.1633660Z   set-default: true
+2026-09-04T07:38:29.1633888Z   verify-signature: false
+2026-09-04T07:38:29.1634123Z   server-id: github
+2026-09-04T07:38:29.1634343Z   server-username: GITHUB_ACTOR
+2026-09-04T07:38:29.1634602Z   server-password: GITHUB_TOKEN
+2026-09-04T07:38:29.1634863Z   overwrite-settings: true
+2026-09-04T07:38:29.1635113Z   job-status: success
+2026-09-04T07:38:29.1638227Z   token: ***
+2026-09-04T07:38:29.1638463Z   show-download-progress: false
+2026-09-04T07:38:29.1638847Z env:
+2026-09-04T07:38:29.1639132Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:29.1639583Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.1640013Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:29.1640466Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.1640879Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.1641271Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.1641660Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:29.1641992Z ##[endgroup]
+2026-09-04T07:38:29.3129128Z ##[group]Installed distributions
+2026-09-04T07:38:29.3381921Z Resolved Java 21.0.12+1 from tool-cache
+2026-09-04T07:38:29.3383032Z Setting Java 21.0.12+1 as the default
+2026-09-04T07:38:29.3394165Z Creating toolchains.xml for JDK version 21 from temurin
+2026-09-04T07:38:29.3468883Z Writing to /home/runner/.m2/toolchains.xml
+2026-09-04T07:38:29.3469515Z 
+2026-09-04T07:38:29.3469846Z Java configuration:
+2026-09-04T07:38:29.3470309Z   Distribution: temurin
+2026-09-04T07:38:29.3470930Z   Version: 21.0.12+1
+2026-09-04T07:38:29.3472387Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+2026-09-04T07:38:29.3473035Z 
+2026-09-04T07:38:29.3473807Z ##[endgroup]
+2026-09-04T07:38:29.3496017Z Creating settings.xml with server-id: github
+2026-09-04T07:38:29.3496659Z Writing to /home/runner/.m2/settings.xml
+2026-09-04T07:38:29.7173340Z maven cache is not found
+2026-09-04T07:38:29.8126385Z ##[group]Run touch optcd-4.txt
+2026-09-04T07:38:29.8126955Z [36;1mtouch optcd-4.txt[0m
+2026-09-04T07:38:29.8168779Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:29.8169034Z env:
+2026-09-04T07:38:29.8169405Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:29.8169962Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.8170415Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:29.8170953Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.8171347Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.8171825Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.8172294Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:29.8172823Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+2026-09-04T07:38:29.8173361Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+2026-09-04T07:38:29.8173861Z ##[endgroup]
+2026-09-04T07:38:29.8286403Z ##[group]Run mvn clean test --projects gson --activate-profiles gson-subset
+2026-09-04T07:38:29.8287015Z [36;1mmvn clean test --projects gson --activate-profiles gson-subset[0m
+2026-09-04T07:38:29.8327027Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:29.8327281Z env:
+2026-09-04T07:38:29.8327685Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:29.8328194Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.8328818Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:29.8329261Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.8329760Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.8330169Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:29.8330620Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:29.8331146Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+2026-09-04T07:38:29.8331823Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+2026-09-04T07:38:29.8332218Z ##[endgroup]
+2026-09-04T07:38:33.6438522Z Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)
+2026-09-04T07:38:33.6439519Z Maven home: /usr/share/apache-maven-3.9.16
+2026-09-04T07:38:33.6440500Z Java version: 21.0.12.1, vendor: Eclipse Adoptium, runtime: /usr/lib/jvm/temurin-21-jdk-amd64
+2026-09-04T07:38:33.6441444Z Default locale: en, platform encoding: UTF-8
+2026-09-04T07:38:33.6442269Z OS name: "linux", version: "6.17.0-1022-azure", arch: "amd64", family: "unix"
+2026-09-04T07:38:36.1628916Z [INFO] Scanning for projects...
+2026-09-04T07:38:39.7247181Z [INFO] Inspecting build with total of 1 modules
+2026-09-04T07:38:39.7392924Z [INFO] Installing Central Publishing features
+2026-09-04T07:38:39.7502797Z [INFO] 
+2026-09-04T07:38:39.7503988Z [INFO] ---------------------< com.google.code.gson:gson >----------------------
+2026-09-04T07:38:39.7505060Z [INFO] Building Gson 2.14.1-SNAPSHOT
+2026-09-04T07:38:39.7510262Z [INFO]   from pom.xml
+2026-09-04T07:38:39.7511113Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-09-04T07:38:41.2837905Z [INFO] 
+2026-09-04T07:38:41.2838851Z [INFO] --- clean:3.2.0:clean (default-clean) @ gson ---
+2026-09-04T07:38:41.5252089Z [INFO] 
+2026-09-04T07:38:41.5253002Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ gson ---
+2026-09-04T07:38:42.0806945Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+2026-09-04T07:38:42.1002172Z [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+2026-09-04T07:38:42.1036318Z [INFO] 
+2026-09-04T07:38:42.1048314Z [INFO] --- templating:3.1.0:filter-sources (filtering-java-templates) @ gson ---
+2026-09-04T07:38:42.6919173Z [INFO] Copying files with filtering to temporary directory.
+2026-09-04T07:38:42.6981584Z [INFO] Copying 1 resource from src/main/java-templates to target/templates-tmp4151517166
+2026-09-04T07:38:42.7222203Z [INFO] Copied 1 files to output directory: /home/runner/work/gson/gson/gson/target/generated-sources/java-templates
+2026-09-04T07:38:42.7225796Z [INFO] Source directory: /home/runner/work/gson/gson/gson/target/generated-sources/java-templates added.
+2026-09-04T07:38:42.7227132Z [INFO] 
+2026-09-04T07:38:42.7227928Z [INFO] --- resources:3.5.0:copy-resources (prepare-gson-subset-src) @ gson ---
+2026-09-04T07:38:43.1112631Z [INFO] Copying 30 resources from src/main/java to target/gson-subset-src
+2026-09-04T07:38:43.1206353Z [INFO] 
+2026-09-04T07:38:43.1209895Z [INFO] --- resources:3.5.0:resources (default-resources) @ gson ---
+2026-09-04T07:38:43.1250966Z [INFO] Copying 1 resource from src/main/resources to target/classes
+2026-09-04T07:38:43.1258368Z [INFO] 
+2026-09-04T07:38:43.1259108Z [INFO] --- compiler:3.15.0:compile (default-compile) @ gson ---
+2026-09-04T07:38:45.2192982Z [INFO] Recompiling the module because of changed source code.
+2026-09-04T07:38:45.2266463Z [INFO] Compiling 30 source files with javac [debug deprecation release 8] to target/classes
+2026-09-04T07:38:50.2228936Z [INFO] 
+2026-09-04T07:38:50.2229872Z [INFO] --- bnd:6.4.0:bnd-process (default) @ gson ---
+2026-09-04T07:38:52.6516983Z [INFO] 
+2026-09-04T07:38:52.6526716Z [INFO] --- resources:3.5.0:testResources (default-testResources) @ gson ---
+2026-09-04T07:38:52.6552453Z [INFO] Copying 1 resource from src/test/resources to target/test-classes
+2026-09-04T07:38:52.6556706Z [INFO] 
+2026-09-04T07:38:52.6558321Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ gson ---
+2026-09-04T07:38:52.6781501Z [INFO] Recompiling the module because of changed dependency.
+2026-09-04T07:38:52.6786978Z [INFO] Compiling 21 source files with javac [debug deprecation release 17] to target/test-classes
+2026-09-04T07:38:58.9688488Z [INFO] 
+2026-09-04T07:38:58.9690343Z [INFO] --- resources:3.5.0:copy-resources (pre-obfuscate-class) @ gson ---
+2026-09-04T07:38:58.9735451Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/gson/target/test-classes/com/google/gson/functional
+2026-09-04T07:38:58.9737146Z [INFO] 
+2026-09-04T07:38:58.9737953Z [INFO] --- proguard:2.7.0:proguard (obfuscate-test-class) @ gson ---
+2026-09-04T07:39:01.6966847Z [INFO] Bypass ProGuard processing because "proguard.skip=true"
+2026-09-04T07:39:01.6996134Z [INFO] 
+2026-09-04T07:39:01.7017949Z [INFO] --- resources:3.5.0:copy-resources (post-obfuscate-class) @ gson ---
+2026-09-04T07:39:01.7020704Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/gson/target/test-classes-obfuscated-outjar/com/google/gson/functional
+2026-09-04T07:39:01.7022040Z [INFO] 
+2026-09-04T07:39:01.7022608Z [INFO] --- surefire:3.5.6:test (default-test) @ gson ---
+2026-09-04T07:39:02.3424437Z [INFO] Using auto detected provider org.apache.maven.surefire.junit4.JUnit4Provider
+2026-09-04T07:39:02.4978610Z [INFO] 
+2026-09-04T07:39:02.4979517Z [INFO] -------------------------------------------------------
+2026-09-04T07:39:02.4981023Z [INFO]  T E S T S
+2026-09-04T07:39:02.4982076Z [INFO] -------------------------------------------------------
+2026-09-04T07:39:02.6037225Z OpenJDK 64-Bit Server VM warning: Ignoring option --illegal-access=deny; support was removed in 17.0
+2026-09-04T07:39:02.9211264Z [INFO] Running com.google.gson.JsonPrimitiveTest
+2026-09-04T07:39:03.0600250Z [INFO] Tests run: 31, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.123 s -- in com.google.gson.JsonPrimitiveTest
+2026-09-04T07:39:03.0602798Z [INFO] Running com.google.gson.JsonArrayAsListTest
+2026-09-04T07:39:03.0858674Z [INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.google.gson.JsonArrayAsListTest
+2026-09-04T07:39:03.0876445Z [INFO] Running com.google.gson.JsonArrayTest
+2026-09-04T07:39:03.1126301Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in com.google.gson.JsonArrayTest
+2026-09-04T07:39:03.1169756Z [INFO] Running com.google.gson.JsonObjectTest
+2026-09-04T07:39:03.1221068Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.google.gson.JsonObjectTest
+2026-09-04T07:39:03.1222729Z [INFO] Running com.google.gson.JsonObjectAsMapSuiteTest
+2026-09-04T07:39:03.7988194Z [INFO] Tests run: 906, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.609 s -- in com.google.gson.JsonObjectAsMapSuiteTest
+2026-09-04T07:39:03.8016659Z [INFO] Running com.google.gson.internal.bind.JsonTreeReaderTest
+2026-09-04T07:39:03.8083213Z [INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.internal.bind.JsonTreeReaderTest
+2026-09-04T07:39:03.8084908Z [INFO] Running com.google.gson.internal.bind.JsonTreeWriterTest
+2026-09-04T07:39:03.8087038Z [INFO] Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.google.gson.internal.bind.JsonTreeWriterTest
+2026-09-04T07:39:03.8088584Z [INFO] Running com.google.gson.internal.LinkedTreeMapTest
+2026-09-04T07:39:03.8928080Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.063 s -- in com.google.gson.internal.LinkedTreeMapTest
+2026-09-04T07:39:03.8956183Z [INFO] Running com.google.gson.internal.LinkedTreeMapSuiteTest
+2026-09-04T07:39:04.6017056Z [INFO] Tests run: 1860, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.577 s -- in com.google.gson.internal.LinkedTreeMapSuiteTest
+2026-09-04T07:39:04.6066429Z [INFO] Running com.google.gson.internal.StreamsTest
+2026-09-04T07:39:04.6093079Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.StreamsTest
+2026-09-04T07:39:04.6116366Z [INFO] Running com.google.gson.internal.LazilyParsedNumberTest
+2026-09-04T07:39:04.6161343Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.LazilyParsedNumberTest
+2026-09-04T07:39:04.6223123Z [INFO] Running com.google.gson.JsonNullTest
+2026-09-04T07:39:04.6246442Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.JsonNullTest
+2026-09-04T07:39:04.6264248Z [INFO] Running com.google.gson.SubsetTest
+2026-09-04T07:39:04.6306502Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.SubsetTest
+2026-09-04T07:39:04.6336169Z [INFO] Running com.google.gson.JsonArrayAsListSuiteTest
+2026-09-04T07:39:05.0434204Z [INFO] Tests run: 404, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.399 s -- in com.google.gson.JsonArrayAsListSuiteTest
+2026-09-04T07:39:05.0476254Z [INFO] Running com.google.gson.TypeAdapterTest
+2026-09-04T07:39:05.0526458Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.TypeAdapterTest
+2026-09-04T07:39:05.0576269Z [INFO] Running com.google.gson.JsonParserParameterizedTest
+2026-09-04T07:39:05.0578733Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.JsonParserParameterizedTest
+2026-09-04T07:39:05.0606763Z [INFO] Running com.google.gson.JsonStreamParserTest
+2026-09-04T07:39:05.0639800Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.JsonStreamParserTest
+2026-09-04T07:39:05.0696200Z [INFO] Running com.google.gson.stream.JsonReaderPathTest
+2026-09-04T07:39:05.0726844Z [WARNING] Tests run: 30, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.012 s -- in com.google.gson.stream.JsonReaderPathTest
+2026-09-04T07:39:05.0728227Z [INFO] Running com.google.gson.stream.JsonWriterTest
+2026-09-04T07:39:05.0981652Z [INFO] Tests run: 55, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in com.google.gson.stream.JsonWriterTest
+2026-09-04T07:39:05.0983029Z [INFO] Running com.google.gson.stream.JsonReaderTest
+2026-09-04T07:39:05.1923918Z [WARNING] Tests run: 162, Failures: 0, Errors: 0, Skipped: 3, Time elapsed: 0.087 s -- in com.google.gson.stream.JsonReaderTest
+2026-09-04T07:39:05.1945034Z [INFO] Running com.google.gson.JsonObjectAsMapTest
+2026-09-04T07:39:05.1950407Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.JsonObjectAsMapTest
+2026-09-04T07:39:05.2310955Z [INFO] 
+2026-09-04T07:39:05.2311368Z [INFO] Results:
+2026-09-04T07:39:05.2311742Z [INFO] 
+2026-09-04T07:39:05.2317164Z [INFO] Tests run: 3605, Failures: 0, Errors: 0, Skipped: 4
+2026-09-04T07:39:05.2317938Z [INFO] 
+2026-09-04T07:39:05.2356866Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:39:05.2357741Z [INFO] BUILD SUCCESS
+2026-09-04T07:39:05.2358421Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:39:05.2368353Z [INFO] Total time:  29.141 s
+2026-09-04T07:39:05.2371982Z [INFO] Finished at: 2026-09-04T07:39:05Z
+2026-09-04T07:39:05.2372833Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:39:05.2670005Z ##[group]Run touch optcd-5.txt
+2026-09-04T07:39:05.2670383Z [36;1mtouch optcd-5.txt[0m
+2026-09-04T07:39:05.2708152Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:39:05.2708401Z env:
+2026-09-04T07:39:05.2708695Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:39:05.2709140Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:05.2709594Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:39:05.2710204Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:05.2710604Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:05.2710993Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:05.2711386Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:39:05.2711823Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+2026-09-04T07:39:05.2712348Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+2026-09-04T07:39:05.2712740Z ##[endgroup]
+2026-09-04T07:39:05.2842681Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-04T07:39:05.2844025Z ##[group]Run actions/upload-artifact@v4
+2026-09-04T07:39:05.2844312Z with:
+2026-09-04T07:39:05.2844553Z   name: inotifywait-build-gson-subset
+2026-09-04T07:39:05.2844906Z   path: /home/runner/inotifywait-log-build-gson-subset.csv
+2026-09-04T07:39:05.2845245Z   if-no-files-found: warn
+2026-09-04T07:39:05.2845763Z   compression-level: 6
+2026-09-04T07:39:05.2845999Z   overwrite: false
+2026-09-04T07:39:05.2846225Z   include-hidden-files: false
+2026-09-04T07:39:05.2846465Z env:
+2026-09-04T07:39:05.2846742Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:39:05.2847213Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:05.2847640Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:39:05.2848062Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:05.2848442Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:05.2848823Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:05.2849212Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:39:05.2849645Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+2026-09-04T07:39:05.2850148Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+2026-09-04T07:39:05.2850534Z ##[endgroup]
+2026-09-04T07:39:05.4519263Z (node:2608) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-04T07:39:05.4520178Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-04T07:39:05.4566811Z With the provided path, there will be 1 file uploaded
+2026-09-04T07:39:05.4573445Z Artifact name is valid!
+2026-09-04T07:39:05.4574082Z Root directory input is valid!
+2026-09-04T07:39:05.8409124Z Beginning upload of artifact content to blob storage
+2026-09-04T07:39:05.8644322Z (node:2608) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-04T07:39:06.2233784Z Uploaded bytes 21281
+2026-09-04T07:39:06.3051400Z Finished uploading artifact content to blob storage!
+2026-09-04T07:39:06.3053171Z SHA256 digest of uploaded artifact zip is 3f4126daf82da1abea2fe7dee40fe1a0707db130e4c75a7d482b9ea0e5c08ae0
+2026-09-04T07:39:06.3054828Z Finalizing artifact upload
+2026-09-04T07:39:06.5928118Z Artifact inotifywait-build-gson-subset.zip successfully finalized. Artifact ID 9927847617
+2026-09-04T07:39:06.5930537Z Artifact inotifywait-build-gson-subset has been successfully uploaded! Final size is 21281 bytes. Artifact ID is 9927847617
+2026-09-04T07:39:06.5937485Z Artifact download URL: https://github.com/atanuroy911/gson/actions/runs/33849635845/artifacts/9927847617
+2026-09-04T07:39:06.6133014Z Post job cleanup.
+2026-09-04T07:39:06.7577185Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/gson/gson --files-from manifest.txt --use-compress-program zstdmt
+2026-09-04T07:39:07.2262718Z Failed to save: Unable to reserve cache with key setup-java-Linux-x64-maven-54d6cf3fdc484699667bbaed4dbae25f9a0a3aa7871d212484a098a067310682, another job may be creating this cache.
+2026-09-04T07:39:07.2447643Z Post job cleanup.
+2026-09-04T07:39:07.3289820Z [command]/usr/bin/git version
+2026-09-04T07:39:07.3341715Z git version 2.55.0
+2026-09-04T07:39:07.3387866Z Temporarily overriding HOME='/home/runner/work/_temp/b28bad4f-714c-44d5-a2a0-ef906b84d8f5' before making global git config changes
+2026-09-04T07:39:07.3389443Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-04T07:39:07.3394591Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/gson/gson
+2026-09-04T07:39:07.3428263Z Removing SSH command configuration
+2026-09-04T07:39:07.3439319Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-04T07:39:07.3477053Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-04T07:39:07.3760920Z Removing HTTP extra header
+2026-09-04T07:39:07.3768093Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-04T07:39:07.3808124Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-04T07:39:07.4084569Z Removing includeIf entries pointing to credentials config files
+2026-09-04T07:39:07.4091989Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-04T07:39:07.4131664Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-04T07:39:07.4523868Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-04T07:39:07.4525180Z Post job cleanup.
+2026-09-04T07:39:07.5741515Z (node:2795) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-04T07:39:07.5743016Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-04T07:39:07.5902650Z Cleaning up orphan processes
+2026-09-04T07:39:07.6256225Z Terminate orphan process: pid (2207) (python3)
+2026-09-04T07:39:07.6303629Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

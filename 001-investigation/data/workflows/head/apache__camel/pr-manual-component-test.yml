@@ -1,0 +1,115 @@
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+name: PR Manual Component testing
+
+on:
+  issue_comment:
+    types: [created]
+permissions:
+  contents: read
+
+jobs:
+  pr_commented:
+    name: PR comment
+    if: ${{ github.repository == 'apache/camel' && github.event.issue.pull_request && (github.event.comment.author_association == 'MEMBER' || github.event.comment.author_association == 'OWNER' || github.event.comment.author_association == 'CONTRIBUTOR') && startsWith(github.event.comment.body, '/component-test') }}
+    permissions:
+      pull-requests: write
+      actions: write # to dispatch workflows
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: components
+          sparse-checkout-cone-mode: true
+      - name: Check Permission
+        uses: actions-cool/check-user-permission@c21884f3dda18dafc2f8b402fe807ccc9ec1aa5e # v2.4.0
+      - name: Retrieve PR sha and ref
+        id: pr
+        env:
+          PR_NUMBER: ${{ github.event.issue.number }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          COMMENT_AT: ${{ github.event.comment.created_at }}
+        run: |
+          pr="$(gh api /repos/${GH_REPO}/pulls/${PR_NUMBER})"
+          head_sha="$(echo "$pr" | jq -r .head.sha)"
+          # Check that the PR branch was not pushed to after the comment was created.
+          commit="$(gh api /repos/${GH_REPO}/commits/${head_sha})"
+          committed_at="$(echo "$commit" | jq -r .commit.committer.date)"
+          if [[ $(date -d "$committed_at" +%s) -gt $(date -d "$COMMENT_AT" +%s) ]]; then
+              echo "PR branch was updated after the comment was posted (commit: $committed_at, comment: $COMMENT_AT). Aborting."
+              exit 1
+          fi
+          echo "pr_sha=$head_sha" >> $GITHUB_OUTPUT
+          # Use refs/pull/<N>/head so the ref is resolvable in apache/camel for both
+          # same-repo and fork PRs (head.ref is the branch name in the fork, which
+          # does not exist in the base repository).
+          echo "pr_ref=refs/pull/${PR_NUMBER}/head" >> $GITHUB_OUTPUT
+      - name: React to comment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh api /repos/${GH_REPO}/issues/comments/${{ github.event.comment.id }}/reactions -f content="+1"
+      - name: Resolve component paths and dispatch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+          PR_REF: ${{ steps.pr.outputs.pr_ref }}
+        run: |
+          componentList="${COMMENT_BODY:16}"
+          if [[ -z "$componentList" ]]; then
+            echo "No components specified. Expected format: /component-test component1 component2..."
+            exit 1
+          fi
+
+          # Resolve component names to module paths
+          pl=""
+          for component in ${componentList}; do
+            if [[ ${component} = camel-* ]]; then
+              componentPath="components/${component}"
+            else
+              componentPath="components/camel-${component}"
+            fi
+            if [[ -d "${componentPath}" ]]; then
+              # Find all sub-modules (pom.xml dirs) under the component
+              modules=$(find "${componentPath}" -name pom.xml -not -path "*/src/it/*" -not -path "*/target/*" -exec dirname {} \; | sort | tr -s "\n" ",")
+              pl="${pl}${modules}"
+            else
+              echo "WARNING: Component path '${componentPath}' not found, skipping"
+            fi
+          done
+
+          # Strip trailing comma
+          pl="${pl%,}"
+
+          if [[ -z "$pl" ]]; then
+            echo "No valid component paths found"
+            exit 1
+          fi
+
+          echo "Dispatching main workflow with extra modules: $pl"
+          gh workflow run "Build and test" \
+            --repo "${GH_REPO}" \
+            -f pr_number="${PR_NUMBER}" \
+            -f pr_ref="${PR_REF}" \
+            -f extra_modules="${pl}" \
+            -f skip_full_build=true

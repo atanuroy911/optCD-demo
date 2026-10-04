@@ -1,0 +1,48 @@
+name: "Security: CodeQL"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 13 * * 5'
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['java']
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v7
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v6
+      with:
+        distribution: 'temurin'
+        # Supply-chain hardening: GPG-verify the Temurin JDK archive (setup-java >= v5.5.0)
+        verify-signature: true
+        java-version: '21'
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v4
+      with:
+        languages: ${{ matrix.language }}
+
+    # Exclude the kotlin-dsl-chat sample: CodeQL's Kotlin extractor
+    # (KotlinExtractorComponentRegistrar) is incompatible with the Kotlin
+    # 2.1.10 compiler this sample invokes (AbstractMethodError on
+    # registerProjectComponents), which fails the whole analysis build. It's a
+    # leaf demo module (nothing depends on it); modules/kotlin compiles fine, so
+    # Java/Kotlin coverage elsewhere is unaffected.
+    - name: Build with Maven
+      run: ./mvnw compile -Pfastinstall -DskipTests -pl '!samples/kotlin-dsl-chat'
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v4

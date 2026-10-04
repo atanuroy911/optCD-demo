@@ -1,0 +1,109 @@
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+name: Main build
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.sha }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    if: github.repository == 'apache/camel'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: ['25']
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - id: install-packages
+        uses: ./.github/actions/install-packages
+      - id: install-mvnd
+        uses: ./.github/actions/install-mvnd
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: 'temurin'
+          java-version: ${{ matrix.java }}
+          cache: 'maven'
+      - name: Get Atlassian dependency version
+        id: atlassian-version
+        run: |
+          JIRA_VERSION=$(./mvnw help:evaluate -Dexpression=jira-rest-client-api-version -q -DforceStdout -N -f parent/pom.xml)
+          echo "version=${JIRA_VERSION}" >> $GITHUB_OUTPUT
+      - name: Restore Atlassian Maven Cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.m2/repository/com/atlassian
+            ~/.m2/repository/io/atlassian
+          key: atlassian-maven-${{ steps.atlassian-version.outputs.version }}
+      - name: maven build
+        run: ./etc/scripts/regen.sh
+      - name: archive logs
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: main-build-${{ matrix.java }}.log
+          path: |
+            build-regen.log
+            build-regen-catalog.log
+      - name: Save Atlassian Maven Cache
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        if: always()
+        with:
+          path: |
+            ~/.m2/repository/com/atlassian
+            ~/.m2/repository/io/atlassian
+          key: atlassian-maven-${{ steps.atlassian-version.outputs.version }}
+
+      - name: Fail if there are uncommitted changes
+        shell: bash
+        run: |
+          [[ -z $(git status --porcelain) ]] || { echo 'There are uncommitted changes'; git status; echo; echo; git diff; exit 1; }
+      - name: mvn test
+        uses: ./.github/actions/incremental-build
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          skip-mvnd-install: 'true'
+          flake-label: JDK ${{ matrix.java }}
+      - name: archive incremental test logs
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: incremental-test-main-java-${{ matrix.java }}.log
+          path: incremental-test.log
+      # Main-branch flakes are the least noisy signal there is: no PR-specific
+      # changes to blame, so a retry here points at the test, not the diff.
+      # The action already produces flakes.json — without this it is discarded.
+      - name: Upload recovered-flake report
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always() && hashFiles('flakes.json') != ''
+        with:
+          name: flakes-main-java-${{ matrix.java }}
+          path: flakes.json

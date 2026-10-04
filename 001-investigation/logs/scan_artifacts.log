@@ -1,0 +1,41 @@
+{
+  "paper": {
+    "repos_scanned": 110,
+    "repos_with_uploads": 40,
+    "uploads_total": 259,
+    "by_category": {
+      "consumed-same-workflow": 78,
+      "stored-only": 118,
+      "failure-only-diagnostic": 55,
+      "consumed-cross-workflow": 7,
+      "consumed-pages": 1
+    },
+    "uploads_in_paper_analyzed_workflows": 39,
+    "repos_with_uploads_in_analyzed_workflows": 15,
+    "analyzed_by_category": {
+      "consumed-cross-workflow": 3,
+      "stored-only": 23,
+      "failure-only-diagnostic": 9,
+      "consumed-same-workflow": 4
+    }
+  },
+  "head": {
+    "repos_scanned": 110,
+    "repos_with_uploads": 55,
+    "uploads_total": 463,
+    "by_category": {
+      "consumed-same-workflow": 176,
+      "failure-only-diagnostic": 97,
+      "consumed-cross-workflow": 12,
+      "stored-only": 176,
+      "consumed-pages": 2
+    },
+    "uploads_in_paper_analyzed_workflows": 48,
+    "repos_with_uploads_in_analyzed_workflows": 21,
+    "analyzed_by_category": {
+      "failure-only-diagnostic": 15,
+      "stored-only": 31,
+      "consumed-same-workflow": 2
+    }
+  }
+}

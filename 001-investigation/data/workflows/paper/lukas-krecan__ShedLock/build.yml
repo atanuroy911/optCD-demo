@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    types: [ opened, reopened, synchronize ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ '17', '21']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'zulu'
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            maven-
+      - name: Build with Maven
+        env:
+          # Kotlin needs access to java.util
+          MAVEN_OPTS: --add-opens java.base/java.util=ALL-UNNAMED
+        run: mvn clean test spotless:check javadoc:javadoc
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: always() # always run even if the previous step fails
+        with:
+          report_paths: '**/target/surefire-reports/TEST-*.xml'
+          annotate_notice: false
+          check_name: Test report ${{ matrix.java }}

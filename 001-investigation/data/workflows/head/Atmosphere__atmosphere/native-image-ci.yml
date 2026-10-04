@@ -1,0 +1,346 @@
+name: "CI: Native Image"
+
+on:
+  # `-am` in the install step transitively compiles modules/ai + modules/wasync,
+  # so a doclint / compile break in those modules fails Native Image even
+  # though they are not direct `-pl` targets. Trigger on them too.
+  #
+  # The AI dispatch job below was removed once, and the reason it was removed is
+  # gone: annotation discovery now survives Native Image. Handlers are resolved
+  # from a build-time index (the javac annotation processor in atmosphere-runtime,
+  # plus the Spring AOT processor) instead of a classpath scan that finds nothing
+  # in an image with no .class files. Re-adding it is the only way to learn
+  # whether @AiEndpoint and @Agent work natively — that remains unproven until
+  # this job is green.
+  push:
+    branches: [ main ]
+    paths:
+      - 'modules/cpr/**'
+      - 'modules/ai/**'
+      - 'modules/wasync/**'
+      - 'modules/admin/**'
+      - 'modules/agent/**'
+      - 'modules/channels/**'
+      - 'modules/checkpoint/**'
+      - 'modules/skills/**'
+      - 'modules/spring-boot-starter/**'
+      - 'modules/spring-boot3-starter/**'
+      - 'modules/quarkus-extension/**'
+      - 'samples/spring-boot-chat/**'
+      - 'samples/spring-boot-ai-chat/**'
+      - 'samples/quarkus-chat/**'
+      - '.mvn/**'
+      - 'pom.xml'
+      - '.github/workflows/native-image-ci.yml'
+      - 'scripts/native/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'modules/cpr/**'
+      - 'modules/ai/**'
+      - 'modules/wasync/**'
+      - 'modules/admin/**'
+      - 'modules/agent/**'
+      - 'modules/channels/**'
+      - 'modules/checkpoint/**'
+      - 'modules/skills/**'
+      - 'modules/spring-boot-starter/**'
+      - 'modules/spring-boot3-starter/**'
+      - 'modules/quarkus-extension/**'
+      - 'samples/spring-boot-chat/**'
+      - 'samples/spring-boot-ai-chat/**'
+      - 'samples/quarkus-chat/**'
+      - '.mvn/**'
+      - 'pom.xml'
+      - '.github/workflows/native-image-ci.yml'
+      - 'scripts/native/**'
+  workflow_dispatch:
+
+jobs:
+  spring-boot-native:
+    name: Spring Boot Native Image
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set up GraalVM 25
+      uses: graalvm/setup-graalvm@v1
+      with:
+        java-version: '25'
+        distribution: 'graalvm'
+        cache: 'maven'
+
+    - name: Install Atmosphere Modules
+      run: ./mvnw -B install -DskipTests -Dgpg.skip=true -pl modules/cpr,modules/spring-boot-starter,modules/wasync -am
+
+    - name: Build Spring Boot Native Image
+      run: ./mvnw -B -Pnative package -DskipTests -Dgpg.skip=true -pl samples/spring-boot-chat
+      timeout-minutes: 20
+
+    - name: Verify Native Binary Exists
+      run: |
+        BINARY=$(find samples/spring-boot-chat/target -maxdepth 1 -name 'atmosphere-spring-boot-chat*' -not -name '*.jar' -not -name '*.jar.original' -not -name '*.txt' -type f -executable | head -1)
+        if [ -z "$BINARY" ]; then
+          echo "Native binary not found. Contents of target/:"
+          ls -lh samples/spring-boot-chat/target/
+          exit 1
+        fi
+        echo "NATIVE_BINARY=$BINARY" >> "$GITHUB_ENV"
+        ls -lh "$BINARY"
+        file "$BINARY"
+
+    - name: Smoke Test Native Binary
+      run: |
+        LOG=$(mktemp)
+        "$NATIVE_BINARY" > "$LOG" 2>&1 &
+        PID=$!
+        trap 'kill $PID 2>/dev/null || true' EXIT
+
+        started=0
+        for i in $(seq 1 30); do
+          if curl -sf http://localhost:8080/actuator/health > /dev/null 2>&1; then
+            echo "Application started successfully"
+            started=1
+            break
+          fi
+          sleep 1
+        done
+        if [ "$started" -ne 1 ]; then
+          echo "Application failed to start within 30 seconds"
+          sed -n '1,120p' "$LOG"
+          exit 1
+        fi
+
+        # Booting is not the feature. This sample's entire point is the
+        # @ManagedService at /atmosphere/chat, and in a native image Atmosphere
+        # cannot scan .class files for it — the class is found only because the
+        # build recorded it in META-INF/atmosphere/annotated-classes.txt. A
+        # liveness URL answers either way, so drive a real connection and check
+        # that the annotated @Ready method ran: that single log line can only
+        # appear if the class was discovered, the handler registered, the
+        # broadcaster and its by-name-loaded cache were created, @Inject
+        # resolved, and the lifecycle fired.
+        #
+        # Registration itself is silent (ManagedServiceProcessor calls
+        # addAtmosphereHandler with no logging), so there is no "installed"
+        # line to grep — asserting behaviour is both more honest and the only
+        # option available.
+        #
+        # Scope: this drives long-polling; the probe below drives WebSocket,
+        # SSE and the room protocol. Transport negotiation/fallback is an
+        # atmosphere.js client behaviour and stays unproven here.
+        echo "--- connecting to /atmosphere/chat ---"
+        curl -s --max-time 8 \
+          "http://localhost:8080/atmosphere/chat?X-Atmosphere-tracking-id=0&X-Atmosphere-Framework=2.3&X-Atmosphere-Transport=long-polling&X-Cache-Date=0" \
+          > /dev/null 2>&1 || true
+        sleep 2
+
+        if ! grep -q "connected (broadcaster:" "$LOG"; then
+          echo "FAIL: connecting to the annotated endpoint did not run @Ready."
+          echo "--- application log ---"
+          sed -n '1,150p' "$LOG"
+          exit 1
+        fi
+        echo "PASS: @ManagedService(/atmosphere/chat) served a real connection under Native Image"
+
+        # Long-polling proved discovery; it says nothing about the other
+        # transports. Drive WebSocket fan-out (which exercises the Jackson
+        # @Message codec round-trip), SSE delivery, and the room protocol's
+        # join/presence/broadcast with real clients — each has native-only
+        # failure modes (codec reflection, the WS upgrade path) that a
+        # liveness URL and a single long-poll can never surface.
+        echo "--- driving WebSocket / SSE / rooms against the native binary ---"
+        if ! java scripts/native/NativeTransportProbe.java \
+            http://localhost:8080/atmosphere/chat ws-fanout sse rooms; then
+          echo "--- application log ---"
+          sed -n '1,200p' "$LOG"
+          exit 1
+        fi
+
+    - name: Upload Native Binary
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: spring-boot-native-artifacts
+        path: samples/spring-boot-chat/target/
+
+  spring-boot-ai-native:
+    name: Spring Boot AI Native Image
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set up GraalVM 25
+      uses: graalvm/setup-graalvm@v1
+      with:
+        java-version: '25'
+        distribution: 'graalvm'
+        cache: 'maven'
+
+    - name: Install Atmosphere Modules
+      run: ./mvnw -B install -DskipTests -Dgpg.skip=true -pl samples/spring-boot-ai-chat -am
+
+    - name: Build Spring Boot AI Native Image
+      run: ./mvnw -B -Pnative package -DskipTests -Dgpg.skip=true -pl samples/spring-boot-ai-chat
+      timeout-minutes: 30
+
+    - name: Verify Native Binary Exists
+      run: |
+        BINARY=$(find samples/spring-boot-ai-chat/target -maxdepth 1 -name 'atmosphere-spring-boot-ai-chat*' -not -name '*.jar' -not -name '*.jar.original' -not -name '*.txt' -type f -executable | head -1)
+        if [ -z "$BINARY" ]; then
+          echo "Native binary not found. Contents of target/:"
+          ls -lh samples/spring-boot-ai-chat/target/
+          exit 1
+        fi
+        echo "NATIVE_BINARY=$BINARY" >> "$GITHUB_ENV"
+        ls -lh "$BINARY"
+
+    # The point of this lane. The two other native targets contain zero
+    # @AiEndpoint / @Agent call sites, so they only ever proved a server can
+    # start. This dispatches a real agent turn through the OpenAI-compatible
+    # surface and asserts the model's text came back — keyless, because with no
+    # API key configured DemoAgentRuntime wins runtime resolution and answers
+    # through the same pipeline (guardrails, interceptors, metrics) a real
+    # provider would.
+    - name: Smoke Test AI Dispatch Under Native Image
+      env:
+        # The sample enables the SQLite tape; keep it off the source tree.
+        ATMOSPHERE_TAPE_PATH: ${{ runner.temp }}/tape.db
+      run: |
+        "$NATIVE_BINARY" &
+        PID=$!
+        trap 'kill $PID 2>/dev/null || true' EXIT
+
+        # Readiness is probed on GET /atmosphere/v1/models, not /actuator/health:
+        # this sample does not depend on spring-boot-starter-actuator, so the
+        # health endpoint the other native job uses would never answer here.
+        # The models endpoint is part of the surface under test anyway.
+        for i in $(seq 1 60); do
+          if curl -sf http://localhost:8080/atmosphere/v1/models > /dev/null 2>&1; then
+            echo "Application started"
+            break
+          fi
+          if [ "$i" -eq 60 ]; then
+            echo "Application failed to start within 60 seconds"
+            exit 1
+          fi
+          sleep 1
+        done
+
+        RESPONSE=$(curl -sf -X POST http://localhost:8080/atmosphere/v1/chat/completions \
+          -H 'Content-Type: application/json' \
+          -H 'X-Atmosphere-Auth: demo-token' \
+          -d '{"model":"atmosphere-ai-chat","messages":[{"role":"user","content":"native smoke"}]}') || {
+            echo "AI dispatch request failed"
+            exit 1
+          }
+
+        echo "$RESPONSE"
+        CONTENT=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // empty')
+        if [ -z "$CONTENT" ]; then
+          echo "No assistant content returned — the agent did not dispatch under Native Image."
+          echo "A server that merely starts is what this lane already proved; it must run an agent."
+          exit 1
+        fi
+        echo "AI dispatch produced content under Native Image"
+
+    - name: Upload Native Binary
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: spring-boot-ai-native-artifacts
+        path: samples/spring-boot-ai-chat/target/
+
+  quarkus-native:
+    name: Quarkus Native Image
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v6
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        # Supply-chain hardening: GPG-verify the Temurin JDK archive (setup-java >= v5.5.0)
+        verify-signature: true
+        cache: 'maven'
+
+    - name: Install Atmosphere Modules
+      run: ./mvnw -B install -DskipTests -Dgpg.skip=true
+
+    # The builder image moves in lockstep with Quarkus: 3.39 rejects anything
+    # older than GraalVM/Mandrel 25 ("Out of date version of GraalVM or Mandrel
+    # detected: 23.1"), which is what the jdk-21 tag ships. The app bytecode
+    # stays --release 21; only the native-image toolchain is JDK 25.
+    - name: Build Quarkus Native Image (container build)
+      run: ./mvnw -B -Dnative -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=quay.io/quarkus/ubi9-quarkus-mandrel-builder-image:jdk-25 package -DskipTests -Dgpg.skip=true -pl samples/quarkus-chat
+      timeout-minutes: 20
+
+    - name: Verify Native Binary Exists
+      run: |
+        ls -lh samples/quarkus-chat/target/*-runner
+        file samples/quarkus-chat/target/*-runner
+
+    - name: Smoke Test Native Binary
+      run: |
+        LOG=$(mktemp)
+        samples/quarkus-chat/target/*-runner > "$LOG" 2>&1 &
+        PID=$!
+        trap 'kill $PID 2>/dev/null || true' EXIT
+
+        started=0
+        for i in $(seq 1 30); do
+          if curl -sf http://localhost:8080/ > /dev/null 2>&1; then
+            echo "Application started successfully"
+            started=1
+            break
+          fi
+          sleep 1
+        done
+        if [ "$started" -ne 1 ]; then
+          echo "Application failed to start within 30 seconds"
+          sed -n '1,120p' "$LOG"
+          exit 1
+        fi
+
+        # Same assertion as the Spring Boot lane, over a different build-time
+        # index: Quarkus builds Atmosphere's annotation map from Jandex
+        # (AtmosphereProcessor#scanAnnotations), not from
+        # META-INF/atmosphere/annotated-classes.txt. Jandex alone was never
+        # sufficient, though — the endpoints it registered still failed to come
+        # up until the broadcaster caches, which are loaded by name, were
+        # registered for reflection. Serving "/" only proved a static page
+        # exists; this drives long-polling and greps the @Ready log line, and
+        # covers nothing beyond that.
+        echo "--- connecting to /atmosphere/chat ---"
+        curl -s --max-time 8 \
+          "http://localhost:8080/atmosphere/chat?X-Atmosphere-tracking-id=0&X-Atmosphere-Framework=2.3&X-Atmosphere-Transport=long-polling&X-Cache-Date=0" \
+          > /dev/null 2>&1 || true
+        sleep 2
+
+        if ! grep -q "connected (broadcaster:" "$LOG"; then
+          echo "FAIL: connecting to the annotated endpoint did not run @Ready."
+          echo "--- application log ---"
+          sed -n '1,150p' "$LOG"
+          exit 1
+        fi
+        echo "PASS: @ManagedService(/atmosphere/chat) served a real connection under Native Image"
+
+        # Same probe as the Spring Boot lane, minus rooms — quarkus-chat does
+        # not enable the room protocol. WebSocket under native crosses the
+        # Vert.x handshake bridge, which no long-poll can exercise.
+        echo "--- driving WebSocket / SSE against the native binary ---"
+        if ! java scripts/native/NativeTransportProbe.java \
+            http://localhost:8080/atmosphere/chat ws-fanout sse; then
+          echo "--- application log ---"
+          sed -n '1,200p' "$LOG"
+          exit 1
+        fi
+
+    - name: Upload Native Binary
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: quarkus-native-artifacts
+        path: samples/quarkus-chat/target/

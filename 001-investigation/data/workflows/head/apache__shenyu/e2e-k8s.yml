@@ -1,0 +1,400 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: e2e
+
+on:
+  # Required checks must report a result even for documentation-only PRs.
+  pull_request:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+      - '**.txt'
+      - '**.png'
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.gif'
+      - '**.svg'
+      - '**.ico'
+      - '**.pdf'
+      - '**.doc'
+      - '**.docx'
+      - 'LICENSE'
+      - 'NOTICE'
+      - 'DISCLAIMER'
+      - '.asf.yaml'
+      - '.gitignore'
+      - '.licenserc.yaml'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/PULL_REQUEST_TEMPLATE'
+      - '**/resources/static/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      e2e: ${{ steps.filter.outputs.e2e }}
+      run_e2e: ${{ steps.cases.outputs.run_e2e }}
+      run_storage: ${{ steps.cases.outputs.run_storage }}
+      run_e2e_cases: ${{ steps.cases.outputs.run_e2e_cases }}
+      storage_matrix: ${{ steps.cases.outputs.storage_matrix }}
+      e2e_matrix: ${{ steps.cases.outputs.e2e_matrix }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Test conditional disk cleanup
+        run: bash .github/scripts/free-disk-space-test.sh
+      - uses: ./actions/paths-filter
+        id: filter
+        with:
+          list-files: "json"
+          filters: |
+            e2e:
+              - 'shenyu-e2e/**'
+              - '**/e2e/**'
+              - 'shenyu-*/**'
+              - 'db/**'
+              - 'pom.xml'
+              - '**/pom.xml'
+              - '!**/*.md'
+              - '!**/*.txt'
+              - '!resources/static/**'
+              - '!.asf.yaml'
+              - '!.gitignore'
+              - '!.licenserc.yaml'
+              - '!LICENSE'
+              - '!NOTICE'
+              - '!.github/**'
+              - '!.github/ISSUE_TEMPLATE/**'
+              - '!.github/PULL_REQUEST_TEMPLATE'
+      - name: Resolve E2E cases
+        id: cases
+        if: steps.filter.outputs.e2e == 'true'
+        env:
+          CHANGED_FILES_JSON: ${{ steps.filter.outputs.e2e_files }}
+          CI_CASE_MODE: e2e
+        run: bash .github/scripts/resolve-test-case-matrix.sh
+
+  build-docker-images:
+    needs: changes
+    if: ${{ needs.changes.outputs.run_e2e == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Free disk space when needed
+        run: bash .github/scripts/free-disk-space.sh
+
+      - name: Set up JDK 17 for Building ShenYu
+        uses: ./actions/setup-java-with-retry
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      - name: Install mvnd
+        shell: bash
+        run: |
+          MVND_VERSION=1.0.6
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            curl -sfL https://downloads.apache.org/maven/mvnd/${MVND_VERSION}/maven-mvnd-${MVND_VERSION}-windows-amd64.zip -o mvnd.zip
+            unzip -q mvnd.zip
+            mkdir -p $HOME/.local
+            mv maven-mvnd-${MVND_VERSION}-windows-amd64 $HOME/.local/mvnd
+            echo "$HOME/.local/mvnd/bin" >> $GITHUB_PATH
+            echo "MVND_HOME=$HOME/.local/mvnd" >> $GITHUB_ENV
+          else
+            curl -sfL https://downloads.apache.org/maven/mvnd/${MVND_VERSION}/maven-mvnd-${MVND_VERSION}-linux-amd64.zip -o mvnd.zip
+            unzip -q mvnd.zip
+            mkdir -p $HOME/.local
+            mv maven-mvnd-${MVND_VERSION}-linux-amd64 $HOME/.local/mvnd
+            echo "$HOME/.local/mvnd/bin" >> $GITHUB_PATH
+            echo "MVND_HOME=$HOME/.local/mvnd" >> $GITHUB_ENV
+          fi
+
+      - name: Build with Maven
+        shell: bash
+        run: |
+          if mvnd --version > /dev/null 2>&1; then
+            echo "Using mvnd for build"
+            mvnd -B clean install -Prelease,docker -Dmaven.javadoc.skip=true -Drat.skip=true -Dmaven.test.skip=true -Djacoco.skip=true -DskipITs -DskipTests -T1C
+          else
+            echo "Falling back to maven wrapper"
+            if [[ "${{ runner.os }}" == "Windows" ]]; then
+              ./mvnw.cmd -B clean install -Prelease,docker -Dmaven.javadoc.skip=true -Drat.skip=true -Dmaven.test.skip=true -Djacoco.skip=true -DskipITs -DskipTests -T1C
+            else
+              ./mvnw -B clean install -Prelease,docker -Dmaven.javadoc.skip=true -Drat.skip=true -Dmaven.test.skip=true -Djacoco.skip=true -DskipITs -DskipTests -T1C
+            fi
+          fi
+
+      - name: Save ShenYu Maven Repos
+        uses: actions/cache/save@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+
+      #      - name: Build shenyu-e2e-engine with Maven
+      #        run: ./mvnw -B -f ./shenyu-e2e/pom.xml -pl shenyu-e2e-engine -am clean install
+
+      #      - name: Save ShenYu E2E Maven Repos
+      #        if: steps.restore-e2e-maven-cache.outputs.cache-hit != 'true'
+      #        uses: actions/cache/save@v3
+      #        with:
+      #          path: ~/.m2/repository
+      #          key: ${{ runner.os }}-e2e-maven-${{ hashFiles('**/pom.xml') }}
+
+      - name: Build Docker Image
+        run: |
+          docker save apache/shenyu-bootstrap:latest > /tmp/apache-shenyu-bootstrap.tar
+          docker save apache/shenyu-admin:latest > /tmp/apache-shenyu-admin.tar
+
+      - name: Upload Docker Image Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: shenyu-images
+          path: /tmp/apache-shenyu-*.tar
+          retention-days: 1
+
+      - name: Stage ShenYu local Maven repository
+        run: |
+          mkdir -p /tmp/shenyu-m2/org/apache
+          cp -R "${HOME}/.m2/repository/org/apache/shenyu" /tmp/shenyu-m2/org/apache/shenyu
+
+      - name: Upload ShenYu local Maven repository
+        uses: actions/upload-artifact@v4
+        with:
+          name: shenyu-local-maven-repository
+          path: /tmp/shenyu-m2
+          retention-days: 1
+
+  e2e-storage:
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+      - build-docker-images
+    if: github.repository == 'apache/shenyu' && needs.changes.outputs.run_storage == 'true'
+    #    if: (github.repository == 'apache/shenyu')
+    strategy:
+      matrix: ${{ fromJSON(needs.changes.outputs.storage_matrix || '{"include":[]}') }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Free disk space when needed
+        run: |
+          bash .github/scripts/free-disk-space.sh
+          rm -rf /tmp/shenyu
+          mkdir -p /tmp/shenyu
+
+      #      - name: Install k8s
+      #        if: steps.filter.outputs.changed == 'true'
+      #        run: |
+      #          curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.29.6+k3s2 K3S_KUBECONFIG_MODE=777 sh -
+      #          cat /etc/rancher/k3s/k3s.yaml
+      #          mkdir -p ~/.kube
+      #          cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+
+      - name: Set up JDK 17 for Building ShenYu
+        uses: ./actions/setup-java-with-retry
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      - name: Restore ShenYu Maven Repos
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: shenyu-images
+          path: /tmp/shenyu/
+
+      - name: Load ShenYu Docker Images
+        run: |
+          docker load --input /tmp/shenyu/apache-shenyu-admin.tar
+          docker load --input /tmp/shenyu/apache-shenyu-bootstrap.tar
+          docker image ls -a
+
+      #      - name: Build k8s Cluster
+      #        if: steps.filter.outputs.changed == 'true'
+      #        run: |
+      #          sudo k3s ctr images import /tmp/shenyu/apache-shenyu-admin.tar
+      #          sudo k3s ctr images import /tmp/shenyu/apache-shenyu-bootstrap.tar
+
+      - name: Run E2E Tests
+        run: |
+          bash ./shenyu-e2e/shenyu-e2e-case/${{ matrix.case }}/compose/script/${{ matrix.script }}.sh
+
+  #      - name: Cluster Test after Healthcheck
+  #        if: steps.filter.outputs.changed == 'true'
+  #        run: |
+  #          kubectl get all
+  #          kubectl get events --all-namespaces
+
+  e2e-case:
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+      - build-docker-images
+    if: github.repository == 'apache/shenyu' && needs.changes.outputs.run_e2e_cases == 'true'
+    #    if: (github.repository == 'apache/shenyu')
+    strategy:
+      matrix: ${{ fromJSON(needs.changes.outputs.e2e_matrix || '{"include":[]}') }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Free disk space when needed
+        run: |
+          bash .github/scripts/free-disk-space.sh
+          rm -rf /tmp/shenyu
+          mkdir -p /tmp/shenyu
+
+      #      - name: Install k8s
+      #        if: steps.filter.outputs.changed == 'true'
+      #        run: |
+      #          curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.29.6+k3s2 K3S_KUBECONFIG_MODE=777 sh -
+      #          cat /etc/rancher/k3s/k3s.yaml
+      #          mkdir -p ~/.kube
+      #          cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+
+      - name: Set up JDK 17 for Building ShenYu
+        uses: ./actions/setup-java-with-retry
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      - name: Restore ShenYu Maven Repos
+        uses: actions/cache/restore@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Install mvnd
+        shell: bash
+        run: |
+          MVND_VERSION=1.0.6
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            curl -sfL https://downloads.apache.org/maven/mvnd/${MVND_VERSION}/maven-mvnd-${MVND_VERSION}-windows-amd64.zip -o mvnd.zip
+            unzip -q mvnd.zip
+            mkdir -p $HOME/.local
+            mv maven-mvnd-${MVND_VERSION}-windows-amd64 $HOME/.local/mvnd
+            echo "$HOME/.local/mvnd/bin" >> $GITHUB_PATH
+            echo "MVND_HOME=$HOME/.local/mvnd" >> $GITHUB_ENV
+          else
+            curl -sfL https://downloads.apache.org/maven/mvnd/${MVND_VERSION}/maven-mvnd-${MVND_VERSION}-linux-amd64.zip -o mvnd.zip
+            unzip -q mvnd.zip
+            mkdir -p $HOME/.local
+            mv maven-mvnd-${MVND_VERSION}-linux-amd64 $HOME/.local/mvnd
+            echo "$HOME/.local/mvnd/bin" >> $GITHUB_PATH
+            echo "MVND_HOME=$HOME/.local/mvnd" >> $GITHUB_ENV
+          fi
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: shenyu-images
+          path: /tmp/shenyu/
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: shenyu-local-maven-repository
+          path: /tmp/shenyu-m2
+
+      - name: Restore ShenYu local Maven repository
+        run: bash .github/scripts/restore-shenyu-local-repo.sh /tmp/shenyu-m2
+
+      - name: Build examples with Maven
+        shell: bash
+        env:
+          EXAMPLE_PROJECTS: ${{ matrix.example_projects }}
+        run: |
+          if mvnd --version > /dev/null 2>&1; then
+            echo "Using mvnd to build ${EXAMPLE_PROJECTS}"
+            mvnd -B clean install -Pexample -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -pl "${EXAMPLE_PROJECTS}" -am -f ./shenyu-examples/pom.xml
+          else
+            echo "Falling back to maven wrapper to build ${EXAMPLE_PROJECTS}"
+            if [[ "${{ runner.os }}" == "Windows" ]]; then
+              ./mvnw.cmd -B clean install -Pexample -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -pl "${EXAMPLE_PROJECTS}" -am -f ./shenyu-examples/pom.xml
+            else
+              ./mvnw -B clean install -Pexample -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -pl "${EXAMPLE_PROJECTS}" -am -f ./shenyu-examples/pom.xml
+            fi
+          fi
+
+      - name: Load ShenYu Docker Images
+        run: |
+          docker load --input /tmp/shenyu/apache-shenyu-admin.tar
+          docker load --input /tmp/shenyu/apache-shenyu-bootstrap.tar
+          docker image ls -a
+
+      #      - name: Build k8s Cluster
+      #        if: steps.filter.outputs.changed == 'true'
+      #        run: |
+      #          sudo k3s ctr images import /tmp/shenyu/apache-shenyu-admin.tar
+      #          sudo k3s ctr images import /tmp/shenyu/apache-shenyu-bootstrap.tar
+
+      #      - name: Setup Debug Session
+      #        uses: mxschmitt/action-tmate@v3
+      #        timeout-minutes: 15
+      #        with:
+      #          detached: true
+
+      - name: Run E2E Tests
+        run: |
+          bash ./shenyu-e2e/shenyu-e2e-case/${{ matrix.case }}/compose/script/${{ matrix.script }}.sh
+
+  #      - name: Cluster Test after Healthcheck
+  #        if: steps.filter.outputs.changed == 'true'
+  #        run: |
+  #          kubectl get all
+  #          kubectl get events --all-namespaces
+
+  requirement:
+    name: e2e
+    if: ${{ always() }}
+    needs:
+      - changes
+      - build-docker-images
+      - e2e-storage
+      - e2e-case
+    runs-on: ubuntu-latest
+    steps:
+      - name: checking job status
+        run: |
+          [[ "${{ needs.changes.result }}" == "success" ]] || exit 1
+          if [[ "${{ needs.changes.outputs.run_e2e }}" == "true" ]]; then
+            [[ "${{ needs.build-docker-images.result }}" == "success" ]] || exit 1
+          fi
+          if [[ "${{ needs.changes.outputs.run_storage }}" == "true" ]]; then
+            [[ "${{ needs.e2e-storage.result }}" == "success" ]] || exit -1
+          fi
+          if [[ "${{ needs.changes.outputs.run_e2e_cases }}" == "true" ]]; then
+            [[ "${{ needs.e2e-case.result }}" == "success" ]] || exit -1
+          fi

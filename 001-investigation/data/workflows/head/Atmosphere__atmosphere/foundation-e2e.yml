@@ -1,0 +1,445 @@
+name: "CI: Foundation E2E"
+
+# Runs the Playwright suite under /e2e (the foundation proof
+# samples). Separate workflow from e2e.yml so it doesn't compete with
+# the integration-tests matrix for runners; it boots personal-assistant
+# and coding-agent samples via `./mvnw spring-boot:run` (no fat-jar
+# prebuild, no shell curl for readiness — the /actuator/health endpoint
+# is the standard Spring Boot liveness probe).
+#
+# Specs that require a live LLM (schedule/research/draft) are skipped
+# when no LLM_API_KEY / OPENAI_API_KEY / GEMINI_API_KEY is set — they
+# still run nightly in e2e-real-llm.yml.
+
+on:
+  push:
+    branches: ['**']
+    paths:
+      - 'modules/**'
+      - 'samples/spring-boot-personal-assistant/**'
+      - 'samples/spring-boot-coding-agent/**'
+      - 'samples/spring-boot-reattach-harness/**'
+      - 'samples/kotlin-dsl-chat/**'
+      - 'samples/spring-boot-spring-ai-advisors/**'
+      - 'samples/spring-boot-ms-governance-chat/**'
+      - 'samples/spring-boot-ai-classroom/**'
+      - 'samples/spring-boot-channels-chat/**'
+      - 'samples/spring-boot-rag-chat/**'
+      - 'modules/kotlin/**'
+      - 'e2e/**'
+      - '.mvn/**'
+      - 'pom.xml'
+      - '.github/workflows/foundation-e2e.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: foundation-e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  foundation-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v6
+        with:
+          java-version: 21
+          distribution: temurin
+          # Supply-chain hardening: GPG-verify the Temurin JDK archive (setup-java >= v5.5.0)
+          verify-signature: true
+          cache: maven
+
+      - name: Use Node 20
+        uses: actions/setup-node@v7
+        with:
+          node-version: 20
+
+      - name: Install framework modules into local Maven repo
+        # spring-boot:run needs the framework deps on the classpath but does
+        # not produce a fat jar; install the reactor once so all three
+        # samples can resolve them at run-time.
+        run: |
+          ./mvnw install -Pfastinstall -DskipTests \
+            -pl samples/spring-boot-personal-assistant,samples/spring-boot-coding-agent,samples/spring-boot-reattach-harness,samples/kotlin-dsl-chat,samples/spring-boot-spring-ai-advisors,samples/spring-boot-ms-governance-chat,samples/spring-boot-ai-classroom,samples/spring-boot-channels-chat,samples/spring-boot-rag-chat,modules/checkpoint-temporal \
+            -am -q
+
+      - name: Install Playwright deps
+        working-directory: e2e
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Type-check Playwright specs
+        working-directory: e2e
+        run: npx tsc --noEmit
+
+      # ── Personal-assistant sample ─────────────────────────────────
+      - name: Start personal-assistant sample
+        run: |
+          # Boot via Spring Boot Maven plugin — no fat-jar repackage step,
+          # no custom classpath assembly. The JVM process backgrounds here
+          # and tears down via PID file after the specs run.
+          nohup ./mvnw -pl samples/spring-boot-personal-assistant -q \
+              spring-boot:run \
+              -Dspring-boot.run.arguments='--server.port=8080' \
+              > /tmp/pa-run.log 2>&1 &
+          echo $! > /tmp/pa.pid
+
+      - name: Wait for personal-assistant /actuator/health
+        # actuator/health is the standard Spring Boot readiness probe.
+        # Replaces the old curl-the-console loop — status UP guarantees
+        # the Atmosphere framework finished init, not just Tomcat.
+        run: npx --yes wait-on --timeout 180000 http://localhost:8080/actuator/health
+
+      - name: Run personal-assistant specs
+        working-directory: e2e
+        env:
+          ATMO_E2E_BASE_URL: http://localhost:8080
+        run: npx playwright test tests/personal-assistant.spec.ts --reporter=list
+
+      - name: Stop personal-assistant
+        if: always()
+        run: |
+          if [ -f /tmp/pa.pid ]; then
+            kill "$(cat /tmp/pa.pid)" 2>/dev/null || true
+          fi
+          # Kill any leftover maven/spring-boot child java process on 8080.
+          pkill -f "spring-boot-personal-assistant" 2>/dev/null || true
+          sleep 2
+
+      # ── Coding-agent sample ───────────────────────────────────────
+      - name: Verify Docker available for sandbox spec
+        # ubuntu-latest ships with Docker; the clone/read spec needs the
+        # DockerSandboxProvider. Fail early here if the runner changed.
+        run: docker version --format '{{.Server.Version}}'
+
+      - name: Start coding-agent sample
+        run: |
+          nohup ./mvnw -pl samples/spring-boot-coding-agent -q \
+              spring-boot:run \
+              -Dspring-boot.run.arguments='--server.port=8080' \
+              > /tmp/ca-run.log 2>&1 &
+          echo $! > /tmp/ca.pid
+
+      - name: Wait for coding-agent /actuator/health
+        run: npx --yes wait-on --timeout 180000 http://localhost:8080/actuator/health
+
+      - name: Run coding-agent specs
+        working-directory: e2e
+        env:
+          ATMO_E2E_BASE_URL: http://localhost:8080
+        run: |
+          # Full spec set including the Docker sandbox clone+read regression
+          # — the surface where the argv-form exec + strict URL allowlist
+          # live. SKIP_SANDBOX_E2E is deliberately NOT set.
+          npx playwright test tests/coding-agent.spec.ts --reporter=list
+
+      - name: Stop coding-agent
+        if: always()
+        run: |
+          if [ -f /tmp/ca.pid ]; then
+            kill "$(cat /tmp/ca.pid)" 2>/dev/null || true
+          fi
+          pkill -f "spring-boot-coding-agent" 2>/dev/null || true
+
+      # ── Reattach-harness sample ───────────────────────────────────
+      # Deterministic harness for the mid-stream reattach wire. Runs on
+      # port 8096 so it can coexist with the personal-assistant/coding-agent
+      # stops above (those used 8080). The sample has no LLM dispatch —
+      # just a slow-emit @AiEndpoint plus a REST surface that pre-populates
+      # the RunRegistry so the Playwright spec can drive the HTTP →
+      # reattachPendingRun → replayPendingRun wire without timing flake.
+      - name: Start reattach-harness sample
+        run: |
+          nohup ./mvnw -pl samples/spring-boot-reattach-harness -q \
+              spring-boot:run \
+              -Dspring-boot.run.arguments='--server.port=8096' \
+              > /tmp/rh-run.log 2>&1 &
+          echo $! > /tmp/rh.pid
+
+      - name: Wait for reattach-harness readiness
+        # The harness exposes the AI endpoint only; /actuator isn't wired.
+        # A successful GET against the endpoint root means the framework
+        # + @AiEndpoint registrar are up.
+        run: npx --yes wait-on --timeout 120000 http://localhost:8096/atmosphere/agent/harness/
+
+      - name: Run reattach spec
+        working-directory: e2e
+        env:
+          ATMO_E2E_BASE_URL: http://localhost:8096
+        run: npx playwright test tests/reattach.spec.ts --reporter=list
+
+      - name: Stop reattach-harness
+        if: always()
+        run: |
+          if [ -f /tmp/rh.pid ]; then
+            kill "$(cat /tmp/rh.pid)" 2>/dev/null || true
+          fi
+
+      # ── kotlin-dsl-chat sample ────────────────────────────────────
+      # Shaded-jar Kotlin DSL endpoint on port 8099. Runs from the fat
+      # jar ON PURPOSE: the 4.0.60 release-gate regressions this spec
+      # pins (WS 501 from missing jakarta.websocket container, silent
+      # raw-HTTP broadcast loss, logback-core dropped by the shade
+      # plugin) only exist in the packaged artifact, so exercising
+      # spring-boot:run or unit tests here would prove nothing.
+      - name: Start kotlin-dsl-chat sample
+        run: |
+          nohup java -jar samples/kotlin-dsl-chat/target/atmosphere-kotlin-dsl-chat-*.jar \
+              > /tmp/kdsl-run.log 2>&1 &
+          echo $! > /tmp/kdsl.pid
+
+      - name: Wait for kotlin-dsl-chat readiness
+        # A GET on /chat suspends (that is the feature), so probe with a
+        # POST, which the DSL handler answers immediately.
+        run: |
+          for i in $(seq 1 60); do
+            if curl -sf -X POST -d readiness-probe http://localhost:8099/chat >/dev/null 2>&1; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo 'kotlin-dsl-chat never became ready' >&2
+          exit 1
+
+      - name: Run kotlin-dsl-chat spec
+        working-directory: e2e
+        env:
+          ATMO_E2E_BASE_URL: http://localhost:8099
+        run: npx playwright test tests/kotlin-dsl-chat.spec.ts --reporter=list
+
+      - name: Stop kotlin-dsl-chat
+        if: always()
+        run: |
+          if [ -f /tmp/kdsl.pid ]; then
+            kill "$(cat /tmp/kdsl.pid)" 2>/dev/null || true
+          fi
+
+      # ── spring-ai-advisors sample ─────────────────────────────────
+      # Bound-ChatClient contract on port 8098. Runs KEYLESS on purpose —
+      # that is the regression under test: the resolver must pick the
+      # runtime carrying the explicitly bound (offline LocalEchoChatModel)
+      # client over the no-key demo fallback, and the bound client's
+      # defaultAdvisors must fire on every turn (auto-configuration used
+      # to clobber the binding, silencing them).
+      - name: Start spring-ai-advisors sample
+        run: |
+          nohup ./mvnw -pl samples/spring-boot-spring-ai-advisors -q \
+              spring-boot:run \
+              > /tmp/saa-run.log 2>&1 &
+          echo $! > /tmp/saa.pid
+
+      - name: Wait for spring-ai-advisors readiness
+        run: npx --yes wait-on --timeout 120000 http://localhost:8098/atmosphere/console/
+
+      - name: Run spring-ai-advisors spec
+        working-directory: e2e
+        env:
+          ATMO_E2E_BASE_URL: http://localhost:8098
+        run: npx playwright test tests/spring-ai-advisors.spec.ts --reporter=list
+
+      - name: Stop spring-ai-advisors
+        if: always()
+        run: |
+          if [ -f /tmp/saa.pid ]; then
+            kill "$(cat /tmp/saa.pid)" 2>/dev/null || true
+          fi
+
+      # ── ms-governance-chat sample ─────────────────────────────────
+      # MS-schema rules-over-context demo on port 8090. always-open widens
+      # the support-business-hours window so the spec is deterministic at
+      # any CI wall-clock (the policy stays installed and evaluated).
+      - name: Start ms-governance-chat sample
+        run: |
+          nohup ./mvnw -pl samples/spring-boot-ms-governance-chat -q \
+              spring-boot:run \
+              -Dspring-boot.run.arguments='--demo.support-hours.always-open=true' \
+              > /tmp/msg-run.log 2>&1 &
+          echo $! > /tmp/msg.pid
+
+      - name: Wait for ms-governance-chat readiness
+        run: npx --yes wait-on --timeout 120000 http://localhost:8090/atmosphere/console/
+
+      - name: Run ms-governance-chat spec
+        working-directory: e2e
+        env:
+          ATMO_E2E_BASE_URL: http://localhost:8090
+        run: npx playwright test tests/ms-governance-chat.spec.ts --reporter=list
+
+      - name: Stop ms-governance-chat
+        if: always()
+        run: |
+          if [ -f /tmp/msg.pid ]; then
+            kill "$(cat /tmp/msg.pid)" 2>/dev/null || true
+          fi
+
+      # ── ai-classroom sample ───────────────────────────────────────
+      # Collaborative room broadcast on port 8080. Runs keyless — the
+      # DemoAgentRuntime reply is deterministic and the fan-out under test
+      # is a transport property independent of which runtime streamed it.
+      - name: Start ai-classroom sample
+        run: |
+          nohup ./mvnw -pl samples/spring-boot-ai-classroom -q \
+              spring-boot:run \
+              > /tmp/cls-run.log 2>&1 &
+          echo $! > /tmp/cls.pid
+
+      - name: Wait for ai-classroom readiness
+        run: npx --yes wait-on --timeout 120000 http://localhost:8080/
+
+      - name: Run ai-classroom spec
+        working-directory: e2e
+        env:
+          ATMO_E2E_BASE_URL: http://localhost:8080
+        run: npx playwright test tests/ai-classroom.spec.ts --reporter=list
+
+      - name: Stop ai-classroom
+        if: always()
+        run: |
+          if [ -f /tmp/cls.pid ]; then
+            kill "$(cat /tmp/cls.pid)" 2>/dev/null || true
+          fi
+
+      # ── channels-chat sample ──────────────────────────────────────
+      # Omnichannel @Agent on port 8080, web channel keyless. Guards the
+      # web-surface demo path (one @Agent answers the console via the
+      # /atmosphere/ai-chat alias) — the release-gate "swallowed messages"
+      # was a stale-socket artifact, and this spec keeps the real behavior
+      # (consecutive turns each answered) from regressing.
+      - name: Start channels-chat sample
+        run: |
+          nohup ./mvnw -pl samples/spring-boot-channels-chat -q \
+              spring-boot:run \
+              > /tmp/chn-run.log 2>&1 &
+          echo $! > /tmp/chn.pid
+
+      - name: Wait for channels-chat readiness
+        run: npx --yes wait-on --timeout 120000 http://localhost:8080/atmosphere/console/
+
+      - name: Run channels-chat spec
+        working-directory: e2e
+        env:
+          ATMO_E2E_BASE_URL: http://localhost:8080
+        run: npx playwright test tests/channels-chat.spec.ts --reporter=list
+
+      - name: Stop channels-chat
+        if: always()
+        run: |
+          if [ -f /tmp/chn.pid ]; then
+            kill "$(cat /tmp/chn.pid)" 2>/dev/null || true
+          fi
+
+      # ── rag-chat sample ───────────────────────────────────────────
+      # RAG console on port 8080, keyless. Proves @Command slash commands
+      # route on an @AiEndpoint (via the AiHandlerDecorator SPI): /sources
+      # is an instant KB listing while a plain question still flows through
+      # RAG retrieval. Keyless → deterministic DemoAgentRuntime.
+      - name: Start rag-chat sample
+        run: |
+          nohup ./mvnw -pl samples/spring-boot-rag-chat -q \
+              spring-boot:run \
+              > /tmp/rag-run.log 2>&1 &
+          echo $! > /tmp/rag.pid
+
+      - name: Wait for rag-chat readiness
+        run: npx --yes wait-on --timeout 120000 http://localhost:8080/atmosphere/console/
+
+      - name: Run rag-chat commands spec
+        working-directory: e2e
+        env:
+          ATMO_E2E_BASE_URL: http://localhost:8080
+        run: npx playwright test tests/rag-chat-commands.spec.ts --reporter=list
+
+      - name: Stop rag-chat
+        if: always()
+        run: |
+          if [ -f /tmp/rag.pid ]; then
+            kill "$(cat /tmp/rag.pid)" 2>/dev/null || true
+          fi
+
+      # ── Temporal adapter — Workflow<S> on a real Temporal service ─
+      # Proves atmosphere-checkpoint-temporal end-to-end: a one-shot Java
+      # runner executes a Workflow<S> through Workflow.run() against a
+      # local Temporal dev server (runner exits non-zero if the temporal
+      # provider was not the one that ran it), then the spec asserts the
+      # execution — type, task queue, per-step activities, terminal
+      # result — as rendered in the Temporal Web UI.
+      - name: Install Temporal CLI
+        run: |
+          curl -sSf https://temporal.download/cli.sh | sh
+          echo "$HOME/.temporalio/bin" >> "$GITHUB_PATH"
+
+      - name: Start Temporal dev server
+        run: |
+          nohup temporal server start-dev --log-level warn \
+              > /tmp/temporal-dev.log 2>&1 &
+          echo $! > /tmp/temporal.pid
+
+      - name: Wait for Temporal readiness (gRPC frontend + UI)
+        # curl GET, not wait-on: the Temporal UI server does not answer the
+        # HEAD requests wait-on sends, so the probe times out against a
+        # perfectly healthy server. The CLI check proves the gRPC frontend
+        # is up too — the adapter caches a failed connection probe for 30s,
+        # so the runner must not race a not-yet-ready frontend.
+        run: |
+          for i in $(seq 1 60); do
+            if temporal workflow list --address 127.0.0.1:7233 > /dev/null 2>&1 \
+                && curl -sf http://127.0.0.1:8233 > /dev/null; then
+              echo 'Temporal frontend + UI ready'
+              exit 0
+            fi
+            sleep 2
+          done
+          echo 'Temporal did not become ready within 120s'
+          tail -50 /tmp/temporal-dev.log || true
+          exit 1
+
+      - name: Run a Workflow through the Temporal adapter
+        run: |
+          ./mvnw -q test-compile org.codehaus.mojo:exec-maven-plugin:3.5.0:java \
+              -pl modules/checkpoint-temporal \
+              -Dexec.mainClass=org.atmosphere.checkpoint.temporal.TemporalWorkflowE2ERunner \
+              -Dexec.classpathScope=test
+
+      - name: Run temporal-workflow spec
+        working-directory: e2e
+        env:
+          ATMO_E2E_BASE_URL: http://127.0.0.1:8233
+        run: npx playwright test tests/temporal-workflow.spec.ts --reporter=list
+
+      - name: Stop Temporal dev server
+        if: always()
+        run: |
+          if [ -f /tmp/temporal.pid ]; then
+            kill "$(cat /tmp/temporal.pid)" 2>/dev/null || true
+          fi
+
+      - name: Dump sample logs on failure
+        if: failure()
+        run: |
+          echo '=== pa-run.log ==='
+          cat /tmp/pa-run.log || true
+          echo '=== ca-run.log ==='
+          cat /tmp/ca-run.log || true
+          echo '=== rh-run.log ==='
+          cat /tmp/rh-run.log || true
+          echo '=== kdsl-run.log ==='
+          cat /tmp/kdsl-run.log || true
+          echo '=== saa-run.log ==='
+          cat /tmp/saa-run.log || true
+          echo '=== msg-run.log ==='
+          cat /tmp/msg-run.log || true
+          echo '=== cls-run.log ==='
+          cat /tmp/cls-run.log || true
+          echo '=== chn-run.log ==='
+          cat /tmp/chn-run.log || true
+          echo '=== rag-run.log ==='
+          cat /tmp/rag-run.log || true
+          echo '=== temporal-dev.log ==='
+          cat /tmp/temporal-dev.log || true

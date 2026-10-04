@@ -1,0 +1,49 @@
+name: build
+
+on: [push]
+
+permissions:
+  contents: read
+  
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ macos-latest, ubuntu-latest, macos-15-intel, windows-latest ]
+    name: build ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
+    - name: Set up JDK
+      uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+      with:
+        java-version: '25'
+        distribution: 'liberica'
+        java-package: 'jdk+fx'
+        cache: 'maven'
+    - name: Install gettext on Ubuntu
+      if: matrix.os == 'ubuntu-latest'
+      run: sudo apt-get update && sudo apt-get install -y gettext
+
+    - name: Build with Maven Ubuntu
+      if: matrix.os == 'ubuntu-latest'
+      run: xvfb-run mvn -Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw --batch-mode --update-snapshots verify
+
+    - name: Build with Maven MacOS intel
+      if: matrix.os == 'macos-15-intel'
+      run: mvn --batch-mode --update-snapshots -DskipTests verify
+
+    - name: Install scoop on Windows
+      if: matrix.os == 'windows-latest'
+      uses: MinoruSekine/setup-scoop@371e1c778465fed5ee2101c415bead47553e1a07 # v5.0.0
+
+    - name: Install gettext on Windows
+      if: matrix.os == 'windows-latest'
+      run: scoop install gettext
+
+    - name: Build with Maven
+      if: matrix.os != 'ubuntu-latest' && matrix.os != 'macos-15-intel'
+      run: mvn --batch-mode --update-snapshots verify

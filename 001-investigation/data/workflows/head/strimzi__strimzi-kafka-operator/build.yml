@@ -1,0 +1,302 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - "main"
+      - "release-*"
+  pull_request:
+    branches:
+      - "*"
+
+# Declare default permissions as read only
+permissions:
+  contents: read
+
+# Cancel previous builds on the same branch/PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Build Strimzi Java code and does basic checks of the PR
+  build-strimzi:
+    name: Build Strimzi
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Build workflow trigger via pull_request will have merge commit sha in github.sha
+      - name: Store build commit sha
+        run: |
+          echo "${{ github.sha }}" > commit-sha.txt
+          echo "Stored commit SHA: ${{ github.sha }}"
+
+      - name: Upload build metadata
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: commit-sha.txt
+          path: commit-sha.txt
+
+      - name: Remove commit-sha.txt
+        run: |
+          rm -rf commit-sha.txt
+
+      - name: Setup Java and Maven
+        uses: strimzi/github-actions/.github/actions/dependencies/setup-java@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          javaVersion: "21"
+
+      - name: Install yq
+        uses: strimzi/github-actions/.github/actions/dependencies/install-yq@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          version: "v4.6.3"
+          architecture: "amd64"
+
+      - name: Install Shellcheck
+        uses: strimzi/github-actions/.github/actions/dependencies/install-shellcheck@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          version: "0.11.0"
+          architecture: "amd64"
+
+      - name: Install Helm
+        uses: strimzi/github-actions/.github/actions/dependencies/install-helm@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          helmVersion: "v3.16.0"
+
+      - name: Restore Kafka binaries cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: docker-images/artifacts/binaries/kafka/archives
+          key: kafka-binaries-${{ hashFiles('kafka-versions.yaml') }}
+          restore-keys: |
+            kafka-binaries-
+
+      - name: Build binaries using build-binaries action
+        uses: strimzi/github-actions/.github/actions/build/build-binaries@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          mainJavaBuild: "true"
+          artifactSuffix: "operators"
+          clusterOperatorBuild: "true"
+        env:
+          # Skip tests for both runs as we will run tests in parallel
+          MVN_ARGS: "-B -DskipTests -Dmaven.javadoc.skip=true"
+
+      - name: Save Kafka binaries cache
+        # Save maven cache only after pushes into default branch
+        if: ${{ github.event_name == 'push' && github.ref_name == github.event.repository.default_branch }}
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: docker-images/artifacts/binaries/kafka/archives
+          key: kafka-binaries-${{ hashFiles('kafka-versions.yaml') }}
+
+  # Runs Strimzi unit tests (Surefire only, no Kind cluster needed)
+  unit-test-strimzi:
+    name: Unit Tests
+    needs:
+      - build-strimzi
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/build/unit-test-strimzi
+
+  # Runs Strimzi integration tests (Failsafe only) against multiple Kubernetes versions
+  integration-test-strimzi:
+    name: Integration Tests (${{ matrix.kindNodeImage }})
+    needs:
+      - build-strimzi
+    strategy:
+      fail-fast: false
+      matrix:
+        kindNodeImage:
+          # Oldest Kube version we support
+          - "kindest/node:v1.32.11@sha256:5fc52d52a7b9574015299724bd68f183702956aa4a2116ae75a63cb574b35af8"
+          # Latest Kube version we support
+          - "kindest/node:v1.35.0@sha256:452d707d4862f52530247495d180205e029056831160e22870e37e3f6c1ac31f"
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/build/integration-test-strimzi
+        with:
+          kindNodeImage: ${{ matrix.kindNodeImage }}
+
+  # Builds Strimzi docs
+  build-docs:
+    name: Build docs
+    needs:
+      - build-strimzi
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install yq
+        uses: strimzi/github-actions/.github/actions/dependencies/install-yq@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          version: "v4.6.3"
+
+      - name: Install AsciiDoctor
+        uses: strimzi/github-actions/.github/actions/dependencies/install-ascii-doctor@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          rubyVersion: "3.2"
+
+      - uses: ./.github/actions/build/build-docs
+        with:
+          artifactName: "documentation.tar"
+
+  # Builds Strimzi containers
+  build-containers:
+    name: Build Containers
+    needs:
+      - build-strimzi
+    strategy:
+      matrix:
+        architecture:
+          - amd64
+          - arm64
+          - s390x
+          - ppc64le
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install Docker
+        uses: strimzi/github-actions/.github/actions/dependencies/install-docker@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+
+      - name: Install yq
+        uses: strimzi/github-actions/.github/actions/dependencies/install-yq@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          version: "v4.6.3"
+          architecture: "amd64"
+
+      - name: Install Shellcheck
+        uses: strimzi/github-actions/.github/actions/dependencies/install-shellcheck@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          version: "0.11.0"
+          architecture: "amd64"
+
+      - uses: strimzi/github-actions/.github/actions/build/build-containers@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          architecture: ${{ matrix.architecture }}
+          imagesLocation: "./docker-images/container-archives"
+          artifactSuffix: "operators"
+
+  # Push Strimzi containers - run only on main branch
+  push-containers:
+    name: Push Containers
+    needs:
+      - build-strimzi
+      - unit-test-strimzi
+      - integration-test-strimzi
+      - build-containers
+      - build-docs
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    outputs:
+      images: ${{ steps.push-containers.outputs.images }}
+      sbomsArtifact: ${{ steps.push-containers.outputs.sbomsArtifact }}
+    permissions:
+      contents: read
+      # Required for keyless signing with GitHub OIDC
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install Docker
+        uses: strimzi/github-actions/.github/actions/dependencies/install-docker@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+
+      - name: Install yq
+        uses: strimzi/github-actions/.github/actions/dependencies/install-yq@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          version: "v4.6.3"
+
+      - name: Install Syft
+        uses: strimzi/github-actions/.github/actions/dependencies/install-syft@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          version: "1.20.0"
+
+      - name: Push containers using push-containers action
+        id: push-containers
+        uses: strimzi/github-actions/.github/actions/build/push-containers@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          registryUser: ${{ secrets.QUAY_USER }}
+          registryPassword: ${{ secrets.QUAY_PASS }}
+          containerRegistry: "quay.io"
+          containerOrg: "strimzi"
+          containerTag: "latest"
+          architectures: "amd64,arm64,ppc64le,s390x"
+          artifactSuffix: "operators"
+
+  # Attest Strimzi container images - run only on main branch after push
+  attest:
+    name: Attestation
+    needs:
+      - push-containers
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    uses: strimzi/github-actions/.github/workflows/reusable-attest.yml@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+    with:
+      containerImages: ${{ needs.push-containers.outputs.images }}
+      sbomsArtifact: ${{ needs.push-containers.outputs.sbomsArtifact }}
+      # Run 4 attestation jobs in parallel to not overwhelm Rekor API with big sboms
+      maxParallel: 4
+
+  # Publish Strimzi docs to the website - run only on main branch
+  publish-docs:
+    name: Publish Docs
+    needs:
+      - build-strimzi
+      - unit-test-strimzi
+      - integration-test-strimzi
+      - build-containers
+      - build-docs
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/build/publish-docs
+        with:
+          artifactName: "documentation.tar"
+          websiteDeployKey: ${{ secrets.WEBSITE_DEPLOY_KEY }}
+
+  # Deploy Strimzi Java artifacts - run only on main branch
+  deploy-java:
+    name: Deploy Java artifacts
+    needs:
+      - build-strimzi
+      - unit-test-strimzi
+      - integration-test-strimzi
+      - build-containers
+      - build-docs
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Java and Maven
+        uses: strimzi/github-actions/.github/actions/dependencies/setup-java@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          javaVersion: "21"
+
+      - name: Install yq
+        uses: strimzi/github-actions/.github/actions/dependencies/install-yq@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          version: "v4.6.3"
+
+      - name: Deploy to Maven Central
+        uses: strimzi/github-actions/.github/actions/build/deploy-java@4aefb08c299693441fb87284984c760a1c708fbc # v2.4
+        with:
+          modules: "./,crd-annotations,crd-generator,test,api"
+          gpgPassphrase: ${{ secrets.GPG_PASSPHRASE }}
+          gpgSigningKey: ${{ secrets.GPG_SIGNING_KEY }}
+          centralUsername: ${{ secrets.CENTRAL_USERNAME }}
+          centralPassword: ${{ secrets.CENTRAL_PASSWORD }}

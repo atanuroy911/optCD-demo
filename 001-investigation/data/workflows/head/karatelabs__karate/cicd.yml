@@ -1,0 +1,51 @@
+name: cicd
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Verify Tailwind CSS is up to date
+        run: |
+          bash etc/tailwind/tailwind.sh
+          if ! git diff --exit-code karate-core/src/main/resources/io/karatelabs/output/res/karate-report.css; then
+            echo "::error::karate-report.css is stale. Run 'bash etc/tailwind/tailwind.sh' locally and commit the regenerated CSS."
+            exit 1
+          fi
+
+      - name: Build and test with Maven (cicd profile)
+        run: mvn -B verify -Pcicd
+
+  w3c:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: W3C WebDriver tests (Selenium containers)
+        run: mvn -B verify -Pw3c -pl karate-core -am

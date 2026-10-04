@@ -1,0 +1,17 @@
+[consumed-cross-workflow] apache/rocketmq pr-ci.yml job=dist-tar name=rocketmq if='' path=distribution/target/rocketmq*/rocketmq* | pr-e2e-test.yml:docker: actions/github-script@v6 (script downloadArtifact name=rocketmq)
+[consumed-cross-workflow] netty/netty ci-pr.yml job=build-pr name=test-results-${{ matrix.setup }} if='always()' path=**/target/surefire-reports/TEST-*.xml | ci-pr-reports.yml:tests: dawidd6/action-download-artifact@v3.0.0
+[consumed-cross-workflow] quarkusio/quarkus doc-build.yml job=build-doc name=documentation if='' path=pr-id.txt | docs/ | target/asciidoc/generated/config/ | preview.yml:preview: actions/download-artifact@v4
+[consumed-cross-workflow] alibaba/nacos pr-ci.yml job=dist-tar name=nacos if='' path=distribution/target/nacos-server-*.tar.gz | pr-e2e-test.yml:docker: actions/github-script@v3.1.0 (script downloadArtifact name=nacos)
+[consumed-pages] redis/jedis docs.yml job=build-and-deploy name=github-pages if='' path=docsbuild | docs.yml:build-and-deploy: actions/deploy-pages@v2
+[consumed-same-workflow] quarkusio/quarkus ci-actions-incremental.yml job=attach-pr-number name=pull-request-number-${{ github.event.number }} if='' path=pull-request-number | ci-actions-incremental.yml:build-report: actions/download-artifact@v4
+[consumed-same-workflow] OpenAPITools/openapi-generator openapi-generator.yaml job=build name=openapi-generator-cli.jar if='' path=modules/openapi-generator-cli/target/openapi-generator-cli.j | openapi-generator.yaml:documentation: actions/download-artifact@v4; openapi-generator.yaml
+[consumed-same-workflow] alibaba/nacos push-ci.yaml job=dist-tar name=nacos if='' path=distribution/target/nacos-server-*.tar.gz | push-ci.yaml:docker: actions/download-artifact@v4.1.7
+[consumed-same-workflow] jitsi/jitsi installers.yml job=javah name=javah if='' path=target/native | installers.yml:deb: actions/download-artifact@v3; installers.yml:mac: actions/download-art
+[failure-only-diagnostic] netty/netty ci-pr.yml job=build-pr-windows name=build-pr-windows-target if='${{ failure() }}' path=**/target/surefire-reports/ | **/hs_err*.log | if: ${{ failure() }}
+[failure-only-diagnostic] apache/zookeeper manual.yaml job=mvn name=surefire-reports if='${{ failure() }}' path=./**/target/surefire-reports/ | if: ${{ failure() }}
+[failure-only-diagnostic] apache/druid reusable-revised-its.yml job=test name=IT-${{ inputs.it }} service logs (Compile=jdk${{ inputs.build_jdk }}, Run=jdk${{ inputs.runtime_jdk }}, Indexer=${{ inputs.use_indexer }}, Mysql=${{ inputs.mysql_driver }}) if="${{ failure() && steps.run-it.conclusion == 'failure' }}" path=service-logs.tgz | if: ${{ failure() && steps.run-it.conclusion == 'failure' }}
+[failure-only-diagnostic] netty/netty ci-build.yml job=build-windows name=build-windows-target if='${{ failure() }}' path=**/target/surefire-reports/ | **/hs_err*.log | if: ${{ failure() }}
+[stored-only] netty/netty ci-build.yml job=build-android name=build-android-jars-aars if='${{ always() }}' path=**/target/*.jar | **/target/*.aar | if: ${{ always() }}
+[stored-only] alibaba/nacos pr-e2e-test.yml job=e2e-nodejs-test name=testlog-${{ matrix.mode }}-nodejs.txt if='always()' path=testlog.txt | if: always()
+[stored-only] apache/rocketmq push-ci.yml job=benchmark-test name=benchmark-report if='always()' path=benchmark/ | if: always()
+[stored-only] apache/shardingsphere nightly-sql-parser.yml job=database-parse name=sql-report if='' path=/tmp/*.csv | 

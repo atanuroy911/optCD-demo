@@ -1,0 +1,31 @@
+name: Build Pull Request
+on: pull_request
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build pull request
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'spring-io/initializr' }}
+    steps:
+      - name: Check out
+        uses: actions/checkout@v7
+
+      - name: Set up JDK
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          java-version-file: '.sdkmanrc'
+          cache: 'maven'
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          java-version: '17'
+          distribution: 'liberica'
+          cache: 'maven'
+          set-default: false
+
+      - name: Build with Maven
+        run: ./mvnw --batch-mode --update-snapshots -Pfull install

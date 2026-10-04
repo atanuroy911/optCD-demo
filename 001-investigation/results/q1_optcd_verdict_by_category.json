@@ -1,0 +1,15 @@
+{
+  "consumed-cross-workflow": {
+    "not flagged (used)": 3
+  },
+  "stored-only": {
+    "not flagged (used)": 19
+  },
+  "failure-only-diagnostic": {
+    "not flagged (used)": 6,
+    "flagged unused": 2
+  },
+  "consumed-same-workflow": {
+    "not flagged (used)": 4
+  }
+}

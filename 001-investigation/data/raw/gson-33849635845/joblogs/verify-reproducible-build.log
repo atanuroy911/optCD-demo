@@ -1,0 +1,876 @@
+﻿2026-09-04T07:38:17.0597149Z Current runner version: '2.337.0'
+2026-09-04T07:38:17.0622499Z ##[group]Runner Image Provisioner
+2026-09-04T07:38:17.0623701Z Hosted Compute Agent
+2026-09-04T07:38:17.0624304Z Version: 20260828.587
+2026-09-04T07:38:17.0624980Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-04T07:38:17.0626055Z Build Date: 2026-08-28T16:44:25Z
+2026-09-04T07:38:17.0626775Z Worker ID: {39d6434b-b2aa-4643-96f7-302379fe1b97}
+2026-09-04T07:38:17.0627560Z Azure Region: eastus
+2026-09-04T07:38:17.0628131Z ##[endgroup]
+2026-09-04T07:38:17.0629652Z ##[group]Operating System
+2026-09-04T07:38:17.0630353Z Ubuntu
+2026-09-04T07:38:17.0630877Z 24.04.4
+2026-09-04T07:38:17.0631919Z LTS
+2026-09-04T07:38:17.0632459Z ##[endgroup]
+2026-09-04T07:38:17.0633056Z ##[group]Runner Image
+2026-09-04T07:38:17.0633794Z Image: ubuntu-24.04
+2026-09-04T07:38:17.0634361Z Version: 20260831.293.1
+2026-09-04T07:38:17.0635906Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260831.293/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-04T07:38:17.0637581Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260831.293
+2026-09-04T07:38:17.0638570Z ##[endgroup]
+2026-09-04T07:38:17.0639711Z ##[group]GITHUB_TOKEN Permissions
+2026-09-04T07:38:17.0642062Z Contents: read
+2026-09-04T07:38:17.0642665Z Metadata: read
+2026-09-04T07:38:17.0643415Z ##[endgroup]
+2026-09-04T07:38:17.0646120Z Secret source: Actions
+2026-09-04T07:38:17.0647607Z Prepare workflow directory
+2026-09-04T07:38:17.1043602Z Prepare all required actions
+2026-09-04T07:38:17.1093655Z Getting action download info
+2026-09-04T07:38:17.3354211Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-09-04T07:38:17.4792404Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-09-04T07:38:17.5156337Z Download action repository 'actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95' (SHA:03ad4de0992f5dab5e18fcb136590ce7c4a0ac95)
+2026-09-04T07:38:17.7344320Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-09-04T07:38:17.9569567Z Complete job name: verify-reproducible-build
+2026-09-04T07:38:18.0364962Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-04T07:38:18.0373960Z ##[group]Run actions/setup-python@v5
+2026-09-04T07:38:18.0374730Z with:
+2026-09-04T07:38:18.0375153Z   python-version: 3.10
+2026-09-04T07:38:18.0375834Z   check-latest: false
+2026-09-04T07:38:18.0379796Z   token: ***
+2026-09-04T07:38:18.0380237Z   update-environment: true
+2026-09-04T07:38:18.0380737Z   allow-prereleases: false
+2026-09-04T07:38:18.0381210Z   freethreaded: false
+2026-09-04T07:38:18.0381903Z env:
+2026-09-04T07:38:18.0382503Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:18.0383184Z ##[endgroup]
+2026-09-04T07:38:18.1913268Z ##[group]Installed versions
+2026-09-04T07:38:18.1977152Z (node:2093) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-04T07:38:18.1978634Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-04T07:38:18.1979977Z Successfully set up CPython (3.10.21)
+2026-09-04T07:38:18.1981568Z ##[endgroup]
+2026-09-04T07:38:18.2254549Z ##[group]Run python -m pip install --upgrade pip
+2026-09-04T07:38:18.2255997Z [36;1mpython -m pip install --upgrade pip[0m
+2026-09-04T07:38:18.2257000Z [36;1mpip install inotify[0m
+2026-09-04T07:38:18.2328174Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:18.2328786Z env:
+2026-09-04T07:38:18.2329366Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:18.2330182Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:18.2331417Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:18.2332654Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:18.2333883Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:18.2335119Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:18.2336662Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:18.2337771Z ##[endgroup]
+2026-09-04T07:38:18.8865216Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.10.21/x64/lib/python3.10/site-packages (26.2.1)
+2026-09-04T07:38:19.4668980Z Collecting inotify
+2026-09-04T07:38:19.5291351Z   Downloading inotify-0.2.12-py2.py3-none-any.whl.metadata (7.2 kB)
+2026-09-04T07:38:19.5462399Z Collecting build (from inotify)
+2026-09-04T07:38:19.5506005Z   Downloading build-1.6.0-py3-none-any.whl.metadata (5.6 kB)
+2026-09-04T07:38:19.5694291Z Collecting packaging>=24.0 (from build->inotify)
+2026-09-04T07:38:19.5734453Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-09-04T07:38:19.5838016Z Collecting pyproject_hooks (from build->inotify)
+2026-09-04T07:38:19.5880307Z   Downloading pyproject_hooks-1.2.0-py3-none-any.whl.metadata (1.3 kB)
+2026-09-04T07:38:19.6253953Z Collecting tomli>=1.1.0 (from build->inotify)
+2026-09-04T07:38:19.6295457Z   Downloading tomli-2.4.1-py3-none-any.whl.metadata (10 kB)
+2026-09-04T07:38:19.6385720Z Downloading inotify-0.2.12-py2.py3-none-any.whl (20 kB)
+2026-09-04T07:38:19.6466170Z Downloading build-1.6.0-py3-none-any.whl (31 kB)
+2026-09-04T07:38:19.6535510Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-09-04T07:38:19.6649413Z Downloading tomli-2.4.1-py3-none-any.whl (14 kB)
+2026-09-04T07:38:19.6712398Z Downloading pyproject_hooks-1.2.0-py3-none-any.whl (10 kB)
+2026-09-04T07:38:19.7086062Z Installing collected packages: tomli, pyproject_hooks, packaging, build, inotify
+2026-09-04T07:38:19.8337668Z 
+2026-09-04T07:38:19.8352935Z Successfully installed build-1.6.0 inotify-0.2.12 packaging-26.3 pyproject_hooks-1.2.0 tomli-2.4.1
+2026-09-04T07:38:19.8830549Z ##[group]Run python3 -c "
+2026-09-04T07:38:19.8830938Z [36;1mpython3 -c "[0m
+2026-09-04T07:38:19.8831219Z [36;1mimport inotify.adapters[0m
+2026-09-04T07:38:19.8831533Z [36;1mimport inotify.constants[0m
+2026-09-04T07:38:19.8831832Z [36;1mimport os[0m
+2026-09-04T07:38:19.8832150Z [36;1mfrom datetime import datetime, timezone[0m
+2026-09-04T07:38:19.8832734Z [36;1mwith open('/home/runner/inotifywait-log-verify-reproducible-build.csv', 'w') as log_file:[0m
+2026-09-04T07:38:19.8833613Z [36;1m  i = inotify.adapters.InotifyTree('/home/runner/work/gson/gson', inotify.constants.IN_CREATE | inotify.constants.IN_ACCESS)[0m
+2026-09-04T07:38:19.8834286Z [36;1m  for event in i.event_gen(yield_nones=False):[0m
+2026-09-04T07:38:19.8834710Z [36;1m    (_, type_names, path, filename) = event[0m
+2026-09-04T07:38:19.8835191Z [36;1m    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f') + 'Z'[0m
+2026-09-04T07:38:19.8835985Z [36;1m    events = ','.join(type_names)[0m
+2026-09-04T07:38:19.8836443Z [36;1m    log_file.write(f'{now};{path};{filename};{events}\n')[0m
+2026-09-04T07:38:19.8836832Z [36;1m    log_file.flush()[0m
+2026-09-04T07:38:19.8837181Z [36;1m    os.fsync(log_file.fileno())[0m
+2026-09-04T07:38:19.8837514Z [36;1m" &[0m
+2026-09-04T07:38:19.8877123Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:19.8877440Z env:
+2026-09-04T07:38:19.8877798Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:19.8878284Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:19.8878760Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:19.8879227Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:19.8879650Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:19.8880074Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:19.8880687Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:19.8881062Z ##[endgroup]
+2026-09-04T07:38:24.9069484Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-09-04T07:38:24.9069956Z with:
+2026-09-04T07:38:24.9070234Z   persist-credentials: false
+2026-09-04T07:38:24.9070543Z   repository: atanuroy911/gson
+2026-09-04T07:38:24.9073329Z   token: ***
+2026-09-04T07:38:24.9073585Z   ssh-strict: true
+2026-09-04T07:38:24.9073833Z   ssh-user: git
+2026-09-04T07:38:24.9074070Z   clean: true
+2026-09-04T07:38:24.9074326Z   sparse-checkout-cone-mode: true
+2026-09-04T07:38:24.9074630Z   fetch-depth: 1
+2026-09-04T07:38:24.9074874Z   fetch-tags: false
+2026-09-04T07:38:24.9075128Z   show-progress: true
+2026-09-04T07:38:24.9075384Z   lfs: false
+2026-09-04T07:38:24.9075827Z   submodules: false
+2026-09-04T07:38:24.9076088Z   set-safe-directory: true
+2026-09-04T07:38:24.9076388Z   allow-unsafe-pr-checkout: false
+2026-09-04T07:38:24.9076676Z env:
+2026-09-04T07:38:24.9076988Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:24.9077511Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:24.9077980Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:24.9078442Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:24.9078860Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:24.9079278Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:24.9079712Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:24.9080076Z ##[endgroup]
+2026-09-04T07:38:24.9931516Z Syncing repository: atanuroy911/gson
+2026-09-04T07:38:24.9932947Z ##[group]Getting Git version info
+2026-09-04T07:38:24.9934251Z Working directory is '/home/runner/work/gson/gson'
+2026-09-04T07:38:24.9978648Z [command]/usr/bin/git version
+2026-09-04T07:38:25.0096406Z git version 2.55.0
+2026-09-04T07:38:25.0151933Z ##[endgroup]
+2026-09-04T07:38:25.0169112Z Temporarily overriding HOME='/home/runner/work/_temp/12fb02a3-b27c-4183-be33-958ac69bf4c0' before making global git config changes
+2026-09-04T07:38:25.0170695Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-04T07:38:25.0175182Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/gson/gson
+2026-09-04T07:38:25.0228425Z Deleting the contents of '/home/runner/work/gson/gson'
+2026-09-04T07:38:25.0232445Z ##[group]Determining repository object format
+2026-09-04T07:38:25.0236371Z ##[endgroup]
+2026-09-04T07:38:25.0243247Z ##[group]Initializing the repository
+2026-09-04T07:38:25.0246473Z [command]/usr/bin/git init /home/runner/work/gson/gson
+2026-09-04T07:38:25.0367772Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-04T07:38:25.0368982Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-04T07:38:25.0370028Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-04T07:38:25.0370871Z hint: call:
+2026-09-04T07:38:25.0372545Z hint:
+2026-09-04T07:38:25.0373089Z hint: 	git config --global init.defaultBranch <name>
+2026-09-04T07:38:25.0373676Z hint:
+2026-09-04T07:38:25.0374246Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-04T07:38:25.0375179Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-04T07:38:25.0376549Z hint:
+2026-09-04T07:38:25.0376999Z hint: 	git branch -m <name>
+2026-09-04T07:38:25.0377497Z hint:
+2026-09-04T07:38:25.0378148Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-04T07:38:25.0379156Z Initialized empty Git repository in /home/runner/work/gson/gson/.git/
+2026-09-04T07:38:25.0389781Z [command]/usr/bin/git remote add origin https://github.com/atanuroy911/gson
+2026-09-04T07:38:25.0467007Z ##[endgroup]
+2026-09-04T07:38:25.0467980Z ##[group]Disabling automatic garbage collection
+2026-09-04T07:38:25.0468732Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-04T07:38:25.0518013Z ##[endgroup]
+2026-09-04T07:38:25.0520173Z ##[group]Setting up auth
+2026-09-04T07:38:25.0521180Z Removing SSH command configuration
+2026-09-04T07:38:25.0522445Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-04T07:38:25.0566517Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-04T07:38:25.0951855Z Removing HTTP extra header
+2026-09-04T07:38:25.0957991Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-04T07:38:25.0997136Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-04T07:38:25.1236366Z Removing includeIf entries pointing to credentials config files
+2026-09-04T07:38:25.1242799Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-04T07:38:25.1279783Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-04T07:38:25.1534309Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-99a5b3b2-77ca-454b-ac17-534590a7a724.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-04T07:38:25.1578336Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/gson/gson/.git.path /home/runner/work/_temp/git-credentials-99a5b3b2-77ca-454b-ac17-534590a7a724.config
+2026-09-04T07:38:25.1617603Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-99a5b3b2-77ca-454b-ac17-534590a7a724.config
+2026-09-04T07:38:25.1660807Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-99a5b3b2-77ca-454b-ac17-534590a7a724.config
+2026-09-04T07:38:25.1703729Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-99a5b3b2-77ca-454b-ac17-534590a7a724.config
+2026-09-04T07:38:25.1739051Z ##[endgroup]
+2026-09-04T07:38:25.1739887Z ##[group]Fetching the repository
+2026-09-04T07:38:25.1747856Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +4dd947df69aa3ea7d3a11b253ef1ecb587454312:refs/remotes/origin/optcd-run
+2026-09-04T07:38:25.6315795Z From https://github.com/atanuroy911/gson
+2026-09-04T07:38:25.6317261Z  * [new ref]         4dd947df69aa3ea7d3a11b253ef1ecb587454312 -> origin/optcd-run
+2026-09-04T07:38:25.6332753Z [command]/usr/bin/git branch --list --remote origin/optcd-run
+2026-09-04T07:38:25.6369777Z   origin/optcd-run
+2026-09-04T07:38:25.6380537Z [command]/usr/bin/git rev-parse refs/remotes/origin/optcd-run
+2026-09-04T07:38:25.6410970Z 4dd947df69aa3ea7d3a11b253ef1ecb587454312
+2026-09-04T07:38:25.6415938Z ##[endgroup]
+2026-09-04T07:38:25.6416552Z ##[group]Determining the checkout info
+2026-09-04T07:38:25.6421698Z ##[endgroup]
+2026-09-04T07:38:25.6422645Z [command]/usr/bin/git sparse-checkout disable
+2026-09-04T07:38:25.6488364Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-04T07:38:25.6526381Z ##[group]Checking out the ref
+2026-09-04T07:38:25.6532603Z [command]/usr/bin/git checkout --progress --force -B optcd-run refs/remotes/origin/optcd-run
+2026-09-04T07:38:25.7013544Z Switched to a new branch 'optcd-run'
+2026-09-04T07:38:25.7018923Z branch 'optcd-run' set up to track 'origin/optcd-run'.
+2026-09-04T07:38:25.7027778Z ##[endgroup]
+2026-09-04T07:38:25.7086240Z [command]/usr/bin/git log -1 --format=%H
+2026-09-04T07:38:25.7121294Z 4dd947df69aa3ea7d3a11b253ef1ecb587454312
+2026-09-04T07:38:25.7133055Z ##[group]Removing auth
+2026-09-04T07:38:25.7134120Z Removing SSH command configuration
+2026-09-04T07:38:25.7139535Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-04T07:38:25.7185054Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-04T07:38:25.7457881Z Removing HTTP extra header
+2026-09-04T07:38:25.7463036Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-04T07:38:25.7503591Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-04T07:38:25.7743625Z Removing includeIf entries pointing to credentials config files
+2026-09-04T07:38:25.7748389Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-04T07:38:25.7781019Z includeif.gitdir:/home/runner/work/gson/gson/.git.path
+2026-09-04T07:38:25.7782144Z includeif.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path
+2026-09-04T07:38:25.7782919Z includeif.gitdir:/github/workspace/.git.path
+2026-09-04T07:38:25.7783614Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-04T07:38:25.7792010Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/gson/gson/.git.path
+2026-09-04T07:38:25.7821879Z /home/runner/work/_temp/git-credentials-99a5b3b2-77ca-454b-ac17-534590a7a724.config
+2026-09-04T07:38:25.7831943Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/gson/gson/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-99a5b3b2\-77ca\-454b\-ac17\-534590a7a724\.config
+2026-09-04T07:38:25.7871910Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path
+2026-09-04T07:38:25.7904872Z /home/runner/work/_temp/git-credentials-99a5b3b2-77ca-454b-ac17-534590a7a724.config
+2026-09-04T07:38:25.7918433Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-99a5b3b2\-77ca\-454b\-ac17\-534590a7a724\.config
+2026-09-04T07:38:25.7957943Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-09-04T07:38:25.8009057Z /github/runner_temp/git-credentials-99a5b3b2-77ca-454b-ac17-534590a7a724.config
+2026-09-04T07:38:25.8018015Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-99a5b3b2\-77ca\-454b\-ac17\-534590a7a724\.config
+2026-09-04T07:38:25.8080107Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-04T07:38:25.8108998Z /github/runner_temp/git-credentials-99a5b3b2-77ca-454b-ac17-534590a7a724.config
+2026-09-04T07:38:25.8118085Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-99a5b3b2\-77ca\-454b\-ac17\-534590a7a724\.config
+2026-09-04T07:38:25.8161385Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-04T07:38:25.8416196Z Removing credentials config '/home/runner/work/_temp/git-credentials-99a5b3b2-77ca-454b-ac17-534590a7a724.config'
+2026-09-04T07:38:25.8430080Z ##[endgroup]
+2026-09-04T07:38:25.8543950Z ##[group]Run touch optcd-3.txt
+2026-09-04T07:38:25.8544264Z [36;1mtouch optcd-3.txt[0m
+2026-09-04T07:38:25.8584264Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:25.8584519Z env:
+2026-09-04T07:38:25.8584839Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:25.8585276Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:25.8585962Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:25.8586399Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:25.8586977Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:25.8587382Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:25.8587761Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:25.8588079Z ##[endgroup]
+2026-09-04T07:38:25.8785169Z ##[group]Run actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95
+2026-09-04T07:38:25.8785850Z with:
+2026-09-04T07:38:25.8786062Z   distribution: temurin
+2026-09-04T07:38:25.8786283Z   java-version: 17
+2026-09-04T07:38:25.8786480Z   cache: maven
+2026-09-04T07:38:25.8786674Z   java-package: jdk
+2026-09-04T07:38:25.8786886Z   check-latest: false
+2026-09-04T07:38:25.8787092Z   set-default: true
+2026-09-04T07:38:25.8787301Z   verify-signature: false
+2026-09-04T07:38:25.8787520Z   server-id: github
+2026-09-04T07:38:25.8787725Z   server-username: GITHUB_ACTOR
+2026-09-04T07:38:25.8787981Z   server-password: GITHUB_TOKEN
+2026-09-04T07:38:25.8788230Z   overwrite-settings: true
+2026-09-04T07:38:25.8788473Z   job-status: success
+2026-09-04T07:38:25.8791151Z   token: ***
+2026-09-04T07:38:25.8791373Z   show-download-progress: false
+2026-09-04T07:38:25.8791620Z env:
+2026-09-04T07:38:25.8791892Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:25.8792355Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:25.8792793Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:25.8793209Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:25.8793585Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:25.8793988Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:25.8794360Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:25.8794678Z ##[endgroup]
+2026-09-04T07:38:26.0326790Z ##[group]Installed distributions
+2026-09-04T07:38:26.0394216Z Resolved Java 17.0.20+1 from tool-cache
+2026-09-04T07:38:26.0394750Z Setting Java 17.0.20+1 as the default
+2026-09-04T07:38:26.0407360Z Creating toolchains.xml for JDK version 17 from temurin
+2026-09-04T07:38:26.0486606Z Writing to /home/runner/.m2/toolchains.xml
+2026-09-04T07:38:26.0487041Z 
+2026-09-04T07:38:26.0487202Z Java configuration:
+2026-09-04T07:38:26.0487599Z   Distribution: temurin
+2026-09-04T07:38:26.0487990Z   Version: 17.0.20+1
+2026-09-04T07:38:26.0488514Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-09-04T07:38:26.0488980Z 
+2026-09-04T07:38:26.0489458Z ##[endgroup]
+2026-09-04T07:38:26.0509335Z Creating settings.xml with server-id: github
+2026-09-04T07:38:26.0526404Z Writing to /home/runner/.m2/settings.xml
+2026-09-04T07:38:26.2468601Z maven cache is not found
+2026-09-04T07:38:26.3363283Z ##[group]Run touch optcd-4.txt
+2026-09-04T07:38:26.3363816Z [36;1mtouch optcd-4.txt[0m
+2026-09-04T07:38:26.3415230Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:26.3415937Z env:
+2026-09-04T07:38:26.3416477Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:26.3416987Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:26.3417542Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:26.3418212Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:26.3418889Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:26.3419530Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:26.3419916Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:26.3420441Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-09-04T07:38:26.3421256Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-09-04T07:38:26.3421821Z ##[endgroup]
+2026-09-04T07:38:26.3548091Z ##[group]Run mvn artifact:check-buildplan --projects '!metrics,!test-graal-native-image,!test-jpms,!test-shrinker'
+2026-09-04T07:38:26.3548968Z [36;1mmvn artifact:check-buildplan --projects '!metrics,!test-graal-native-image,!test-jpms,!test-shrinker'[0m
+2026-09-04T07:38:26.3590486Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:26.3590812Z env:
+2026-09-04T07:38:26.3591147Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:26.3591591Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:26.3592123Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:26.3592730Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:26.3593120Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:26.3593495Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:26.3593921Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:26.3594456Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-09-04T07:38:26.3595030Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-09-04T07:38:26.3595454Z ##[endgroup]
+2026-09-04T07:38:27.5681238Z Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)
+2026-09-04T07:38:27.5682036Z Maven home: /usr/share/apache-maven-3.9.16
+2026-09-04T07:38:27.5683020Z Java version: 17.0.20.1, vendor: Eclipse Adoptium, runtime: /usr/lib/jvm/temurin-17-jdk-amd64
+2026-09-04T07:38:27.5683762Z Default locale: en, platform encoding: UTF-8
+2026-09-04T07:38:27.5684692Z OS name: "linux", version: "6.17.0-1022-azure", arch: "amd64", family: "unix"
+2026-09-04T07:38:29.2668665Z [INFO] Scanning for projects...
+2026-09-04T07:38:31.7287400Z [INFO] Inspecting build with total of 4 modules
+2026-09-04T07:38:31.7354174Z [INFO] Installing Central Publishing features
+2026-09-04T07:38:31.7370194Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:38:31.7370902Z [INFO] Reactor Build Order:
+2026-09-04T07:38:31.7371326Z [INFO] 
+2026-09-04T07:38:31.7381752Z [INFO] Gson Parent                                                        [pom]
+2026-09-04T07:38:31.7382583Z [INFO] Gson                                                               [jar]
+2026-09-04T07:38:31.7383291Z [INFO] Gson Extras                                                        [jar]
+2026-09-04T07:38:31.7384062Z [INFO] Gson Protobuf Support                                              [jar]
+2026-09-04T07:38:31.8494261Z [INFO] 
+2026-09-04T07:38:31.8495224Z [INFO] ------------------< com.google.code.gson:gson-parent >------------------
+2026-09-04T07:38:31.8496278Z [INFO] Building Gson Parent 2.14.1-SNAPSHOT                               [1/4]
+2026-09-04T07:38:31.8497009Z [INFO]   from pom.xml
+2026-09-04T07:38:31.8497635Z [INFO] --------------------------------[ pom ]---------------------------------
+2026-09-04T07:38:31.8546700Z [INFO] 
+2026-09-04T07:38:31.8547697Z [INFO] --- artifact:3.6.1:check-buildplan (default-cli) @ gson-parent ---
+2026-09-04T07:38:35.8756972Z [INFO] No known issue in 5 plugins
+2026-09-04T07:38:35.8796480Z [INFO] 
+2026-09-04T07:38:35.8809495Z [INFO] ---------------------< com.google.code.gson:gson >----------------------
+2026-09-04T07:38:35.8817027Z [INFO] Building Gson 2.14.1-SNAPSHOT                                      [2/4]
+2026-09-04T07:38:35.8817756Z [INFO]   from gson/pom.xml
+2026-09-04T07:38:35.8818353Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-09-04T07:38:35.8818970Z [INFO] 
+2026-09-04T07:38:35.8819478Z [INFO] --- artifact:3.6.1:check-buildplan (default-cli) @ gson ---
+2026-09-04T07:38:36.4250237Z [INFO] No known issue in 14 plugins
+2026-09-04T07:38:36.4250763Z [INFO] 
+2026-09-04T07:38:36.4251309Z [INFO] ------------------< com.google.code.gson:gson-extras >------------------
+2026-09-04T07:38:36.4252170Z [INFO] Building Gson Extras 2.14.1-SNAPSHOT                               [3/4]
+2026-09-04T07:38:36.4253312Z [INFO]   from extras/pom.xml
+2026-09-04T07:38:36.4253906Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-09-04T07:38:36.4254481Z [INFO] 
+2026-09-04T07:38:36.4255210Z [INFO] --- artifact:3.6.1:check-buildplan (default-cli) @ gson-extras ---
+2026-09-04T07:38:36.6684482Z [INFO] No known issue in 9 plugins
+2026-09-04T07:38:36.6685241Z [INFO] 
+2026-09-04T07:38:36.6686036Z [INFO] ---------------------< com.google.code.gson:proto >---------------------
+2026-09-04T07:38:36.6686599Z [INFO] Building Gson Protobuf Support 2.14.1-SNAPSHOT                     [4/4]
+2026-09-04T07:38:36.6687012Z [INFO]   from proto/pom.xml
+2026-09-04T07:38:36.6687334Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-09-04T07:38:36.6716565Z [INFO] 
+2026-09-04T07:38:36.6732677Z [INFO] --- artifact:3.6.1:check-buildplan (default-cli) @ proto ---
+2026-09-04T07:38:36.8383652Z [INFO] No known issue in 10 plugins
+2026-09-04T07:38:36.8384992Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:38:36.8386541Z [INFO] Reactor Summary for Gson Parent 2.14.1-SNAPSHOT:
+2026-09-04T07:38:36.8387367Z [INFO] 
+2026-09-04T07:38:36.8389734Z [INFO] Gson Parent ........................................ SUCCESS [  4.027 s]
+2026-09-04T07:38:36.8391003Z [INFO] Gson ............................................... SUCCESS [  0.548 s]
+2026-09-04T07:38:36.8392109Z [INFO] Gson Extras ........................................ SUCCESS [  0.245 s]
+2026-09-04T07:38:36.8393329Z [INFO] Gson Protobuf Support .............................. SUCCESS [  0.170 s]
+2026-09-04T07:38:36.8396575Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:38:36.8397504Z [INFO] BUILD SUCCESS
+2026-09-04T07:38:36.8398386Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:38:36.8399238Z [INFO] Total time:  7.612 s
+2026-09-04T07:38:36.8399910Z [INFO] Finished at: 2026-09-04T07:38:36Z
+2026-09-04T07:38:36.8415226Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:38:36.8736075Z ##[group]Run touch optcd-5.txt
+2026-09-04T07:38:36.8736430Z [36;1mtouch optcd-5.txt[0m
+2026-09-04T07:38:36.8772834Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:36.8773087Z env:
+2026-09-04T07:38:36.8773382Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:36.8773817Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:36.8774246Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:36.8774686Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:36.8775061Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:36.8775436Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:36.8776157Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:36.8776589Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-09-04T07:38:36.8777091Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-09-04T07:38:36.8777465Z ##[endgroup]
+2026-09-04T07:38:36.8881216Z ##[group]Run mvn clean install -Dmaven.test.skip --projects '!metrics,!test-graal-native-image,!test-jpms,!test-shrinker'
+2026-09-04T07:38:36.8882106Z [36;1mmvn clean install -Dmaven.test.skip --projects '!metrics,!test-graal-native-image,!test-jpms,!test-shrinker'[0m
+2026-09-04T07:38:36.8882924Z [36;1m# Run with `-Dbuildinfo.attach=false`; otherwise `artifact:compare` fails because it creates a `.buildinfo` file which[0m
+2026-09-04T07:38:36.8883744Z [36;1m# erroneously references the existing `.buildinfo` file (respectively because it is overwriting it, a file with size 0)[0m
+2026-09-04T07:38:36.8884410Z [36;1m# See https://issues.apache.org/jira/browse/MARTIFACT-57[0m
+2026-09-04T07:38:36.8885161Z [36;1mmvn clean verify artifact:compare -Dmaven.test.skip --projects '!metrics,!test-graal-native-image,!test-jpms,!test-shrinker' -Dbuildinfo.attach=false[0m
+2026-09-04T07:38:36.8919163Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:36.8919411Z env:
+2026-09-04T07:38:36.8919728Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:36.8920326Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:36.8920744Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:36.8921159Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:36.8921530Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:36.8921951Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:36.8922340Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:36.8922766Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-09-04T07:38:36.8923244Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-09-04T07:38:36.8923616Z ##[endgroup]
+2026-09-04T07:38:37.1670219Z Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)
+2026-09-04T07:38:37.1684522Z Maven home: /usr/share/apache-maven-3.9.16
+2026-09-04T07:38:37.1685916Z Java version: 17.0.20.1, vendor: Eclipse Adoptium, runtime: /usr/lib/jvm/temurin-17-jdk-amd64
+2026-09-04T07:38:37.1687260Z Default locale: en, platform encoding: UTF-8
+2026-09-04T07:38:37.1688005Z OS name: "linux", version: "6.17.0-1022-azure", arch: "amd64", family: "unix"
+2026-09-04T07:38:38.1715139Z [INFO] Scanning for projects...
+2026-09-04T07:38:38.5395210Z [INFO] Inspecting build with total of 4 modules
+2026-09-04T07:38:38.5413978Z [INFO] Installing Central Publishing features
+2026-09-04T07:38:38.5456583Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:38:38.5470086Z [INFO] Reactor Build Order:
+2026-09-04T07:38:38.5470537Z [INFO] 
+2026-09-04T07:38:38.5471086Z [INFO] Gson Parent                                                        [pom]
+2026-09-04T07:38:38.5472155Z [INFO] Gson                                                               [jar]
+2026-09-04T07:38:38.5496383Z [INFO] Gson Extras                                                        [jar]
+2026-09-04T07:38:38.5497243Z [INFO] Gson Protobuf Support                                              [jar]
+2026-09-04T07:38:38.5556256Z [INFO] 
+2026-09-04T07:38:38.5566754Z [INFO] ------------------< com.google.code.gson:gson-parent >------------------
+2026-09-04T07:38:38.5567709Z [INFO] Building Gson Parent 2.14.1-SNAPSHOT                               [1/4]
+2026-09-04T07:38:38.5568419Z [INFO]   from pom.xml
+2026-09-04T07:38:38.5569160Z [INFO] --------------------------------[ pom ]---------------------------------
+2026-09-04T07:38:39.1626984Z [INFO] 
+2026-09-04T07:38:39.1657035Z [INFO] --- clean:3.2.0:clean (default-clean) @ gson-parent ---
+2026-09-04T07:38:39.3127870Z [INFO] 
+2026-09-04T07:38:39.3128414Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ gson-parent ---
+2026-09-04T07:38:39.9041589Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+2026-09-04T07:38:39.9185812Z [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+2026-09-04T07:38:39.9190323Z [INFO] 
+2026-09-04T07:38:39.9190870Z [INFO] --- spotless:3.8.0:check (default) @ gson-parent ---
+2026-09-04T07:38:41.4060743Z [INFO] Index file does not exist. Fallback to an empty index
+2026-09-04T07:38:41.4318977Z [INFO] Spotless.Format is keeping 16 files clean - 0 needs changes to be clean, 16 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:38:41.4347651Z [INFO] 
+2026-09-04T07:38:41.4362141Z [INFO] --- artifact:3.6.1:buildinfo (default) @ gson-parent ---
+2026-09-04T07:38:41.8547205Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-09-04T07:38:41.8566518Z [INFO] 
+2026-09-04T07:38:41.8599595Z [INFO] --- install:3.1.4:install (default-install) @ gson-parent ---
+2026-09-04T07:38:42.0153457Z [INFO] Installing /home/runner/work/gson/gson/pom.xml to /home/runner/.m2/repository/com/google/code/gson/gson-parent/2.14.1-SNAPSHOT/gson-parent-2.14.1-SNAPSHOT.pom
+2026-09-04T07:38:42.0217052Z [INFO] 
+2026-09-04T07:38:42.0218063Z [INFO] ---------------------< com.google.code.gson:gson >----------------------
+2026-09-04T07:38:42.0218966Z [INFO] Building Gson 2.14.1-SNAPSHOT                                      [2/4]
+2026-09-04T07:38:42.0219658Z [INFO]   from gson/pom.xml
+2026-09-04T07:38:42.0220211Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-09-04T07:38:42.6531444Z [INFO] 
+2026-09-04T07:38:42.6543636Z [INFO] --- clean:3.2.0:clean (default-clean) @ gson ---
+2026-09-04T07:38:42.6562566Z [INFO] 
+2026-09-04T07:38:42.6594141Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ gson ---
+2026-09-04T07:38:42.6595080Z [INFO] 
+2026-09-04T07:38:42.6596148Z [INFO] --- templating:3.1.0:filter-sources (filtering-java-templates) @ gson ---
+2026-09-04T07:38:42.9396157Z [INFO] Copying files with filtering to temporary directory.
+2026-09-04T07:38:42.9474882Z [INFO] Copying 1 resource from src/main/java-templates to target/templates-tmp4151517166
+2026-09-04T07:38:42.9707860Z [INFO] Copied 1 files to output directory: /home/runner/work/gson/gson/gson/target/generated-sources/java-templates
+2026-09-04T07:38:42.9743457Z [INFO] Source directory: /home/runner/work/gson/gson/gson/target/generated-sources/java-templates added.
+2026-09-04T07:38:42.9747638Z [INFO] 
+2026-09-04T07:38:42.9767267Z [INFO] --- resources:3.5.0:resources (default-resources) @ gson ---
+2026-09-04T07:38:43.1758363Z [INFO] Copying 1 resource from src/main/resources to target/classes
+2026-09-04T07:38:43.1794747Z [INFO] 
+2026-09-04T07:38:43.1797059Z [INFO] --- compiler:3.15.0:compile (default-compile) @ gson ---
+2026-09-04T07:38:43.5547221Z [INFO] Recompiling the module because of changed source code.
+2026-09-04T07:38:43.5690141Z [INFO] Compiling 86 source files with javac [debug deprecation release 8] to target/classes
+2026-09-04T07:38:46.2526869Z [INFO] 
+2026-09-04T07:38:46.2527660Z [INFO] --- bnd:6.4.0:bnd-process (default) @ gson ---
+2026-09-04T07:38:48.2608595Z [WARNING] /home/runner/work/gson/gson/gson/pom.xml [0:0]: Export com.google.gson,  has 1,  private references [com.google.gson.internal]
+2026-09-04T07:38:48.2630115Z [INFO] 
+2026-09-04T07:38:48.2636915Z [INFO] --- resources:3.5.0:testResources (default-testResources) @ gson ---
+2026-09-04T07:38:48.2639450Z [INFO] Not copying test resources
+2026-09-04T07:38:48.2646183Z [INFO] 
+2026-09-04T07:38:48.2676527Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ gson ---
+2026-09-04T07:38:48.2696167Z [INFO] Not compiling test sources
+2026-09-04T07:38:48.2706302Z [INFO] 
+2026-09-04T07:38:48.2746688Z [INFO] --- resources:3.5.0:copy-resources (pre-obfuscate-class) @ gson ---
+2026-09-04T07:38:48.2747802Z [INFO] Skipping the execution.
+2026-09-04T07:38:48.2748557Z [INFO] 
+2026-09-04T07:38:48.2749380Z [INFO] --- proguard:2.7.0:proguard (obfuscate-test-class) @ gson ---
+2026-09-04T07:38:49.8852544Z [INFO] Bypass ProGuard processing because "proguard.skip=true"
+2026-09-04T07:38:49.8868737Z [INFO] 
+2026-09-04T07:38:49.8870118Z [INFO] --- resources:3.5.0:copy-resources (post-obfuscate-class) @ gson ---
+2026-09-04T07:38:49.8871103Z [INFO] Skipping the execution.
+2026-09-04T07:38:49.8871704Z [INFO] 
+2026-09-04T07:38:49.8872332Z [INFO] --- surefire:3.5.6:test (default-test) @ gson ---
+2026-09-04T07:38:50.2554572Z [INFO] Tests are skipped.
+2026-09-04T07:38:50.2576261Z [INFO] 
+2026-09-04T07:38:50.2590165Z [INFO] --- jar:3.5.1:jar (default-jar) @ gson ---
+2026-09-04T07:38:50.9289790Z [INFO] Building jar: /home/runner/work/gson/gson/gson/target/gson-2.14.1-SNAPSHOT.jar
+2026-09-04T07:38:51.0283963Z [INFO] 
+2026-09-04T07:38:51.0284834Z [INFO] --- moditect:1.3.0.Final:add-module-info (add-module-info) @ gson ---
+2026-09-04T07:38:51.8398306Z [INFO] 
+2026-09-04T07:38:51.8399428Z [INFO] --- failsafe:3.5.6:integration-test (default) @ gson ---
+2026-09-04T07:38:51.8996961Z [INFO] Tests are skipped.
+2026-09-04T07:38:51.9026431Z [INFO] 
+2026-09-04T07:38:51.9046648Z [INFO] --- spotless:3.8.0:check (default) @ gson ---
+2026-09-04T07:38:51.9125812Z [INFO] Index file does not exist. Fallback to an empty index
+2026-09-04T07:38:51.9172264Z [INFO] Spotless.Format is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:38:57.8442149Z [INFO] Spotless.Java is keeping 209 files clean - 0 needs changes to be clean, 209 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:38:57.8472681Z [INFO] 
+2026-09-04T07:38:57.8473643Z [INFO] --- artifact:3.6.1:buildinfo (default) @ gson ---
+2026-09-04T07:38:57.8501549Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-09-04T07:38:57.8502469Z [INFO] 
+2026-09-04T07:38:57.8503098Z [INFO] --- failsafe:3.5.6:verify (default) @ gson ---
+2026-09-04T07:38:57.8544912Z [INFO] Tests are skipped.
+2026-09-04T07:38:57.8546301Z [INFO] 
+2026-09-04T07:38:57.8550354Z [INFO] --- install:3.1.4:install (default-install) @ gson ---
+2026-09-04T07:38:57.8553515Z [INFO] Installing /home/runner/work/gson/gson/gson/pom.xml to /home/runner/.m2/repository/com/google/code/gson/gson/2.14.1-SNAPSHOT/gson-2.14.1-SNAPSHOT.pom
+2026-09-04T07:38:57.8558101Z [INFO] Installing /home/runner/work/gson/gson/gson/target/gson-2.14.1-SNAPSHOT.jar to /home/runner/.m2/repository/com/google/code/gson/gson/2.14.1-SNAPSHOT/gson-2.14.1-SNAPSHOT.jar
+2026-09-04T07:38:57.8568388Z [INFO] 
+2026-09-04T07:38:57.8568961Z [INFO] ------------------< com.google.code.gson:gson-extras >------------------
+2026-09-04T07:38:57.8569823Z [INFO] Building Gson Extras 2.14.1-SNAPSHOT                               [3/4]
+2026-09-04T07:38:57.8570501Z [INFO]   from extras/pom.xml
+2026-09-04T07:38:57.8571070Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-09-04T07:38:57.9436887Z [INFO] 
+2026-09-04T07:38:57.9437500Z [INFO] --- clean:3.2.0:clean (default-clean) @ gson-extras ---
+2026-09-04T07:38:57.9559547Z [INFO] 
+2026-09-04T07:38:57.9560593Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ gson-extras ---
+2026-09-04T07:38:58.0195458Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+2026-09-04T07:38:58.0274089Z [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+2026-09-04T07:38:58.0278994Z [INFO] 
+2026-09-04T07:38:58.0279986Z [INFO] --- resources:3.4.0:resources (default-resources) @ gson-extras ---
+2026-09-04T07:38:58.0545385Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/extras/src/main/resources
+2026-09-04T07:38:58.0548377Z [INFO] 
+2026-09-04T07:38:58.0552442Z [INFO] --- compiler:3.15.0:compile (default-compile) @ gson-extras ---
+2026-09-04T07:38:58.0917819Z [INFO] Recompiling the module because of changed dependency.
+2026-09-04T07:38:58.0960048Z [INFO] Compiling 7 source files with javac [debug deprecation release 8] to target/classes
+2026-09-04T07:38:58.3162204Z [INFO] 
+2026-09-04T07:38:58.3164272Z [INFO] --- resources:3.4.0:testResources (default-testResources) @ gson-extras ---
+2026-09-04T07:38:58.3177865Z [INFO] Not copying test resources
+2026-09-04T07:38:58.3179399Z [INFO] 
+2026-09-04T07:38:58.3181644Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ gson-extras ---
+2026-09-04T07:38:58.3231930Z [INFO] Not compiling test sources
+2026-09-04T07:38:58.3233860Z [INFO] 
+2026-09-04T07:38:58.3235041Z [INFO] --- surefire:3.5.6:test (default-test) @ gson-extras ---
+2026-09-04T07:38:58.3754615Z [INFO] Tests are skipped.
+2026-09-04T07:38:58.3756861Z [INFO] 
+2026-09-04T07:38:58.3757638Z [INFO] --- jar:3.5.1:jar (default-jar) @ gson-extras ---
+2026-09-04T07:38:58.5125988Z [INFO] Building jar: /home/runner/work/gson/gson/extras/target/gson-extras-2.14.1-SNAPSHOT.jar
+2026-09-04T07:38:58.5554126Z [INFO] 
+2026-09-04T07:38:58.5566012Z [INFO] --- spotless:3.8.0:check (default) @ gson-extras ---
+2026-09-04T07:38:58.7222642Z [INFO] Index file does not exist. Fallback to an empty index
+2026-09-04T07:38:58.7264601Z [INFO] Spotless.Format is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:38:59.1777752Z [INFO] Spotless.Java is keeping 11 files clean - 0 needs changes to be clean, 11 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:38:59.1796918Z [INFO] 
+2026-09-04T07:38:59.1817754Z [INFO] --- artifact:3.6.1:buildinfo (default) @ gson-extras ---
+2026-09-04T07:38:59.3240853Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-09-04T07:38:59.3256823Z [INFO] 
+2026-09-04T07:38:59.3257670Z [INFO] --- install:3.1.4:install (default-install) @ gson-extras ---
+2026-09-04T07:38:59.3393450Z [INFO] Installing /home/runner/work/gson/gson/extras/pom.xml to /home/runner/.m2/repository/com/google/code/gson/gson-extras/2.14.1-SNAPSHOT/gson-extras-2.14.1-SNAPSHOT.pom
+2026-09-04T07:38:59.3400910Z [INFO] Installing /home/runner/work/gson/gson/extras/target/gson-extras-2.14.1-SNAPSHOT.jar to /home/runner/.m2/repository/com/google/code/gson/gson-extras/2.14.1-SNAPSHOT/gson-extras-2.14.1-SNAPSHOT.jar
+2026-09-04T07:38:59.3410583Z [INFO] 
+2026-09-04T07:38:59.3411394Z [INFO] ---------------------< com.google.code.gson:proto >---------------------
+2026-09-04T07:38:59.3412530Z [INFO] Building Gson Protobuf Support 2.14.1-SNAPSHOT                     [4/4]
+2026-09-04T07:38:59.3415438Z [INFO]   from proto/pom.xml
+2026-09-04T07:38:59.3416523Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-09-04T07:38:59.8013646Z [INFO] 
+2026-09-04T07:38:59.8014307Z [INFO] --- clean:3.2.0:clean (default-clean) @ proto ---
+2026-09-04T07:38:59.8024127Z [INFO] 
+2026-09-04T07:38:59.8024805Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ proto ---
+2026-09-04T07:38:59.8042584Z [INFO] 
+2026-09-04T07:38:59.8043219Z [INFO] --- resources:3.4.0:resources (default-resources) @ proto ---
+2026-09-04T07:38:59.8052902Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/proto/src/main/resources
+2026-09-04T07:38:59.8056278Z [INFO] 
+2026-09-04T07:38:59.8069840Z [INFO] --- compiler:3.15.0:compile (default-compile) @ proto ---
+2026-09-04T07:38:59.8097419Z [INFO] Recompiling the module because of changed dependency.
+2026-09-04T07:38:59.8117448Z [INFO] Compiling 3 source files with javac [debug deprecation release 8] to target/classes
+2026-09-04T07:39:00.0428390Z [INFO] 
+2026-09-04T07:39:00.0447233Z [INFO] --- protobuf:5.1.7:generate-test (default) @ proto ---
+2026-09-04T07:39:00.4332338Z [INFO] User has requested to skip execution of this goal.
+2026-09-04T07:39:00.4335926Z [INFO] 
+2026-09-04T07:39:00.4355013Z [INFO] --- resources:3.4.0:testResources (default-testResources) @ proto ---
+2026-09-04T07:39:00.4386931Z [INFO] Not copying test resources
+2026-09-04T07:39:00.4421925Z [INFO] 
+2026-09-04T07:39:00.4457685Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ proto ---
+2026-09-04T07:39:00.4461427Z [INFO] Not compiling test sources
+2026-09-04T07:39:00.4462514Z [INFO] 
+2026-09-04T07:39:00.4465939Z [INFO] --- surefire:3.5.6:test (default-test) @ proto ---
+2026-09-04T07:39:00.4467260Z [INFO] Tests are skipped.
+2026-09-04T07:39:00.4470324Z [INFO] 
+2026-09-04T07:39:00.4471085Z [INFO] --- jar:3.5.1:jar (default-jar) @ proto ---
+2026-09-04T07:39:00.4472041Z [INFO] Building jar: /home/runner/work/gson/gson/proto/target/gson-proto.jar
+2026-09-04T07:39:00.4530309Z [INFO] 
+2026-09-04T07:39:00.4546586Z [INFO] --- spotless:3.8.0:check (default) @ proto ---
+2026-09-04T07:39:00.4730710Z [INFO] Index file does not exist. Fallback to an empty index
+2026-09-04T07:39:00.4757620Z [INFO] Spotless.Format is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:39:00.9607720Z [INFO] Spotless.Java is keeping 10 files clean - 0 needs changes to be clean, 10 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:39:00.9609466Z [INFO] 
+2026-09-04T07:39:00.9636406Z [INFO] --- artifact:3.6.1:buildinfo (default) @ proto ---
+2026-09-04T07:39:00.9666501Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-09-04T07:39:00.9696311Z [INFO] 
+2026-09-04T07:39:00.9700438Z [INFO] --- install:3.1.4:install (default-install) @ proto ---
+2026-09-04T07:39:00.9724487Z [INFO] Installing /home/runner/work/gson/gson/proto/pom.xml to /home/runner/.m2/repository/com/google/code/gson/proto/2.14.1-SNAPSHOT/proto-2.14.1-SNAPSHOT.pom
+2026-09-04T07:39:00.9757068Z [INFO] Installing /home/runner/work/gson/gson/proto/target/gson-proto.jar to /home/runner/.m2/repository/com/google/code/gson/proto/2.14.1-SNAPSHOT/proto-2.14.1-SNAPSHOT.jar
+2026-09-04T07:39:00.9766592Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:39:00.9767545Z [INFO] Reactor Summary for Gson Parent 2.14.1-SNAPSHOT:
+2026-09-04T07:39:00.9768348Z [INFO] 
+2026-09-04T07:39:00.9769057Z [INFO] Gson Parent ........................................ SUCCESS [  3.466 s]
+2026-09-04T07:39:00.9770026Z [INFO] Gson ............................................... SUCCESS [ 15.836 s]
+2026-09-04T07:39:00.9771100Z [INFO] Gson Extras ........................................ SUCCESS [  1.484 s]
+2026-09-04T07:39:00.9772246Z [INFO] Gson Protobuf Support .............................. SUCCESS [  1.624 s]
+2026-09-04T07:39:00.9773375Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:39:00.9774254Z [INFO] BUILD SUCCESS
+2026-09-04T07:39:00.9774936Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:39:00.9776000Z [INFO] Total time:  22.813 s
+2026-09-04T07:39:00.9776632Z [INFO] Finished at: 2026-09-04T07:39:00Z
+2026-09-04T07:39:00.9777426Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:39:01.3516910Z Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)
+2026-09-04T07:39:01.3517453Z Maven home: /usr/share/apache-maven-3.9.16
+2026-09-04T07:39:01.3517935Z Java version: 17.0.20.1, vendor: Eclipse Adoptium, runtime: /usr/lib/jvm/temurin-17-jdk-amd64
+2026-09-04T07:39:01.3518455Z Default locale: en, platform encoding: UTF-8
+2026-09-04T07:39:01.3518850Z OS name: "linux", version: "6.17.0-1022-azure", arch: "amd64", family: "unix"
+2026-09-04T07:39:02.3776766Z [INFO] Scanning for projects...
+2026-09-04T07:39:02.7436198Z [INFO] Inspecting build with total of 4 modules
+2026-09-04T07:39:02.7458823Z [INFO] Installing Central Publishing features
+2026-09-04T07:39:02.7512143Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:39:02.7513202Z [INFO] Reactor Build Order:
+2026-09-04T07:39:02.7513907Z [INFO] 
+2026-09-04T07:39:02.7523924Z [INFO] Gson Parent                                                        [pom]
+2026-09-04T07:39:02.7524997Z [INFO] Gson                                                               [jar]
+2026-09-04T07:39:02.7526419Z [INFO] Gson Extras                                                        [jar]
+2026-09-04T07:39:02.7527677Z [INFO] Gson Protobuf Support                                              [jar]
+2026-09-04T07:39:02.7853010Z [INFO] 
+2026-09-04T07:39:02.7876704Z [INFO] ------------------< com.google.code.gson:gson-parent >------------------
+2026-09-04T07:39:02.7906528Z [INFO] Building Gson Parent 2.14.1-SNAPSHOT                               [1/4]
+2026-09-04T07:39:02.7936209Z [INFO]   from pom.xml
+2026-09-04T07:39:02.7937085Z [INFO] --------------------------------[ pom ]---------------------------------
+2026-09-04T07:39:02.8228817Z [INFO] 
+2026-09-04T07:39:02.8229742Z [INFO] --- clean:3.2.0:clean (default-clean) @ gson-parent ---
+2026-09-04T07:39:02.8807067Z [INFO] Deleting /home/runner/work/gson/gson/target
+2026-09-04T07:39:02.8818369Z [INFO] 
+2026-09-04T07:39:02.8819058Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ gson-parent ---
+2026-09-04T07:39:03.0410618Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+2026-09-04T07:39:03.0526848Z [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+2026-09-04T07:39:03.0536175Z [INFO] 
+2026-09-04T07:39:03.0566384Z [INFO] --- spotless:3.8.0:check (default) @ gson-parent ---
+2026-09-04T07:39:03.4732218Z [INFO] Index file does not exist. Fallback to an empty index
+2026-09-04T07:39:03.5056031Z [INFO] Spotless.Format is keeping 16 files clean - 0 needs changes to be clean, 16 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:39:03.5091790Z [INFO] 
+2026-09-04T07:39:03.5128562Z [INFO] --- artifact:3.6.1:buildinfo (default) @ gson-parent ---
+2026-09-04T07:39:03.9258461Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-09-04T07:39:03.9266132Z [INFO] 
+2026-09-04T07:39:03.9286090Z [INFO] --- artifact:3.6.1:compare (default-cli) @ gson-parent ---
+2026-09-04T07:39:03.9287153Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-09-04T07:39:03.9288075Z [INFO] 
+2026-09-04T07:39:03.9288762Z [INFO] ---------------------< com.google.code.gson:gson >----------------------
+2026-09-04T07:39:03.9289780Z [INFO] Building Gson 2.14.1-SNAPSHOT                                      [2/4]
+2026-09-04T07:39:03.9290622Z [INFO]   from gson/pom.xml
+2026-09-04T07:39:03.9291336Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-09-04T07:39:04.0176880Z [INFO] 
+2026-09-04T07:39:04.0191592Z [INFO] --- clean:3.2.0:clean (default-clean) @ gson ---
+2026-09-04T07:39:04.0193718Z [INFO] Deleting /home/runner/work/gson/gson/gson/target
+2026-09-04T07:39:04.0412693Z [INFO] 
+2026-09-04T07:39:04.0436920Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ gson ---
+2026-09-04T07:39:04.0466338Z [INFO] 
+2026-09-04T07:39:04.0496592Z [INFO] --- templating:3.1.0:filter-sources (filtering-java-templates) @ gson ---
+2026-09-04T07:39:04.1132596Z [INFO] Copying files with filtering to temporary directory.
+2026-09-04T07:39:04.1215883Z [INFO] Copying 1 resource from src/main/java-templates to target/templates-tmp4151517166
+2026-09-04T07:39:04.1461562Z [INFO] Copied 1 files to output directory: /home/runner/work/gson/gson/gson/target/generated-sources/java-templates
+2026-09-04T07:39:04.1480074Z [INFO] Source directory: /home/runner/work/gson/gson/gson/target/generated-sources/java-templates added.
+2026-09-04T07:39:04.1481211Z [INFO] 
+2026-09-04T07:39:04.1481871Z [INFO] --- resources:3.5.0:resources (default-resources) @ gson ---
+2026-09-04T07:39:04.2057059Z [INFO] Copying 1 resource from src/main/resources to target/classes
+2026-09-04T07:39:04.2088894Z [INFO] 
+2026-09-04T07:39:04.2097146Z [INFO] --- compiler:3.15.0:compile (default-compile) @ gson ---
+2026-09-04T07:39:04.3066905Z [INFO] Recompiling the module because of changed source code.
+2026-09-04T07:39:04.3159570Z [INFO] Compiling 86 source files with javac [debug deprecation release 8] to target/classes
+2026-09-04T07:39:06.4828258Z [INFO] 
+2026-09-04T07:39:06.4857279Z [INFO] --- bnd:6.4.0:bnd-process (default) @ gson ---
+2026-09-04T07:39:07.0426925Z [WARNING] /home/runner/work/gson/gson/gson/pom.xml [0:0]: Export com.google.gson,  has 1,  private references [com.google.gson.internal]
+2026-09-04T07:39:07.0439562Z [INFO] 
+2026-09-04T07:39:07.0444473Z [INFO] --- resources:3.5.0:testResources (default-testResources) @ gson ---
+2026-09-04T07:39:07.0464838Z [INFO] Not copying test resources
+2026-09-04T07:39:07.0516385Z [INFO] 
+2026-09-04T07:39:07.0528127Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ gson ---
+2026-09-04T07:39:07.0528968Z [INFO] Not compiling test sources
+2026-09-04T07:39:07.0529477Z [INFO] 
+2026-09-04T07:39:07.0530032Z [INFO] --- resources:3.5.0:copy-resources (pre-obfuscate-class) @ gson ---
+2026-09-04T07:39:07.0566376Z [INFO] Skipping the execution.
+2026-09-04T07:39:07.0596585Z [INFO] 
+2026-09-04T07:39:07.0626455Z [INFO] --- proguard:2.7.0:proguard (obfuscate-test-class) @ gson ---
+2026-09-04T07:39:07.2043486Z [INFO] Bypass ProGuard processing because "proguard.skip=true"
+2026-09-04T07:39:07.2066259Z [INFO] 
+2026-09-04T07:39:07.2086950Z [INFO] --- resources:3.5.0:copy-resources (post-obfuscate-class) @ gson ---
+2026-09-04T07:39:07.2126402Z [INFO] Skipping the execution.
+2026-09-04T07:39:07.2131006Z [INFO] 
+2026-09-04T07:39:07.2131902Z [INFO] --- surefire:3.5.6:test (default-test) @ gson ---
+2026-09-04T07:39:07.2753300Z [INFO] Tests are skipped.
+2026-09-04T07:39:07.2776568Z [INFO] 
+2026-09-04T07:39:07.2779614Z [INFO] --- jar:3.5.1:jar (default-jar) @ gson ---
+2026-09-04T07:39:07.4612441Z [INFO] Building jar: /home/runner/work/gson/gson/gson/target/gson-2.14.1-SNAPSHOT.jar
+2026-09-04T07:39:07.5736596Z [INFO] 
+2026-09-04T07:39:07.5766846Z [INFO] --- moditect:1.3.0.Final:add-module-info (add-module-info) @ gson ---
+2026-09-04T07:39:07.9239939Z [INFO] 
+2026-09-04T07:39:07.9241085Z [INFO] --- failsafe:3.5.6:integration-test (default) @ gson ---
+2026-09-04T07:39:07.9827759Z [INFO] Tests are skipped.
+2026-09-04T07:39:07.9837306Z [INFO] 
+2026-09-04T07:39:07.9837943Z [INFO] --- spotless:3.8.0:check (default) @ gson ---
+2026-09-04T07:39:08.0089915Z [INFO] Index file does not exist. Fallback to an empty index
+2026-09-04T07:39:08.0168092Z [INFO] Spotless.Format is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:39:13.8129230Z [INFO] Spotless.Java is keeping 209 files clean - 0 needs changes to be clean, 209 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:39:13.8162207Z [INFO] 
+2026-09-04T07:39:13.8176650Z [INFO] --- artifact:3.6.1:buildinfo (default) @ gson ---
+2026-09-04T07:39:13.8186755Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-09-04T07:39:13.8187684Z [INFO] 
+2026-09-04T07:39:13.8188570Z [INFO] --- failsafe:3.5.6:verify (default) @ gson ---
+2026-09-04T07:39:13.8221234Z [INFO] Tests are skipped.
+2026-09-04T07:39:13.8221906Z [INFO] 
+2026-09-04T07:39:13.8222729Z [INFO] --- artifact:3.6.1:compare (default-cli) @ gson ---
+2026-09-04T07:39:13.8229951Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-09-04T07:39:13.8231226Z [INFO] 
+2026-09-04T07:39:13.8232154Z [INFO] ------------------< com.google.code.gson:gson-extras >------------------
+2026-09-04T07:39:13.8233085Z [INFO] Building Gson Extras 2.14.1-SNAPSHOT                               [3/4]
+2026-09-04T07:39:13.8256853Z [INFO]   from extras/pom.xml
+2026-09-04T07:39:13.8306428Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-09-04T07:39:13.8372522Z [INFO] 
+2026-09-04T07:39:13.8377611Z [INFO] --- clean:3.2.0:clean (default-clean) @ gson-extras ---
+2026-09-04T07:39:13.8500790Z [INFO] Deleting /home/runner/work/gson/gson/extras/target
+2026-09-04T07:39:13.8544292Z [INFO] 
+2026-09-04T07:39:13.8557461Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ gson-extras ---
+2026-09-04T07:39:13.9222093Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+2026-09-04T07:39:13.9302194Z [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+2026-09-04T07:39:13.9304952Z [INFO] 
+2026-09-04T07:39:13.9306763Z [INFO] --- resources:3.4.0:resources (default-resources) @ gson-extras ---
+2026-09-04T07:39:13.9670498Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/extras/src/main/resources
+2026-09-04T07:39:13.9671683Z [INFO] 
+2026-09-04T07:39:13.9672580Z [INFO] --- compiler:3.15.0:compile (default-compile) @ gson-extras ---
+2026-09-04T07:39:14.0145993Z [INFO] Recompiling the module because of changed dependency.
+2026-09-04T07:39:14.0194703Z [INFO] Compiling 7 source files with javac [debug deprecation release 8] to target/classes
+2026-09-04T07:39:14.1814964Z [INFO] 
+2026-09-04T07:39:14.1816713Z [INFO] --- resources:3.4.0:testResources (default-testResources) @ gson-extras ---
+2026-09-04T07:39:14.1856530Z [INFO] Not copying test resources
+2026-09-04T07:39:14.1861177Z [INFO] 
+2026-09-04T07:39:14.1862337Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ gson-extras ---
+2026-09-04T07:39:14.1864308Z [INFO] Not compiling test sources
+2026-09-04T07:39:14.1865813Z [INFO] 
+2026-09-04T07:39:14.1866813Z [INFO] --- surefire:3.5.6:test (default-test) @ gson-extras ---
+2026-09-04T07:39:14.2376897Z [INFO] Tests are skipped.
+2026-09-04T07:39:14.2386571Z [INFO] 
+2026-09-04T07:39:14.2396435Z [INFO] --- jar:3.5.1:jar (default-jar) @ gson-extras ---
+2026-09-04T07:39:14.3738216Z [INFO] Building jar: /home/runner/work/gson/gson/extras/target/gson-extras-2.14.1-SNAPSHOT.jar
+2026-09-04T07:39:14.4267193Z [INFO] 
+2026-09-04T07:39:14.4281789Z [INFO] --- spotless:3.8.0:check (default) @ gson-extras ---
+2026-09-04T07:39:14.6196886Z [INFO] Index file does not exist. Fallback to an empty index
+2026-09-04T07:39:14.6231477Z [INFO] Spotless.Format is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:39:15.0997693Z [INFO] Spotless.Java is keeping 11 files clean - 0 needs changes to be clean, 11 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:39:15.1021212Z [INFO] 
+2026-09-04T07:39:15.1056522Z [INFO] --- artifact:3.6.1:buildinfo (default) @ gson-extras ---
+2026-09-04T07:39:15.2541731Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-09-04T07:39:15.2557145Z [INFO] 
+2026-09-04T07:39:15.2557987Z [INFO] --- artifact:3.6.1:compare (default-cli) @ gson-extras ---
+2026-09-04T07:39:15.2561691Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-09-04T07:39:15.2562710Z [INFO] 
+2026-09-04T07:39:15.2563574Z [INFO] ---------------------< com.google.code.gson:proto >---------------------
+2026-09-04T07:39:15.2564814Z [INFO] Building Gson Protobuf Support 2.14.1-SNAPSHOT                     [4/4]
+2026-09-04T07:39:15.2566062Z [INFO]   from proto/pom.xml
+2026-09-04T07:39:15.2566912Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-09-04T07:39:15.2851058Z [INFO] 
+2026-09-04T07:39:15.2854899Z [INFO] --- clean:3.2.0:clean (default-clean) @ proto ---
+2026-09-04T07:39:15.2856154Z [INFO] Deleting /home/runner/work/gson/gson/proto/target
+2026-09-04T07:39:15.2872386Z [INFO] 
+2026-09-04T07:39:15.2872997Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ proto ---
+2026-09-04T07:39:15.2890426Z [INFO] 
+2026-09-04T07:39:15.2891949Z [INFO] --- resources:3.4.0:resources (default-resources) @ proto ---
+2026-09-04T07:39:15.2902070Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/proto/src/main/resources
+2026-09-04T07:39:15.2904458Z [INFO] 
+2026-09-04T07:39:15.2905928Z [INFO] --- compiler:3.15.0:compile (default-compile) @ proto ---
+2026-09-04T07:39:15.2953472Z [INFO] Recompiling the module because of changed dependency.
+2026-09-04T07:39:15.2958722Z [INFO] Compiling 3 source files with javac [debug deprecation release 8] to target/classes
+2026-09-04T07:39:15.5421713Z [INFO] 
+2026-09-04T07:39:15.5424157Z [INFO] --- protobuf:5.1.7:generate-test (default) @ proto ---
+2026-09-04T07:39:15.7608107Z [INFO] User has requested to skip execution of this goal.
+2026-09-04T07:39:15.7609070Z [INFO] 
+2026-09-04T07:39:15.7610464Z [INFO] --- resources:3.4.0:testResources (default-testResources) @ proto ---
+2026-09-04T07:39:15.7615308Z [INFO] Not copying test resources
+2026-09-04T07:39:15.7616252Z [INFO] 
+2026-09-04T07:39:15.7617012Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ proto ---
+2026-09-04T07:39:15.7634584Z [INFO] Not compiling test sources
+2026-09-04T07:39:15.7635501Z [INFO] 
+2026-09-04T07:39:15.7639059Z [INFO] --- surefire:3.5.6:test (default-test) @ proto ---
+2026-09-04T07:39:15.7687012Z [INFO] Tests are skipped.
+2026-09-04T07:39:15.7707264Z [INFO] 
+2026-09-04T07:39:15.7717830Z [INFO] --- jar:3.5.1:jar (default-jar) @ proto ---
+2026-09-04T07:39:15.7720869Z [INFO] Building jar: /home/runner/work/gson/gson/proto/target/gson-proto.jar
+2026-09-04T07:39:15.7801342Z [INFO] 
+2026-09-04T07:39:15.7802616Z [INFO] --- spotless:3.8.0:check (default) @ proto ---
+2026-09-04T07:39:15.7930011Z [INFO] Index file does not exist. Fallback to an empty index
+2026-09-04T07:39:15.7959141Z [INFO] Spotless.Format is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:39:16.3293582Z [INFO] Spotless.Java is keeping 10 files clean - 0 needs changes to be clean, 10 were already clean, 0 were skipped because caching determined they were already clean
+2026-09-04T07:39:16.3316444Z [INFO] 
+2026-09-04T07:39:16.3335896Z [INFO] --- artifact:3.6.1:buildinfo (default) @ proto ---
+2026-09-04T07:39:16.3354773Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-09-04T07:39:16.3366567Z [INFO] 
+2026-09-04T07:39:16.3396916Z [INFO] --- artifact:3.6.1:compare (default-cli) @ proto ---
+2026-09-04T07:39:16.3409923Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-09-04T07:39:16.3418070Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:39:16.3419029Z [INFO] Reactor Summary for Gson Parent 2.14.1-SNAPSHOT:
+2026-09-04T07:39:16.3419829Z [INFO] 
+2026-09-04T07:39:16.3446410Z [INFO] Gson Parent ........................................ SUCCESS [  1.144 s]
+2026-09-04T07:39:16.3457925Z [INFO] Gson ............................................... SUCCESS [  9.894 s]
+2026-09-04T07:39:16.3458926Z [INFO] Gson Extras ........................................ SUCCESS [  1.432 s]
+2026-09-04T07:39:16.3459967Z [INFO] Gson Protobuf Support .............................. SUCCESS [  1.078 s]
+2026-09-04T07:39:16.3460917Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:39:16.3461678Z [INFO] BUILD SUCCESS
+2026-09-04T07:39:16.3462345Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:39:16.3463102Z [INFO] Total time:  13.979 s
+2026-09-04T07:39:16.3463707Z [INFO] Finished at: 2026-09-04T07:39:16Z
+2026-09-04T07:39:16.3464467Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:39:16.3859266Z ##[group]Run touch optcd-6.txt
+2026-09-04T07:39:16.3859586Z [36;1mtouch optcd-6.txt[0m
+2026-09-04T07:39:16.3897120Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:39:16.3897370Z env:
+2026-09-04T07:39:16.3897660Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:39:16.3898082Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:16.3898497Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:39:16.3908587Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:16.3909062Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:16.3909463Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:16.3909859Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:39:16.3910291Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-09-04T07:39:16.3910800Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-09-04T07:39:16.3911215Z ##[endgroup]
+2026-09-04T07:39:16.4028995Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-04T07:39:16.4030334Z ##[group]Run actions/upload-artifact@v4
+2026-09-04T07:39:16.4030603Z with:
+2026-09-04T07:39:16.4030833Z   name: inotifywait-verify-reproducible-build
+2026-09-04T07:39:16.4031236Z   path: /home/runner/inotifywait-log-verify-reproducible-build.csv
+2026-09-04T07:39:16.4031611Z   if-no-files-found: warn
+2026-09-04T07:39:16.4031838Z   compression-level: 6
+2026-09-04T07:39:16.4032063Z   overwrite: false
+2026-09-04T07:39:16.4032285Z   include-hidden-files: false
+2026-09-04T07:39:16.4032513Z env:
+2026-09-04T07:39:16.4032799Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:39:16.4033242Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:16.4033677Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:39:16.4034254Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:16.4034626Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:16.4035018Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:39:16.4035396Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:39:16.4036447Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-09-04T07:39:16.4036955Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-09-04T07:39:16.4037328Z ##[endgroup]
+2026-09-04T07:39:16.5698622Z (node:2759) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-04T07:39:16.5699353Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-04T07:39:16.5745850Z With the provided path, there will be 1 file uploaded
+2026-09-04T07:39:16.5758269Z Artifact name is valid!
+2026-09-04T07:39:16.5758787Z Root directory input is valid!
+2026-09-04T07:39:16.7727978Z Beginning upload of artifact content to blob storage
+2026-09-04T07:39:16.8046028Z (node:2759) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-04T07:39:16.8361508Z Uploaded bytes 72693
+2026-09-04T07:39:16.8536304Z Finished uploading artifact content to blob storage!
+2026-09-04T07:39:16.8537659Z SHA256 digest of uploaded artifact zip is f4c4300c6d1b015e1204dfb71fe613115732718489b3dbafd0e1e6f7214673b3
+2026-09-04T07:39:16.8540747Z Finalizing artifact upload
+2026-09-04T07:39:17.1028505Z Artifact inotifywait-verify-reproducible-build.zip successfully finalized. Artifact ID 9927852295
+2026-09-04T07:39:17.1030166Z Artifact inotifywait-verify-reproducible-build has been successfully uploaded! Final size is 72693 bytes. Artifact ID is 9927852295
+2026-09-04T07:39:17.1036260Z Artifact download URL: https://github.com/atanuroy911/gson/actions/runs/33849635845/artifacts/9927852295
+2026-09-04T07:39:17.1227387Z Post job cleanup.
+2026-09-04T07:39:17.2810960Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/gson/gson --files-from manifest.txt --use-compress-program zstdmt
+2026-09-04T07:39:17.7110552Z Failed to save: Unable to reserve cache with key setup-java-Linux-x64-maven-54d6cf3fdc484699667bbaed4dbae25f9a0a3aa7871d212484a098a067310682, another job may be creating this cache.
+2026-09-04T07:39:17.7328399Z Post job cleanup.
+2026-09-04T07:39:17.8207665Z [command]/usr/bin/git version
+2026-09-04T07:39:17.8252341Z git version 2.55.0
+2026-09-04T07:39:17.8300627Z Temporarily overriding HOME='/home/runner/work/_temp/1c9c00a2-5fc1-4fda-ad11-d4a1112f86c7' before making global git config changes
+2026-09-04T07:39:17.8302032Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-04T07:39:17.8307242Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/gson/gson
+2026-09-04T07:39:17.8343782Z Removing SSH command configuration
+2026-09-04T07:39:17.8351865Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-04T07:39:17.8394175Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-04T07:39:17.8652031Z Removing HTTP extra header
+2026-09-04T07:39:17.8659626Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-04T07:39:17.8705506Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-04T07:39:17.9027464Z Removing includeIf entries pointing to credentials config files
+2026-09-04T07:39:17.9028792Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-04T07:39:17.9089266Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-04T07:39:17.9493477Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-04T07:39:17.9494807Z Post job cleanup.
+2026-09-04T07:39:18.0723112Z (node:2887) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-04T07:39:18.0724418Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-04T07:39:18.0906301Z Cleaning up orphan processes
+2026-09-04T07:39:18.1254085Z Terminate orphan process: pid (2150) (python3)
+2026-09-04T07:39:18.1271507Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

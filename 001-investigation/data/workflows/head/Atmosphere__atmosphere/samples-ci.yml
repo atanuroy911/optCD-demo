@@ -1,0 +1,138 @@
+name: "CI: Samples"
+
+on:
+  push:
+    branches: [ '**' ]
+    paths:
+      - 'samples/**'
+      - 'modules/**'
+      - 'atmosphere.js/src/chat/**'
+      - 'cli/**'
+      - 'pom.xml'
+      - '.mvn/**'
+      - 'scripts/release-gate-samples.sh'
+      - 'scripts/e2e-coverage-map.sh'
+      - 'e2e/tests/**'
+      - '.github/workflows/e2e.yml'
+      - '.github/workflows/samples-ci.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'samples/**'
+      - 'modules/**'
+      - 'atmosphere.js/src/chat/**'
+      - 'cli/**'
+      - 'pom.xml'
+      - '.mvn/**'
+      - 'scripts/release-gate-samples.sh'
+      - 'scripts/e2e-coverage-map.sh'
+      - 'e2e/tests/**'
+      - '.github/workflows/e2e.yml'
+      - '.github/workflows/samples-ci.yml'
+  workflow_dispatch:
+
+jobs:
+  # Fast, build-free gate: fail the PR/push that adds a samples/ directory
+  # without a release-gate coverage-map entry — instead of the nightly
+  # release-gate catching it up to a day later. Mirrors the "Print coverage
+  # map (no silent caps)" step in release-gate-samples.yml.
+  coverage-map:
+    name: Sample coverage map (no silent caps)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+    - name: Every samples/ directory must be mapped in the release gate
+      run: ./scripts/release-gate-samples.sh --list
+
+    # --list proves a mapping EXISTS. This proves the mapping RESOLVES: every
+    # pw: project is declared in playwright.config.ts, its testMatch hits a spec
+    # on disk, and it sits in an e2e.yml matrix leg; every fnd: spec exists under
+    # e2e/tests/. A project in no leg is a spec that never runs in CI, which is
+    # how quarkus-ai-chat's spec sat dead while the map claimed it as covered.
+    - name: Every declared coverage entry must resolve to a real spec and CI leg
+      run: ./scripts/e2e-coverage-map.sh
+
+  test-samples:
+    name: Test Sample - ${{ matrix.sample }} (SB${{ matrix.spring-boot-version }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        sample:
+          - chat
+          - spring-boot-chat
+          - quarkus-chat
+          - embedded-jetty-websocket-chat
+          - spring-boot-ai-chat
+          - spring-boot-rag-chat
+          - spring-boot-multi-agent-startup-team
+          - spring-boot-passivation-agent
+          - spring-boot-one-dep-agent
+        spring-boot-version: [4]
+        include:
+          # Run Spring Boot samples with SB3 as well
+          - sample: spring-boot-chat
+            spring-boot-version: 3
+          - sample: spring-boot-ai-chat
+            spring-boot-version: 3
+          - sample: spring-boot-rag-chat
+            spring-boot-version: 3
+        exclude:
+          # Non-Spring-Boot samples don't need the SB version axis
+          - sample: chat
+            spring-boot-version: 3
+          - sample: quarkus-chat
+            spring-boot-version: 3
+          - sample: embedded-jetty-websocket-chat
+            spring-boot-version: 3
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v6
+      with:
+        java-version: 21
+        distribution: 'temurin'
+        # Supply-chain hardening: GPG-verify the Temurin JDK archive (setup-java >= v5.5.0)
+        verify-signature: true
+        cache: 'maven'
+
+    - name: Install Atmosphere Modules
+      run: ./mvnw -B install -DskipTests -Dgpg.skip=true
+
+    - name: Build Sample - ${{ matrix.sample }}
+      run: ./mvnw -B package -DskipTests -Dgpg.skip=true -pl samples/${{ matrix.sample }} ${{ matrix.spring-boot-version == 3 && '-Pspring-boot3' || '' }}
+
+    - name: Test Sample - ${{ matrix.sample }}
+      run: ./mvnw -B test -Dgpg.skip=true -pl samples/${{ matrix.sample }} ${{ matrix.spring-boot-version == 3 && '-Pspring-boot3' || '' }}
+      # embedded-jetty-websocket-chat has no tests (standalone demo app)
+      if: matrix.sample != 'embedded-jetty-websocket-chat'
+      env:
+        LLM_MODE: fake
+    
+    - name: Upload Build Artifacts
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: sample-${{ matrix.sample }}-artifacts
+        path: samples/${{ matrix.sample }}/target/
+
+  test-cli:
+    name: Test Atmosphere CLI
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Setup Node.js 22
+      uses: actions/setup-node@v7
+      with:
+        node-version: 22
+
+    - name: Install jq + xmllint
+      run: sudo apt-get update && sudo apt-get install -y jq libxml2-utils
+
+    - name: Run CLI Tests
+      run: ./cli/test-cli.sh

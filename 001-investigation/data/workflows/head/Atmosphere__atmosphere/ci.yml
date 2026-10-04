@@ -1,0 +1,211 @@
+name: "CI: Core (JDK 21/26)"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ '**' ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'LICENSE'
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'LICENSE'
+
+jobs:
+  architectural-validation:
+    name: Architectural Validation
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set up Python
+      uses: actions/setup-python@v7
+      with:
+        python-version: '3.12'
+
+    # Every check shells out to ripgrep with stderr suppressed, so without the
+    # binary the gate finds nothing and prints PASS. The script now refuses to
+    # run when rg is absent rather than passing vacuously; install it so the
+    # refusal never triggers.
+    - name: Install ripgrep
+      run: |
+        command -v rg > /dev/null 2>&1 || sudo apt-get install -y -qq ripgrep
+        rg --version | head -1
+
+    - name: Run Architectural Validation
+      run: ./scripts/architectural-validation.sh
+
+    # The Playwright coverage gate lists the suite with Playwright itself
+    # (`playwright test --list`, no browsers), so it needs the e2e module's
+    # npm dependencies on the same Node the e2e legs use.
+    - name: Set up Node.js
+      uses: actions/setup-node@v7
+      with:
+        node-version: 22
+        cache: 'npm'
+        cache-dependency-path: modules/integration-tests/package-lock.json
+
+    - name: Install e2e npm dependencies
+      working-directory: modules/integration-tests
+      run: npm ci
+
+    # Every project in modules/integration-tests/playwright.config.ts must be
+    # selected by a workflow or excluded with owner/expiry/issue in
+    # .harness/playwright-project-exclusions.txt. Nine projects once sat in no
+    # matrix leg, and three of them were dead without anyone noticing. Every
+    # e2e spec file must also run a test in a project a workflow runs, under
+    # the per-push leg's grep/grepInvert (five matched no project at all).
+    # Runs on every push except a docs-only one (this workflow's paths-ignore:
+    # **.md, docs/**, LICENSE), so an exclusion's expiry bites on the next
+    # code push after it.
+    - name: Verify every Playwright project runs in a workflow
+      run: ./scripts/validate-playwright-project-coverage.sh
+
+    - name: Prove the Playwright project coverage gate bites
+      run: ./scripts/test-playwright-project-coverage.sh
+
+  doc-version-check:
+    name: Documentation Version Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set up Python
+      uses: actions/setup-python@v7
+      with:
+        python-version: '3.12'
+
+    # Hard gate: every org.atmosphere <version> in tracked Markdown must equal
+    # the released version (cli/samples.json). Replaces the old advisory grep
+    # that only ::warning::ed, never scanned samples/, and could not tell an
+    # Atmosphere dependency from a third-party one — which is how the rag-chat
+    # getting-started doc carried <version>4.0.14-SNAPSHOT</version> unnoticed.
+    - name: Verify Atmosphere doc versions match the release
+      run: ./scripts/validate-atmosphere-doc-version.sh
+
+    # The release workflow auto-generates CHANGELOG bullets from commit subjects
+    # whenever [Unreleased] is empty (the normal state per the repo rule). A
+    # Revert pair that is not cancelled ships a Fixed bullet for code that was
+    # taken back out of the tree.
+    - name: Verify the CHANGELOG generator drops reverted and plumbing commits
+      run: ./scripts/test-promote-changelog.sh
+
+  build-and-test:
+    name: Build & Test (JDK ${{ matrix.java-version }})
+    runs-on: ubuntu-latest
+    needs: architectural-validation
+
+    strategy:
+      matrix:
+        include:
+          - java-version: 21
+            distribution: temurin
+          - java-version: 26
+            distribution: oracle
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set up JDK ${{ matrix.java-version }}
+      uses: actions/setup-java@v6
+      with:
+        java-version: ${{ matrix.java-version }}
+        distribution: ${{ matrix.distribution }}
+        # Supply-chain hardening: GPG-verify the JDK archive (setup-java >= v5.5.0).
+        # Only Temurin/Microsoft support signature verification, so gate on the
+        # matrix distribution — the Oracle JDK 26 leg must NOT set this.
+        verify-signature: ${{ matrix.distribution == 'temurin' }}
+        cache: 'maven'
+
+    - name: Build Core Modules
+      run: ./mvnw -B clean install -DskipTests -Dgpg.skip=true
+
+    # Full-reactor test — no hand-picked module allow-list. A hand-picked list
+    # silently drops every new module from CI (60% of modules were untested for
+    # weeks). Testing the whole reactor means a new module is covered the moment
+    # it exists, with no name to remember.
+    #
+    # Single exclusion: modules/integration-tests. Its integration suites
+    # (WebSocket/SSE/gRPC/long-poll transports, MCP, Kafka/Redis clustering,
+    # checkpoint E2E) run unfiltered in the dedicated parallel "CI: Integration
+    # Tests" lane (integration-tests.yml) so they don't serialize this job.
+    # Everything else still runs full-reactor here; the release gate
+    # (release-4x.yml test step) keeps the module in its full-reactor run.
+    - name: Run All Tests
+      run: ./mvnw -B test -pl '!modules/integration-tests' -Dgpg.skip=true -Dgroups='!flaky'
+
+    - name: Upload Test Results
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: test-results-jdk-${{ matrix.java-version }}
+        path: |
+          **/target/surefire-reports/
+          **/target/failsafe-reports/
+
+  # Boot gate for dependency bumps. A dependency bump can compile and pass
+  # every unit test yet still kill sample startup: 7e04f919c0 (dependabot
+  # #2694, opentelemetry-api 1.62->1.63) broke quarkus-ai-chat with a
+  # NoClassDefFoundError that only manifested at boot, and nothing in CI
+  # caught it — "CI: Samples" builds and tests samples but never boots one.
+  # This job lives here (not samples-ci.yml) because ci.yml's near-universal
+  # triggers are exactly the surface dependabot PRs hit; it packages the two
+  # most dependency-sensitive samples (the Quarkus one that broke plus a
+  # Spring Boot canary), boots each keyless, and asserts the chat page
+  # returns HTTP 200 before tearing the JVM down by PID.
+  sample-startup-smoke:
+    name: Sample Startup Smoke (dependency- & packaging-sensitive samples)
+    runs-on: ubuntu-latest
+    needs: architectural-validation
+    timeout-minutes: 30
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v6
+      with:
+        java-version: 21
+        distribution: temurin
+        # Supply-chain hardening: GPG-verify the Temurin JDK archive (setup-java >= v5.5.0)
+        verify-signature: true
+        cache: 'maven'
+
+    # Runs before the build because it needs no build: it drives every sample
+    # boot path against synthetic target/ trees and asserts each one selects the
+    # artifact for the CURRENT reactor version rather than globbing for "the
+    # newest jar present". samples/*/target is never cleaned, so a version-blind
+    # glob boots a leftover from an earlier release and reports a pass for code
+    # that is not in the artifact it tested. Fails fast, in seconds.
+    - name: Artifact-selection regression (stale sample jars)
+      run: ./scripts/test-sample-jar-selection.sh
+
+    - name: Build & Package Samples
+      # Full-reactor prime, then package — the same proven pattern as
+      # samples-ci.yml. A scoped -pl ... -am build fails Quarkus's extension
+      # dependency verification on a cold ~/.m2 (the deployment artifact
+      # resolves in-reactor instead of from the repo), which is exactly how
+      # this job's first run went red while "CI: Samples" stayed green.
+      run: |
+        ./mvnw -B install -DskipTests -Dgpg.skip=true
+        ./mvnw -B package -DskipTests -Dgpg.skip=true -pl samples/quarkus-ai-chat,samples/spring-boot-ai-chat,samples/kotlin-dsl-chat,samples/embedded-jetty-websocket-chat,samples/spring-boot-otel-chat
+
+    - name: Boot Samples & Assert Endpoints
+      run: ./scripts/sample-startup-smoke.sh
+
+    - name: Upload Boot Logs
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: sample-startup-smoke-logs
+        path: target/sample-startup-smoke/
+
+  # E2E tests run in a separate workflow (e2e.yml) so failures
+  # don't block build results and individual groups can be re-run independently.

@@ -1,0 +1,210 @@
+{
+  "paper": {
+    "rows_total": 6800,
+    "attributed_to_a_maven_plugin": 6530,
+    "verifiable_by_path_convention": 1473,
+    "correct": 1363,
+    "wrong": 110,
+    "wrong_rate_of_verifiable": 0.075,
+    "verdicts": {
+      "correct": 1363,
+      "unverifiable": 5057,
+      "not-attributed-to-maven": 270,
+      "wrong-plugin": 102,
+      "wrong-goal": 8
+    },
+    "module_check_on_attributed": {
+      "same-module": 2363,
+      "n/a": 3916,
+      "different-module": 251
+    },
+    "by_rule": {
+      "compiler state (parent dir)": {
+        "correct": 27,
+        "wrong-plugin": 20
+      },
+      "failsafe IT reports": {
+        "correct": 1
+      },
+      "jacoco report": {
+        "correct": 7,
+        "wrong-plugin": 1
+      },
+      "japicmp report": {
+        "correct": 3
+      },
+      "javadoc options bundle": {
+        "correct": 11
+      },
+      "main classes": {
+        "wrong-plugin": 1,
+        "correct": 10,
+        "wrong-goal": 8
+      },
+      "surefire test reports": {
+        "correct": 1285,
+        "wrong-plugin": 80
+      },
+      "test classes": {
+        "correct": 19
+      }
+    },
+    "most_common_wrong_attributions": [
+      [
+        "invoker:*:run (integration-tests)",
+        38
+      ],
+      [
+        "jacoco-maven-plugin:*:report (report)",
+        21
+      ],
+      [
+        "antlr4-maven-plugin:*:antlr4 (antlr)",
+        12
+      ],
+      [
+        "maven-remote-resources-plugin:*:process (process-resource-bundles)",
+        10
+      ],
+      [
+        "maven-compiler-plugin:*:testCompile (default-testCompile)",
+        6
+      ],
+      [
+        "compiler:*:testCompile (default-testCompile)",
+        5
+      ],
+      [
+        "maven-resources-plugin:*:resources (default-resources)",
+        3
+      ],
+      [
+        "resources:*:copy-resources (copy-javaparser-core-classes)",
+        3
+      ],
+      [
+        "maven-enforcer-plugin:*:enforce (enforce-maven-version)",
+        2
+      ],
+      [
+        "jacoco-maven-plugin:*:prepare-agent (default)",
+        2
+      ],
+      [
+        "maven-compiler-plugin:*:compile (default-compile)",
+        2
+      ],
+      [
+        "maven-enforcer-plugin:*:enforce (enforce-maven)",
+        1
+      ],
+      [
+        "maven-pmd-plugin:*:pmd (pmd)",
+        1
+      ],
+      [
+        "maven-enforcer-plugin:*:enforce (enforce-java-version)",
+        1
+      ],
+      [
+        "jacoco-maven-plugin:*:prepare-agent (default-prepare-agent)",
+        1
+      ]
+    ],
+    "jobs_with_a_wrong_attribution": 30,
+    "repos_with_a_wrong_attribution": 7
+  },
+  "ours": {
+    "rows_total": 535,
+    "attributed_to_a_maven_plugin": 97,
+    "verifiable_by_path_convention": 96,
+    "correct": 42,
+    "wrong": 54,
+    "wrong_rate_of_verifiable": 0.562,
+    "verdicts": {
+      "correct": 42,
+      "not-attributed-to-maven": 438,
+      "wrong-plugin": 47,
+      "wrong-goal": 7,
+      "unverifiable": 1
+    },
+    "module_check_on_attributed": {
+      "n/a": 12,
+      "same-module": 85
+    },
+    "by_rule": {
+      "compiler state (parent dir)": {
+        "wrong-plugin": 7
+      },
+      "compiler:compile state": {
+        "wrong-plugin": 16,
+        "wrong-goal": 7,
+        "correct": 1
+      },
+      "compiler:testCompile state": {
+        "wrong-plugin": 22
+      },
+      "graalvm native test reports": {
+        "correct": 1
+      },
+      "japicmp report": {
+        "correct": 5
+      },
+      "javadoc options bundle": {
+        "correct": 6,
+        "wrong-plugin": 1
+      },
+      "surefire test reports": {
+        "correct": 28,
+        "wrong-plugin": 1
+      },
+      "templating output": {
+        "correct": 1
+      }
+    },
+    "most_common_wrong_attributions": [
+      [
+        "surefire:*:test (default-test)",
+        19
+      ],
+      [
+        "bnd:*:bnd-process (default)",
+        7
+      ],
+      [
+        "compiler:*:testCompile (default-testCompile)",
+        7
+      ],
+      [
+        "resources:*:testResources (default-testResources)",
+        4
+      ],
+      [
+        "protobuf:*:generate-test (default)",
+        4
+      ],
+      [
+        "jar:*:jar (default-jar)",
+        4
+      ],
+      [
+        "resources:*:copy-resources (pre-obfuscate-class)",
+        4
+      ],
+      [
+        "proguard:*:proguard (obfuscate-test-class)",
+        3
+      ],
+      [
+        "native:*:test (test-native)",
+        1
+      ],
+      [
+        "artifact:*:buildinfo (default)",
+        1
+      ]
+    ],
+    "jobs_with_a_wrong_attribution": 8,
+    "repos_with_a_wrong_attribution": null
+  }
+}

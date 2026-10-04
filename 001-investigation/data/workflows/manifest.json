@@ -1,0 +1,3720 @@
+{
+  "TheAlgorithms/Java": {
+    "analyzed_workflows": [
+      "codeql.yml",
+      "infer.yml"
+    ],
+    "head": {
+      "sha": "2105b5652a541cbf5db0904d0cfebbaf487e4c5f",
+      "error": null,
+      "files": [
+        "build.yml",
+        "clang-format-lint.yml",
+        "close-failed-prs.yml",
+        "codeql.yml",
+        "infer.yml",
+        "project_structure.yml",
+        "stale.yml",
+        "update-directorymd.yml"
+      ]
+    },
+    "paper": {
+      "sha": "a676ebc472a5d644c11ff127f7b99477abb28079",
+      "error": null,
+      "files": [
+        "build.yml",
+        "clang-format-lint.yml",
+        "codeql.yml",
+        "infer.yml",
+        "stale.yml",
+        "update_directory.yml"
+      ]
+    }
+  },
+  "alibaba/arthas": {
+    "analyzed_workflows": [
+      "test.yaml"
+    ],
+    "head": {
+      "sha": "f9386bfbf64155ace6b81ea3257d1f6fe8d5f3d4",
+      "error": null,
+      "files": [
+        "auto-prettier.yaml",
+        "build-async-profiler.yml",
+        "build-vmtool.yaml",
+        "codeql-analysis.yml",
+        "publish-maven-central.yml",
+        "push-docker.yaml",
+        "release.yaml",
+        "sync-to-gitee.yaml",
+        "test.yaml",
+        "update-doc.yaml"
+      ]
+    },
+    "paper": {
+      "sha": "8200afb3cca1fbcdc97d5ebc233b372e1469b76d",
+      "error": null,
+      "files": [
+        "auto-prettier.yaml",
+        "build-async-profiler.yml",
+        "build-vmtool.yaml",
+        "codeql-analysis.yml",
+        "release.yaml",
+        "test.yaml"
+      ]
+    }
+  },
+  "netty/netty": {
+    "analyzed_workflows": [
+      "codeql-analysis.yml"
+    ],
+    "head": {
+      "sha": "006a2f1d92db733d10112de251600da7b6f8ec51",
+      "error": null,
+      "files": [
+        "autoport-41.yml",
+        "autoport-42.yml",
+        "autoport-50.yml",
+        "cancel-on-merge.yml",
+        "check-jdk.ea-version.yml",
+        "ci-build-riscv64.yml",
+        "ci-build.yml",
+        "ci-deploy.yml",
+        "ci-pr-reports.yml",
+        "ci-pr.yml",
+        "ci-release-4.2.yml",
+        "ci-release-5.yml",
+        "ci-release.yml",
+        "ci-verify-load.yml",
+        "ci-verify-musl.yml",
+        "codeql-analysis.yml"
+      ]
+    },
+    "paper": {
+      "sha": "d214fbdd3e579d60fbf2b1df7317437a49748103",
+      "error": null,
+      "files": [
+        "ci-build.yml",
+        "ci-deploy.yml",
+        "ci-pr-reports.yml",
+        "ci-pr.yml",
+        "ci-release.yml",
+        "ci-verify-load.yml",
+        "codeql-analysis.yml"
+      ]
+    }
+  },
+  "zxing/zxing": {
+    "analyzed_workflows": [
+      "test_java_17.yml",
+      "test_java_21.yml",
+      "test_java_8.yml"
+    ],
+    "head": {
+      "sha": "33dfdefcb35576612841e614d44ba9edc9aee2b5",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "test_java_17.yml",
+        "test_java_21.yml",
+        "test_java_8.yml"
+      ]
+    },
+    "paper": {
+      "sha": "3b189fc700c9c7c210f4b78fc66b01f4c13ae5d2",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "test_java_17.yml",
+        "test_java_21.yml",
+        "test_java_8.yml"
+      ]
+    }
+  },
+  "alibaba/easyexcel": {
+    "analyzed_workflows": [
+      "ci.yml"
+    ],
+    "head": {
+      "sha": "aae9c61ab603c04331333782eedd2896d7bc5386",
+      "error": null,
+      "files": [
+        "ci.yml",
+        "release.yml",
+        "sync2gitee.yml"
+      ]
+    },
+    "paper": {
+      "sha": "aae9c61ab603c04331333782eedd2896d7bc5386",
+      "error": null,
+      "files": [
+        "ci.yml",
+        "release.yml",
+        "sync2gitee.yml"
+      ]
+    }
+  },
+  "alibaba/nacos": {
+    "analyzed_workflows": [
+      "it.yml",
+      "pr-ci.yml"
+    ],
+    "head": {
+      "sha": "1b6309f5086c163a1ff9c0469fabd4494ec09093",
+      "error": null,
+      "files": [
+        "anti-spam.yml",
+        "ci.yml",
+        "default-auth-reliability-it.yml",
+        "frontend-ci.yml",
+        "issue-assign.yml",
+        "it-new.yml",
+        "migration-it.yml",
+        "pr-comment.yml",
+        "pr-e2e-test.yml",
+        "pr-validation.yml",
+        "stale.yml"
+      ]
+    },
+    "paper": {
+      "sha": "c9cf4c1871c3149bed1af0a4a047b6b2fa892663",
+      "error": null,
+      "files": [
+        "ci.yml",
+        "it.yml",
+        "pr-ci.yml",
+        "pr-comment.yml",
+        "pr-e2e-test.yml",
+        "push-ci.yaml"
+      ]
+    }
+  },
+  "apolloconfig/apollo": {
+    "analyzed_workflows": [
+      "build.yml"
+    ],
+    "head": {
+      "sha": "d2c55ebf19b8e0377e4db72430a77cdf93b19599",
+      "error": null,
+      "files": [
+        "build.yml",
+        "cla.yml",
+        "code-style-check.yml",
+        "codeql.yml",
+        "commit_lint.yml",
+        "docker-publish.yml",
+        "docker-validation.yml",
+        "external-discovery-smoke.yml",
+        "issue-triage.lock.yml",
+        "javascript-test.yml",
+        "license.yml",
+        "openapi-compatibility.yml",
+        "portal-login-e2e.yml",
+        "portal-ui-e2e.yml",
+        "release-packages.yml"
+      ]
+    },
+    "paper": {
+      "sha": "638c506d0f4494eafb893332c99af0b0642ab8bc",
+      "error": null,
+      "files": [
+        "build.yml",
+        "cla.yml",
+        "codeql.yml",
+        "commit_lint.yml",
+        "docker-publish.yml",
+        "license.yml"
+      ]
+    }
+  },
+  "alibaba/druid": {
+    "analyzed_workflows": [
+      "ci.yaml"
+    ],
+    "head": {
+      "sha": "fa8dc9912637a2f729eef9f55356621fec18d40e",
+      "error": null,
+      "files": [
+        "ci.yaml"
+      ]
+    },
+    "paper": {
+      "sha": "1613a765abda2b0985eab19c2b9696897ab5e246",
+      "error": null,
+      "files": [
+        "ci.yaml"
+      ]
+    }
+  },
+  "xuxueli/xxl-job": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "b34acec41d811a91d8efa0b67de20d283100991b",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    },
+    "paper": {
+      "sha": "ee4db816d122d243ad2c336c2e56710430bc9846",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    }
+  },
+  "apache/incubator-seata": {
+    "analyzed_workflows": [
+      "codeql-analysis.yml",
+      "test-druid.yml",
+      "test-ubuntu.yml",
+      "test.yml"
+    ],
+    "head": {
+      "sha": "4d7ba2edfe51d8ede76ebf0d9965346abd00d824",
+      "error": null,
+      "files": [
+        "build.yml",
+        "codeql-analysis.yml",
+        "license-checker.yaml",
+        "native-namingserver.yml",
+        "publish-docker.yml",
+        "publish-ossrh.yml",
+        "rerun-build.yml",
+        "riscv64.yml",
+        "spotless-check.yml",
+        "test-druid.yml",
+        "test-ubuntu.yml",
+        "test.yml"
+      ]
+    },
+    "paper": {
+      "sha": "5d2b1390e938190494358068c4e8a9d9b0ec91d2",
+      "error": null,
+      "files": [
+        "build.yml",
+        "codeql-analysis.yml",
+        "license-checker.yaml",
+        "publish-docker.yml",
+        "publish-ossrh.yml",
+        "test-druid.yml",
+        "test-ubuntu.yml",
+        "test.yml"
+      ]
+    }
+  },
+  "apache/skywalking": {
+    "analyzed_workflows": [
+      "codeql.yaml"
+    ],
+    "head": {
+      "sha": "f115aa7c0f4ccec09c044f9cdfd2f06ec4bc284f",
+      "error": null,
+      "files": [
+        "codeql.yaml",
+        "dead-link-checker.yaml",
+        "publish-docker-e2e-service.yaml",
+        "publish-docker.yaml",
+        "skywalking.yaml"
+      ]
+    },
+    "paper": {
+      "sha": "9e5fb8f5cfa9402f057740f0feb3f9a83c659cc3",
+      "error": null,
+      "files": [
+        "codeql.yaml",
+        "dead-link-checker.yaml",
+        "publish-docker-e2e-service.yaml",
+        "publish-docker.yaml",
+        "skywalking.yaml"
+      ]
+    }
+  },
+  "google/gson": {
+    "analyzed_workflows": [
+      "check-android-compatibility.yml",
+      "check-api-compatibility.yml",
+      "codeql-analysis.yml"
+    ],
+    "head": {
+      "sha": "854c8255b625cf1e13c701a83ea9ccb4caaa576a",
+      "error": null,
+      "files": [
+        "build.yml",
+        "check-android-compatibility.yml",
+        "check-api-compatibility.yml",
+        "cifuzz.yml",
+        "codeql-analysis.yml",
+        "scorecard.yml"
+      ]
+    },
+    "paper": {
+      "sha": "44c93364c9347404e93cd6a3323201ceae6b2a43",
+      "error": null,
+      "files": [
+        "build.yml",
+        "check-android-compatibility.yml",
+        "check-api-compatibility.yml",
+        "cifuzz.yml",
+        "codeql-analysis.yml"
+      ]
+    }
+  },
+  "redisson/redisson": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "4447c8a72ee13a0985957c3e1d9335efe61cbd51",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "maven.yml"
+      ]
+    },
+    "paper": {
+      "sha": "78c388ac7ace92ea7fae4d64ffe280c590c0b08b",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "maven.yml"
+      ]
+    }
+  },
+  "OpenAPITools/openapi-generator": {
+    "analyzed_workflows": [
+      "docker.yaml",
+      "samples-java-client-echo-api-jdk8.yaml",
+      "samples-java-client-jdk11.yaml",
+      "samples-java-helidon-v3.yaml",
+      "samples-java-helidon-v4.yaml",
+      "samples-java-play-framework.yaml",
+      "samples-java-server-jdk8.yaml",
+      "samples-java-wiremock.yaml",
+      "samples-jaxrs-jdk11.yaml",
+      "samples-jaxrs.yaml",
+      "samples-jdk21.yaml",
+      "samples-spring-jdk17.yaml"
+    ],
+    "head": {
+      "sha": "4882687e9594f578ffe0cca6207e478fb03e9d2f",
+      "error": null,
+      "files": [
+        "docker-release.yml",
+        "docker.yaml",
+        "gradle-plugin-tests.yaml",
+        "gradle-test.yaml",
+        "linux.yaml",
+        "maven-plugin-tests-jdk17.yaml",
+        "maven-plugin-tests.yaml",
+        "maven-release.yml",
+        "mill-plugin-tests.yaml",
+        "misc-test.yaml",
+        "openapi-generator-test-results.yaml",
+        "openapi-generator.yaml",
+        "samples-aspnet-fastenpoints-server.yaml",
+        "samples-c-libcurl-client.yaml",
+        "samples-clojure.yaml",
+        "samples-cpp-boost-beast-server.yaml",
+        "samples-cpp-httplib-server.yaml",
+        "samples-cpp-oatpp-client.yaml",
+        "samples-cpp-oatpp-server.yaml",
+        "samples-cpp-qt-client.yaml",
+        "samples-crystal.yaml",
+        "samples-dart-build-test.yaml",
+        "samples-dart.yaml",
+        "samples-dotnet-fx.yaml",
+        "samples-dotnet-petstore-net10.yml",
+        "samples-dotnet-petstore.yml",
+        "samples-dotnet-standard.yaml",
+        "samples-dotnet10.yaml",
+        "samples-dotnet6-server.yaml",
+        "samples-dotnet7-client.yml",
+        "samples-dotnet8-client-echo-api.yaml",
+        "samples-dotnet8-client.yaml",
+        "samples-dotnet8-server.yaml",
+        "samples-dotnet8.yaml",
+        "samples-dotnet9.yaml",
+        "samples-elixir.yaml",
+        "samples-elm.yaml",
+        "samples-erlang.yaml",
+        "samples-go-client-echo-api.yaml",
+        "samples-go-client-petstore.yaml",
+        "samples-go-client.yaml",
+        "samples-go-gin.yaml",
+        "samples-go.yaml",
+        "samples-groovy.yaml",
+        "samples-haskell.yaml",
+        "samples-java-client-echo-api-jdk11.yaml",
+        "samples-java-client-echo-api-jdk17.yaml",
+        "samples-java-client-echo-api-jdk8.yaml",
+        "samples-java-client-jdk11.yaml",
+        "samples-java-client-jdk17.yaml",
+        "samples-java-dubbo.yaml",
+        "samples-java-helidon-v3.yaml",
+        "samples-java-helidon-v4.yaml",
+        "samples-java-petsore-client-jdk11.yaml",
+        "samples-java-petsore-client-jdk17.yaml",
+        "samples-java-play-framework.yaml",
+        "samples-java-sbt.yaml",
+        "samples-java-server-jdk8.yaml",
+        "samples-java-wiremock.yaml",
+        "samples-javascript.yaml",
+        "samples-jaxrs-jdk11.yaml",
+        "samples-jaxrs.yaml",
+        "samples-jdk17.yaml",
+        "samples-jdk21.yaml",
+        "samples-julia.yaml",
+        "samples-kotlin-client.yaml",
+        "samples-kotlin-echo-api.yaml",
+        "samples-kotlin-server-jdk17.yaml",
+        "samples-kotlin-server-jdk21.yaml",
+        "samples-kotlin-server.yaml",
+        "samples-kotlin-wiremock.yaml",
+        "samples-ocaml.yaml",
+        "samples-php-client.yaml",
+        "samples-php-nextgen-phpstan.yaml",
+        "samples-php-server-syntax-check.yaml",
+        "samples-php-servers-phpstan.yaml",
+        "samples-php-syntax-check.yaml",
+        "samples-php8.yaml",
+        "samples-postman.yaml",
+        "samples-powershell.yaml",
+        "samples-protobuf.yaml",
+        "samples-python-client-echo-api.yaml",
+        "samples-python-client-legacy-model-dictionaries.yaml",
+        "samples-python-fastapi-server.yaml",
+        "samples-python-flask-connexion3-server.yaml",
+        "samples-python-petstore.yaml",
+        "samples-python-pydantic-v1-client-echo-api.yaml",
+        "samples-python-pydantic-v1-petstore.yaml",
+        "samples-python-server.yaml",
+        "samples-r.yaml",
+        "samples-ruby-nextgen.yaml",
+        "samples-ruby.yaml",
+        "samples-rust-client.yaml",
+        "samples-rust-server.yaml",
+        "samples-scala-client.yaml",
+        "samples-scala-server.yaml",
+        "samples-spring-jdk11.yaml",
+        "samples-spring-jdk17.yaml",
+        "samples-spring.yaml",
+        "samples-swift5.yaml",
+        "samples-swift6.yaml",
+        "samples-terraform.yaml",
+        "samples-typescript-axios-echo-api.yaml",
+        "samples-typescript-client.yaml",
+        "samples-typescript-encode-decode.yaml",
+        "samples-typescript-fetch-client.yaml",
+        "samples-typescript-nestjs-server.yaml",
+        "samples-typescript-node-encode-decode.yaml",
+        "samples-typescript-server.yaml",
+        "samples-typescript-typecheck.yaml",
+        "samples-zapier.yaml",
+        "upload-release.yml",
+        "windows.yaml"
+      ]
+    },
+    "paper": {
+      "sha": "66c7b2f8cc1df19dafb27360569b9216f74c949c",
+      "error": null,
+      "files": [
+        "docker.yaml",
+        "gradle-plugin-tests.yaml",
+        "gradle-test.yaml",
+        "linux.yaml",
+        "maven-plugin-tests.yaml",
+        "misc-test.yaml",
+        "openapi-generator-test-results.yaml",
+        "openapi-generator.yaml",
+        "samples-c-libcurl-client.yaml",
+        "samples-cpp-qt-client.yaml",
+        "samples-dart.yaml",
+        "samples-dotnet-fx.yaml",
+        "samples-dotnet-standard.yaml",
+        "samples-dotnet.yaml",
+        "samples-dotnet6-client-echo-api.yaml",
+        "samples-dotnet6-client.yaml",
+        "samples-dotnet6-server.yaml",
+        "samples-dotnet8-server.yaml",
+        "samples-elm.yaml",
+        "samples-erlang.yaml",
+        "samples-go-client-echo-api.yaml",
+        "samples-go-gin.yaml",
+        "samples-go.yaml",
+        "samples-groovy.yaml",
+        "samples-haskell.yaml",
+        "samples-java-client-echo-api-jdk11.yaml",
+        "samples-java-client-echo-api-jdk17.yaml",
+        "samples-java-client-echo-api-jdk8.yaml",
+        "samples-java-client-jdk11.yaml",
+        "samples-java-client-jdk17.yaml",
+        "samples-java-helidon-v3.yaml",
+        "samples-java-helidon-v4.yaml",
+        "samples-java-play-framework.yaml",
+        "samples-java-server-jdk8.yaml",
+        "samples-java-wiremock.yaml",
+        "samples-jaxrs-jdk11.yaml",
+        "samples-jaxrs.yaml",
+        "samples-jdk17.yaml",
+        "samples-jdk21.yaml",
+        "samples-julia.yaml",
+        "samples-kotlin-client.yaml",
+        "samples-kotlin-echo-api.yaml",
+        "samples-kotlin-server-jdk17.yaml",
+        "samples-kotlin-server-jdk21.yaml",
+        "samples-kotlin-server.yaml",
+        "samples-kotlin-wiremock.yaml",
+        "samples-php7.yaml",
+        "samples-php8.yaml",
+        "samples-postman.yaml",
+        "samples-python-client-echo-api.yaml",
+        "samples-python-fastapi-server.yaml",
+        "samples-python-petstore.yaml",
+        "samples-python-pydantic-v1-client-echo-api.yaml",
+        "samples-python-pydantic-v1-petstore.yaml",
+        "samples-python-server.yaml",
+        "samples-r.yaml",
+        "samples-ruby.yaml",
+        "samples-rust.yaml",
+        "samples-scala.yaml",
+        "samples-spring-jdk17.yaml",
+        "samples-spring.yaml",
+        "samples-swift5.yaml",
+        "samples-typescript-axios-echo-api.yaml",
+        "samples-typescript-encode-decode.yaml",
+        "samples-typescript-node-encode-decode.yaml",
+        "samples-typescript-typecheck.yaml",
+        "samples-zapier.yaml",
+        "windows.yaml"
+      ]
+    }
+  },
+  "apache/rocketmq": {
+    "analyzed_workflows": [
+      "coverage.yml",
+      "integration-test.yml",
+      "maven.yaml",
+      "pr-ci.yml"
+    ],
+    "head": {
+      "sha": "37af1437e60e48009105c4a32851fb67f4c7acb8",
+      "error": null,
+      "files": [
+        "bazel.yml",
+        "codeql_analysis.yml",
+        "coverage.yml",
+        "integration-test.yml",
+        "license-checker.yaml",
+        "maven.yaml",
+        "misspell_check.yml",
+        "snapshot-automation.yml",
+        "stale.yml"
+      ]
+    },
+    "paper": {
+      "sha": "5600684eb437dd5a4aeb9c658e24200bcb74909b",
+      "error": null,
+      "files": [
+        "bazel.yml",
+        "codeql_analysis.yml",
+        "coverage.yml",
+        "integration-test.yml",
+        "license-checker.yaml",
+        "maven.yaml",
+        "misspell_check.yml",
+        "pr-ci.yml",
+        "pr-e2e-test.yml",
+        "push-ci.yml",
+        "rerun-workflow.yml",
+        "snapshot-automation.yml",
+        "stale.yml"
+      ]
+    }
+  },
+  "apache/shardingsphere": {
+    "analyzed_workflows": [
+      "ci.yml",
+      "e2e-agent.yml",
+      "e2e-operation.yml",
+      "e2e-sql.yml",
+      "nightly-e2e-operation-dynamic.yml",
+      "nightly-e2e-sql.yml",
+      "required-check.yml"
+    ],
+    "head": {
+      "sha": "83500a0f6fd0134a77f0491e578bdcf92b3890c2",
+      "error": null,
+      "files": [
+        "ci-mcp.yml",
+        "ci.yml",
+        "e2e-agent.yml",
+        "e2e-mcp.yml",
+        "e2e-operation.yml",
+        "e2e-sql.yml",
+        "graalvm.yml",
+        "nightly-build.yml",
+        "nightly-check.yml",
+        "nightly-ci.yml",
+        "nightly-e2e-agent.yml",
+        "nightly-e2e-operation.yml",
+        "nightly-e2e-sql.yml",
+        "nightly-sql-parser.yml",
+        "release-mcp.yml",
+        "required-check.yml",
+        "reusable-global-environment.yml",
+        "schedule-report.yml"
+      ]
+    },
+    "paper": {
+      "sha": "0893abe795cc8d73feaa595623ad3107ce4e4faa",
+      "error": null,
+      "files": [
+        "ci.yml",
+        "e2e-agent.yml",
+        "e2e-operation.yml",
+        "e2e-sql.yml",
+        "graalvm.yml",
+        "nightly-build.yml",
+        "nightly-check.yml",
+        "nightly-ci-dynamic.yml",
+        "nightly-ci.yml",
+        "nightly-e2e-operation-dynamic.yml",
+        "nightly-e2e-operation.yml",
+        "nightly-e2e-sql-dynamic.yml",
+        "nightly-e2e-sql.yml",
+        "nightly-sql-parser.yml",
+        "required-check.yml",
+        "required-reusable.yml",
+        "schedule-report.yml"
+      ]
+    }
+  },
+  "mybatis/mybatis-3": {
+    "analyzed_workflows": [
+      "ci.yaml"
+    ],
+    "head": {
+      "sha": "34147d0bd2f5ed0016ef367c92b25e174149326b",
+      "error": null,
+      "files": [
+        "ci.yaml",
+        "cleanup.yaml",
+        "codeql.yaml",
+        "coveralls.yaml",
+        "site.yaml",
+        "sonar.yaml",
+        "sonatype.yaml"
+      ]
+    },
+    "paper": {
+      "sha": "0dd44879cb0ff1092c93b0b891a66faa0455db6d",
+      "error": null,
+      "files": [
+        "ci.yaml",
+        "codeql.yml",
+        "coveralls.yaml",
+        "site.yaml",
+        "sonar.yaml",
+        "sonatype.yaml"
+      ]
+    }
+  },
+  "linlinjava/litemall": {
+    "analyzed_workflows": [
+      "main.yml"
+    ],
+    "head": {
+      "sha": "a1ef964a718b7277925b19ea26afe78ea3a1d325",
+      "error": null,
+      "files": [
+        "main.yml"
+      ]
+    },
+    "paper": {
+      "sha": "3829286443a520c158084efe84b7be226e670a2d",
+      "error": null,
+      "files": [
+        "main.yml"
+      ]
+    }
+  },
+  "dianping/cat": {
+    "analyzed_workflows": [
+      "maven-build.yml"
+    ],
+    "head": {
+      "sha": "e815e74d4c2dd74edac831241f1253fcc7d25381",
+      "error": null,
+      "files": [
+        "build.yml",
+        "maven-build.yml",
+        "maven-deploy.yml"
+      ]
+    },
+    "paper": {
+      "sha": "60693f75f6ccc34ac9dc73b5c44526a7d2f20b35",
+      "error": null,
+      "files": [
+        "build.yml",
+        "maven-build.yml",
+        "maven-deploy.yml"
+      ]
+    }
+  },
+  "thingsboard/thingsboard": {
+    "analyzed_workflows": [
+      "license-header-format.yml"
+    ],
+    "head": {
+      "sha": "0439df09f31b0e8101b9f0a6be556c087d86818d",
+      "error": null,
+      "files": [
+        "check-configuration-files.yml",
+        "check-license-headers.yml",
+        "license-header-format.yml"
+      ]
+    },
+    "paper": {
+      "sha": "cac6233e5269e4ed37d2a04a213eded43b00f070",
+      "error": null,
+      "files": [
+        "check-configuration-files.yml",
+        "license-header-format.yml"
+      ]
+    }
+  },
+  "antlr/antlr4": {
+    "analyzed_workflows": [
+      "hosted.yml"
+    ],
+    "head": {
+      "sha": "7d5770395bb7b02eb56e7c62662cb1d7c08f42a3",
+      "error": null,
+      "files": [
+        "hosted.yml"
+      ]
+    },
+    "paper": {
+      "sha": "933c4e0a0d4d5accfc2f9fa416e2c0558b4512e0",
+      "error": null,
+      "files": [
+        "hosted.yml"
+      ]
+    }
+  },
+  "openzipkin/zipkin": {
+    "analyzed_workflows": [
+      "test_readme.yml"
+    ],
+    "head": {
+      "sha": "878ce2a1fad54ca941d17fdcf2e1d924b148eb1f",
+      "error": null,
+      "files": [
+        "create_release.yml",
+        "deploy.yml",
+        "docker_push.yml",
+        "lint.yml",
+        "security.yml",
+        "test.yml",
+        "test_readme.yml"
+      ]
+    },
+    "paper": {
+      "sha": "37ef744e53b2951dacbbe441166782b43afdc01c",
+      "error": null,
+      "files": [
+        "create_release.yml",
+        "deploy.yml",
+        "docker_push.yml",
+        "lint.yml",
+        "security.yml",
+        "test.yml",
+        "test_readme.yml"
+      ]
+    }
+  },
+  "infinilabs/analysis-ik": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "6d2d70fd1a237cbf75cde254e8e4d6319b81266c",
+      "error": null,
+      "files": [
+        "test.yml"
+      ]
+    },
+    "paper": {
+      "sha": "5a04b42bc89d1476e6e6e68a51926e0d0e7c7bf3",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    }
+  },
+  "YunaiV/yudao-cloud": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "77dd74e65cbb913d7cd84e9d9e6cd3a9f0daff56",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    },
+    "paper": {
+      "sha": "f9fdca0d6dcb342cbd431b66f8e2251f34930bb9",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    }
+  },
+  "prestodb/presto": {
+    "analyzed_workflows": [
+      "docs.yml",
+      "kudu.yml",
+      "maven-checks.yml",
+      "product-tests-basic-environment.yml",
+      "product-tests-specific-environment.yml",
+      "spark-integration.yml",
+      "test-other-modules.yml",
+      "tests.yml"
+    ],
+    "head": {
+      "sha": "c6b9a8098eef7585097cec0f55f9624582de49bb",
+      "error": null,
+      "files": [
+        "arrow-flight-tests.yml",
+        "codenotify.yml",
+        "conventional-commit-check.yml",
+        "dependency-review.yml",
+        "docs.yml",
+        "hive-tests.yml",
+        "jdbc-connector-tests.yml",
+        "kudu.yml",
+        "maven-checks.yml",
+        "owasp-dependency-check.yml",
+        "owasp-nvd-cache.yml",
+        "presto-release-prepare.yml",
+        "presto-release-publish.yml",
+        "prestocpp-format-and-header-check.yml",
+        "prestocpp-linux-adapters-build.yml",
+        "prestocpp-linux-build-and-unit-test.yml",
+        "prestocpp-linux-build.yml",
+        "prestocpp-linux-container-tests.yml",
+        "prestocpp-macos-build.yml",
+        "product-tests-basic-environment.yml",
+        "product-tests-specific-environment.yml",
+        "release-notes-check.yml",
+        "singlestore-tests.yml",
+        "spark-integration.yml",
+        "test-other-modules.yml",
+        "tests.yml",
+        "web-ui-checks.yml"
+      ]
+    },
+    "paper": {
+      "sha": "f02bf22c5b202cebde459c07024b295877f54ca1",
+      "error": null,
+      "files": [
+        "cleanup.yml",
+        "codenotify.yml",
+        "docs.yml",
+        "hive-tests.yml",
+        "kudu.yml",
+        "maven-checks.yml",
+        "product-tests-basic-environment.yml",
+        "product-tests-specific-environment.yml",
+        "singlestore-tests.yml",
+        "spark-integration.yml",
+        "test-other-modules.yml",
+        "tests.yml",
+        "web-ui-checks.yml"
+      ]
+    }
+  },
+  "Konloch/bytecode-viewer": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "31430e0033fa220db566b5ef461256727ff6793b",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    },
+    "paper": {
+      "sha": "5f8fd42b98f13a9ca598e5248ffc8caea22495ab",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    }
+  },
+  "questdb/questdb": {
+    "analyzed_workflows": [
+      "pgwire_stable.yml"
+    ],
+    "head": {
+      "sha": "d3b877ccc9591d23121b4b62c41c9f959818d9f7",
+      "error": null,
+      "files": [
+        "gitleaks.yml",
+        "glibc_smoke_test.yml",
+        "parquet_compat.yml",
+        "pgwire_latest.yml",
+        "pgwire_stable.yml",
+        "pr_title.yml",
+        "pr_title_rules.yml",
+        "r_test.yml",
+        "rebuild_async_profiler.yml",
+        "rebuild_native_libs.yml",
+        "rebuild_rust.yml",
+        "rebuild_rust_test.yml",
+        "rebuild_win64svc.yml",
+        "release_website.yml",
+        "rust_license_check.yml"
+      ]
+    },
+    "paper": {
+      "sha": "82465630514a8314182a1d27822994c2b4f06705",
+      "error": null,
+      "files": [
+        "danger.yml",
+        "pgwire_latest.yml",
+        "pgwire_stable.yml",
+        "rebuild_native_libs.yml",
+        "rebuild_rust.yml",
+        "rebuild_rust_test.yml",
+        "release_website.yml"
+      ]
+    }
+  },
+  "eclipse-vertx/vert.x": {
+    "analyzed_workflows": [
+      "ci.yml"
+    ],
+    "head": {
+      "sha": "c206d7a70f942bf1e191e2dcc89118cb72edfecd",
+      "error": null,
+      "files": [
+        "ci-4.x.yml",
+        "ci-5.x-stable.yml",
+        "ci-5.x.yml",
+        "ci-matrix-5.x.yml",
+        "ci.yml",
+        "deploy.yml"
+      ]
+    },
+    "paper": {
+      "sha": "d49eb4caf16a50e619157d4343db872914b3bf7a",
+      "error": null,
+      "files": [
+        "ci-4.x.yml",
+        "ci-5.x.yml",
+        "ci.yml",
+        "deploy.yml"
+      ]
+    }
+  },
+  "apache/pulsar": {
+    "analyzed_workflows": [
+      "codeql.yaml"
+    ],
+    "head": {
+      "sha": "2b6becbd69926768869f4ffb3b5929b1c777c991",
+      "error": null,
+      "files": [
+        "ci-go-functions.yaml",
+        "ci-gradle-cache-update.yaml",
+        "ci-gradle-dependency-submission.yaml",
+        "ci-pulsarbot.yaml",
+        "ci-python-functions.yaml",
+        "ci-semantic-pull-request.yml",
+        "codeql.yaml",
+        "labeler.yml",
+        "pulsar-ci-flaky.yaml",
+        "pulsar-ci.yaml"
+      ]
+    },
+    "paper": {
+      "sha": "f196e2c2e168b9a7a9550f69555ccf6af6369f3c",
+      "error": null,
+      "files": [
+        "ci-documentbot.yml",
+        "ci-go-functions.yaml",
+        "ci-maven-cache-update.yaml",
+        "ci-owasp-dependency-check.yaml",
+        "ci-pulsarbot.yaml",
+        "ci-semantic-pull-request.yml",
+        "codeql.yaml",
+        "labeler.yml",
+        "pulsar-ci-flaky.yaml",
+        "pulsar-ci.yaml"
+      ]
+    }
+  },
+  "quarkusio/quarkus": {
+    "analyzed_workflows": [
+      "codeql-analysis.yml"
+    ],
+    "head": {
+      "sha": "2fc6e76849e70ca277e9dd853f4aa25613ea4b86",
+      "error": null,
+      "files": [
+        "ci-actions-incremental.yml",
+        "ci-merge-gate.yml",
+        "ci-sanity-check.yml",
+        "develocity-publish-build-scans.yml",
+        "doc-build.yml",
+        "native-it-selected-graalvm.yml",
+        "owasp-check.yml",
+        "podman-build.yml",
+        "populate-cache.yml",
+        "preview-teardown.yml",
+        "preview.yml",
+        "quarkus-github-bot-lint.yml",
+        "release-build.yml",
+        "reproducibility-checks-it.yml",
+        "reproducibility-checks.yml",
+        "sonarcloud.yml"
+      ]
+    },
+    "paper": {
+      "sha": "e7ae4ced03dbd48371ff734ff0db90789466fc25",
+      "error": null,
+      "files": [
+        "ci-actions-incremental.yml",
+        "ci-istio.yml",
+        "ci-kubernetes.yml",
+        "ci-sanity-check.yml",
+        "codeql-analysis.yml",
+        "deploy-snapshots.yml",
+        "develocity-publish-build-scans.yml",
+        "doc-build.yml",
+        "epicissues.yml",
+        "jdk-early-access-build.yml",
+        "native-it-selected-graalvm.yml",
+        "owasp-check.yml",
+        "podman-build.yml",
+        "preview-teardown.yml",
+        "preview.yml",
+        "quarkus-github-bot-lint.yml",
+        "release-build.yml",
+        "sonarcloud.yml",
+        "vale.yml"
+      ]
+    }
+  },
+  "apache/druid": {
+    "analyzed_workflows": [
+      "codeql.yml"
+    ],
+    "head": {
+      "sha": "1265b47c9a51252295a4aed42d95c459b00bf2a3",
+      "error": null,
+      "files": [
+        "backport.yml",
+        "ci.yml",
+        "codeql.yml",
+        "cron-job-its.yml",
+        "docker-tests.yml",
+        "labeler.yml",
+        "pr-checks.yml",
+        "pr-merged.yml",
+        "stale.yml",
+        "static-checks.yml",
+        "unit-and-integration-tests-unified.yml",
+        "worker.yml"
+      ]
+    },
+    "paper": {
+      "sha": "5fcf4205e4b1f17edccc4a37cf338ed5e3047ae1",
+      "error": null,
+      "files": [
+        "codeql.yml",
+        "cron-job-its.yml",
+        "distribution-checks.yml",
+        "labeler.yml",
+        "reusable-revised-its.yml",
+        "reusable-standard-its.yml",
+        "reusable-unit-tests.yml",
+        "revised-its.yml",
+        "stale.yml",
+        "standard-its.yml",
+        "static-checks.yml",
+        "unit-and-integration-tests-unified.yml",
+        "unit-tests.yml"
+      ]
+    }
+  },
+  "pinpoint-apm/pinpoint": {
+    "analyzed_workflows": [
+      "it-schedule.yml"
+    ],
+    "head": {
+      "sha": "236ef04fb86fdfc9b5f262971a6b3be8713228b1",
+      "error": null,
+      "files": [
+        "create-dockerfiles.yml",
+        "frontend-test.yml",
+        "homepage.yml",
+        "it-command.yml",
+        "it-schedule.yml",
+        "maven-central-deploy.yml",
+        "maven.yml",
+        "slash-command-dispatch.yml",
+        "upload-release-assets.yml",
+        "validate-commit.yml"
+      ]
+    },
+    "paper": {
+      "sha": "10e9c0b90a68f228099fea23e667afe9792db10a",
+      "error": null,
+      "files": [
+        "create-dockerfiles.yml",
+        "homepage.yml",
+        "it-command.yml",
+        "it-schedule.yml",
+        "maven-central-deploy.yml",
+        "maven.yml",
+        "slash-command-dispatch.yml"
+      ]
+    }
+  },
+  "apache/dolphinscheduler": {
+    "analyzed_workflows": [
+      "codeql.yaml",
+      "docs.yml",
+      "e2e-k8s.yml"
+    ],
+    "head": {
+      "sha": "c63ecc9bf68919547fe69b5266e4040b113028e8",
+      "error": null,
+      "files": [
+        "api-test.yml",
+        "backend.yml",
+        "codeql.yaml",
+        "docs.yml",
+        "e2e-k8s.yml",
+        "e2e.yml",
+        "frontend.yml",
+        "issue-robot.yml",
+        "mergeable.yml",
+        "owasp-dependency-check.yaml",
+        "publish-docker.yaml",
+        "publish-helm-chart.yaml",
+        "pull-request-target-robot.yml",
+        "stale.yml",
+        "unit-test.yml"
+      ]
+    },
+    "paper": {
+      "sha": "071994933b05850e7dd5f7bccbf45d867640e244",
+      "error": null,
+      "files": [
+        "api-test.yml",
+        "backend.yml",
+        "codeql.yaml",
+        "docs.yml",
+        "e2e-k8s.yml",
+        "e2e.yml",
+        "frontend.yml",
+        "issue-robot.yml",
+        "mergeable.yml",
+        "owasp-dependency-check.yaml",
+        "publish-docker.yaml",
+        "publish-helm-chart.yaml",
+        "publish-nexus.yaml",
+        "pull-request-target-robot.yml",
+        "stale.yml",
+        "unit-test.yml"
+      ]
+    }
+  },
+  "codecentric/spring-boot-admin": {
+    "analyzed_workflows": [
+      "build-feature.yml"
+    ],
+    "head": {
+      "sha": "2ac2e2d63ca7555bb1188526361d4c5f1f66a940",
+      "error": null,
+      "files": [
+        "build-feature.yml",
+        "build-main.yml",
+        "deploy-documentation.yml",
+        "issue-metrics.yml",
+        "release-to-maven-central.yml",
+        "vulnerability-scan.yml"
+      ]
+    },
+    "paper": {
+      "sha": "ea1321463af5032b6d4474e5e73c65537c5b9f54",
+      "error": null,
+      "files": [
+        "build-feature.yml",
+        "build-main.yml",
+        "release-to-maven-central.yml",
+        "vulnerability-scan.yml"
+      ]
+    }
+  },
+  "pagehelper/Mybatis-PageHelper": {
+    "analyzed_workflows": [
+      "pull-request.yml"
+    ],
+    "head": {
+      "sha": "006b1cae962dce7d65717f30b7fc4fd120eaa761",
+      "error": null,
+      "files": [
+        "pull-request.yml",
+        "release.yml"
+      ]
+    },
+    "paper": {
+      "sha": "576f1eefbb39e840051ff41a0b6a3fa86bba34a5",
+      "error": null,
+      "files": [
+        "pull-request.yml",
+        "release.yml"
+      ]
+    }
+  },
+  "apache/zookeeper": {
+    "analyzed_workflows": [
+      "ci.yaml",
+      "e2e.yaml"
+    ],
+    "head": {
+      "sha": "f67ab635d565440e7655826bc83fa64f828954cd",
+      "error": null,
+      "files": [
+        "ci.yaml",
+        "e2e.yaml",
+        "manual.yaml",
+        "scripts.yaml",
+        "website.yaml"
+      ]
+    },
+    "paper": {
+      "sha": "9d522642a9c78dafb7084952f9807beb205478c3",
+      "error": null,
+      "files": [
+        "ci.yaml",
+        "e2e.yaml",
+        "manual.yaml"
+      ]
+    }
+  },
+  "alibaba/COLA": {
+    "analyzed_workflows": [
+      "ci.yaml"
+    ],
+    "head": {
+      "sha": "352e1a867538d9cd40e1b11e4028fa652fc97557",
+      "error": null,
+      "files": [
+        "ci.yaml",
+        "ci_by_multiply_java_versions.yaml"
+      ]
+    },
+    "paper": {
+      "sha": "268463905d81ea27eb39e47362e7a972385c72fd",
+      "error": null,
+      "files": [
+        "ci.yaml",
+        "ci_by_multiply_java_versions.yaml"
+      ]
+    }
+  },
+  "redis/jedis": {
+    "analyzed_workflows": [
+      "doctests.yml"
+    ],
+    "head": {
+      "sha": "475871e5e03bf85b9b6394d1c7ed2d044eadd5de",
+      "error": null,
+      "files": [
+        "benchmarks.yml",
+        "codeql-analysis.yml",
+        "docs.yml",
+        "doctests.yml",
+        "format_check.yml",
+        "integration.yml",
+        "nightly-metrics.yaml",
+        "release-drafter.yml",
+        "snapshot.yml",
+        "spring-data-redis-integration.yml",
+        "stale-issues.yml",
+        "test-on-docker.yml",
+        "unit-tests.yml",
+        "version-and-release.yml"
+      ]
+    },
+    "paper": {
+      "sha": "846fa0aede9d2d3dbf894ee6b75a8870358b32d6",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "docs.yml",
+        "doctests.yml",
+        "integration.yml",
+        "release-drafter.yml",
+        "snapshot.yml",
+        "spellcheck.yml",
+        "stale-issues.yml",
+        "version-and-release.yml"
+      ]
+    }
+  },
+  "cryptomator/cryptomator": {
+    "analyzed_workflows": [
+      "pullrequest.yml"
+    ],
+    "head": {
+      "sha": "80da593723202f6244813cf396a671005fae88f1",
+      "error": null,
+      "files": [
+        "appimage.yml",
+        "aur-bin.yml",
+        "av-whitelist.yml",
+        "build.yml",
+        "check-jdk-updates.yml",
+        "debian.yml",
+        "dependency-check.yml",
+        "dl-stats.yml",
+        "draft-release.yml",
+        "error-db.yml",
+        "get-version.yml",
+        "linux-flatpak.yml",
+        "linux-makepkg.yml",
+        "mac-dmg-x64.yml",
+        "mac-dmg.yml",
+        "no-response.yml",
+        "post-publish.yml",
+        "pullrequest.yml",
+        "release-check.yml",
+        "stale.yml",
+        "win-exe.yml",
+        "winget.yml"
+      ]
+    },
+    "paper": {
+      "sha": "ea007f3cfe98eefe18a40358be2d3078ceabd837",
+      "error": null,
+      "files": [
+        "appimage.yml",
+        "av-whitelist.yml",
+        "build.yml",
+        "check-jdk-updates.yml",
+        "debian.yml",
+        "dependency-check.yml",
+        "dl-stats.yml",
+        "error-db.yml",
+        "flathub.yml",
+        "get-version.yml",
+        "mac-dmg.yml",
+        "no-response.yml",
+        "post-publish.yml",
+        "pullrequest.yml",
+        "release-check.yml",
+        "stale.yml",
+        "win-exe.yml",
+        "winget.yml"
+      ]
+    }
+  },
+  "metersphere/metersphere": {
+    "analyzed_workflows": [
+      "frontend-build.yml"
+    ],
+    "head": {
+      "sha": "53df526e2fb08bdf933662acf7eb5ae0f1bd5e3a",
+      "error": null,
+      "files": [
+        "add-labels-for-pr.yml",
+        "codecov.yml",
+        "create-pr-from-push.yml",
+        "frontend-build.yml",
+        "issue-close-require.yml",
+        "issue-close.yml",
+        "issue-comment.yml",
+        "issue-open.yml",
+        "issue-recent-alert.yml",
+        "issue-untimely-alert.yml",
+        "llm-code-review.yml",
+        "sonar.yml",
+        "sync-to-gitee.yml"
+      ]
+    },
+    "paper": {
+      "sha": "02ea597a5ba9046e1b46167aa9c016851fc860f2",
+      "error": null,
+      "files": [
+        "add-labels-for-pr.yml",
+        "codecov.yml",
+        "create-pr-from-push.yml",
+        "frontend-build.yml",
+        "issue-close-require.yml",
+        "issue-close.yml",
+        "issue-comment.yml",
+        "issue-open.yml",
+        "issue-recent-alert.yml",
+        "issue-untimely-alert.yml",
+        "sonar.yml",
+        "sync-to-gitee.yml"
+      ]
+    }
+  },
+  "jhy/jsoup": {
+    "analyzed_workflows": [
+      "build.yml"
+    ],
+    "head": {
+      "sha": "088614f4a1454232a1f03c63b7f80742f1f2a854",
+      "error": null,
+      "files": [
+        "build.yml",
+        "cifuzz.yml",
+        "codeql.yml"
+      ]
+    },
+    "paper": {
+      "sha": "b6bd4b455c54fa44c68df961b9d5c21a2bb0ae73",
+      "error": null,
+      "files": [
+        "build.yml",
+        "cifuzz.yml",
+        "codeql.yml"
+      ]
+    }
+  },
+  "OpenRefine/OpenRefine": {
+    "analyzed_workflows": [
+      "pull_request_server.yml"
+    ],
+    "head": {
+      "sha": "c8d04c3c7f03f3fe321954134c468c18ae21d13e",
+      "error": null,
+      "files": [
+        "codeql_java.yml",
+        "codeql_javascript.yml",
+        "label_transfer.yml",
+        "pull_request_e2e.yml",
+        "pull_request_server.yml",
+        "snapshot_release.yml",
+        "unassign_issues.yml"
+      ]
+    },
+    "paper": {
+      "sha": "468603b5a070af6e25e02a3cdecf025527a8a544",
+      "error": null,
+      "files": [
+        "codeql_java.yml",
+        "codeql_javascript.yml",
+        "label_transfer.yml",
+        "pull_request_e2e.yml",
+        "pull_request_server.yml",
+        "snapshot_release.yml",
+        "unassign_issues.yml"
+      ]
+    }
+  },
+  "kekingcn/kkFileView": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "cd127fd8559970a28cd4d513f68e41b1bfdc966a",
+      "error": null,
+      "files": [
+        "auto-close-old-issues.yml",
+        "copilot-issue-auto-comment.yml",
+        "master-auto-deploy.yml",
+        "maven.yml",
+        "nightly-e2e.yml",
+        "pr-e2e-mvp.yml"
+      ]
+    },
+    "paper": {
+      "sha": "cc6365965035b298e8beaa148645134f09c2dfb2",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    }
+  },
+  "debezium/debezium": {
+    "analyzed_workflows": [
+      "debezium-workflow-pr.yml"
+    ],
+    "head": {
+      "sha": "15bcfe1892b435a561eac9851fd1dd622617079f",
+      "error": null,
+      "files": [
+        "apicurio-check-workflow.yml",
+        "commit-signoff-check.yml",
+        "connector-informix-workflow.yml",
+        "connector-jdbc-workflow.yml",
+        "connector-mariadb-workflow.yml",
+        "connector-mongodb-workflow.yml",
+        "connector-mysql-workflow.yml",
+        "connector-oracle-workflow.yml",
+        "connector-postgresql-workflow.yml",
+        "contributor-check.yml",
+        "debezium-workflow-pr.yml",
+        "debezium-workflow-push.yml",
+        "deploy-snapshots.yml",
+        "doc-changes-workflow.yml",
+        "file-changes-workflow.yml",
+        "jdk-outreach-workflow.yml",
+        "missing-commits-by-issue-key.yml",
+        "nightly-build-size-check.yml",
+        "nightly-container-images.yml",
+        "octocat-commits-check.yml",
+        "platform-conductor-workflow.yml",
+        "pr-notification.yml",
+        "release-container-images.yml",
+        "release-contributors-list.yml",
+        "sanity-check.yml",
+        "tool-images.yml",
+        "website-build-workflow.yml"
+      ]
+    },
+    "paper": {
+      "sha": "7e95cbd905cc694b684135b9ce8d6f8ab2dbbc77",
+      "error": null,
+      "files": [
+        "contributor-check.yml",
+        "debezium-workflow-pr.yml",
+        "debezium-workflow-push.yml",
+        "doc-changes-workflow.yml",
+        "jdk-outreach-workflow.yml",
+        "missing-commits-by-issue-key.yml",
+        "octocat-commits-check.yml",
+        "release-contributors-list.yml",
+        "sanity-check.yml",
+        "website-build-workflow.yml"
+      ]
+    }
+  },
+  "TooTallNate/Java-WebSocket": {
+    "analyzed_workflows": [
+      "checkstyle.yml"
+    ],
+    "head": {
+      "sha": "afeacbf8c0f6f6a761c9d9daed8c813dd3b8ed7d",
+      "error": null,
+      "files": [
+        "checkstyle.yml",
+        "ci.yml",
+        "sonar.yml"
+      ]
+    },
+    "paper": {
+      "sha": "dfca00b6ea25e0628aecdd014125c4b8c04599e5",
+      "error": null,
+      "files": [
+        "checkstyle.yml",
+        "ci.yml",
+        "sonar.yml"
+      ]
+    }
+  },
+  "clojure/clojure": {
+    "analyzed_workflows": [
+      "test.yml"
+    ],
+    "head": {
+      "sha": "a10f778f31fbb5b12a77f5d942f705d63ef5c9de",
+      "error": null,
+      "files": [
+        "doc-build.yml",
+        "release.yml",
+        "snapshot.yml",
+        "test.yml"
+      ]
+    },
+    "paper": {
+      "sha": "13a2f67b91ab81cd109ea3152fce1ae76d212453",
+      "error": null,
+      "files": [
+        "doc-build.yml",
+        "release.yml",
+        "snapshot.yml",
+        "test.yml"
+      ]
+    }
+  },
+  "trinodb/trino": {
+    "analyzed_workflows": [
+      "docs.yml"
+    ],
+    "head": {
+      "sha": "07fe2c468e391dd178ce20f0797fe239eb03951f",
+      "error": null,
+      "files": [
+        "cancel-merge-queue-workflow.yml",
+        "cancel-stale-merge-queue.yml",
+        "ci.yml",
+        "cla.yml",
+        "cleanup.yml",
+        "labeler.yml",
+        "milestone.yml",
+        "ok-to-test.yml",
+        "pr-description-check.yml",
+        "stale.yml",
+        "upload-test-results.yml"
+      ]
+    },
+    "paper": {
+      "sha": "b58e505f50dce8c5c9f5e9e4201bc18127fb3247",
+      "error": null,
+      "files": [
+        "ci.yml",
+        "cleanup.yml",
+        "docs.yml",
+        "labeler.yml",
+        "milestone.yml",
+        "ok-to-test.yml",
+        "stale.yml",
+        "upload-test-results.yml"
+      ]
+    }
+  },
+  "signalapp/Signal-Server": {
+    "analyzed_workflows": [
+      "test.yml"
+    ],
+    "head": {
+      "sha": "dec95043fafa6c85219e331a81cd351c752e444c",
+      "error": null,
+      "files": [
+        "documentation.yml",
+        "integration-tests.yml",
+        "test.yml"
+      ]
+    },
+    "paper": {
+      "sha": "c1e870d8f5a19aa490861f464702a703d9963759",
+      "error": null,
+      "files": [
+        "documentation.yml",
+        "integration-tests.yml",
+        "test.yml"
+      ]
+    }
+  },
+  "apache/shenyu": {
+    "analyzed_workflows": [
+      "integrated-test.yml",
+      "k8s-examples-http.yml"
+    ],
+    "head": {
+      "sha": "7925422b181fbe06706e9ad611c533351d2a03b3",
+      "error": null,
+      "files": [
+        "auto-notify.yml",
+        "ci.yml",
+        "codeql-analysis.yml",
+        "docker-publish-dockerhub.yml",
+        "docker-publish.yml",
+        "e2e-k8s.yml",
+        "integrated-test-k8s-gateway-api.yml",
+        "integrated-test-k8s-ingress.yml",
+        "integrated-test.yml",
+        "issue-label.yml",
+        "k8s-examples-http.yml"
+      ]
+    },
+    "paper": {
+      "sha": "134b48df1a047705e0058e5b798393d08cffb068",
+      "error": null,
+      "files": [
+        "ci.yml",
+        "codeql-analysis.yml",
+        "docker-publish-dockerhub.yml",
+        "docker-publish.yml",
+        "e2e-k8s.yml",
+        "integrated-test-k8s-ingress.yml",
+        "integrated-test.yml",
+        "k8s-examples-http.yml"
+      ]
+    }
+  },
+  "checkstyle/checkstyle": {
+    "analyzed_workflows": [
+      "error-prone.yml"
+    ],
+    "head": {
+      "sha": "4a68b6ffc229fe8a1f11ab72ca6520bb62fcfbd5",
+      "error": null,
+      "files": [
+        "actionlint.yml",
+        "antlr-report.yml",
+        "bump-license-year.yml",
+        "bump-version-and-update-milestone.yml",
+        "check-performance-regression.yml",
+        "check-pr-description.yml",
+        "checker-framework.yml",
+        "codeql-analysis.yml",
+        "diff-report.yml",
+        "error-prone.yml",
+        "google-java-format.yml",
+        "linkcheck-on-comment.yml",
+        "no-error-workflow.yml",
+        "no-exception-workflow.yml",
+        "no-old-refs.yml",
+        "pitest.yml",
+        "qodana.yml",
+        "regression-report.yml",
+        "release-copy-github-io-to-sourceforge.yml",
+        "release-maven-perform.yml",
+        "release-maven-prepare.yml",
+        "release-new-milestone-and-issues-in-other-repos.yml",
+        "release-publish-releasenotes-twitter.yml",
+        "release-update-github-io.yml",
+        "release-update-github-page.yml",
+        "release-update-xdoc-with-releasenotes.yml",
+        "release-upload-all-jar.yml",
+        "release.yml",
+        "releasenotes-gen.yml",
+        "remainder-bot.yml",
+        "run-checkstyle-ast-print.yml",
+        "run-checkstyle.yml",
+        "run-link-check.yml",
+        "set-milestone-on-referenced-issue.yml",
+        "shellcheck.yml",
+        "site-latest.yml",
+        "site.yml",
+        "verify-no-exception-configs.yml",
+        "windows-verify.yml"
+      ]
+    },
+    "paper": {
+      "sha": "836aa1aa5733ad15d63057d303e3a1602f31826a",
+      "error": null,
+      "files": [
+        "actionlint.yml",
+        "bump-license-year.yml",
+        "bump-version-and-update-milestone.yml",
+        "check-performance-regression.yml",
+        "check-pr-description.yml",
+        "checker-framework.yml",
+        "codeql-analysis.yml",
+        "diff-report.yml",
+        "error-prone.yml",
+        "google-java-format.yml",
+        "no-exception-workflow.yml",
+        "no-old-refs.yml",
+        "pitest.yml",
+        "regression-report.yml",
+        "release-copy-github-io-to-sourceforge.yml",
+        "release-maven-perform.yml",
+        "release-maven-prepare.yml",
+        "release-new-milestone-and-issues-in-other-repos.yml",
+        "release-publish-releasenotes-twitter.yml",
+        "release-update-github-io.yml",
+        "release-update-github-page.yml",
+        "release-update-xdoc-with-releasenotes.yml",
+        "release-upload-all-jar.yml",
+        "release.yml",
+        "releasenotes-gen.yml",
+        "run-link-check.yml",
+        "set-milestone-on-referenced-issue.yml",
+        "shellcheck.yml",
+        "site.yml"
+      ]
+    }
+  },
+  "flyway/flyway": {
+    "analyzed_workflows": [
+      "build-release.yml"
+    ],
+    "head": {
+      "sha": "a549f5dd1ac80fbe7bc8103dfcd2d556c606c39c",
+      "error": null,
+      "files": [
+        "build-pr.yml",
+        "build-release.yml",
+        "jekyll-gh-pages.yml"
+      ]
+    },
+    "paper": {
+      "sha": "2cd387f8c85a6986aead7012e41e365a8b276ab2",
+      "error": null,
+      "files": [
+        "build-pr.yml",
+        "build-release.yml"
+      ]
+    }
+  },
+  "apache/shardingsphere-elasticjob": {
+    "analyzed_workflows": [
+      "maven.yml",
+      "required-check.yml"
+    ],
+    "head": {
+      "sha": "5a238ecd481a486afa3837d26239a395573576d0",
+      "error": null,
+      "files": [
+        "graalvm.yml",
+        "maven.yml",
+        "required-check.yml"
+      ]
+    },
+    "paper": {
+      "sha": "a5478eafb539a30c78feb2f94b690ddef48fefd4",
+      "error": null,
+      "files": [
+        "graalvm.yml",
+        "maven.yml",
+        "required-check.yml"
+      ]
+    }
+  },
+  "karatelabs/karate": {
+    "analyzed_workflows": [
+      "jdk-compat.yml"
+    ],
+    "head": {
+      "sha": "21b986c395ef5132a569aa1105c8ab424a44ec11",
+      "error": null,
+      "files": [
+        "cicd.yml",
+        "codeql.yml",
+        "cve.yml",
+        "jdk-compat.yml",
+        "maven-release.yml",
+        "openssf-scorecard.yml",
+        "test262.yml"
+      ]
+    },
+    "paper": {
+      "sha": "53f1ed9f318e31cba84fb90d6f9af57e822dca6e",
+      "error": null,
+      "files": [
+        "codeql.yml",
+        "delete-workflow-runs.yml",
+        "jdk-compat.yml",
+        "maven-build.yml",
+        "maven-release.yml"
+      ]
+    }
+  },
+  "flowable/flowable-engine": {
+    "analyzed_workflows": [
+      "java-ea.yml",
+      "main.yml",
+      "mariadb.yml",
+      "mysql.yml",
+      "postgres.yml",
+      "windows.yml"
+    ],
+    "head": {
+      "sha": "74fdb349c134e96e1f10592020ccca6e2e4b85f0",
+      "error": null,
+      "files": [
+        "db2.yml",
+        "distro-check.yml",
+        "docker-flowable-base-image-java.yml",
+        "docker-release-with-latest.yml",
+        "docker-release.yml",
+        "flowable5.yml",
+        "graal-native.yml",
+        "helm-release.yml",
+        "java-ea.yml",
+        "main.yml",
+        "mariadb.yml",
+        "mysql.yml",
+        "oracle.yml",
+        "postgres.yml",
+        "sql-server.yml",
+        "windows.yml"
+      ]
+    },
+    "paper": {
+      "sha": "baba466ca843797e5a136e39969fe896c16b91ec",
+      "error": null,
+      "files": [
+        "db2.yml",
+        "docker-release-with-latest.yml",
+        "docker-release.yml",
+        "flowable5.yml",
+        "graal-native.yml",
+        "helm-release.yml",
+        "java-ea.yml",
+        "main.yml",
+        "mariadb.yml",
+        "mysql.yml",
+        "oracle.yml",
+        "postgres.yml",
+        "sql-server.yml",
+        "windows.yml"
+      ]
+    }
+  },
+  "alibaba/transmittable-thread-local": {
+    "analyzed_workflows": [
+      "ci.yaml"
+    ],
+    "head": {
+      "sha": "01639f2b93c91c79be10655edecd5c64dfc31cd2",
+      "error": null,
+      "files": [
+        "ci.yaml",
+        "strong_ci.yaml"
+      ]
+    },
+    "paper": {
+      "sha": "f2fab450c3bf00e29860cdbd3ab8025012b71c43",
+      "error": null,
+      "files": [
+        "ci.yaml",
+        "strong_ci.yaml"
+      ]
+    }
+  },
+  "swagger-api/swagger-core": {
+    "analyzed_workflows": [
+      "codeql-analysis.yml",
+      "maven-pulls.yml",
+      "maven-v1-pulls.yml"
+    ],
+    "head": {
+      "sha": "04558121268f1228d88c83291723cee416a990e4",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "dependency-review.yml",
+        "maven-pulls.yml",
+        "maven-v1-pulls.yml",
+        "maven-v1.yml",
+        "maven.yml",
+        "prepare-release.yml",
+        "release.yml"
+      ]
+    },
+    "paper": {
+      "sha": "dc8785efc71c243eebf1ad57dd612cc75112d351",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "dependency-review.yml",
+        "maven-pulls.yml",
+        "maven-v1-pulls.yml",
+        "maven-v1.yml",
+        "maven.yml",
+        "prepare-release.yml",
+        "release.yml"
+      ]
+    }
+  },
+  "abel533/Mapper": {
+    "analyzed_workflows": [
+      "test.yml"
+    ],
+    "head": {
+      "sha": "1978fac567760399eb5dbadd46291be920aa13eb",
+      "error": null,
+      "files": [
+        "release.yml",
+        "test.yml"
+      ]
+    },
+    "paper": {
+      "sha": "1936590a55910475f85e246e1e453231e60227c1",
+      "error": null,
+      "files": [
+        "release.yml",
+        "test.yml"
+      ]
+    }
+  },
+  "rest-assured/rest-assured": {
+    "analyzed_workflows": [
+      "ci.yml"
+    ],
+    "head": {
+      "sha": "75ef4d541ab126fa0cfb05fdb672bfdf5b8efb20",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    },
+    "paper": {
+      "sha": "e1d96781fe67938078c906cda0a20665033a7c04",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    }
+  },
+  "apache/zeppelin": {
+    "analyzed_workflows": [
+      "core.yml",
+      "frontend.yml",
+      "quick.yml"
+    ],
+    "head": {
+      "sha": "74b51b28d6f3c1c170f44822beadba299df9a959",
+      "error": null,
+      "files": [
+        "core.yml",
+        "docs.yml",
+        "frontend.yml",
+        "npm-audit-remediation.yml",
+        "quick.yml",
+        "stale.yml"
+      ]
+    },
+    "paper": {
+      "sha": "ea0802d24b5fd46a6113481cad3a5f53cecec879",
+      "error": null,
+      "files": [
+        "core.yml",
+        "frontend.yml",
+        "quick.yml"
+      ]
+    }
+  },
+  "jeremylong/DependencyCheck": {
+    "analyzed_workflows": [
+      "codeql-analysis.yml"
+    ],
+    "head": {
+      "sha": "58b4ddccbdafcb7347979c6551c4f56049126dcc",
+      "error": null,
+      "files": [
+        "build.yml",
+        "codeql-analysis.yml",
+        "coverity.yml",
+        "false-positive-approvals.yml",
+        "false-positive-cleanup.yml",
+        "false-positive-ops.yml",
+        "lint-pr.yml",
+        "lock.yml",
+        "pull_requests.yml",
+        "purge-cache.yml",
+        "release.yml"
+      ]
+    },
+    "paper": {
+      "sha": "d816cea08defa349fd8741b4220f20549bb9d075",
+      "error": null,
+      "files": [
+        "build.yml",
+        "codeql-analysis.yml",
+        "coverity.yml",
+        "false-positive-approvals.yml",
+        "false-positive-cleanup.yml",
+        "false-positive-ops.yml",
+        "lint-pr.yml",
+        "pull_requests.yml",
+        "purge-cache.yml",
+        "release.yml"
+      ]
+    }
+  },
+  "AsyncHttpClient/async-http-client": {
+    "analyzed_workflows": [
+      "builds.yml",
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "2c133587587c2f8fc902631cebb44c33a5037745",
+      "error": null,
+      "files": [
+        "builds.yml",
+        "maven.yml",
+        "release.yml"
+      ]
+    },
+    "paper": {
+      "sha": "3f6d4ac2659fc3e92d8a0f527f54799b2f6bcee8",
+      "error": null,
+      "files": [
+        "builds.yml",
+        "maven.yml",
+        "release.yml"
+      ]
+    }
+  },
+  "joelittlejohn/jsonschema2pojo": {
+    "analyzed_workflows": [
+      "android-ci.yml",
+      "ci.yml"
+    ],
+    "head": {
+      "sha": "1c6b7664e453c62265c5e60a630f52f1fd47452a",
+      "error": null,
+      "files": [
+        "android-ci.yml",
+        "ci.yml",
+        "gradle-wrapper-validation.yml"
+      ]
+    },
+    "paper": {
+      "sha": "50b2fcad36391a4a17113ddfa93691645c79fa6a",
+      "error": null,
+      "files": [
+        "android-ci.yml",
+        "ci.yml",
+        "combine-prs.yml",
+        "gradle-wrapper-validation.yml"
+      ]
+    }
+  },
+  "gunnarmorling/1brc": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "db064194be375edc02d6dbcd21268ad40f7e2869",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    },
+    "paper": {
+      "sha": "db064194be375edc02d6dbcd21268ad40f7e2869",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    }
+  },
+  "apache/incubator-kie-drools": {
+    "analyzed_workflows": [
+      "pr-drools-docs.yml"
+    ],
+    "head": {
+      "sha": "f9893c7e6f7d6ac590b5e64e5b4f6b0b2b785453",
+      "error": null,
+      "files": [
+        "ci-tests.yaml",
+        "ci.yaml",
+        "ci_check_license_headers.yaml",
+        "dev-tests.yaml",
+        "issues.yml",
+        "pr-downstream.yml",
+        "split-package-detection.yml"
+      ]
+    },
+    "paper": {
+      "sha": "f92233f6524003b77d8c0b5f961e571675c8f1ec",
+      "error": null,
+      "files": [
+        "issues.yml",
+        "pr-backporting.yml",
+        "pr-downstream.yml",
+        "pr-jenkins.yml",
+        "pr-kogito-runtimes.yml"
+      ]
+    }
+  },
+  "changmingxie/tcc-transaction": {
+    "analyzed_workflows": [
+      "release.yml"
+    ],
+    "head": {
+      "sha": "874cb9105601f0a142f6c428c8fdc4cead851049",
+      "error": null,
+      "files": [
+        "release.yml"
+      ]
+    },
+    "paper": {
+      "sha": "17d619b51c522c260a20fde1168de4c8f73b7798",
+      "error": null,
+      "files": [
+        "release.yml"
+      ]
+    }
+  },
+  "jetlinks/jetlinks-community": {
+    "analyzed_workflows": [
+      "pull_request.yml"
+    ],
+    "head": {
+      "sha": "d81b571db19658d974f5ce652dd82d904cabf485",
+      "error": null,
+      "files": [
+        "maven.yml",
+        "maven_build_2.1x.yml",
+        "pull_request.yml",
+        "pull_request_2.1x.yml"
+      ]
+    },
+    "paper": {
+      "sha": "b5944c6d3a213c17e283a9be3e6364533521d9db",
+      "error": null,
+      "files": [
+        "maven.yml",
+        "pull_request.yml"
+      ]
+    }
+  },
+  "Nepxion/Discovery": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "2a5a8e949846a8b5ea7cdf995d2116cd3c7e40e5",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    },
+    "paper": {
+      "sha": "b6e08a98bc1bdc32a9f7b2919d1f27768a857b53",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    }
+  },
+  "apache/camel": {
+    "analyzed_workflows": [
+      "alternative-os-build-main.yml"
+    ],
+    "head": {
+      "sha": "51cfc77abea19e1a2cba340da5627c2b92766daa",
+      "error": null,
+      "files": [
+        "alternative-os-build-main.yml",
+        "camel-launcher-native-exe.yml",
+        "check-container-versions.yml",
+        "dep-check.yml",
+        "depsreview.yaml",
+        "generate-sbom.yml",
+        "main-build.yml",
+        "package-native-validation.yml",
+        "pr-build-main.yml",
+        "pr-ci-scripts-validation.yml",
+        "pr-cleanup-branches.yml",
+        "pr-commenter.yml",
+        "pr-doc-validation.yml",
+        "pr-id.yml",
+        "pr-labeler.yml",
+        "pr-manual-component-test.yml",
+        "pr-test-commenter.yml",
+        "pr-update-branch.yml",
+        "security-scan.yml",
+        "sonar-build.yml",
+        "sonar-scan.yml"
+      ]
+    },
+    "paper": {
+      "sha": "c5d13eb711b9a8ce321be103dc6a78054c5b1864",
+      "error": null,
+      "files": [
+        "alternative-os-build-main.yml",
+        "component-pr.yaml",
+        "depsreview.yaml",
+        "generate-sbom-main.yml",
+        "generic-pr.yaml",
+        "pr-build-camel-3.yml",
+        "pr-build-camel-40x.yml",
+        "pr-build-main.yml",
+        "pr-comment.yml"
+      ]
+    }
+  },
+  "javaparser/javaparser": {
+    "analyzed_workflows": [
+      "formatting_check.yml",
+      "maven_tests.yml"
+    ],
+    "head": {
+      "sha": "feafa8ed217352bcee782227940e85bd92ab4ed3",
+      "error": null,
+      "files": [
+        "create_github_release.yml",
+        "formatting_check.yml",
+        "maven_tests.yml",
+        "prepare_release_changelog.yml"
+      ]
+    },
+    "paper": {
+      "sha": "d9f23df8f9e0adefa1bb5b1b13ce68abb049e448",
+      "error": null,
+      "files": [
+        "create_github_release.yml",
+        "formatting_check.yml",
+        "maven_tests.yml",
+        "prepare_release_changelog.yml"
+      ]
+    }
+  },
+  "socketio/socket.io-client-java": {
+    "analyzed_workflows": [
+      "ci.yml"
+    ],
+    "head": {
+      "sha": "eb438de0f7038a075db4c7eff53fd0e7f13116ce",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    },
+    "paper": {
+      "sha": "6ea9c15a34bc2cf2aef0b85f77d949853c88231a",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    }
+  },
+  "JanusGraph/janusgraph": {
+    "analyzed_workflows": [
+      "ci-backend-scylla-dummy.yml",
+      "ci-release.yml"
+    ],
+    "head": {
+      "sha": "50d8946e3b965a362b5e4798506505828fdb399a",
+      "error": null,
+      "files": [
+        "backport.yml",
+        "ci-backend-cql-dummy.yml",
+        "ci-backend-cql.yml",
+        "ci-backend-hbase-dummy.yml",
+        "ci-backend-hbase.yml",
+        "ci-backend-scylla-dummy.yml",
+        "ci-backend-scylla.yml",
+        "ci-benchmark.yml",
+        "ci-cdc-dummy.yml",
+        "ci-cdc.yml",
+        "ci-core-dummy.yml",
+        "ci-core.yml",
+        "ci-docs.yml",
+        "ci-index-es-dummy.yml",
+        "ci-index-es.yml",
+        "ci-index-solr-dummy.yml",
+        "ci-index-solr.yml",
+        "ci-publish-commit.yml",
+        "ci-publish-official.yml",
+        "ci-release-dummy.yml",
+        "ci-release.yml",
+        "docker-release-tags.yml",
+        "lint-proto.yml"
+      ]
+    },
+    "paper": {
+      "sha": "0cb87d3570222675c6d7f521014ba5f275571519",
+      "error": null,
+      "files": [
+        "backport.yml",
+        "ci-backend-cql-dummy.yml",
+        "ci-backend-cql.yml",
+        "ci-backend-hbase-dummy.yml",
+        "ci-backend-hbase.yml",
+        "ci-backend-scylla-dummy.yml",
+        "ci-backend-scylla.yml",
+        "ci-benchmark.yml",
+        "ci-core-dummy.yml",
+        "ci-core.yml",
+        "ci-docs.yml",
+        "ci-index-es-dummy.yml",
+        "ci-index-es.yml",
+        "ci-index-solr-dummy.yml",
+        "ci-index-solr.yml",
+        "ci-publish-commit.yml",
+        "ci-publish-official.yml",
+        "ci-release-dummy.yml",
+        "ci-release.yml",
+        "docker-release-tags.yml",
+        "lint-proto.yml"
+      ]
+    }
+  },
+  "graphhopper/graphhopper": {
+    "analyzed_workflows": [
+      "build.yml"
+    ],
+    "head": {
+      "sha": "764b09e8023fe6f4329dbd21fbffeb5e0c301bb4",
+      "error": null,
+      "files": [
+        "build.yml",
+        "publish-github-packages.yml",
+        "publish-maven-central.yml",
+        "remove-old-artifacts.yml",
+        "trigger-benchmarks.yml"
+      ]
+    },
+    "paper": {
+      "sha": "89fa39109b1590805d44a38a0bd570ac70822d57",
+      "error": null,
+      "files": [
+        "build.yml",
+        "publish-github-packages.yml",
+        "publish-maven-central.yml",
+        "remove-old-artifacts.yml",
+        "trigger-benchmarks.yml"
+      ]
+    }
+  },
+  "citerus/dddsample-core": {
+    "analyzed_workflows": [
+      "pipeline.yml"
+    ],
+    "head": {
+      "sha": "d8b896254ed4e18ba8117dcd5bf9a54708bdeaaf",
+      "error": null,
+      "files": [
+        "pipeline.yml"
+      ]
+    },
+    "paper": {
+      "sha": "6bc3e6e72755a4e415316dd2493436bc7997bf66",
+      "error": null,
+      "files": [
+        "pipeline.yml"
+      ]
+    }
+  },
+  "spring-cloud/spring-cloud-netflix": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "34040d9f8fcb161ae633aa555abc623a269e5d52",
+      "error": null,
+      "files": [
+        "ci.yaml",
+        "deploy-docs.yml",
+        "pr.yml",
+        "release-train-build.yml",
+        "release-train-join.yml",
+        "release-train-leave.yml",
+        "release-train-ready.yml",
+        "release-train-retry.yml",
+        "release-train-test.yml"
+      ]
+    },
+    "paper": {
+      "sha": "6b68d64013f4adc7ce61a2cabb270f44b29c0c6b",
+      "error": null,
+      "files": [
+        "deploy-docs.yml",
+        "maven.yml"
+      ]
+    }
+  },
+  "apache/nifi": {
+    "analyzed_workflows": [
+      "docker-tests.yml",
+      "integration-tests.yml",
+      "system-tests.yml"
+    ],
+    "head": {
+      "sha": "89f479514b406e8ffb87058d33a05eba9f89a866",
+      "error": null,
+      "files": [
+        "build.yml",
+        "code-compliance.yml",
+        "code-coverage.yml",
+        "docker-tests.yml",
+        "integration-tests.yml",
+        "reproducible-build.yml",
+        "stale.yml",
+        "system-tests.yml"
+      ]
+    },
+    "paper": {
+      "sha": "2f13b609bdb77cb985aa35e8b66b4f04274d7c59",
+      "error": null,
+      "files": [
+        "ci-workflow.yml",
+        "code-coverage.yml",
+        "docker-tests.yml",
+        "integration-tests.yml",
+        "stale.yml",
+        "system-tests.yml"
+      ]
+    }
+  },
+  "strimzi/strimzi-kafka-operator": {
+    "analyzed_workflows": [
+      "codeql-analysis.yml"
+    ],
+    "head": {
+      "sha": "6faefe1927ab333e59d8d3feb9dfb1e420fcbdba",
+      "error": null,
+      "files": [
+        "build.yml",
+        "codeql-analysis.yml",
+        "cve-rebuild.yml",
+        "fossa.yml",
+        "github-actions-integration.yml",
+        "pre-commit.yml",
+        "release.yml",
+        "run-system-tests.yml",
+        "scorecards.yml",
+        "snyk.yml",
+        "system-tests.yml"
+      ]
+    },
+    "paper": {
+      "sha": "1961072744618d8ff547e86d45370add99a25c84",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "pre-commit.yml",
+        "scorecards.yml"
+      ]
+    }
+  },
+  "killbill/killbill": {
+    "analyzed_workflows": [
+      "ci.yml"
+    ],
+    "head": {
+      "sha": "a21c14d61ab93b902ddba2a1c5ecfbc7aca76e07",
+      "error": null,
+      "files": [
+        "ci.yml",
+        "codeql-analysis.yml",
+        "release.yml",
+        "snapshot.yml",
+        "sync.yml"
+      ]
+    },
+    "paper": {
+      "sha": "cab1722813a91a34190527621fe3fbe9759c7fb3",
+      "error": null,
+      "files": [
+        "ci.yml",
+        "codeql-analysis.yml",
+        "release.yml",
+        "snapshot.yml",
+        "sync.yml"
+      ]
+    }
+  },
+  "stleary/JSON-java": {
+    "analyzed_workflows": [
+      "codeql-analysis.yml",
+      "pipeline.yml"
+    ],
+    "head": {
+      "sha": "18e8ef6e610108be1558bfbfa148744d00d88f25",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "pipeline.yml"
+      ]
+    },
+    "paper": {
+      "sha": "14e9cdc485f6c80bee6ca1551458bfed1a20348a",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "pipeline.yml"
+      ]
+    }
+  },
+  "spring-cloud/spring-cloud-gateway": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "752fd490a64a538e344ff1adc83ece996c64b590",
+      "error": null,
+      "files": [
+        "ci.yaml",
+        "deploy-docs.yml",
+        "pr.yaml",
+        "release-train-build.yml",
+        "release-train-join.yml",
+        "release-train-leave.yml",
+        "release-train-ready.yml",
+        "release-train-retry.yml",
+        "release-train-test.yml"
+      ]
+    },
+    "paper": {
+      "sha": "3f62607e376d6506f41295d282a813e3c2754e50",
+      "error": null,
+      "files": [
+        "deploy-docs.yml",
+        "maven.yml"
+      ]
+    }
+  },
+  "killme2008/aviatorscript": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "20eaaff8e4550ec25130620987dc8d0a9e143e2a",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    },
+    "paper": {
+      "sha": "900adcafbcce2cf93093e168e2cfafb246c3be4d",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    }
+  },
+  "apache/maven": {
+    "analyzed_workflows": [
+      "maven_build_itself.yml"
+    ],
+    "head": {
+      "sha": "b501f5357d5ee4bc26e674bf289fbccd914ff309",
+      "error": null,
+      "files": [
+        "maven.yml",
+        "pr-automation.yml",
+        "release-drafter.yml",
+        "stale-branches.yml",
+        "stale.yml",
+        "update-lifecycle-plugins.yml"
+      ]
+    },
+    "paper": {
+      "sha": "f8cba5dc2717230a17c9589efe111d8dd0c1abbf",
+      "error": null,
+      "files": [
+        "maven.yml",
+        "maven_build_itself.yml"
+      ]
+    }
+  },
+  "jacoco/jacoco": {
+    "analyzed_workflows": [
+      "ci.yml"
+    ],
+    "head": {
+      "sha": "2e115bb6868116ffa5af558e0b10c51b20db3811",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    },
+    "paper": {
+      "sha": "bb9fdd670f2b5cf511520721461488cf1ecfc117",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    }
+  },
+  "jitsi/jitsi": {
+    "analyzed_workflows": [
+      "java.yml"
+    ],
+    "head": {
+      "sha": "ccf6943807e071247070581cca965131660ccba5",
+      "error": null,
+      "files": [
+        "deploy-debian.yml",
+        "installers.yml",
+        "java.yml"
+      ]
+    },
+    "paper": {
+      "sha": "3eeeb0c7ef7693862f47d30bf533f7c52206046c",
+      "error": null,
+      "files": [
+        "deploy-debian.yml",
+        "installers.yml",
+        "java.yml"
+      ]
+    }
+  },
+  "mybatis/spring-boot-starter": {
+    "analyzed_workflows": [
+      "ci.yaml",
+      "support.yaml"
+    ],
+    "head": {
+      "sha": "87ce3bcb9a7305f6e9d104846242c941839ba153",
+      "error": null,
+      "files": [
+        "ci.yaml",
+        "cleanup.yaml",
+        "codeql.yaml",
+        "coveralls.yaml",
+        "site.yaml",
+        "sonar.yaml",
+        "sonatype.yaml",
+        "support.yaml"
+      ]
+    },
+    "paper": {
+      "sha": "f9cf3a01373a2fd5e1aba8170ed37d78b8fc0fc8",
+      "error": null,
+      "files": [
+        "ci.yaml",
+        "codeql.yml",
+        "coveralls.yaml",
+        "site.yaml",
+        "sonar.yaml",
+        "sonatype.yaml",
+        "support.yaml"
+      ]
+    }
+  },
+  "dromara/hmily": {
+    "analyzed_workflows": [
+      "main.yml"
+    ],
+    "head": {
+      "sha": "52dc6ba3a44f9ade8d49bcc6ad49485ef9879c49",
+      "error": null,
+      "files": [
+        "main.yml"
+      ]
+    },
+    "paper": {
+      "sha": "52dc6ba3a44f9ade8d49bcc6ad49485ef9879c49",
+      "error": null,
+      "files": [
+        "main.yml"
+      ]
+    }
+  },
+  "jboss-javassist/javassist": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "71d5122469e03bd056c946281428c756162437a1",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    },
+    "paper": {
+      "sha": "bbe0e077ef36ef399c67e3683d7bc8c2a8ad0444",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    }
+  },
+  "crate/crate": {
+    "analyzed_workflows": [
+      "main.yml"
+    ],
+    "head": {
+      "sha": "3f0dc55bfcaccd0753fc98a353d1c4a09ecc335c",
+      "error": null,
+      "files": [
+        "cla-check.yml",
+        "codeql.yml",
+        "docs.yml",
+        "main.yml",
+        "nightly.yml",
+        "shellcheck.yml"
+      ]
+    },
+    "paper": {
+      "sha": "77caeaf06fa6b211f18995099e99c0ab74c0a267",
+      "error": null,
+      "files": [
+        "docs.yml",
+        "main.yml",
+        "nightly.yml",
+        "project.yml",
+        "shellcheck.yml",
+        "skip.yml"
+      ]
+    }
+  },
+  "DTStack/chunjun": {
+    "analyzed_workflows": [
+      "build.yml"
+    ],
+    "head": {
+      "sha": "cff5fbffb498a60e0fb700f77073deeebb7ed3e6",
+      "error": null,
+      "files": [
+        "approve-label-trigger.yml",
+        "approve-label.yml",
+        "build.yml",
+        "docs-deploy.yml",
+        "label.yml"
+      ]
+    },
+    "paper": {
+      "sha": "5432e788787f7c37c8f09c67b8b81935000c0106",
+      "error": null,
+      "files": [
+        "approve-label-trigger.yml",
+        "approve-label.yml",
+        "build.yml",
+        "docs-deploy.yml",
+        "label.yml"
+      ]
+    }
+  },
+  "apache/incubator-streampark": {
+    "analyzed_workflows": [
+      "backend.yml",
+      "codeql-analysis.yml",
+      "unit-test.yml"
+    ],
+    "head": {
+      "sha": "123c53d30311509e4a11b754bbc8033ba16140e4",
+      "error": null,
+      "files": [
+        "backend.yml",
+        "codeql-analysis.yml",
+        "docker-push.yml",
+        "docs.yml",
+        "e2e.yml",
+        "frontend.yml",
+        "pull-request-robot.yml",
+        "unit-test.yml"
+      ]
+    },
+    "paper": {
+      "sha": "ef78fddfcc9257165353a689317976e20ec7839d",
+      "error": null,
+      "files": [
+        "backend.yml",
+        "codeql-analysis.yml",
+        "docker-push.yml",
+        "docs.yml",
+        "e2e.yml",
+        "frontend.yml",
+        "owasp-dependency-check.yaml",
+        "pull-request-robot.yml",
+        "unit-test.yml"
+      ]
+    }
+  },
+  "knowm/XChange": {
+    "analyzed_workflows": [
+      "maven_on_pull_request.yml"
+    ],
+    "head": {
+      "sha": "a9ad24abde7540c1aa6b45044580363bc70ad087",
+      "error": null,
+      "files": [
+        "bitfinex.yaml",
+        "bitget.yaml",
+        "cryptocom.yaml",
+        "deribit.yaml",
+        "gateio-v4.yaml",
+        "it-template.yaml",
+        "kraken.yaml",
+        "maven.yml",
+        "maven_on_pull_request.yml",
+        "stream-bitfinex.yaml",
+        "stream-cryptocom.yaml",
+        "stream-deribit.yaml",
+        "stream-kraken-v2.yaml"
+      ]
+    },
+    "paper": {
+      "sha": "179a8c1db9ea0f516ea3a19865b07514dba1ec7a",
+      "error": null,
+      "files": [
+        "maven.yml",
+        "maven_on_pull_request.yml"
+      ]
+    }
+  },
+  "jetty/jetty.project": {
+    "analyzed_workflows": [
+      "codeql-analysis.yml"
+    ],
+    "head": {
+      "sha": "e1a89febb68740ce95e28caa599aa159543580ed",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "merged-pr-label-check.yml",
+        "stale-action.yml"
+      ]
+    },
+    "paper": {
+      "sha": "1baf95f59bcddaea6925e6c4b7eaa047e6c330fc",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "stale-action.yml"
+      ]
+    }
+  },
+  "sofastack/sofa-rpc": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "e72c9e7087619bdd815c0ac326a65a369e01d260",
+      "error": null,
+      "files": [
+        "cloud_code_scan.yml",
+        "maven.yml",
+        "release.yml"
+      ]
+    },
+    "paper": {
+      "sha": "3e317ff7449a5822047ccfed5d8a600b6dad2405",
+      "error": null,
+      "files": [
+        "cloud_code_scan.yml",
+        "maven.yml",
+        "release.yml"
+      ]
+    }
+  },
+  "awaitility/awaitility": {
+    "analyzed_workflows": [
+      "ci.yml"
+    ],
+    "head": {
+      "sha": "4fc23ccbd610ec16d14c2e7728e0593bffa6ac64",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    },
+    "paper": {
+      "sha": "925506c6c4b7975dac750b8c435089abc6b2713b",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    }
+  },
+  "dromara/dynamic-tp": {
+    "analyzed_workflows": [
+      "maven-build.yml"
+    ],
+    "head": {
+      "sha": "e304f1832db7afc2a83bd7440b1b95018c0562c5",
+      "error": null,
+      "files": [
+        "build-jvmti.yml",
+        "maven-build.yml"
+      ]
+    },
+    "paper": {
+      "sha": "e858bc2e5fdc7373975bc84ae4ccd2cbd8ae5ef7",
+      "error": null,
+      "files": [
+        "build-jvmti.yml",
+        "maven-build.yml"
+      ]
+    }
+  },
+  "Atmosphere/atmosphere": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "157c9722e130f4ff5e2440d2a4dc743f699a86b8",
+      "error": null,
+      "files": [
+        "benchmarks.yml",
+        "bilan.yml",
+        "carnet.yml",
+        "ci-js.yml",
+        "ci.yml",
+        "cli-e2e.yml",
+        "cli-install.yml",
+        "codeql-analysis.yml",
+        "crewai-sidecar.yml",
+        "dependency-submission.yml",
+        "doc-version-guard.yml",
+        "e2e-quarantine.yml",
+        "e2e-real-llm.yml",
+        "e2e.yml",
+        "feature-phase-review.yml",
+        "foundation-e2e.yml",
+        "gate-selftest.yml",
+        "integration-tests.yml",
+        "limitation-register.yml",
+        "mcp-conformance.yml",
+        "ms-yaml-conformance.yml",
+        "native-image-ci.yml",
+        "obsidian-writer.yml",
+        "policy-as-code-engines.yml",
+        "publish-github-packages.yml",
+        "release-4x.yml",
+        "release-gate-samples.yml",
+        "samples-ci.yml",
+        "sign-skillcards.yml",
+        "snapshot-deploy.yml",
+        "trigger-site-rebuild.yml",
+        "typesafe-decision-live.yml"
+      ]
+    },
+    "paper": {
+      "sha": "ff31226aff8d36075d024f9561257ba3d31c5e2b",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "maven.yml",
+        "mavenpublish.yml"
+      ]
+    }
+  },
+  "lukas-krecan/ShedLock": {
+    "analyzed_workflows": [
+      "build.yml"
+    ],
+    "head": {
+      "sha": "f5e0744da333681f420ff483401caa457bd1dda5",
+      "error": null,
+      "files": [
+        "build.yml",
+        "dependabot-automerge.yml"
+      ]
+    },
+    "paper": {
+      "sha": "a4d3c51d809ba18760f545a618f88442d794dd38",
+      "error": null,
+      "files": [
+        "build.yml"
+      ]
+    }
+  },
+  "sofastack/sofa-jraft": {
+    "analyzed_workflows": [
+      "build.yml"
+    ],
+    "head": {
+      "sha": "cb1a0c7ac16ff146ad8abb04b1bcb035270bb234",
+      "error": null,
+      "files": [
+        "build.yml",
+        "cloud_code_scan.yml",
+        "jepsen.yml",
+        "mvn_publish.yml"
+      ]
+    },
+    "paper": {
+      "sha": "99d6afeb1c01b1ca7b275542e99065bf06a5b6d1",
+      "error": null,
+      "files": [
+        "build.yml",
+        "cloud_code_scan.yml",
+        "mvn_publish.yml"
+      ]
+    }
+  },
+  "kubernetes-client/java": {
+    "analyzed_workflows": [
+      "codeql-analysis.yml"
+    ],
+    "head": {
+      "sha": "0ec504c1d5a264a8ce9482dc48043c8726207d97",
+      "error": null,
+      "files": [
+        "bazel.yml",
+        "codeql-analysis.yml",
+        "dependabot-sync-bazel-backfill.yml",
+        "dependabot-sync-bazel.yml",
+        "generate-crd.yml",
+        "generate.yml",
+        "maven.yml",
+        "release.yml",
+        "snapshot.yml",
+        "spotless.yml",
+        "spring.yml"
+      ]
+    },
+    "paper": {
+      "sha": "e2103372d248c86f0255d5fb373f128aabe01783",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "generate-crd.yml",
+        "generate.yml",
+        "maven.yml",
+        "release.yml",
+        "snapshot.yml"
+      ]
+    }
+  },
+  "vert-x3/vertx-examples": {
+    "analyzed_workflows": [
+      "ci.yml"
+    ],
+    "head": {
+      "sha": "091b03f47f1e09ce859146279e445c885b452937",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    },
+    "paper": {
+      "sha": "11d44e70a17dcc7fbded1f899c6a3ee8fa38ca7f",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    }
+  },
+  "LibrePDF/OpenPDF": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "b9c17f76e2e2525aa501fb423257c66d2c8c164c",
+      "error": null,
+      "files": [
+        "codeql.yml",
+        "maven.yml"
+      ]
+    },
+    "paper": {
+      "sha": "00afd24a1e44520dc929187cf3840381f5ea8160",
+      "error": null,
+      "files": [
+        "checkstyle.yml",
+        "codacy-coverage-reporter.yaml",
+        "codeql.yml",
+        "maven.yml"
+      ]
+    }
+  },
+  "jtablesaw/tablesaw": {
+    "analyzed_workflows": [
+      "ci.yml"
+    ],
+    "head": {
+      "sha": "e36c3ff3c9e21026f4a04590a5319edfc27f5c84",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    },
+    "paper": {
+      "sha": "4e471b9f3954642425172da2d791c569133d1cd9",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    }
+  },
+  "spring-io/initializr": {
+    "analyzed_workflows": [
+      "build-pull-request.yml"
+    ],
+    "head": {
+      "sha": "1a176dedba4da3a621daff0996ffa464395b6b82",
+      "error": null,
+      "files": [
+        "build-pull-request.yml",
+        "build.yml",
+        "release.yml",
+        "run-codeql-analysis.yml"
+      ]
+    },
+    "paper": {
+      "sha": "9e2682402a36f1c60196de20ffcb3b57daaf4e54",
+      "error": null,
+      "files": [
+        "build-pull-request.yml",
+        "build.yml",
+        "release.yml"
+      ]
+    }
+  },
+  "immutables/immutables": {
+    "analyzed_workflows": [
+      "ci.yml"
+    ],
+    "head": {
+      "sha": "b3ded0074b6d3211d01a1d3eee7ecc5585ae62e7",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    },
+    "paper": {
+      "sha": "86eac37dae0198310dccaf8ad1f395b6dfd8e251",
+      "error": null,
+      "files": [
+        "ci.yml"
+      ]
+    }
+  },
+  "fabric8io/kubernetes-client": {
+    "analyzed_workflows": [
+      "build.yml",
+      "javadocs.yml",
+      "style-checks.yml",
+      "windows-build.yml"
+    ],
+    "head": {
+      "sha": "e3ba77d4ff1f480cd1e022a5f73eaca4e107a998",
+      "error": null,
+      "files": [
+        "build.yml",
+        "e2e-chaos-tests.yml",
+        "e2e-crc-okd-tests.yml",
+        "e2e-httpclient-tests.yml",
+        "e2e-osci-tests.yml",
+        "e2e-tests.yml",
+        "generate-model.yml",
+        "javadocs.yml",
+        "release-snapshots.yaml",
+        "release.yaml",
+        "revapi-report.yml",
+        "sonar.yml",
+        "style-checks.yml",
+        "windows-build.yml"
+      ]
+    },
+    "paper": {
+      "sha": "129c3e61215d15f1d234dcf0a11c8cc7ca897cbf",
+      "error": null,
+      "files": [
+        "build.yml",
+        "e2e-chaos-tests.yml",
+        "e2e-crc-okd-tests.yml",
+        "e2e-httpclient-tests.yml",
+        "e2e-osci-tests.yml",
+        "e2e-tests.yml",
+        "generate-model.yml",
+        "javadocs.yml",
+        "release-snapshots.yaml",
+        "release.yaml",
+        "sonar.yml",
+        "style-checks.yml",
+        "windows-build.yml"
+      ]
+    }
+  },
+  "torakiki/pdfsam": {
+    "analyzed_workflows": [
+      "build.yml"
+    ],
+    "head": {
+      "sha": "4e4dd4dc5b14a1d328837c2b549fbe0b43cec83f",
+      "error": null,
+      "files": [
+        "build.yml",
+        "release.yml"
+      ]
+    },
+    "paper": {
+      "sha": "a9947593e22a88fd24afe57006713cfb07554542",
+      "error": null,
+      "files": [
+        "build.yml"
+      ]
+    }
+  },
+  "aragozin/jvm-tools": {
+    "analyzed_workflows": [
+      "maven.yml"
+    ],
+    "head": {
+      "sha": "4321b54dc0b4f9abc6d1c6f48c884162659fde10",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    },
+    "paper": {
+      "sha": "4321b54dc0b4f9abc6d1c6f48c884162659fde10",
+      "error": null,
+      "files": [
+        "maven.yml"
+      ]
+    }
+  },
+  "apache/linkis": {
+    "analyzed_workflows": [
+      "check-code-format.yml",
+      "check-license.yml",
+      "integration-test.yml"
+    ],
+    "head": {
+      "sha": "bad400a77b9502a68ec229ce6a5aedab6f039b28",
+      "error": null,
+      "files": [
+        "auto-comment.yml",
+        "auto-format-pr.yaml",
+        "build-backend.yml",
+        "build-frontend.yml",
+        "check-code-format.yml",
+        "check-license.yml",
+        "check-sql-pg-script.yml",
+        "check-sql-script.yml",
+        "codeql-analysis.yml",
+        "dead-link-checker.yaml",
+        "integration-test.yml",
+        "publish-docker.yaml",
+        "publish-snapshot.yml"
+      ]
+    },
+    "paper": {
+      "sha": "c3f65bbe22b8a071af1c448fa3910c29b7f14348",
+      "error": null,
+      "files": [
+        "auto-comment.yml",
+        "auto-format-pr.yaml",
+        "build-backend.yml",
+        "build-frontend.yml",
+        "check-code-format.yml",
+        "check-license.yml",
+        "check-sql-pg-script.yml",
+        "check-sql-script.yml",
+        "codeql-analysis.yml",
+        "dead-link-checker.yaml",
+        "integration-test.yml",
+        "publish-docker.yaml",
+        "publish-snapshot.yml"
+      ]
+    }
+  },
+  "camunda/camunda": {
+    "analyzed_workflows": [
+      "operate-check-project-versions.yml",
+      "operate-test-backup-restore.yml",
+      "operate-test-importer.yml",
+      "operate-test-migrate-elasticsearch-data.yml",
+      "sbom.yaml"
+    ],
+    "head": {
+      "sha": "9ee23533c8037420858e587619738f3df5c3d669",
+      "error": null,
+      "files": [
+        "add-release-comments-to-issues.yml",
+        "add-to-projects.yml",
+        "alwaysgreen-fix.yml",
+        "alwaysgreen-streak-detector.yml",
+        "alwaysgreen-triage.yml",
+        "archiverless-nightly-tests.yml",
+        "assign-urgency-to-issue.yml",
+        "assign-urgency-to-issues-cron.yml",
+        "aurora-async-replication-test.yml",
+        "auto-merge-back-to-stable.yml",
+        "backport.yml",
+        "bug-investigation.lock.yml",
+        "c8-orchestration-cluster-e2e-api-test-branch-on-demand.yml",
+        "c8-orchestration-cluster-e2e-nightly-close-stale-fix-prs.yml",
+        "c8-orchestration-cluster-e2e-nightly-fix.yml",
+        "c8-orchestration-cluster-e2e-nightly-triage.yml",
+        "c8-orchestration-cluster-e2e-tests-on-demand.yml",
+        "c8-orchestration-cluster-e2e-tests-release.yml",
+        "c8-orchestration-cluster-forward-compatibility-tests.yml",
+        "c8-orchestration-cluster-nightly-8.10-api-es.yml",
+        "c8-orchestration-cluster-nightly-8.10-api-rdbms.yml",
+        "c8-orchestration-cluster-nightly-8.10-e2e.yml",
+        "c8-orchestration-cluster-nightly-8.7-api-es.yml",
+        "c8-orchestration-cluster-nightly-8.7-e2e.yml",
+        "c8-orchestration-cluster-nightly-8.8-api-es.yml",
+        "c8-orchestration-cluster-nightly-8.8-e2e.yml",
+        "c8-orchestration-cluster-nightly-8.9-api-es.yml",
+        "c8-orchestration-cluster-nightly-8.9-api-rdbms.yml",
+        "c8-orchestration-cluster-nightly-8.9-e2e.yml",
+        "c8-orchestration-cluster-nightly-main-api-es.yml",
+        "c8-orchestration-cluster-nightly-main-api-rdbms.yml",
+        "c8-orchestration-cluster-nightly-main-e2e.yml",
+        "c8-orchestration-cluster-nightly-metrics-report.yml",
+        "c8-orchestration-cluster-request-validation-nightly.yml",
+        "c8-orchestration-cluster-responses-regenerate.yml",
+        "c8-orchestration-cluster-reusable-analytics-exporter-tests.yml",
+        "c8-orchestration-cluster-reusable-api-tests.yml",
+        "c8-orchestration-cluster-reusable-e2e-tests.yml",
+        "c8-orchestration-cluster-reusable-rdbms-api-tests.yml",
+        "c8-orchestration-cluster-unskip-verify.yml",
+        "c8run-build.yaml",
+        "c8run-closed-issue.yaml",
+        "c8run-rdbms-regression-test.yml",
+        "c8run-release-public.yaml",
+        "c8run-release-rc.yaml",
+        "c8run-release.yaml",
+        "camunda-client-compatibility-test-trigger.yml",
+        "camunda-client-compatibility-test.yml",
+        "camunda-daily-load-tests.yml",
+        "camunda-delete-load-test.yml",
+        "camunda-ecs-weekly-load-test.yml",
+        "camunda-helm-integration.yml",
+        "camunda-load-test-metrics-exporter-ci.yaml",
+        "camunda-load-test-metrics.yaml",
+        "camunda-load-test-smoke-dispatch.yml",
+        "camunda-load-test-smoke.yml",
+        "camunda-load-test-ttl-cleanup.yml",
+        "camunda-load-test.yml",
+        "camunda-platform-docker-deploy-saas-image.yml",
+        "camunda-platform-release-main-dry-run.yml",
+        "camunda-platform-release-manual.yml",
+        "camunda-platform-release.yml",
+        "camunda-pr-load-test.yaml",
+        "camunda-process-test-compatibility-trigger.yml",
+        "camunda-process-test-compatibility.yml",
+        "camunda-release-load-test.yaml",
+        "camunda-scheduled-release-load-tests.yml",
+        "camunda-spring-boot-starter-compatibility-test-trigger.yml",
+        "camunda-spring-boot-starter-compatibility-test.yml",
+        "camunda-verify-and-cleanup-load-test.yml",
+        "camunda-verify-load-test.yml",
+        "camunda-weekly-load-tests.yml",
+        "camunda8-getting-started-bundle.yaml",
+        "chatops-command-ci-problems.yml",
+        "chatops-command-disable-cache.yml",
+        "chatops-command-dispatch.yml",
+        "check-action-pins.yml",
+        "check-licenses-active-issues.yml",
+        "check-licenses.yml",
+        "check-outdated-prs.yml",
+        "check-pr-conflicts.yml",
+        "check-saas-version.yml",
+        "ci-build-distball-reusable.yml",
+        "ci-cost-analysis.lock.yml",
+        "ci-database-integration-tests-reusable.yml",
+        "ci-operate.yml",
+        "ci-optimize.yml",
+        "ci-webapp-client.yml",
+        "ci-webapp-run-ut-reuseable.yml",
+        "ci-zeebe.yml",
+        "ci.yml",
+        "codeowners-file-owner.yml",
+        "copilot-setup-steps.yml",
+        "create-urgent-hotfix-img.yml",
+        "critical-issue.yml",
+        "data-layer-nightly-tests.yml",
+        "docker-build-helm-integration.yml",
+        "docs-build-deploy.yml",
+        "docs-preview-cleanup.yml",
+        "docs-preview.yml",
+        "frontend-sbom-snyk-nightly-trigger.yml",
+        "frontend-sbom-snyk-nightly.yml",
+        "generate-concurrency-group.yml",
+        "generate-snapshot-docker-tag.yml",
+        "gh-inherit-core-fields.yml",
+        "identity-regression-test.yml",
+        "issue-add-support-label.yml",
+        "labeler.yml",
+        "load-test-golden-update.yml",
+        "maven-dependency-snapshot.yml",
+        "opened_issue_labeler.yml",
+        "operate-update_visual_snapshots.yml",
+        "optimize-ci-build-reusable.yml",
+        "optimize-ci-data-upgrade-nightly.yml",
+        "optimize-create-release-branch.yml",
+        "optimize-e2e-smoke.yml",
+        "optimize-e2e-tests-cloud-nightly.yml",
+        "optimize-opened-issues-automation.yml",
+        "optimize-release-optimize-c8-only.yml",
+        "oracle-async-replication-test.yml",
+        "pr-load-test-dispatch.yml",
+        "preview-env-build-and-deploy.yml",
+        "preview-env-clean.yml",
+        "preview-env-smoke-test.yml",
+        "preview-env-teardown.yml",
+        "profile-load-test.yml",
+        "publish-oc-saas-notifications.yml",
+        "publish-session-heartbeat.yml",
+        "publish-zod-schemas.yml",
+        "reject-updates-using-merge-commit.yml",
+        "release-branch-notifications.yml",
+        "release-mergeback-conflict-check.yml",
+        "release-notes-action-ci.yml",
+        "release-notes-pr-gate.yml",
+        "release-rc-delta-slack-summary.yml",
+        "renovate-daily.yml",
+        "renovate-pr-maintainer.yml",
+        "renovate-weekly.yml",
+        "retry-workflow.yml",
+        "stale-backport-tracker.yml",
+        "statistics-daily.yml",
+        "statistics-weekly.yml",
+        "stress-load-test.yml",
+        "trigger-c8run-e2e-tests.yml",
+        "trigger-coverage-gate.yml",
+        "update-backwards-compat-version.yml",
+        "update-identity.yml",
+        "verify-x-added-in-version-annotations.yml",
+        "zeebe-aws-aurora-dispatch-tests.yml",
+        "zeebe-aws-os-dispatch-tests.yml",
+        "zeebe-aws-os-integration-tests-reusable.yml",
+        "zeebe-daily-qa.yml",
+        "zeebe-dispatch-qa.yaml",
+        "zeebe-e2e-testbench.yaml",
+        "zeebe-qa-testbench.yaml",
+        "zeebe-rdbms-integration-tests.yml",
+        "zeebe-rdbms-pr-multidb-test.yaml",
+        "zeebe-release-stable-dry-run.yml",
+        "zeebe-search-integration-tests.yml",
+        "zeebe-snyk.yml",
+        "zeebe-testbench.yaml",
+        "zeebe-version-compatibility.yml",
+        "zeebe-weekly-e2e.yml"
+      ]
+    },
+    "paper": {
+      "sha": "d97fb5661a3af3949f835b4b4656709202bd2984",
+      "error": null,
+      "files": [
+        "add-to-projects.yml",
+        "backport.yml",
+        "c8run-build.yaml",
+        "camunda-helm-integration.yml",
+        "camunda-platform-release-main-dry-run.yml",
+        "camunda-platform-release-manual.yml",
+        "camunda-platform-release.yml",
+        "chatops-command-ci-problems.yml",
+        "chatops-command-dispatch.yml",
+        "check-pr-conflicts.yml",
+        "ci.yml",
+        "commitlint.yml",
+        "critical-issue.yml",
+        "dispatch-release-8-3.yaml",
+        "dispatch-release-8-4.yaml",
+        "dispatch-release-8-5.yaml",
+        "dispatch-release-8-6.yaml",
+        "dispatch-release-8-7.yaml",
+        "issue-add-support-label.yml",
+        "issues-labeled.yml",
+        "java-client-issue.yaml",
+        "labeler.yml",
+        "operate-a11y.yml",
+        "operate-check-project-versions.yml",
+        "operate-ci-build-observe-reusable.yml",
+        "operate-ci-build-reusable.yml",
+        "operate-ci-test-reusable.yml",
+        "operate-ci.yml",
+        "operate-docker-tests.yml",
+        "operate-e2e-tests.yml",
+        "operate-frontend.yml",
+        "operate-merge-ci.yaml",
+        "operate-playwright.yml",
+        "operate-release-dry-run-scheduled.yml",
+        "operate-release-manual.yml",
+        "operate-release-reusable.yml",
+        "operate-run-tests.yml",
+        "operate-test-backup-restore.yml",
+        "operate-test-importer.yml",
+        "operate-test-migrate-elasticsearch-data.yml",
+        "operate-update-docs-screenshots.yml",
+        "optimize-check-c4.yml",
+        "optimize-checkstyle-check.yml",
+        "optimize-ci-build-reusable.yml",
+        "optimize-ci.yml",
+        "optimize-command-assign.yml",
+        "optimize-command-eng.yml",
+        "optimize-command-help.yml",
+        "optimize-command-hold.yml",
+        "optimize-command-pm.yml",
+        "optimize-command-qa.yml",
+        "optimize-create-release-branch.yml",
+        "optimize-dependency-check.yml",
+        "optimize-deploy-artifacts.yml",
+        "optimize-e2e-test-cloud.yml",
+        "optimize-e2e-tests-sm.yml",
+        "optimize-generate-changelog.yml",
+        "optimize-generate-upgrade-plan.yml",
+        "optimize-hadolint.yml",
+        "optimize-health-status-report.yml",
+        "optimize-opened-issues-automation.yml",
+        "optimize-publish-c4.yml",
+        "optimize-release-optimize-c8-only.yml",
+        "optimize-run-java-checks.yml",
+        "optimize-sync-issues.yml",
+        "optimize-zeebe-compatibility.yml",
+        "preview-env-build-and-deploy.yml",
+        "preview-env-clean.yml",
+        "preview-env-teardown.yml",
+        "rdbms-integration-test.yml",
+        "renovatelint.yml",
+        "retry-workflow.yml",
+        "sbom.yml",
+        "stale-pr.yml",
+        "tasklist-backup-restore-tests-reusable.yml",
+        "tasklist-backup-restore-tests.yml",
+        "tasklist-changelog.yml",
+        "tasklist-ci-build-reusable.yml",
+        "tasklist-ci-fe-reusable.yml",
+        "tasklist-ci-test-reusable.yml",
+        "tasklist-ci.yml",
+        "tasklist-docker-tests.yml",
+        "tasklist-e2e-tests.yml",
+        "tasklist-merge-ci.yml",
+        "tasklist-migrate-elasticsearch-data.yml",
+        "tasklist-sync-issues.yml",
+        "tasklist-update_visual_snapshots.yml",
+        "update-identity.yml",
+        "vacuum.yml",
+        "zeebe-benchmark.yml",
+        "zeebe-ci.yml",
+        "zeebe-daily-qa.yml",
+        "zeebe-dispatch-qa.yaml",
+        "zeebe-e2e-testbench.yaml",
+        "zeebe-medic-benchmarks.yml",
+        "zeebe-pr-benchmark.yaml",
+        "zeebe-qa-testbench.yaml",
+        "zeebe-release-stable-dry-run.yml",
+        "zeebe-snyk.yml",
+        "zeebe-testbench.yaml",
+        "zeebe-update-long-running-migrating-benchmark.yaml",
+        "zeebe-version-compatibility.yml",
+        "zeebe-weekly-e2e.yml",
+        "zeebe-zpa-move-iteration.yml"
+      ]
+    }
+  },
+  "Tencent/spring-cloud-tencent": {
+    "analyzed_workflows": [
+      "junit_test.yml",
+      "junit_test17.yml"
+    ],
+    "head": {
+      "sha": "c581e9d96154183f05347f8610aa929811729655",
+      "error": null,
+      "files": [
+        "junit.yml",
+        "license-checker.yml",
+        "release.yml",
+        "snapshot.yml"
+      ]
+    },
+    "paper": {
+      "sha": "7e9b96bae18ff266c544470521716d275ea9635f",
+      "error": null,
+      "files": [
+        "codecov.yml",
+        "junit_test.yml",
+        "junit_test17.yml",
+        "license-checker.yml",
+        "release.yml",
+        "snapshot.yml"
+      ]
+    }
+  },
+  "bastillion-io/Bastillion": {
+    "analyzed_workflows": [
+      "github-build.yml"
+    ],
+    "head": {
+      "sha": "b9fbfada70e9986ef12636a805b7e791ee7d373a",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "github-build.yml"
+      ]
+    },
+    "paper": {
+      "sha": "8d42f49396af583b394e4fe81085fc4e3dc42f99",
+      "error": null,
+      "files": [
+        "codeql-analysis.yml",
+        "github-build.yml"
+      ]
+    }
+  }
+}

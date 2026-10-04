@@ -1,0 +1,866 @@
+name: "Release: Maven Central"
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: 'Release version (e.g., 4.0.0, 4.0.0-RC1). Ignored when js_only=true.'
+        required: false
+        type: string
+      next_dev_version:
+        description: 'Next development version (e.g., 4.0.1-SNAPSHOT). Ignored when js_only=true.'
+        required: false
+        type: string
+      publish_js:
+        description: 'Leave TRUE. Runs the NPM job, which also publishes create-atmosphere-app (the npx shim). atmosphere.js itself self-skips when unchanged, so true is safe on every release; false silently skips the npx distribution too.'
+        required: true
+        type: boolean
+        default: true
+      js_only:
+        description: 'Skip Maven Central + GitHub Packages — publish atmosphere.js only.'
+        required: true
+        type: boolean
+        default: false
+      dry_run:
+        description: 'Dry run — build and verify without publishing'
+        required: true
+        type: boolean
+        default: false
+
+env:
+  MAVEN_OPTS: '-Xmx2g'
+  # Pin JReleaser. Auto-upgrade burned us between 1.23.0 (4.0.41) and 1.24.0
+  # (4.0.42): the keyserver-published pre-check tightened from "fingerprint
+  # reachable on any keyserver" to "verified UID on keys.openpgp.org",
+  # flipping the same key from INFO→WARN with no input change.
+  JRELEASER_VERSION: '1.24.0'
+
+jobs:
+  # ─────────────────────────────────────────────
+  # Phase 1: Validate inputs and run full test suite
+  # ─────────────────────────────────────────────
+  validate:
+    name: Validate & Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        ref: main
+        fetch-depth: 0
+
+    - name: Validate version format
+      if: ${{ !inputs.js_only }}
+      run: |
+        if [ -z "${{ inputs.release_version }}" ] || [ -z "${{ inputs.next_dev_version }}" ]; then
+          echo "::error::release_version and next_dev_version are required unless js_only=true"
+          exit 1
+        fi
+        if ! echo "${{ inputs.release_version }}" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.]+)?$'; then
+          echo "::error::Invalid release version format: ${{ inputs.release_version }}"
+          exit 1
+        fi
+        if ! echo "${{ inputs.next_dev_version }}" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+-SNAPSHOT$'; then
+          echo "::error::Next dev version must end with -SNAPSHOT: ${{ inputs.next_dev_version }}"
+          exit 1
+        fi
+
+    - name: Verify release version is free on Maven Central
+      if: ${{ !inputs.js_only }}
+      run: |
+        # Immutable-publish burn guard. Maven Central artifacts cannot be
+        # replaced or deleted: re-publishing an existing version burns it
+        # permanently (the cause of the 4.0.52 / 4.0.53 burns). Unlike the
+        # self-healing JS/NPM path below, we FAIL here rather than auto-bump —
+        # release_version is operator-chosen and must not be silently changed.
+        # Fail closed on ambiguity (a non-404/non-200 reply) so a transient
+        # outage can never let a burn through; the operator re-runs once
+        # Central is reachable.
+        POM_URL="https://repo1.maven.org/maven2/org/atmosphere/atmosphere-runtime/${{ inputs.release_version }}/atmosphere-runtime-${{ inputs.release_version }}.pom"
+        CODE="000"
+        for attempt in 1 2 3; do
+          CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$POM_URL" || echo "000")
+          echo "Maven Central check attempt $attempt for ${{ inputs.release_version }}: HTTP $CODE ($POM_URL)"
+          if [ "$CODE" = "404" ] || [ "$CODE" = "200" ]; then
+            break
+          fi
+          sleep 5
+        done
+        if [ "$CODE" = "200" ]; then
+          echo "::error::atmosphere-runtime ${{ inputs.release_version }} already exists on Maven Central (HTTP 200) — pick the next version. Central artifacts are immutable; re-publishing burns the version."
+          exit 1
+        fi
+        if [ "$CODE" != "404" ]; then
+          echo "::error::Could not verify ${{ inputs.release_version }} against Maven Central (last HTTP $CODE) — failing closed to avoid an immutable burn. Re-run once Central is reachable."
+          exit 1
+        fi
+        echo "OK: ${{ inputs.release_version }} is free on Maven Central (404) — safe to publish."
+
+    - name: Gate blog claims against the release candidate tree
+      if: ${{ !inputs.js_only }}
+      # Claims-vs-released-artifact gate (tree half). The Atmosphere-4 blog
+      # was audited against main and passed while the released 4.0.59 tree
+      # lacked ~10 load-bearing claims — nothing in the release asked "is
+      # this claim true in the artifact users can pull?". This step fails
+      # the release if the candidate tree no longer carries the code
+      # evidence behind each public claim in .harness/blog-claims.json.
+      # The Central-existence half runs post-publish (verify-blog-claims
+      # job below). The blog must not be promoted until
+      # scripts/validate-blog-claims.sh passes against the cut tag.
+      run: ./scripts/validate-blog-claims.sh --against-main
+
+    - name: Set up JDK 21
+      if: ${{ !inputs.js_only }}
+      uses: actions/setup-java@v6
+      with:
+        java-version: 21
+        distribution: 'temurin'
+        # Supply-chain hardening: GPG-verify the Temurin JDK archive (setup-java >= v5.5.0)
+        verify-signature: true
+        cache: 'maven'
+
+    - name: Install all modules (skip tests)
+      if: ${{ !inputs.js_only }}
+      run: ./mvnw -B clean install -DskipTests -Dgpg.skip=true
+
+    - name: Run tests
+      if: ${{ !inputs.js_only }}
+      run: ./mvnw -B test -Dgpg.skip=true -Dgroups='!flaky'
+
+  # ─────────────────────────────────────────────
+  # Packaged-sample sweep (Release Gate: Samples E2E)
+  # ─────────────────────────────────────────────
+  release-gate-samples:
+    name: Release Gate — Samples E2E
+    if: ${{ !inputs.js_only }}
+    # Boots every runnable sample from its packaged artifact (java -jar, not
+    # spring-boot:run) and runs its Playwright/smoke coverage — the layer
+    # where the 2026-07 sweep found failures push-CI never saw. release-maven
+    # depends on this job, so a release cannot be cut without a green sweep.
+    uses: ./.github/workflows/release-gate-samples.yml
+
+  # ─────────────────────────────────────────────
+  # Phase 2: Build atmosphere.js
+  # ─────────────────────────────────────────────
+  build-js:
+    name: Build atmosphere.js
+    runs-on: ubuntu-latest
+    if: inputs.publish_js
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        ref: main
+
+    - name: Setup Node.js 24
+      uses: actions/setup-node@v7
+      with:
+        node-version: '24'
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'npm'
+        cache-dependency-path: atmosphere.js/package-lock.json
+
+    - name: Install, test, and build
+      working-directory: atmosphere.js
+      run: |
+        npm ci
+        npm run test:ci
+        npm run build
+
+    - name: Upload JS dist
+      uses: actions/upload-artifact@v7
+      with:
+        name: atmosphere-js-dist
+        path: atmosphere.js/dist/
+        retention-days: 1
+
+  # ─────────────────────────────────────────────
+  # Phase 3: Release Maven artifacts to Central
+  # ─────────────────────────────────────────────
+  release-maven:
+    name: Release to Maven Central
+    # release-gate-samples is the packaged-artifact sweep — a release cannot
+    # publish unless every runnable sample boots from its jar and passes its
+    # Playwright/smoke coverage (see scripts/release-gate-samples.sh --list).
+    needs: [validate, release-gate-samples]
+    if: ${{ !inputs.js_only }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        ref: main
+        fetch-depth: 0
+        token: ${{ secrets.RELEASE_TOKEN || github.token }}
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v6
+      with:
+        java-version: 21
+        distribution: 'temurin'
+        # Supply-chain hardening: GPG-verify the Temurin JDK archive (setup-java >= v5.5.0)
+        verify-signature: true
+        cache: 'maven'
+        server-id: central
+        server-username: CENTRAL_USERNAME
+        server-password: CENTRAL_PASSWORD
+        gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+        gpg-passphrase: GPG_PASSPHRASE
+
+    - name: Configure Git
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+    - name: Set release version
+      run: |
+        ./mvnw -B versions:set -DnewVersion=${{ inputs.release_version }} -DgenerateBackupPoms=false
+
+    - name: Update documentation versions
+      run: ./scripts/update-doc-versions.sh ${{ inputs.release_version }}
+
+    - name: Verify no Atmosphere doc-version drift remains
+      # Fail-fast BEFORE any irreversible Maven Central publish if the sweep
+      # above missed a doc. This runs before the release commit stages
+      # cli/samples.json, so pass
+      # the release version explicitly. This caught the 4.0.57 rag-chat
+      # getting-started doc lagging at 4.0.56 (the sweep ran but the commit
+      # step did not stage samples/**/*.md — fixed below).
+      run: ATMO_RELEASED_VERSION=${{ inputs.release_version }} ./scripts/validate-atmosphere-doc-version.sh
+
+    - name: Regenerate SKILLCARD manifests
+      # SKILLCARD.yaml stamps the artifact version from each module pom. Without
+      # regenerating after versions:set, the manifests lag the bump and the
+      # capability-snapshot gate in pre-push-validate.sh fails on the next push.
+      run: ./scripts/regen-skillcards.sh
+
+    - name: Promote CHANGELOG [Unreleased] to versioned heading
+      run: python3 ./scripts/promote-changelog.py ${{ inputs.release_version }}
+
+    - name: Build and stage artifacts locally
+      run: ./mvnw -B clean deploy -DskipTests '-P!central-publishing,jreleaser,release-profile'
+        -DaltDeploymentRepository=local::file://${{ github.workspace }}/target/staging-deploy
+        -pl '!samples/chat,!samples/embedded-jetty-websocket-chat,!samples/spring-boot-chat,!samples/quarkus-chat,!samples/spring-boot-ai-chat,!samples/spring-boot-ai-classroom,!samples/spring-boot-otel-chat,!samples/spring-boot-mcp-server,!samples/spring-boot-durable-sessions,!samples/spring-boot-ai-tools,!samples/spring-boot-rag-chat,!samples/grpc-chat,!samples/spring-boot-a2a-agent,!samples/spring-boot-agui-chat,!samples/spring-boot-channels-chat,!samples/spring-boot-dentist-agent,!samples/spring-boot-multi-agent-startup-team,!samples/spring-boot-orchestration-demo,!modules/integration-tests'
+      env:
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
+    - name: Derive GPG public key from private key
+      id: gpg
+      env:
+        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      run: |
+        echo "$GPG_PRIVATE_KEY" | gpg --batch --import 2>&1 | head -5 || true
+        KEY_ID=$(gpg --list-secret-keys --keyid-format LONG | grep -m1 '^sec' | awk '{print $2}' | cut -d'/' -f2)
+        {
+          echo 'public_key<<GPG_PUBLIC_KEY_EOF'
+          gpg --armor --export "$KEY_ID"
+          echo 'GPG_PUBLIC_KEY_EOF'
+        } >> "$GITHUB_OUTPUT"
+
+    - name: Publish to Maven Central via JReleaser
+      if: inputs.dry_run == false
+      uses: jreleaser/release-action@v2
+      with:
+        version: ${{ env.JRELEASER_VERSION }}
+        arguments: 'deploy'
+      env:
+        JRELEASER_PROJECT_VERSION: ${{ inputs.release_version }}
+        JRELEASER_GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN || github.token }}
+        JRELEASER_MAVENCENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+        JRELEASER_MAVENCENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
+        JRELEASER_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        JRELEASER_GPG_PUBLIC_KEY: ${{ steps.gpg.outputs.public_key }}
+        JRELEASER_GPG_SECRET_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+
+    - name: Dry run — stage only (JReleaser dry-run)
+      if: inputs.dry_run
+      uses: jreleaser/release-action@v2
+      with:
+        version: ${{ env.JRELEASER_VERSION }}
+        arguments: 'deploy --dry-run'
+      env:
+        JRELEASER_PROJECT_VERSION: ${{ inputs.release_version }}
+        JRELEASER_GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN || github.token }}
+        JRELEASER_MAVENCENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+        JRELEASER_MAVENCENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
+        JRELEASER_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        JRELEASER_GPG_PUBLIC_KEY: ${{ steps.gpg.outputs.public_key }}
+        JRELEASER_GPG_SECRET_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+
+    - name: Upload JReleaser logs
+      if: always()
+      uses: actions/upload-artifact@v7
+      with:
+        name: jreleaser-logs-${{ inputs.release_version }}
+        path: |
+          out/jreleaser/trace.log
+          out/jreleaser/output.properties
+        retention-days: 14
+
+    - name: Commit release version
+      if: inputs.dry_run == false
+      run: |
+        # Add each sweep pathspec independently: git add fatals on ANY single
+        # unmatched pathspec and stages NOTHING (4.0.63: docs/ lost its last
+        # subdirectory .md, 'docs/**/*.md' stopped matching, the masked add
+        # staged zero files and the commit failed AFTER Central had already
+        # published — stranding the release bookkeeping). :(glob) lets '**'
+        # match zero directories so top-level docs/*.md are swept too.
+        # cli/samples.json is the source of truth validate-atmosphere-doc-version.sh
+        # compares docs against, and update-doc-versions.sh already rewrote it above.
+        # Leaving it out of this sweep is what made every release land one commit
+        # where the docs said the new version and samples.json still said the old
+        # one — the doc guard and CI: Core both went red on it until a later job
+        # committed the file. Sweeping it here keeps that commit self-consistent.
+        # The CLI's own version files move in this same commit. Sweeping
+        # cli/samples.json alone (the fix for docs-vs-samples.json skew) just
+        # relocated the problem: samples.json said the new version while
+        # cli/atmosphere still said the old one, and cli/test-cli.sh's
+        # "version matches samples.json" assertion went red on BOTH this commit
+        # and the next-dev one, until the post-publish update-cli job caught up.
+        # 4.0.66 shipped with CI: CLI and CI: Samples red for exactly that window.
+        # update-cli re-runs these same seds later and its
+        # `git diff --cached --quiet ||` guard makes that a no-op.
+        RELEASE_VERSION="${{ inputs.release_version }}"
+        sed -i "s/^VERSION=\"[^\"]*\"/VERSION=\"$RELEASE_VERSION\"/" cli/atmosphere
+        sed -i "s/^VERSION=\"[^\"]*\"/VERSION=\"$RELEASE_VERSION\"/" cli/install.sh
+        sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$RELEASE_VERSION\"/" cli/npx/package.json
+
+        for p in pom.xml '**/pom.xml' README.md '**/README.md' ':(glob)docs/**/*.md' ':(glob)samples/**/*.md' '**/SKILLCARD.yaml' CHANGELOG.md cli/samples.json cli/atmosphere cli/install.sh cli/npx/package.json; do
+          git add -- "$p" 2>/dev/null || echo "sweep pathspec matched nothing (ok): $p"
+        done
+        git commit -m "release: Atmosphere ${{ inputs.release_version }}"
+        # Remove stale tag from a previous failed attempt (if any)
+        git tag -d "atmosphere-${{ inputs.release_version }}" 2>/dev/null || true
+        git push origin ":refs/tags/atmosphere-${{ inputs.release_version }}" 2>/dev/null || true
+        git tag "atmosphere-${{ inputs.release_version }}"
+
+    - name: Set next development version
+      if: inputs.dry_run == false
+      run: |
+        ./mvnw -B versions:set -DnewVersion=${{ inputs.next_dev_version }} -DgenerateBackupPoms=false
+        ./scripts/regen-skillcards.sh
+        git add -- pom.xml '**/pom.xml' '**/SKILLCARD.yaml'
+        git commit -m "chore: prepare for next development iteration ${{ inputs.next_dev_version }}"
+
+    - name: Push commits and tag
+      if: inputs.dry_run == false
+      run: |
+        # Show any leftover changes for debugging
+        git status --short
+        # Stash any unstaged changes (e.g. from Maven plugin side-effects)
+        git stash --include-untracked || true
+        # Concurrent pushes to main during a release (the JS-publish job, CI bots)
+        # can move the ref in the window between rebase and push, so a single
+        # fetch+rebase+push can lose the race ('fetch first'). Retry until main
+        # accepts our commits (bounded) so the release self-heals rather than
+        # going red after a successful Maven Central publish.
+        for attempt in 1 2 3 4 5; do
+          git fetch origin main
+          if ! git rebase origin/main; then
+            git rebase --abort || true
+            echo "rebase onto origin/main failed (attempt ${attempt}/5); retrying"
+            sleep $((attempt * 3)); continue
+          fi
+          if git push origin main; then
+            echo "release commits pushed on attempt ${attempt}"; break
+          fi
+          if [ "${attempt}" -eq 5 ]; then
+            echo "::error::could not push release commits after 5 attempts (main kept moving)"; exit 1
+          fi
+          echo "push rejected (attempt ${attempt}/5) — re-fetching and rebasing"
+          sleep $((attempt * 3))
+        done
+        # The release tag points at a fixed commit (rebase does not move it), so
+        # push it once main is settled.
+        git push origin "atmosphere-${{ inputs.release_version }}"
+
+    - name: Sync atmosphere.github.io tutorial + website to release version
+      # Mirrors the existing trigger-site-rebuild.yml pattern: fire a
+      # repository_dispatch at the sibling repo using SITE_DISPATCH_TOKEN
+      # and let the sibling's own workflow (sync-version.yml) run its
+      # scripts/update-doc-versions.sh + commit + push via its own
+      # GITHUB_TOKEN. No cross-repo cloning, no second token — reuses
+      # the auth the website rebuild already uses.
+      #
+      # Release 4.0.36 shipped with 23 stale SNAPSHOT references in the
+      # sibling docs because no cross-repo sync existed. This step closes
+      # that gap for every future release.
+      if: inputs.dry_run == false
+      # Non-fatal: this is the LAST step of release-maven and only fires a
+      # convenience repository_dispatch at the sibling docs repo. It must never
+      # fail the job — if it did, the downstream publish jobs (GitHub Packages,
+      # NPM, GitHub Release, CLI/Homebrew) would be skipped even though Maven
+      # Central already published, leaving a partial release. (That happened on
+      # 4.0.52 when this step hit a transient GitHub API rate limit.) The website
+      # also has its own scheduled/triggered rebuild, so a missed dispatch
+      # self-heals; allowlisted in scripts/validation-patterns.toml.
+      continue-on-error: true
+      uses: peter-evans/repository-dispatch@v4
+      with:
+        token: ${{ secrets.SITE_DISPATCH_TOKEN }}
+        repository: Atmosphere/atmosphere.github.io
+        event-type: sync-version
+        client-payload: '{"version": "${{ inputs.release_version }}"}'
+
+    outputs:
+      tag: atmosphere-${{ inputs.release_version }}
+
+  # ─────────────────────────────────────────────
+  # Verify blog-claim artifacts on Central
+  # ─────────────────────────────────────────────
+  verify-blog-claims:
+    name: Verify blog-claim artifacts on Central
+    needs: [release-maven]
+    if: ${{ !inputs.js_only && inputs.dry_run == false }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        ref: main
+
+    - name: Check claim artifacts exist on Maven Central
+      # Claims-vs-released-artifact gate (Central half). Requires every
+      # Maven GAV cited by .harness/blog-claims.json to answer HTTP 200 at
+      # the just-published version — this is the check whose absence let
+      # the blog advertise atmosphere-ai-spring-boot-starter while that
+      # artifact had never existed on Central (readers failed at step one).
+      # Deliberately a separate job so a red here cannot skip the
+      # downstream publish jobs and strand a partial release (the 4.0.52
+      # failure mode); it turns the run red for the operator instead.
+      # Generous retries absorb repo1.maven.org sync lag after the
+      # JReleaser upload.
+      run: |
+        CENTRAL_ATTEMPTS=20 CENTRAL_DELAY=30 \
+          ./scripts/validate-blog-claims.sh --artifacts-only "${{ inputs.release_version }}"
+
+  # ─────────────────────────────────────────────
+  # Phase 3b: Publish to GitHub Packages
+  # ─────────────────────────────────────────────
+  release-github-packages:
+    name: Publish to GitHub Packages
+    needs: [release-maven]
+    if: ${{ !inputs.js_only && inputs.dry_run == false }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        ref: atmosphere-${{ inputs.release_version }}
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v6
+      with:
+        java-version: 21
+        distribution: 'temurin'
+        # Supply-chain hardening: GPG-verify the Temurin JDK archive (setup-java >= v5.5.0)
+        verify-signature: true
+        cache: 'maven'
+
+    - name: Configure Maven settings
+      run: |
+        mkdir -p ~/.m2
+        cat > ~/.m2/settings.xml << 'EOF'
+        <settings>
+          <servers>
+            <server>
+              <id>github</id>
+              <username>${env.GITHUB_ACTOR}</username>
+              <password>${env.GITHUB_TOKEN}</password>
+            </server>
+            <server>
+              <id>central</id>
+              <username>unused</username>
+              <password>unused</password>
+            </server>
+          </servers>
+        </settings>
+        EOF
+
+    - name: Install locally first
+      run: ./mvnw -B install -DskipTests -Dgpg.skip=true -DskipCentralPublishing=true -Pfastinstall
+
+    - name: Deploy to GitHub Packages
+      run: |
+        ./mvnw -B deploy -DskipTests -Dgpg.skip=true \
+          -DskipCentralPublishing=true \
+          -Dmaven.deploy.skip=false \
+          -Pfastinstall \
+          -DaltDeploymentRepository=github::https://maven.pkg.github.com/Atmosphere/atmosphere
+      env:
+        GITHUB_ACTOR: ${{ github.actor }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ─────────────────────────────────────────────
+  # Phase 4: Publish atmosphere.js to NPM
+  # ─────────────────────────────────────────────
+  release-js:
+    name: Publish atmosphere.js to NPM
+    needs: [build-js, release-maven]
+    if: |
+      always() && inputs.publish_js && inputs.dry_run == false &&
+      needs.build-js.result == 'success' &&
+      (needs.release-maven.result == 'success' || needs.release-maven.result == 'skipped')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        ref: main
+        fetch-depth: 0
+
+    - name: Pull latest (after Maven release commit)
+      run: git pull origin main
+
+    - name: Setup Node.js 24
+      uses: actions/setup-node@v7
+      with:
+        node-version: '24'
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'npm'
+        cache-dependency-path: atmosphere.js/package-lock.json
+
+    - name: Configure Git
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+    - name: Determine version to publish (auto-bump if drifted)
+      id: detect
+      working-directory: atmosphere.js
+      run: |
+        # Convention: package.json holds the next version to publish.
+        # If a prior run's post-publish bump didn't land (drift), the
+        # current package.json version may already be on NPM. In that
+        # case, auto-bump to the next patch so the workflow self-heals
+        # and never requires a manual version edit.
+        JS_VERSION=$(node -p "require('./package.json').version")
+        echo "package.json version: $JS_VERSION"
+
+        while npm view "atmosphere.js@$JS_VERSION" version >/dev/null 2>&1; do
+          echo "atmosphere.js@$JS_VERSION already on NPM — auto-bumping"
+          npm version patch --no-git-tag-version >/dev/null
+          JS_VERSION=$(node -p "require('./package.json').version")
+          echo "  → $JS_VERSION"
+        done
+
+        # Find the latest JS release tag (check both formats for backwards compat)
+        cd ..
+        LAST_TAG=$(git tag --list 'js-v*' --sort=-v:refname | head -1)
+        if [ -z "$LAST_TAG" ]; then
+          LAST_TAG=$(git tag --list 'atmosphere.js-v*' --sort=-v:refname | head -1)
+        fi
+        if [ -z "$LAST_TAG" ]; then
+          echo "No previous JS release tag found — treating as first release"
+          echo "has_changes=true" >> "$GITHUB_OUTPUT"
+        elif git diff --quiet "$LAST_TAG" -- atmosphere.js/; then
+          echo "No changes in atmosphere.js/ since $LAST_TAG — skipping publish"
+          echo "has_changes=false" >> "$GITHUB_OUTPUT"
+        else
+          echo "Changes detected in atmosphere.js/ since $LAST_TAG"
+          echo "has_changes=true" >> "$GITHUB_OUTPUT"
+        fi
+        echo "release_version=$JS_VERSION" >> "$GITHUB_OUTPUT"
+
+    - name: Download JS dist
+      if: steps.detect.outputs.has_changes == 'true'
+      uses: actions/download-artifact@v8
+      with:
+        name: atmosphere-js-dist
+        path: atmosphere.js/dist/
+
+    - name: Publish to NPM (Trusted Publishing / OIDC)
+      if: steps.detect.outputs.has_changes == 'true'
+      working-directory: atmosphere.js
+      run: |
+        npm ci
+        npm publish --provenance --access public
+
+    - name: Commit and tag JS release
+      if: steps.detect.outputs.has_changes == 'true'
+      run: |
+        JS_VERSION=$(node -p "require('./atmosphere.js/package.json').version")
+        cd atmosphere.js
+        git add package.json package-lock.json
+        cd ..
+        git diff --cached --quiet || git commit -m "release(js): atmosphere.js ${JS_VERSION}"
+        git tag "js-v${JS_VERSION}"
+
+    # Deliberately NOT gated on steps.detect.outputs.has_changes. That flag means
+    # "atmosphere.js changed since its last tag", but this package's version tracks the
+    # RELEASE version (bumped by the CLI job), not atmosphere.js. Coupling the two meant the
+    # npx distribution silently stopped publishing whenever atmosphere.js was unchanged —
+    # npm sat on 4.0.65 while 4.0.66 and 4.0.67 shipped, and nothing failed.
+    #
+    # The previous body was `npm publish ... 2>/dev/null || echo "...may already exist"`,
+    # which discarded stderr AND the exit code, so a real publish failure was
+    # indistinguishable from success. Already-published is now detected explicitly (the only
+    # legitimate no-op, e.g. on a re-run), every other failure is fatal, and the registry is
+    # asserted to actually serve the version afterwards.
+    - name: Publish create-atmosphere-app to NPM
+      working-directory: cli/npx
+      run: |
+        set -euo pipefail
+        VERSION=$(node -p "require('./package.json').version")
+        if [ "$(npm view "create-atmosphere-app@$VERSION" version 2>/dev/null || true)" = "$VERSION" ]; then
+          echo "create-atmosphere-app@$VERSION is already on NPM — nothing to publish"
+          exit 0
+        fi
+        npm publish --provenance --access public
+        # npm now answers "Your package is being processed and may take a few
+        # minutes to become available". 4.0.71 was published but a 30s window
+        # (6 x 5s) declared it missing and failed the run; allow 5 minutes.
+        for attempt in $(seq 1 30); do
+          sleep 10
+          if [ "$(npm view "create-atmosphere-app@$VERSION" version 2>/dev/null || true)" = "$VERSION" ]; then
+            echo "verified: create-atmosphere-app@$VERSION is live on NPM"
+            exit 0
+          fi
+          echo "  not visible yet (attempt $attempt/30) — retrying"
+        done
+        echo "::error::create-atmosphere-app@$VERSION was published but the registry did not serve it within 5 minutes"
+        exit 1
+
+    - name: Bump to next patch version
+      if: steps.detect.outputs.has_changes == 'true'
+      working-directory: atmosphere.js
+      run: npm version patch --no-git-tag-version
+
+    - name: Commit next dev version
+      if: steps.detect.outputs.has_changes == 'true'
+      run: |
+        NEXT_VERSION=$(node -p "require('./atmosphere.js/package.json').version")
+        cd atmosphere.js
+        git add package.json package-lock.json
+        cd ..
+        git commit -m "chore(js): prepare next development version ${NEXT_VERSION}"
+        # The Maven release job pushes its version commits to main earlier in the
+        # same release. A single fetch+rebase+push still loses the race if main
+        # moves in the window between the rebase and the push — 4.0.56 hit exactly
+        # this: the js-v tag pushed but `main` was rejected 'fetch first', so the
+        # run went red even though every publish succeeded. Retry the
+        # fetch+rebase+push until main accepts it (bounded) so a lost race
+        # self-heals instead of failing a successful release.
+        for attempt in 1 2 3 4 5; do
+          git fetch origin main
+          if ! git rebase origin/main; then
+            git rebase --abort || true
+            echo "rebase onto origin/main failed (attempt ${attempt}/5); retrying"
+            sleep $((attempt * 3)); continue
+          fi
+          if git push origin main --tags; then
+            echo "next dev version + tags pushed on attempt ${attempt}"; break
+          fi
+          if [ "${attempt}" -eq 5 ]; then
+            echo "::error::could not push next dev version after 5 attempts (main kept moving)"; exit 1
+          fi
+          echo "push rejected (attempt ${attempt}/5) — re-fetching and rebasing"
+          sleep $((attempt * 3))
+        done
+
+  # ─────────────────────────────────────────────
+  # Phase 5: Create GitHub Release with notes
+  # ─────────────────────────────────────────────
+  github-release:
+    name: Create GitHub Release
+    needs: [release-maven]
+    if: inputs.dry_run == false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        ref: main
+        fetch-depth: 0
+
+    - name: Pull latest
+      run: git pull origin main
+
+    - name: Extract release notes from CHANGELOG
+      id: notes
+      run: |
+        VERSION="${{ inputs.release_version }}"
+        # Extract the section for this version from CHANGELOG.md
+        # Matches from "## [VERSION]" until the next "## [" or end of file
+        NOTES=$(awk -v ver="$VERSION" '
+          /^## \[/ {
+            if (found) exit
+            if (index($0, "[" ver "]")) { found=1; next }
+          }
+          found { print }
+        ' CHANGELOG.md)
+
+        if [ -z "$NOTES" ]; then
+          echo "No CHANGELOG entry found for $VERSION — using commit-based notes"
+          echo "has_changelog=false" >> "$GITHUB_OUTPUT"
+        else
+          echo "has_changelog=true" >> "$GITHUB_OUTPUT"
+          echo "$NOTES" > /tmp/release-notes.md
+        fi
+
+    - name: Generate release notes from commits
+      if: steps.notes.outputs.has_changelog == 'false'
+      run: |
+        VERSION="${{ inputs.release_version }}"
+        TAG="atmosphere-${VERSION}"
+
+        # Find the previous tag
+        PREV_TAG=$(git tag --list 'atmosphere-4.*' --sort=-v:refname | grep -A1 "^${TAG}$" | tail -1)
+        if [ "$PREV_TAG" = "$TAG" ] || [ -z "$PREV_TAG" ]; then
+          PREV_TAG=$(git rev-list --max-parents=0 HEAD | tail -1)
+        fi
+
+        # Build categorized notes from conventional commit prefixes
+        {
+          echo ""
+          FEATS=$(git log --oneline "$PREV_TAG".."$TAG" --grep='^feat' --format='- %s' | sed 's/^- feat[^:]*: /- **/' | sed 's/$/**/' | head -20)
+          if [ -n "$FEATS" ]; then
+            echo "## ✨ Added"
+            echo "$FEATS"
+            echo ""
+          fi
+
+          FIXES=$(git log --oneline "$PREV_TAG".."$TAG" --grep='^fix' --format='- %s' | sed 's/^- fix[^:]*: /- /' | head -20)
+          if [ -n "$FIXES" ]; then
+            echo "## 🐛 Fixed"
+            echo "$FIXES"
+            echo ""
+          fi
+
+          CHORES=$(git log --oneline "$PREV_TAG".."$TAG" --grep='^refactor\|^chore\|^docs\|^ci\|^test' --format='- %s' | sed 's/^- [a-z]*[^:]*: /- /' | head -15)
+          if [ -n "$CHORES" ]; then
+            echo "## 🔧 Changed"
+            echo "$CHORES"
+            echo ""
+          fi
+
+          echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${PREV_TAG}...${TAG}"
+        } > /tmp/release-notes.md
+
+    - name: Build SDKMAN archive (well-formed atmosphere-${VERSION}.zip)
+      run: |
+        VERSION="${{ inputs.release_version }}"
+        STAGE=$(mktemp -d)
+        ARCHIVE_DIR="$STAGE/atmosphere-${VERSION}/bin"
+        mkdir -p "$ARCHIVE_DIR"
+
+        # Copy the CLI script and pin VERSION= to the release version
+        # (the cli/atmosphere file is still at the pre-release SNAPSHOT at this phase —
+        # Phase 6 update-cli bumps it afterwards, too late for this archive build)
+        cp cli/atmosphere "$ARCHIVE_DIR/atmosphere"
+        sed -i "s/^VERSION=\"[^\"]*\"/VERSION=\"$VERSION\"/" "$ARCHIVE_DIR/atmosphere"
+        chmod +x "$ARCHIVE_DIR/atmosphere"
+
+        # Windows launcher — SDKMAN UNIVERSAL archives should support Windows via .bat
+        cat > "$ARCHIVE_DIR/atmosphere.bat" <<'BAT'
+        @echo off
+        REM Atmosphere CLI launcher for Windows — requires bash (Git Bash or WSL)
+        bash "%~dp0atmosphere" %*
+        BAT
+
+        # Create the ZIP with the well-formed layout
+        cd "$STAGE" && zip -r "atmosphere-${VERSION}.zip" "atmosphere-${VERSION}/"
+        mv "$STAGE/atmosphere-${VERSION}.zip" "$GITHUB_WORKSPACE/atmosphere-${VERSION}.zip"
+
+        # Compute SHA256 for vendor API / verification
+        sha256sum "$GITHUB_WORKSPACE/atmosphere-${VERSION}.zip" | tee "$GITHUB_WORKSPACE/atmosphere-${VERSION}.zip.sha256"
+        ls -la "$GITHUB_WORKSPACE/atmosphere-${VERSION}.zip"
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v3
+      with:
+        tag_name: atmosphere-${{ inputs.release_version }}
+        name: Atmosphere ${{ inputs.release_version }}
+        body_path: /tmp/release-notes.md
+        generate_release_notes: false
+        draft: false
+        prerelease: ${{ contains(inputs.release_version, '-') }}
+        files: |
+          atmosphere-${{ inputs.release_version }}.zip
+          atmosphere-${{ inputs.release_version }}.zip.sha256
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+
+  # ─────────────────────────────────────────────
+  # Phase 6: Update CLI version + Homebrew tap
+  # ─────────────────────────────────────────────
+  update-cli:
+    name: Update CLI & Homebrew
+    needs: [github-release]
+    if: inputs.dry_run == false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        ref: main
+        fetch-depth: 0
+
+    - name: Pull latest
+      run: git pull origin main
+
+    - name: Configure Git
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+    - name: Update CLI version in all files
+      run: |
+        VERSION="${{ inputs.release_version }}"
+
+        # Update samples.json version
+        sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" cli/samples.json
+
+        # Update atmosphere CLI version
+        sed -i "s/^VERSION=\"[^\"]*\"/VERSION=\"$VERSION\"/" cli/atmosphere
+
+        # Update install.sh version
+        sed -i "s/^VERSION=\"[^\"]*\"/VERSION=\"$VERSION\"/" cli/install.sh
+
+        # Update npx package version
+        sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" cli/npx/package.json
+
+    - name: Commit and push CLI version bump
+      run: |
+        git add cli/samples.json cli/atmosphere cli/install.sh cli/npx/package.json
+        git diff --cached --quiet || {
+          git commit -m "chore(cli): bump version to ${{ inputs.release_version }}"
+          git push origin main
+        }
+
+    - name: Update Homebrew tap
+      env:
+        GH_TOKEN: ${{ secrets.RELEASE_TOKEN || github.token }}
+      run: |
+        VERSION="${{ inputs.release_version }}"
+        TAG="atmosphere-${VERSION}"
+        TARBALL_URL="https://github.com/Atmosphere/atmosphere/archive/refs/tags/${TAG}.tar.gz"
+
+        # Download tarball and compute SHA256
+        curl -fsSL -o /tmp/release.tar.gz "$TARBALL_URL"
+        SHA256=$(sha256sum /tmp/release.tar.gz | cut -d' ' -f1)
+
+        # Clone the tap repo
+        git clone "https://x-access-token:${GH_TOKEN}@github.com/Atmosphere/homebrew-tap.git" /tmp/homebrew-tap
+        cd /tmp/homebrew-tap
+
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+        # Update formula
+        sed -i "s|url \".*\"|url \"${TARBALL_URL}\"|" Formula/atmosphere.rb
+        sed -i "s|# sha256 .*|sha256 \"${SHA256}\"|" Formula/atmosphere.rb
+        sed -i "s|sha256 \".*\"|sha256 \"${SHA256}\"|" Formula/atmosphere.rb
+        sed -i "s|version \".*\"|version \"${VERSION}\"|" Formula/atmosphere.rb
+
+        git add Formula/atmosphere.rb
+        git diff --cached --quiet || {
+          git commit -m "chore: update atmosphere to ${VERSION}"
+          git push origin main
+        }

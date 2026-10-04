@@ -1,0 +1,32 @@
+{
+  "H1_wrong_rate_parallel_builds": {
+    "verifiable": 135,
+    "wrong": 47,
+    "wrong_rate": 0.348
+  },
+  "H1_wrong_rate_sequential_builds": {
+    "verifiable": 1338,
+    "wrong": 63,
+    "wrong_rate": 0.047
+  },
+  "H1_parallel_repos": [
+    "apache_incubator-seata"
+  ],
+  "mechanisms_of_wrong_rows": {
+    "H1-parallel-cross-module": 47,
+    "H3-predecessor": 20,
+    "H2-nested-build": 38,
+    "successor": 5
+  },
+  "H3_predecessor_examples": [
+    "compiler state (parent dir): blamed antlr4:antlr4",
+    "compiler state (parent dir): blamed enforcer:enforce",
+    "compiler state (parent dir): blamed jacoco:prepare-agent",
+    "compiler state (parent dir): blamed resources:resources",
+    "jacoco report: blamed antrun:run",
+    "main classes: blamed resources:copy-resources"
+  ],
+  "non_H3_same_module_examples": [
+    "main classes: blamed compiler:testCompile (successor)"
+  ]
+}

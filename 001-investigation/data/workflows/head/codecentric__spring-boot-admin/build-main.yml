@@ -1,0 +1,97 @@
+name: Build Main / Version Branch
+
+on:
+  push:
+    branches:
+      - master
+      - 1.*
+      - 2.*
+      - 3.*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up JDK
+        uses: actions/setup-java@v6
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+          cache-dependency-path: '**/pom.xml'
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: Build with Maven
+        run: ./mvnw -B --no-transfer-progress install -P coverage
+
+      - name: Upload surefire reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: surefire-reports
+          path: |
+            **/target/surefire-reports/*.xml
+            **/target/surefire-reports/*.txt
+            **/target/surefire-reports/*.dump*
+            **/target/surefire-reports/*.out
+            **/target/surefire-reports/*.err
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v7
+
+  publish-snapshot:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up JDK
+        uses: actions/setup-java@v6
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+          cache-dependency-path: '**/pom.xml'
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: Publish SNAPSHOT version to GitHub Packages (we can skip tests, since we only deploy, if the build workflow succeeded)
+        run: ./mvnw -B deploy --no-transfer-progress -DskipTests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Maven project version for Asciidoc GitHub Pages directory naming
+        run: echo ::set-output name=version::$(./mvnw -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+        id: project
+
+      - name: Show extracted Maven project version
+        run: echo ${{ steps.project.outputs.version }}
+
+      - name: Build documentation with Maven
+        run: ./mvnw -B --no-transfer-progress site
+
+      - name: Deploy documentation to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.9.0
+        with:
+          branch: gh-pages
+          folder: spring-boot-admin-docs/target/generated-docs/build
+          target-folder: ${{ steps.project.outputs.version }}
+          clean: true # Automatically remove deleted files from the deploy branch

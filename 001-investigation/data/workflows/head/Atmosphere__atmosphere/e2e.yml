@@ -1,0 +1,258 @@
+name: "CI: E2E (Playwright)"
+
+on:
+  push:
+    branches: [ '**' ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'LICENSE'
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'LICENSE'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build (SB${{ matrix.spring-boot-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        spring-boot-version: [4, 3]
+      fail-fast: false
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v6
+      with:
+        java-version: 21
+        distribution: 'temurin'
+        # Supply-chain hardening: GPG-verify the Temurin JDK archive (setup-java >= v5.5.0)
+        verify-signature: true
+        cache: 'maven'
+
+    - name: Build All Modules
+      run: ./mvnw -B clean install -DskipTests -Dgpg.skip=true
+
+    - name: Rebuild Spring Boot samples with SB3
+      if: matrix.spring-boot-version == 3
+      run: |
+        SB_SAMPLES=$(ls -d samples/spring-boot-*/pom.xml | sed 's|/pom.xml||' | paste -sd, -)
+        ./mvnw -B package -DskipTests -Dgpg.skip=true -Pspring-boot3 -pl "$SB_SAMPLES"
+
+    # mcp-client boots spring-boot-personal-assistant twice: the default
+    # (Built-in runtime) jar in target/, and this -Pruntime-langchain4j variant,
+    # which the profile builds into target/runtime-langchain4j so it never
+    # overwrites the default jar. Packaged here so the spec only boots jars —
+    # a Maven build inside a Playwright hook outlives the hook timeout on CI.
+    - name: Package the LangChain4j variant of spring-boot-personal-assistant
+      run: ./mvnw -B package -DskipTests -Dgpg.skip=true -Pruntime-langchain4j -pl samples/spring-boot-personal-assistant
+
+    - name: Package build output
+      run: |
+        tar czf /tmp/build-targets-sb${{ matrix.spring-boot-version }}.tar.gz \
+          samples/*/target \
+          modules/*/target \
+          -C "$HOME" .m2/repository/org/atmosphere
+
+    - name: Upload build output
+      uses: actions/upload-artifact@v7
+      with:
+        name: build-targets-sb${{ matrix.spring-boot-version }}
+        path: /tmp/build-targets-sb${{ matrix.spring-boot-version }}.tar.gz
+        retention-days: 1
+
+  e2e:
+    name: E2E — ${{ matrix.group.name }} (SB${{ matrix.spring-boot-version }})
+    runs-on: ubuntu-latest
+    needs: [build]
+
+    strategy:
+      matrix:
+        spring-boot-version: [4, 3]
+        # Groups are sized to keep the slowest leg under ~8 min. The long
+        # pole historically was gap-admin (SB3) at 15.6 min — split into
+        # -core and -smoke. gap-protocols, ai-chat, and ai-ux similarly
+        # split. New 4.0.36/4.0.37 flagship specs (ai-cancel, checkpoint-
+        # agent, orchestration-primitives, admin-coverage) are now mapped —
+        # previously they lived in playwright.config.ts but were silently
+        # unmapped by any matrix leg, so CI never ran them.
+        # scripts/validate-playwright-project-coverage.sh (ci.yml) now fails
+        # when a config project is in no leg and not in
+        # .harness/playwright-project-exclusions.txt, and when a spec file is
+        # matched by no project that a leg runs (five sat that way until
+        # 2026-09-30: the spring-boot-chat / classroom resilience specs).
+        group:
+          - name: core-chat
+            projects: "chat,spring-boot-chat,multi-client,embedded-jetty-chat,offline-queue-browser,history-sync,optimistic-updates,presence-count"
+          - name: core-transports
+            projects: "quarkus-chat,quarkus-ai-chat,sse-transport,long-polling-transport,transport-fallback,webtransport-fallback,reconnection"
+          - name: ai-chat-core
+            projects: "ai-chat,ai-streaming-dom,ai-chat-features,openai-endpoint"
+          - name: ai-chat-memory
+            projects: "ai-memory,ai-memory-strategies,ai-episodic-memory,ai-passivation,ai-coordinator-first-run"
+          - name: ai-ux-events
+            projects: "ai-identity,ai-error-recovery,ai-events,unified-console,ai-budget-circuit-breaker"
+          - name: ai-ux-flows
+            projects: "ai-multimodal,ai-retry-policy,ai-lifecycle-listener,ai-models,ai-structured-output,ai-jfr-observability,ai-tool-permission"
+          - name: ai-tools
+            projects: "ai-tools,ai-session-stats,ai-tool-call-delta,ai-hitl-approval,ai-hitl-real-flow,ai-cancel"
+          - name: ai-advanced
+            projects: "rag-chat,ai-filters,ai-fanout,ai-cache,ai-budget,ai-cache-hint,ai-embedding,ai-gap-coverage,ai-confidence-elicitation,ai-decision-model"
+          - name: ai-routing
+            projects: "ai-cost-routing,ai-cache-coalescing,ai-combined-cost-cache,ai-routing,ai-intent-routing,ai-classroom,spring-boot-ai-classroom,classroom-resilience"
+          # checkpoint-agent lives under gap-coordinator with the other
+          # durable-HITL specs. The previously-quarantined ai-cancel,
+          # admin-coverage, and orchestration-primitives specs are now
+          # remapped into their matching legs.
+          - name: protocols
+            projects: "mcp-server,mcp-tools,a2a-agent,a2a-discovery,agui-chat,multi-agent-startup-team,browser-agent"
+          - name: protocols-extra
+            projects: "grpc-browser,rooms-api,room-typing-direct,channels-chat"
+          - name: resilience
+            projects: "durable-sessions,durable-session-token,durable-session-identity,otel-chat,chat-observability"
+          - name: resilience-extra
+            projects: "offline-queue,history-cache,xss-protection,auth-rejection,auth-token"
+          - name: stress
+            projects: "message-ordering,large-payload,slow-consumer,connection-timeout"
+          - name: gap-infra
+            projects: "kotlin-dsl,mcp-bidirectional,cross-transport-interop"
+          - name: gap-protocols-events
+            projects: "agui-sse-lifecycle,channel-gateway,otel-span-correlation"
+          - name: gap-protocols-agent
+            projects: "a2a-multi-hop,concurrent-protocol-access"
+          - name: gap-coordinator
+            projects: "coordinator-remote,coordinator-journal,coordinator-activity,durable-session-restart,session-token-expiry,auth-oauth-jwt,checkpoint-agent,orchestration-primitives,passivation-agent"
+          - name: gap-compat
+            projects: "spring-boot3-parity,backpressure-bounded-queue,webtransport-raw,webtransport"
+          - name: gap-admin-core
+            projects: "admin-dashboard,admin-quarkus,admin-coverage"
+          - name: gap-admin-smoke
+            projects: "console-http-check,sample-matrix-smoke"
+          - name: gap-agents
+            projects: "dentist-agent,a2a-discovery,deep-agent-harness,mcp-client"
+          - name: cli-runtime
+            projects: "cli-runtime"
+          # Cross-tab isolation regression matrix (commit 1fbb0958f0).
+          # ~12 sample boots in sequence within a single spec — keep this
+          # leg distinct so its slow per-sample JVM warm-up doesn't push
+          # any other leg over the 10-min budget.
+          - name: regression-isolation
+            projects: "cross-tab-isolation"
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v6
+      with:
+        java-version: 21
+        distribution: 'temurin'
+        # Supply-chain hardening: GPG-verify the Temurin JDK archive (setup-java >= v5.5.0)
+        verify-signature: true
+        cache: 'maven'
+
+    - name: Download build output
+      uses: actions/download-artifact@v8
+      with:
+        name: build-targets-sb${{ matrix.spring-boot-version }}
+
+    - name: Restore build output
+      run: |
+        tar xzmf build-targets-sb${{ matrix.spring-boot-version }}.tar.gz
+        # Restore atmosphere SNAPSHOT artifacts to local Maven repo
+        if [ -d .m2/repository/org/atmosphere ]; then
+          mkdir -p ~/.m2/repository/org
+          cp -r .m2/repository/org/atmosphere ~/.m2/repository/org/
+          rm -rf .m2
+        fi
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v7
+      with:
+        node-version: 22
+        cache: 'npm'
+        cache-dependency-path: modules/integration-tests/package-lock.json
+
+    # Cache key is the hash of the npm lockfile — any Playwright version
+    # bump (or any other dep change) invalidates the cache. Conservative
+    # vs parsing the version directly, but has no ordering dependency on
+    # npm ci and stays correct across major/minor bumps.
+    - name: Cache Playwright browsers
+      id: playwright-cache
+      uses: actions/cache@v6
+      with:
+        path: ~/.cache/ms-playwright
+        key: playwright-${{ runner.os }}-${{ hashFiles('modules/integration-tests/package-lock.json') }}
+
+    - name: Install npm dependencies
+      working-directory: modules/integration-tests
+      run: npm ci
+
+    - name: Install Playwright browsers
+      working-directory: modules/integration-tests
+      run: |
+        # On cache hit, install only system deps (apt); skip the browser
+        # binaries. The apt step hits packages.microsoft.com which has a
+        # history of 403 flakes — retry 3x with exponential backoff. On
+        # cache miss, install browsers + system deps with the same retry.
+        # Each attempt is bounded by `timeout 300`: a healthy install runs
+        # in well under a minute, but a stalled chromium download or apt
+        # mirror can hang with no exit code, which the retry loop alone
+        # cannot recover from (it only fires on a clean non-zero exit). The
+        # timeout converts a hang into exit 124 so the backoff/retry advances
+        # instead of pinning the leg for hours.
+        # A timed-out attempt kills npx but not the root apt-get it sudo'd,
+        # which keeps downloading and holds the dpkg lock — so retries must
+        # wait for the lock (it releases when the orphan finishes) instead
+        # of failing instantly with "could not get lock".
+        sudo tee /etc/apt/apt.conf.d/99-dpkg-lock-timeout >/dev/null <<<'DPkg::Lock::Timeout "240";'
+        if [ "${{ steps.playwright-cache.outputs.cache-hit }}" = "true" ]; then
+          cmd="npx playwright install-deps chromium"
+        else
+          cmd="npx playwright install --with-deps chromium"
+        fi
+        for attempt in 1 2 3; do
+          if timeout 300 $cmd; then
+            break
+          fi
+          if [ "$attempt" = "3" ]; then
+            echo "playwright install failed after 3 attempts" >&2
+            exit 1
+          fi
+          echo "playwright install attempt $attempt failed, retrying in ${attempt}0s..." >&2
+          sleep "${attempt}0"
+        done
+
+    - name: Run E2E Tests
+      working-directory: modules/integration-tests
+      env:
+        LLM_MODE: fake
+        SMOKE_ONLY: ${{ github.event_name == 'pull_request' && 'true' || '' }}
+        INCLUDE_FLAKY: 'false'
+      run: |
+        PROJECTS=$(echo "${{ matrix.group.projects }}" | sed 's/,/ --project=/g')
+        # Tolerate "No tests found" when SMOKE_ONLY filters out every test in a group.
+        # Playwright exits 1 with stderr "Error: No tests found" — treat as success on PRs.
+        set +e
+        output=$(npx playwright test --project=$PROJECTS --reporter=list,github 2>&1)
+        code=$?
+        echo "$output"
+        if [ "$code" -ne 0 ] && echo "$output" | grep -q "Error: No tests found"; then
+          echo "::notice::Group '${{ matrix.group.name }}' has no @smoke tests — skipping (PR CI)"
+          exit 0
+        fi
+        exit $code
+
+    - name: Upload Playwright Report
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: playwright-report-${{ matrix.group.name }}-sb${{ matrix.spring-boot-version }}
+        path: modules/integration-tests/playwright-report/
+        retention-days: 14

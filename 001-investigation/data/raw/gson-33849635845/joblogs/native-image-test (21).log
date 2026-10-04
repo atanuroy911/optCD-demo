@@ -1,0 +1,911 @@
+﻿2026-09-04T07:38:17.2769832Z Current runner version: '2.337.0'
+2026-09-04T07:38:17.2789391Z ##[group]Runner Image Provisioner
+2026-09-04T07:38:17.2790105Z Hosted Compute Agent
+2026-09-04T07:38:17.2790794Z Version: 20260828.587
+2026-09-04T07:38:17.2791318Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-04T07:38:17.2791912Z Build Date: 2026-08-28T16:44:25Z
+2026-09-04T07:38:17.2792464Z Worker ID: {aa64f98e-84b4-4057-9c4b-1286c854a13b}
+2026-09-04T07:38:17.2793016Z Azure Region: centralus
+2026-09-04T07:38:17.2793475Z ##[endgroup]
+2026-09-04T07:38:17.2794646Z ##[group]Operating System
+2026-09-04T07:38:17.2795136Z Ubuntu
+2026-09-04T07:38:17.2795581Z 24.04.4
+2026-09-04T07:38:17.2795993Z LTS
+2026-09-04T07:38:17.2796764Z ##[endgroup]
+2026-09-04T07:38:17.2797244Z ##[group]Runner Image
+2026-09-04T07:38:17.2797735Z Image: ubuntu-24.04
+2026-09-04T07:38:17.2798225Z Version: 20260831.293.1
+2026-09-04T07:38:17.2799220Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260831.293/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-04T07:38:17.2800375Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260831.293
+2026-09-04T07:38:17.2801327Z ##[endgroup]
+2026-09-04T07:38:17.2802227Z ##[group]GITHUB_TOKEN Permissions
+2026-09-04T07:38:17.2804172Z Contents: read
+2026-09-04T07:38:17.2804647Z Metadata: read
+2026-09-04T07:38:17.2805108Z ##[endgroup]
+2026-09-04T07:38:17.2806747Z Secret source: Actions
+2026-09-04T07:38:17.2807546Z Prepare workflow directory
+2026-09-04T07:38:17.3091782Z Prepare all required actions
+2026-09-04T07:38:17.3127261Z Getting action download info
+2026-09-04T07:38:17.5465358Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-09-04T07:38:18.6478075Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-09-04T07:38:18.6785875Z Download action repository 'graalvm/setup-graalvm@0def53c0fd8534bc13416c9469f5be45265824fd' (SHA:0def53c0fd8534bc13416c9469f5be45265824fd)
+2026-09-04T07:38:19.1312679Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-09-04T07:38:19.5675826Z Complete job name: native-image-test (21)
+2026-09-04T07:38:19.6184303Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-04T07:38:19.6189792Z ##[group]Run actions/setup-python@v5
+2026-09-04T07:38:19.6190258Z with:
+2026-09-04T07:38:19.6190788Z   python-version: 3.10
+2026-09-04T07:38:19.6191103Z   check-latest: false
+2026-09-04T07:38:19.6192932Z   token: ***
+2026-09-04T07:38:19.6193214Z   update-environment: true
+2026-09-04T07:38:19.6193516Z   allow-prereleases: false
+2026-09-04T07:38:19.6193786Z   freethreaded: false
+2026-09-04T07:38:19.6194135Z env:
+2026-09-04T07:38:19.6194513Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:19.6194875Z ##[endgroup]
+2026-09-04T07:38:19.7252093Z ##[group]Installed versions
+2026-09-04T07:38:19.9298121Z (node:1902) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-04T07:38:19.9299058Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-04T07:38:19.9299744Z Successfully set up CPython (3.10.21)
+2026-09-04T07:38:19.9311089Z ##[endgroup]
+2026-09-04T07:38:19.9534445Z ##[group]Run python -m pip install --upgrade pip
+2026-09-04T07:38:19.9535085Z [36;1mpython -m pip install --upgrade pip[0m
+2026-09-04T07:38:19.9535426Z [36;1mpip install inotify[0m
+2026-09-04T07:38:19.9634252Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:19.9634605Z env:
+2026-09-04T07:38:19.9634992Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:19.9635425Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:19.9636000Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:19.9636448Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:19.9636852Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:19.9637287Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:19.9637724Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:19.9638036Z ##[endgroup]
+2026-09-04T07:38:26.4483187Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.10.21/x64/lib/python3.10/site-packages (26.2.1)
+2026-09-04T07:38:27.9977150Z Collecting inotify
+2026-09-04T07:38:28.0775850Z   Downloading inotify-0.2.12-py2.py3-none-any.whl.metadata (7.2 kB)
+2026-09-04T07:38:28.6484200Z Collecting build (from inotify)
+2026-09-04T07:38:28.6634134Z   Downloading build-1.6.0-py3-none-any.whl.metadata (5.6 kB)
+2026-09-04T07:38:28.7396831Z Collecting packaging>=24.0 (from build->inotify)
+2026-09-04T07:38:28.7555163Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-09-04T07:38:29.1946565Z Collecting pyproject_hooks (from build->inotify)
+2026-09-04T07:38:29.2097227Z   Downloading pyproject_hooks-1.2.0-py3-none-any.whl.metadata (1.3 kB)
+2026-09-04T07:38:29.5877321Z Collecting tomli>=1.1.0 (from build->inotify)
+2026-09-04T07:38:29.6028298Z   Downloading tomli-2.4.1-py3-none-any.whl.metadata (10 kB)
+2026-09-04T07:38:29.9325337Z Downloading inotify-0.2.12-py2.py3-none-any.whl (20 kB)
+2026-09-04T07:38:30.0896272Z Downloading build-1.6.0-py3-none-any.whl (31 kB)
+2026-09-04T07:38:30.1107347Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-09-04T07:38:30.1648127Z Downloading tomli-2.4.1-py3-none-any.whl (14 kB)
+2026-09-04T07:38:30.2187327Z Downloading pyproject_hooks-1.2.0-py3-none-any.whl (10 kB)
+2026-09-04T07:38:30.3254979Z Installing collected packages: tomli, pyproject_hooks, packaging, build, inotify
+2026-09-04T07:38:30.5726647Z 
+2026-09-04T07:38:30.5735661Z Successfully installed build-1.6.0 inotify-0.2.12 packaging-26.3 pyproject_hooks-1.2.0 tomli-2.4.1
+2026-09-04T07:38:30.6248721Z ##[group]Run python3 -c "
+2026-09-04T07:38:30.6249043Z [36;1mpython3 -c "[0m
+2026-09-04T07:38:30.6249287Z [36;1mimport inotify.adapters[0m
+2026-09-04T07:38:30.6249525Z [36;1mimport inotify.constants[0m
+2026-09-04T07:38:30.6249758Z [36;1mimport os[0m
+2026-09-04T07:38:30.6250027Z [36;1mfrom datetime import datetime, timezone[0m
+2026-09-04T07:38:30.6250414Z [36;1mwith open('/home/runner/inotifywait-log-native-image-test (21).csv', 'w') as log_file:[0m
+2026-09-04T07:38:30.6251277Z [36;1m  i = inotify.adapters.InotifyTree('/home/runner/work/gson/gson', inotify.constants.IN_CREATE | inotify.constants.IN_ACCESS)[0m
+2026-09-04T07:38:30.6251744Z [36;1m  for event in i.event_gen(yield_nones=False):[0m
+2026-09-04T07:38:30.6252018Z [36;1m    (_, type_names, path, filename) = event[0m
+2026-09-04T07:38:30.6252456Z [36;1m    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f') + 'Z'[0m
+2026-09-04T07:38:30.6252798Z [36;1m    events = ','.join(type_names)[0m
+2026-09-04T07:38:30.6253185Z [36;1m    log_file.write(f'{now};{path};{filename};{events}\n')[0m
+2026-09-04T07:38:30.6253463Z [36;1m    log_file.flush()[0m
+2026-09-04T07:38:30.6253697Z [36;1m    os.fsync(log_file.fileno())[0m
+2026-09-04T07:38:30.6253963Z [36;1m" &[0m
+2026-09-04T07:38:30.6272723Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:30.6272979Z env:
+2026-09-04T07:38:30.6273606Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:30.6273942Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:30.6274266Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:30.6274619Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:30.6274923Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:30.6275254Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:30.6275882Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:30.6276153Z ##[endgroup]
+2026-09-04T07:38:35.6426488Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-09-04T07:38:35.6427066Z with:
+2026-09-04T07:38:35.6427348Z   persist-credentials: false
+2026-09-04T07:38:35.6427751Z   repository: atanuroy911/gson
+2026-09-04T07:38:35.6430376Z   token: ***
+2026-09-04T07:38:35.6430901Z   ssh-strict: true
+2026-09-04T07:38:35.6431235Z   ssh-user: git
+2026-09-04T07:38:35.6431534Z   clean: true
+2026-09-04T07:38:35.6431809Z   sparse-checkout-cone-mode: true
+2026-09-04T07:38:35.6432060Z   fetch-depth: 1
+2026-09-04T07:38:35.6432274Z   fetch-tags: false
+2026-09-04T07:38:35.6432522Z   show-progress: true
+2026-09-04T07:38:35.6432745Z   lfs: false
+2026-09-04T07:38:35.6432958Z   submodules: false
+2026-09-04T07:38:35.6433178Z   set-safe-directory: true
+2026-09-04T07:38:35.6433406Z   allow-unsafe-pr-checkout: false
+2026-09-04T07:38:35.6433682Z env:
+2026-09-04T07:38:35.6433986Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:35.6434441Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:35.6434825Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:35.6435195Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:35.6435525Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:35.6435832Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:35.6436173Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:35.6436457Z ##[endgroup]
+2026-09-04T07:38:35.7055131Z Syncing repository: atanuroy911/gson
+2026-09-04T07:38:35.7056349Z ##[group]Getting Git version info
+2026-09-04T07:38:35.7056820Z Working directory is '/home/runner/work/gson/gson'
+2026-09-04T07:38:35.7092746Z [command]/usr/bin/git version
+2026-09-04T07:38:35.8798913Z git version 2.55.0
+2026-09-04T07:38:35.8808394Z ##[endgroup]
+2026-09-04T07:38:35.8817920Z Temporarily overriding HOME='/home/runner/work/_temp/702853da-3d4b-4006-8f1e-71faeaf73038' before making global git config changes
+2026-09-04T07:38:35.8818697Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-04T07:38:35.8823090Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/gson/gson
+2026-09-04T07:38:35.8912360Z Deleting the contents of '/home/runner/work/gson/gson'
+2026-09-04T07:38:35.8916849Z ##[group]Determining repository object format
+2026-09-04T07:38:35.8917592Z ##[endgroup]
+2026-09-04T07:38:35.8918171Z ##[group]Initializing the repository
+2026-09-04T07:38:35.8920994Z [command]/usr/bin/git init /home/runner/work/gson/gson
+2026-09-04T07:38:36.0975529Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-04T07:38:36.0976365Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-04T07:38:36.0977003Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-04T07:38:36.0977555Z hint: call:
+2026-09-04T07:38:36.0977994Z hint:
+2026-09-04T07:38:36.0978790Z hint: 	git config --global init.defaultBranch <name>
+2026-09-04T07:38:36.0979234Z hint:
+2026-09-04T07:38:36.0979709Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-04T07:38:36.0980308Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-04T07:38:36.0980987Z hint:
+2026-09-04T07:38:36.0981387Z hint: 	git branch -m <name>
+2026-09-04T07:38:36.0981820Z hint:
+2026-09-04T07:38:36.0982562Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-04T07:38:36.1242477Z Initialized empty Git repository in /home/runner/work/gson/gson/.git/
+2026-09-04T07:38:36.1251316Z [command]/usr/bin/git remote add origin https://github.com/atanuroy911/gson
+2026-09-04T07:38:36.2274348Z ##[endgroup]
+2026-09-04T07:38:36.2274962Z ##[group]Disabling automatic garbage collection
+2026-09-04T07:38:36.2275456Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-04T07:38:36.2583019Z ##[endgroup]
+2026-09-04T07:38:36.2738889Z ##[group]Setting up auth
+2026-09-04T07:38:36.2741450Z Removing SSH command configuration
+2026-09-04T07:38:36.2765105Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-04T07:38:36.2766562Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-04T07:38:36.3941386Z Removing HTTP extra header
+2026-09-04T07:38:36.3942062Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-04T07:38:36.3960204Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-04T07:38:36.4102335Z Removing includeIf entries pointing to credentials config files
+2026-09-04T07:38:36.4106220Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-04T07:38:36.4131784Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-04T07:38:36.4272386Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-c73b7102-c3b4-4f8a-a93e-9e1b050b979a.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-04T07:38:36.4300925Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/gson/gson/.git.path /home/runner/work/_temp/git-credentials-c73b7102-c3b4-4f8a-a93e-9e1b050b979a.config
+2026-09-04T07:38:36.4321864Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-c73b7102-c3b4-4f8a-a93e-9e1b050b979a.config
+2026-09-04T07:38:36.4344477Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-c73b7102-c3b4-4f8a-a93e-9e1b050b979a.config
+2026-09-04T07:38:36.4365015Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-c73b7102-c3b4-4f8a-a93e-9e1b050b979a.config
+2026-09-04T07:38:36.5876844Z ##[endgroup]
+2026-09-04T07:38:36.5877620Z ##[group]Fetching the repository
+2026-09-04T07:38:36.5878874Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +4dd947df69aa3ea7d3a11b253ef1ecb587454312:refs/remotes/origin/optcd-run
+2026-09-04T07:38:37.3727587Z From https://github.com/atanuroy911/gson
+2026-09-04T07:38:37.3728313Z  * [new ref]         4dd947df69aa3ea7d3a11b253ef1ecb587454312 -> origin/optcd-run
+2026-09-04T07:38:37.3737204Z [command]/usr/bin/git branch --list --remote origin/optcd-run
+2026-09-04T07:38:37.3756349Z   origin/optcd-run
+2026-09-04T07:38:37.3761499Z [command]/usr/bin/git rev-parse refs/remotes/origin/optcd-run
+2026-09-04T07:38:37.3777476Z 4dd947df69aa3ea7d3a11b253ef1ecb587454312
+2026-09-04T07:38:37.3779118Z ##[endgroup]
+2026-09-04T07:38:37.3779525Z ##[group]Determining the checkout info
+2026-09-04T07:38:37.3780072Z ##[endgroup]
+2026-09-04T07:38:37.3785542Z [command]/usr/bin/git sparse-checkout disable
+2026-09-04T07:38:37.3826383Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-04T07:38:37.3846114Z ##[group]Checking out the ref
+2026-09-04T07:38:37.3849590Z [command]/usr/bin/git checkout --progress --force -B optcd-run refs/remotes/origin/optcd-run
+2026-09-04T07:38:37.4010459Z Switched to a new branch 'optcd-run'
+2026-09-04T07:38:37.4013703Z branch 'optcd-run' set up to track 'origin/optcd-run'.
+2026-09-04T07:38:37.4017224Z ##[endgroup]
+2026-09-04T07:38:37.4045551Z [command]/usr/bin/git log -1 --format=%H
+2026-09-04T07:38:37.4061709Z 4dd947df69aa3ea7d3a11b253ef1ecb587454312
+2026-09-04T07:38:37.4067666Z ##[group]Removing auth
+2026-09-04T07:38:37.4068127Z Removing SSH command configuration
+2026-09-04T07:38:37.4078113Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-04T07:38:37.4095467Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-04T07:38:37.4243590Z Removing HTTP extra header
+2026-09-04T07:38:37.4246068Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-04T07:38:37.4266285Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-04T07:38:37.4401747Z Removing includeIf entries pointing to credentials config files
+2026-09-04T07:38:37.4404053Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-04T07:38:37.4421310Z includeif.gitdir:/home/runner/work/gson/gson/.git.path
+2026-09-04T07:38:37.4422012Z includeif.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path
+2026-09-04T07:38:37.4422631Z includeif.gitdir:/github/workspace/.git.path
+2026-09-04T07:38:37.4423104Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-04T07:38:37.4426037Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/gson/gson/.git.path
+2026-09-04T07:38:37.4441292Z /home/runner/work/_temp/git-credentials-c73b7102-c3b4-4f8a-a93e-9e1b050b979a.config
+2026-09-04T07:38:37.4481971Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/gson/gson/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-c73b7102\-c3b4\-4f8a\-a93e\-9e1b050b979a\.config
+2026-09-04T07:38:37.4502805Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path
+2026-09-04T07:38:37.4519170Z /home/runner/work/_temp/git-credentials-c73b7102-c3b4-4f8a-a93e-9e1b050b979a.config
+2026-09-04T07:38:37.4525553Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-c73b7102\-c3b4\-4f8a\-a93e\-9e1b050b979a\.config
+2026-09-04T07:38:37.4744672Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-09-04T07:38:37.4791470Z /github/runner_temp/git-credentials-c73b7102-c3b4-4f8a-a93e-9e1b050b979a.config
+2026-09-04T07:38:37.4817382Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-c73b7102\-c3b4\-4f8a\-a93e\-9e1b050b979a\.config
+2026-09-04T07:38:37.4838806Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-04T07:38:37.4854002Z /github/runner_temp/git-credentials-c73b7102-c3b4-4f8a-a93e-9e1b050b979a.config
+2026-09-04T07:38:37.4857973Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-c73b7102\-c3b4\-4f8a\-a93e\-9e1b050b979a\.config
+2026-09-04T07:38:37.4881373Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-04T07:38:37.5031338Z Removing credentials config '/home/runner/work/_temp/git-credentials-c73b7102-c3b4-4f8a-a93e-9e1b050b979a.config'
+2026-09-04T07:38:37.5032950Z ##[endgroup]
+2026-09-04T07:38:37.5112742Z ##[group]Run touch optcd-3.txt
+2026-09-04T07:38:37.5113044Z [36;1mtouch optcd-3.txt[0m
+2026-09-04T07:38:37.5132447Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:37.5132738Z env:
+2026-09-04T07:38:37.5133024Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:37.5133393Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:37.5133747Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:37.5134148Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:37.5134605Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:37.5134920Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:37.5135247Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:37.5135521Z ##[endgroup]
+2026-09-04T07:38:37.5239660Z ##[group]Run graalvm/setup-graalvm@0def53c0fd8534bc13416c9469f5be45265824fd
+2026-09-04T07:38:37.5240066Z with:
+2026-09-04T07:38:37.5240303Z   java-version: 21
+2026-09-04T07:38:37.5240683Z   distribution: graalvm
+2026-09-04T07:38:37.5242935Z   github-token: ***
+2026-09-04T07:38:37.5243163Z   cache: maven
+2026-09-04T07:38:37.5243395Z   java-package: jdk
+2026-09-04T07:38:37.5243639Z   set-java-home: true
+2026-09-04T07:38:37.5243862Z   check-for-updates: true
+2026-09-04T07:38:37.5244131Z   native-image-musl: false
+2026-09-04T07:38:37.5244389Z   native-image-job-reports: false
+2026-09-04T07:38:37.5244664Z   native-image-pr-reports: false
+2026-09-04T07:38:37.5244981Z   native-image-pr-reports-update-existing: false
+2026-09-04T07:38:37.5245318Z   native-image-enable-sbom: false
+2026-09-04T07:38:37.5245582Z env:
+2026-09-04T07:38:37.5245918Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:37.5246402Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:37.5246771Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:37.5247149Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:37.5247498Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:37.5247833Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:37.5248203Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:37.5248528Z ##[endgroup]
+2026-09-04T07:38:39.3222561Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/11500d03-a293-44cd-b498-f192c4ce5a8e -f /home/runner/work/_temp/73fce6fc-564d-420a-bd27-e6e47fa53c8d/.gz
+2026-09-04T07:38:42.7249435Z Adding graalvm-jdk-21_linux-x64_bin 21 to tool-cache ...
+2026-09-04T07:38:47.6368523Z maven cache is not found
+2026-09-04T07:38:47.6369801Z ##[group]Successfully set up 'graalvm-jdk-21.0.12+7.1'
+2026-09-04T07:38:47.6372358Z [command]/opt/hostedtoolcache/graalvm-jdk-21_linux-x64_bin/21.0.0/x64/graalvm-jdk-21.0.12+7.1/bin/java --version
+2026-09-04T07:38:47.6854669Z java 21.0.12 2026-07-21 LTS
+2026-09-04T07:38:47.6855440Z Java(TM) SE Runtime Environment Oracle GraalVM 21.0.12+7.1 (build 21.0.12+7-LTS-jvmci-23.1-b96)
+2026-09-04T07:38:47.6856804Z Java HotSpot(TM) 64-Bit Server VM Oracle GraalVM 21.0.12+7.1 (build 21.0.12+7-LTS-jvmci-23.1-b96, mixed mode, sharing)
+2026-09-04T07:38:47.6871666Z ##[endgroup]
+2026-09-04T07:38:47.6958371Z ##[group]Run touch optcd-4.txt
+2026-09-04T07:38:47.6958669Z [36;1mtouch optcd-4.txt[0m
+2026-09-04T07:38:47.6979023Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:47.6979299Z env:
+2026-09-04T07:38:47.6979578Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:47.6979973Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:47.6980331Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:47.6980989Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:47.6981396Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:47.6981726Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:47.6982061Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:47.6982518Z   GRAALVM_HOME: /opt/hostedtoolcache/graalvm-jdk-21_linux-x64_bin/21.0.0/x64/graalvm-jdk-21.0.12+7.1
+2026-09-04T07:38:47.6983215Z   JAVA_HOME: /opt/hostedtoolcache/graalvm-jdk-21_linux-x64_bin/21.0.0/x64/graalvm-jdk-21.0.12+7.1
+2026-09-04T07:38:47.6983587Z ##[endgroup]
+2026-09-04T07:38:47.7051504Z ##[group]Run mvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make 
+2026-09-04T07:38:47.7052194Z [36;1mmvn test --activate-profiles native-image-test --projects test-graal-native-image --also-make [0m
+2026-09-04T07:38:47.7065883Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:38:47.7066138Z env:
+2026-09-04T07:38:47.7066416Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:38:47.7066778Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:47.7067201Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:38:47.7067542Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:47.7067888Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:47.7068247Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:38:47.7068579Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:38:47.7069090Z   GRAALVM_HOME: /opt/hostedtoolcache/graalvm-jdk-21_linux-x64_bin/21.0.0/x64/graalvm-jdk-21.0.12+7.1
+2026-09-04T07:38:47.7069619Z   JAVA_HOME: /opt/hostedtoolcache/graalvm-jdk-21_linux-x64_bin/21.0.0/x64/graalvm-jdk-21.0.12+7.1
+2026-09-04T07:38:47.7069972Z ##[endgroup]
+2026-09-04T07:38:50.8729817Z Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)
+2026-09-04T07:38:50.8730403Z Maven home: /usr/share/apache-maven-3.9.16
+2026-09-04T07:38:50.8731082Z Java version: 21.0.12, vendor: Oracle Corporation, runtime: /opt/hostedtoolcache/graalvm-jdk-21_linux-x64_bin/21.0.0/x64/graalvm-jdk-21.0.12+7.1
+2026-09-04T07:38:50.8731610Z Default locale: en, platform encoding: UTF-8
+2026-09-04T07:38:50.8731960Z OS name: "linux", version: "6.17.0-1022-azure", arch: "amd64", family: "unix"
+2026-09-04T07:38:54.0536596Z [INFO] Scanning for projects...
+2026-09-04T07:39:01.3662918Z [INFO] Inspecting build with total of 3 modules
+2026-09-04T07:39:01.3678857Z [INFO] Installing Central Publishing features
+2026-09-04T07:39:01.3762039Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:39:01.3762841Z [INFO] Reactor Build Order:
+2026-09-04T07:39:01.3763237Z [INFO] 
+2026-09-04T07:39:01.3763654Z [INFO] Gson Parent                                                        [pom]
+2026-09-04T07:39:01.3764290Z [INFO] Gson                                                               [jar]
+2026-09-04T07:39:01.3764826Z [INFO] Test: GraalVM Native Image                                         [jar]
+2026-09-04T07:39:01.3818243Z [INFO] 
+2026-09-04T07:39:01.3818976Z [INFO] ------------------< com.google.code.gson:gson-parent >------------------
+2026-09-04T07:39:01.3819688Z [INFO] Building Gson Parent 2.14.1-SNAPSHOT                               [1/3]
+2026-09-04T07:39:01.3820430Z [INFO]   from pom.xml
+2026-09-04T07:39:01.3821177Z [INFO] --------------------------------[ pom ]---------------------------------
+2026-09-04T07:39:01.8652232Z [INFO] 
+2026-09-04T07:39:01.8653202Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ gson-parent ---
+2026-09-04T07:39:03.1678324Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+2026-09-04T07:39:03.1775715Z [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+2026-09-04T07:39:03.1776471Z [INFO] 
+2026-09-04T07:39:03.1776981Z [INFO] ---------------------< com.google.code.gson:gson >----------------------
+2026-09-04T07:39:03.1777566Z [INFO] Building Gson 2.14.1-SNAPSHOT                                      [2/3]
+2026-09-04T07:39:03.1778097Z [INFO]   from gson/pom.xml
+2026-09-04T07:39:03.1778611Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-09-04T07:39:05.5059008Z [INFO] 
+2026-09-04T07:39:05.5060019Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ gson ---
+2026-09-04T07:39:05.5081308Z [INFO] 
+2026-09-04T07:39:05.5082090Z [INFO] --- templating:3.1.0:filter-sources (filtering-java-templates) @ gson ---
+2026-09-04T07:39:06.6612123Z [INFO] Copying files with filtering to temporary directory.
+2026-09-04T07:39:06.6655126Z [INFO] Copying 1 resource from src/main/java-templates to target/templates-tmp4151517166
+2026-09-04T07:39:06.6813837Z [INFO] Copied 1 files to output directory: /home/runner/work/gson/gson/gson/target/generated-sources/java-templates
+2026-09-04T07:39:06.6815072Z [INFO] Source directory: /home/runner/work/gson/gson/gson/target/generated-sources/java-templates added.
+2026-09-04T07:39:06.6815949Z [INFO] 
+2026-09-04T07:39:06.6816944Z [INFO] --- resources:3.5.0:resources (default-resources) @ gson ---
+2026-09-04T07:39:07.2622533Z [INFO] Copying 1 resource from src/main/resources to target/classes
+2026-09-04T07:39:07.2628343Z [INFO] 
+2026-09-04T07:39:07.2629057Z [INFO] --- compiler:3.15.0:compile (default-compile) @ gson ---
+2026-09-04T07:39:10.3098860Z [INFO] Recompiling the module because of changed source code.
+2026-09-04T07:39:10.3177526Z [INFO] Compiling 86 source files with javac [debug deprecation release 8] to target/classes
+2026-09-04T07:39:15.2094159Z [INFO] 
+2026-09-04T07:39:15.2112221Z [INFO] --- bnd:6.4.0:bnd-process (default) @ gson ---
+2026-09-04T07:39:20.3664499Z [WARNING] /home/runner/work/gson/gson/gson/pom.xml [0:0]: Export com.google.gson,  has 1,  private references [com.google.gson.internal]
+2026-09-04T07:39:20.3688657Z [INFO] 
+2026-09-04T07:39:20.3715322Z [INFO] --- resources:3.5.0:testResources (default-testResources) @ gson ---
+2026-09-04T07:39:20.3718213Z [INFO] Copying 1 resource from src/test/resources to target/test-classes
+2026-09-04T07:39:20.3720140Z [INFO] 
+2026-09-04T07:39:20.3721039Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ gson ---
+2026-09-04T07:39:20.3874421Z [INFO] Recompiling the module because of changed dependency.
+2026-09-04T07:39:20.3877241Z [INFO] Compiling 123 source files with javac [debug deprecation release 17] to target/test-classes
+2026-09-04T07:39:28.9744903Z [INFO] 
+2026-09-04T07:39:28.9746076Z [INFO] --- resources:3.5.0:copy-resources (pre-obfuscate-class) @ gson ---
+2026-09-04T07:39:28.9859921Z [INFO] Copying 2 resources from target/test-classes/com/google/gson/functional to target/test-classes-obfuscated-injar/com/google/gson/functional
+2026-09-04T07:39:28.9863934Z [INFO] 
+2026-09-04T07:39:28.9864474Z [INFO] --- proguard:2.7.0:proguard (obfuscate-test-class) @ gson ---
+2026-09-04T07:39:33.9114224Z [INFO] execute ProGuard [-injars, '/home/runner/work/gson/gson/gson/target/test-classes-obfuscated-injar'(!META-INF/maven/**,**/*.class), -libraryjars, '/home/runner/.m2/repository/com/google/errorprone/error_prone_annotations/2.50.0/error_prone_annotations-2.50.0.jar', -outjars, '/home/runner/work/gson/gson/gson/target/test-classes-obfuscated-outjar', -include, '/home/runner/work/gson/gson/gson/src/test/resources/testcases-proguard.conf', -libraryjars, '/home/runner/work/gson/gson/gson/target/classes', -libraryjars, '/opt/hostedtoolcache/graalvm-jdk-21_linux-x64_bin/21.0.0/x64/graalvm-jdk-21.0.12+7.1/jmods/java.base.jmod', -printmapping, '/home/runner/work/gson/gson/gson/target/proguard_map.txt', -printseeds, '/home/runner/work/gson/gson/gson/target/proguard_seed.txt']
+2026-09-04T07:39:33.9332846Z [INFO] proguard jar: [/home/runner/.m2/repository/com/guardsquare/proguard-base/7.9.1/proguard-base-7.9.1.jar, /home/runner/.m2/repository/com/guardsquare/proguard-core/9.3.2/proguard-core-9.3.2.jar]
+2026-09-04T07:39:34.3521109Z  [proguard] ProGuard, version 7.9.1
+2026-09-04T07:39:34.9534327Z [INFO] 
+2026-09-04T07:39:34.9534917Z [INFO] --- resources:3.5.0:copy-resources (post-obfuscate-class) @ gson ---
+2026-09-04T07:39:34.9556714Z [INFO] Copying 2 resources from target/test-classes-obfuscated-outjar/com/google/gson/functional to target/test-classes/com/google/gson/functional
+2026-09-04T07:39:34.9563987Z [INFO] 
+2026-09-04T07:39:34.9564821Z [INFO] --- surefire:3.5.6:test (default-test) @ gson ---
+2026-09-04T07:39:35.7297796Z [INFO] Using auto detected provider org.apache.maven.surefire.junit4.JUnit4Provider
+2026-09-04T07:39:36.2157662Z [INFO] 
+2026-09-04T07:39:36.2158861Z [INFO] -------------------------------------------------------
+2026-09-04T07:39:36.2159755Z [INFO]  T E S T S
+2026-09-04T07:39:36.2160285Z [INFO] -------------------------------------------------------
+2026-09-04T07:39:36.2572523Z Java HotSpot(TM) 64-Bit Server VM warning: Ignoring option --illegal-access=deny; support was removed in 17.0
+2026-09-04T07:39:36.4855409Z [INFO] Running com.google.gson.JsonPrimitiveTest
+2026-09-04T07:39:36.5656659Z [INFO] Tests run: 31, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.073 s -- in com.google.gson.JsonPrimitiveTest
+2026-09-04T07:39:36.5664225Z [INFO] Running com.google.gson.JsonArrayAsListTest
+2026-09-04T07:39:36.5942607Z [INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in com.google.gson.JsonArrayAsListTest
+2026-09-04T07:39:36.5943731Z [INFO] Running com.google.gson.functional.JsonAdapterAnnotationOnFieldsTest
+2026-09-04T07:39:36.6452428Z [INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.047 s -- in com.google.gson.functional.JsonAdapterAnnotationOnFieldsTest
+2026-09-04T07:39:36.6464060Z [INFO] Running com.google.gson.functional.TypeVariableTest
+2026-09-04T07:39:36.6602016Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.google.gson.functional.TypeVariableTest
+2026-09-04T07:39:36.6610812Z [INFO] Running com.google.gson.functional.MapTest
+2026-09-04T07:39:36.7308353Z [INFO] Tests run: 54, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.070 s -- in com.google.gson.functional.MapTest
+2026-09-04T07:39:36.7309195Z [INFO] Running com.google.gson.functional.ExposeFieldsTest
+2026-09-04T07:39:36.7523473Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in com.google.gson.functional.ExposeFieldsTest
+2026-09-04T07:39:36.7524603Z [INFO] Running com.google.gson.functional.JsonTreeTest
+2026-09-04T07:39:36.7624034Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.google.gson.functional.JsonTreeTest
+2026-09-04T07:39:36.7625543Z [INFO] Running com.google.gson.functional.SecurityTest
+2026-09-04T07:39:36.7681632Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.google.gson.functional.SecurityTest
+2026-09-04T07:39:36.7703098Z [INFO] Running com.google.gson.functional.EscapingTest
+2026-09-04T07:39:36.7786908Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.google.gson.functional.EscapingTest
+2026-09-04T07:39:36.7828312Z [INFO] Running com.google.gson.functional.CustomSerializerTest
+2026-09-04T07:39:36.7905262Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.google.gson.functional.CustomSerializerTest
+2026-09-04T07:39:36.7961787Z [INFO] Running com.google.gson.functional.TreeTypeAdaptersTest
+2026-09-04T07:39:36.7962745Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.google.gson.functional.TreeTypeAdaptersTest
+2026-09-04T07:39:36.7963636Z [INFO] Running com.google.gson.functional.InternationalizationTest
+2026-09-04T07:39:36.7964617Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.functional.InternationalizationTest
+2026-09-04T07:39:36.7965505Z [INFO] Running com.google.gson.functional.CustomDeserializerTest
+2026-09-04T07:39:36.8075873Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in com.google.gson.functional.CustomDeserializerTest
+2026-09-04T07:39:36.8076710Z [INFO] Running com.google.gson.functional.ObjectTest
+2026-09-04T07:39:36.8957707Z [INFO] Tests run: 50, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.078 s -- in com.google.gson.functional.ObjectTest
+2026-09-04T07:39:36.8983061Z [INFO] Running com.google.gson.functional.EnumWithObfuscatedTest
+2026-09-04T07:39:36.8984123Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.google.gson.functional.EnumWithObfuscatedTest
+2026-09-04T07:39:36.8986237Z [INFO] Running com.google.gson.functional.DefaultTypeAdaptersTest
+2026-09-04T07:39:37.0231840Z [INFO] Tests run: 80, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.116 s -- in com.google.gson.functional.DefaultTypeAdaptersTest
+2026-09-04T07:39:37.0233272Z [INFO] Running com.google.gson.functional.FieldNamingTest
+2026-09-04T07:39:37.0272201Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.functional.FieldNamingTest
+2026-09-04T07:39:37.0286987Z [INFO] Running com.google.gson.functional.JavaUtilTest
+2026-09-04T07:39:37.0322488Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.functional.JavaUtilTest
+2026-09-04T07:39:37.0323484Z [INFO] Running com.google.gson.functional.PrettyPrintingTest
+2026-09-04T07:39:37.0324372Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.PrettyPrintingTest
+2026-09-04T07:39:37.0325312Z [INFO] Running com.google.gson.functional.JsonAdapterSerializerDeserializerTest
+2026-09-04T07:39:37.0334203Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.JsonAdapterSerializerDeserializerTest
+2026-09-04T07:39:37.0338677Z [INFO] Running com.google.gson.functional.ReflectionAccessTest
+2026-09-04T07:39:37.0352816Z [WARNING] Tests run: 3, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 s -- in com.google.gson.functional.ReflectionAccessTest
+2026-09-04T07:39:37.0363648Z [INFO] Running com.google.gson.functional.ArrayTest
+2026-09-04T07:39:37.0526988Z [INFO] Tests run: 28, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.google.gson.functional.ArrayTest
+2026-09-04T07:39:37.0563466Z [INFO] Running com.google.gson.functional.StreamingTypeAdaptersTest
+2026-09-04T07:39:37.1030799Z [INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.039 s -- in com.google.gson.functional.StreamingTypeAdaptersTest
+2026-09-04T07:39:37.1031718Z [INFO] Running com.google.gson.functional.LeniencyTest
+2026-09-04T07:39:37.1032545Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.google.gson.functional.LeniencyTest
+2026-09-04T07:39:37.1033413Z [INFO] Running com.google.gson.functional.RuntimeTypeAdapterFactoryFunctionalTest
+2026-09-04T07:39:37.1034383Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.functional.RuntimeTypeAdapterFactoryFunctionalTest
+2026-09-04T07:39:37.1035186Z [INFO] Running com.google.gson.functional.TypeAdapterRuntimeTypeWrapperTest
+2026-09-04T07:39:37.1087392Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.google.gson.functional.TypeAdapterRuntimeTypeWrapperTest
+2026-09-04T07:39:37.1088314Z [INFO] Running com.google.gson.functional.FieldExclusionTest
+2026-09-04T07:39:37.1174464Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.google.gson.functional.FieldExclusionTest
+2026-09-04T07:39:37.1175266Z [INFO] Running com.google.gson.functional.ReadersWritersTest
+2026-09-04T07:39:37.1245643Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.google.gson.functional.ReadersWritersTest
+2026-09-04T07:39:37.1246918Z [INFO] Running com.google.gson.functional.SerializedNameTest
+2026-09-04T07:39:37.1254634Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.SerializedNameTest
+2026-09-04T07:39:37.1307651Z [INFO] Running com.google.gson.functional.NullObjectAndFieldTest
+2026-09-04T07:39:37.1321388Z [INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.google.gson.functional.NullObjectAndFieldTest
+2026-09-04T07:39:37.1323656Z [INFO] Running com.google.gson.functional.CollectionTest
+2026-09-04T07:39:37.1544410Z [INFO] Tests run: 30, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in com.google.gson.functional.CollectionTest
+2026-09-04T07:39:37.1545254Z [INFO] Running com.google.gson.functional.VersioningTest
+2026-09-04T07:39:37.1593498Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.google.gson.functional.VersioningTest
+2026-09-04T07:39:37.1594691Z [INFO] Running com.google.gson.functional.ParameterizedTypesTest
+2026-09-04T07:39:37.1765894Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in com.google.gson.functional.ParameterizedTypesTest
+2026-09-04T07:39:37.1766992Z [INFO] Running com.google.gson.functional.RawSerializationTest
+2026-09-04T07:39:37.1768002Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.RawSerializationTest
+2026-09-04T07:39:37.1768965Z [INFO] Running com.google.gson.functional.ExclusionStrategyFunctionalTest
+2026-09-04T07:39:37.1842122Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.google.gson.functional.ExclusionStrategyFunctionalTest
+2026-09-04T07:39:37.1844158Z [INFO] Running com.google.gson.functional.TypeHierarchyAdapterTest
+2026-09-04T07:39:37.1845530Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.google.gson.functional.TypeHierarchyAdapterTest
+2026-09-04T07:39:37.1847245Z [INFO] Running com.google.gson.functional.UncategorizedTest
+2026-09-04T07:39:37.1886267Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.google.gson.functional.UncategorizedTest
+2026-09-04T07:39:37.1888538Z [INFO] Running com.google.gson.functional.FormattingStyleTest
+2026-09-04T07:39:37.2147703Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in com.google.gson.functional.FormattingStyleTest
+2026-09-04T07:39:37.2149422Z [INFO] Running com.google.gson.functional.PrimitiveCharacterTest
+2026-09-04T07:39:37.2151466Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.PrimitiveCharacterTest
+2026-09-04T07:39:37.2152504Z [INFO] Running com.google.gson.functional.EnumTest
+2026-09-04T07:39:37.2272385Z [INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.google.gson.functional.EnumTest
+2026-09-04T07:39:37.2273635Z [INFO] Running com.google.gson.functional.ReflectionAccessFilterTest
+2026-09-04T07:39:37.2484482Z [INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in com.google.gson.functional.ReflectionAccessFilterTest
+2026-09-04T07:39:37.2485733Z [INFO] Running com.google.gson.functional.InheritanceTest
+2026-09-04T07:39:37.2574196Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.google.gson.functional.InheritanceTest
+2026-09-04T07:39:37.2575196Z [INFO] Running com.google.gson.functional.PrintFormattingTest
+2026-09-04T07:39:37.2576651Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.functional.PrintFormattingTest
+2026-09-04T07:39:37.2577567Z [INFO] Running com.google.gson.functional.PrimitiveTest
+2026-09-04T07:39:37.2906440Z [INFO] Tests run: 106, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in com.google.gson.functional.PrimitiveTest
+2026-09-04T07:39:37.2907762Z [INFO] Running com.google.gson.functional.ConcurrencyTest
+2026-09-04T07:39:37.3099705Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in com.google.gson.functional.ConcurrencyTest
+2026-09-04T07:39:37.3101075Z [INFO] Running com.google.gson.functional.JsonParserTest
+2026-09-04T07:39:37.3125527Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.google.gson.functional.JsonParserTest
+2026-09-04T07:39:37.3126835Z [INFO] Running com.google.gson.functional.JsonAdapterAnnotationOnClassesTest
+2026-09-04T07:39:37.8737915Z [INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.559 s -- in com.google.gson.functional.JsonAdapterAnnotationOnClassesTest
+2026-09-04T07:39:37.8744508Z [INFO] Running com.google.gson.functional.InstanceCreatorTest
+2026-09-04T07:39:37.9072102Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.google.gson.functional.InstanceCreatorTest
+2026-09-04T07:39:37.9073614Z [INFO] Running com.google.gson.functional.CircularReferenceTest
+2026-09-04T07:39:37.9802416Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 s -- in com.google.gson.functional.CircularReferenceTest
+2026-09-04T07:39:37.9803549Z [INFO] Running com.google.gson.functional.MoreSpecificTypeSerializationTest
+2026-09-04T07:39:37.9804584Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.MoreSpecificTypeSerializationTest
+2026-09-04T07:39:37.9805535Z [INFO] Running com.google.gson.functional.JavaUtilConcurrentAtomicTest
+2026-09-04T07:39:37.9806524Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.JavaUtilConcurrentAtomicTest
+2026-09-04T07:39:37.9807487Z [INFO] Running com.google.gson.functional.Java17RecordTest
+2026-09-04T07:39:37.9808427Z [INFO] Tests run: 25, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.Java17RecordTest
+2026-09-04T07:39:37.9809288Z [INFO] Running com.google.gson.functional.GsonVersionDiagnosticsTest
+2026-09-04T07:39:37.9810160Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.GsonVersionDiagnosticsTest
+2026-09-04T07:39:37.9811344Z [INFO] Running com.google.gson.functional.CustomTypeAdaptersTest
+2026-09-04T07:39:37.9941798Z [WARNING] Tests run: 21, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 0.012 s -- in com.google.gson.functional.CustomTypeAdaptersTest
+2026-09-04T07:39:38.0013481Z [INFO] Running com.google.gson.functional.ReusedTypeVariablesFullyResolveTest
+2026-09-04T07:39:38.0014431Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.ReusedTypeVariablesFullyResolveTest
+2026-09-04T07:39:38.0015441Z [INFO] Running com.google.gson.functional.InterfaceTest
+2026-09-04T07:39:38.0122887Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.google.gson.functional.InterfaceTest
+2026-09-04T07:39:38.0123863Z [INFO] Running com.google.gson.functional.DelegateTypeAdapterTest
+2026-09-04T07:39:38.0124934Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.google.gson.functional.DelegateTypeAdapterTest
+2026-09-04T07:39:38.0125750Z [INFO] Running com.google.gson.functional.StringTest
+2026-09-04T07:39:38.0141724Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.google.gson.functional.StringTest
+2026-09-04T07:39:38.0161624Z [INFO] Running com.google.gson.functional.MapAsArrayTypeAdapterTest
+2026-09-04T07:39:38.0191723Z [WARNING] Tests run: 11, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.006 s -- in com.google.gson.functional.MapAsArrayTypeAdapterTest
+2026-09-04T07:39:38.0209866Z [INFO] Running com.google.gson.functional.ToNumberPolicyFunctionalTest
+2026-09-04T07:39:38.0232251Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.google.gson.functional.ToNumberPolicyFunctionalTest
+2026-09-04T07:39:38.0233150Z [INFO] Running com.google.gson.functional.NamingPolicyTest
+2026-09-04T07:39:38.0305996Z [INFO] Tests run: 22, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.google.gson.functional.NamingPolicyTest
+2026-09-04T07:39:38.0306974Z [INFO] Running com.google.gson.functional.NumberLimitsTest
+2026-09-04T07:39:38.0801742Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 s -- in com.google.gson.functional.NumberLimitsTest
+2026-09-04T07:39:38.0802657Z [INFO] Running com.google.gson.functional.TypeAdapterPrecedenceTest
+2026-09-04T07:39:38.0847183Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.google.gson.functional.TypeAdapterPrecedenceTest
+2026-09-04T07:39:38.0848296Z [INFO] Running com.google.gson.JsonArrayTest
+2026-09-04T07:39:38.0961338Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.google.gson.JsonArrayTest
+2026-09-04T07:39:38.0962483Z [INFO] Running com.google.gson.DefaultMapJsonSerializerTest
+2026-09-04T07:39:38.0963759Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.DefaultMapJsonSerializerTest
+2026-09-04T07:39:38.0964625Z [INFO] Running com.google.gson.GenericArrayTypeTest
+2026-09-04T07:39:38.0965671Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.GenericArrayTypeTest
+2026-09-04T07:39:38.0966535Z [INFO] Running com.google.gson.JsonObjectTest
+2026-09-04T07:39:38.1277488Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.JsonObjectTest
+2026-09-04T07:39:38.1278650Z [INFO] Running com.google.gson.JsonObjectAsMapSuiteTest
+2026-09-04T07:39:38.3984999Z [INFO] Tests run: 906, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.250 s -- in com.google.gson.JsonObjectAsMapSuiteTest
+2026-09-04T07:39:38.3988554Z [INFO] Running com.google.gson.ParameterizedTypeTest
+2026-09-04T07:39:38.3989704Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.ParameterizedTypeTest
+2026-09-04T07:39:38.3992242Z [INFO] Running com.google.gson.internal.UnsafeAllocatorInstantiationTest
+2026-09-04T07:39:38.3993167Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.UnsafeAllocatorInstantiationTest
+2026-09-04T07:39:38.3994047Z [INFO] Running com.google.gson.internal.ConstructorConstructorTest
+2026-09-04T07:39:38.3994930Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.ConstructorConstructorTest
+2026-09-04T07:39:38.3995793Z [INFO] Running com.google.gson.internal.bind.JsonTreeReaderTest
+2026-09-04T07:39:38.4027871Z [INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.google.gson.internal.bind.JsonTreeReaderTest
+2026-09-04T07:39:38.4029400Z [INFO] Running com.google.gson.internal.bind.RecursiveTypesResolveTest
+2026-09-04T07:39:38.4049806Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.internal.bind.RecursiveTypesResolveTest
+2026-09-04T07:39:38.4051463Z [INFO] Running com.google.gson.internal.bind.DefaultDateTypeAdapterTest
+2026-09-04T07:39:38.4605177Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.054 s -- in com.google.gson.internal.bind.DefaultDateTypeAdapterTest
+2026-09-04T07:39:38.4607998Z [INFO] Running com.google.gson.internal.bind.Java17ReflectiveTypeAdapterFactoryTest
+2026-09-04T07:39:38.4634542Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.internal.bind.Java17ReflectiveTypeAdapterFactoryTest
+2026-09-04T07:39:38.4659844Z [INFO] Running com.google.gson.internal.bind.util.ISO8601UtilsTest
+2026-09-04T07:39:38.4661944Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.internal.bind.util.ISO8601UtilsTest
+2026-09-04T07:39:38.4671420Z [INFO] Running com.google.gson.internal.bind.JsonElementReaderTest
+2026-09-04T07:39:38.4722108Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.google.gson.internal.bind.JsonElementReaderTest
+2026-09-04T07:39:38.4723979Z [INFO] Running com.google.gson.internal.bind.JsonTreeWriterTest
+2026-09-04T07:39:38.4790693Z [INFO] Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.google.gson.internal.bind.JsonTreeWriterTest
+2026-09-04T07:39:38.4792804Z [INFO] Running com.google.gson.internal.JavaVersionTest
+2026-09-04T07:39:38.4793593Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.JavaVersionTest
+2026-09-04T07:39:38.4794399Z [INFO] Running com.google.gson.internal.LinkedTreeMapTest
+2026-09-04T07:39:38.5106511Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in com.google.gson.internal.LinkedTreeMapTest
+2026-09-04T07:39:38.5131471Z [INFO] Running com.google.gson.internal.LinkedTreeMapSuiteTest
+2026-09-04T07:39:38.7371417Z [INFO] Tests run: 1860, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.191 s -- in com.google.gson.internal.LinkedTreeMapSuiteTest
+2026-09-04T07:39:38.7381731Z [INFO] Running com.google.gson.internal.GsonTypesTest
+2026-09-04T07:39:38.7392353Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.GsonTypesTest
+2026-09-04T07:39:38.7393663Z [INFO] Running com.google.gson.internal.StreamsTest
+2026-09-04T07:39:38.7413359Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.StreamsTest
+2026-09-04T07:39:38.7414264Z [INFO] Running com.google.gson.internal.reflect.Java17ReflectionHelperTest
+2026-09-04T07:39:38.7431763Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.internal.reflect.Java17ReflectionHelperTest
+2026-09-04T07:39:38.7461312Z [INFO] Running com.google.gson.internal.GsonBuildConfigTest
+2026-09-04T07:39:38.7471538Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.GsonBuildConfigTest
+2026-09-04T07:39:38.7491463Z [INFO] Running com.google.gson.internal.LazilyParsedNumberTest
+2026-09-04T07:39:38.7499402Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.LazilyParsedNumberTest
+2026-09-04T07:39:38.7500234Z [INFO] Running com.google.gson.internal.sql.SqlTypesGsonTest
+2026-09-04T07:39:38.7501414Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.sql.SqlTypesGsonTest
+2026-09-04T07:39:38.7502176Z [INFO] Running com.google.gson.internal.sql.SqlTypesSupportTest
+2026-09-04T07:39:38.7503117Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.internal.sql.SqlTypesSupportTest
+2026-09-04T07:39:38.7531578Z [INFO] Running com.google.gson.JsonNullTest
+2026-09-04T07:39:38.7532489Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.JsonNullTest
+2026-09-04T07:39:38.7533390Z [INFO] Running com.google.gson.ExposeAnnotationExclusionStrategyTest
+2026-09-04T07:39:38.7534402Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.ExposeAnnotationExclusionStrategyTest
+2026-09-04T07:39:38.7535267Z [INFO] Running com.google.gson.MixedStreamTest
+2026-09-04T07:39:38.7535989Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.MixedStreamTest
+2026-09-04T07:39:38.7536797Z [INFO] Running com.google.gson.DefaultInetAddressTypeAdapterTest
+2026-09-04T07:39:38.7537761Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.DefaultInetAddressTypeAdapterTest
+2026-09-04T07:39:38.7538626Z [INFO] Running com.google.gson.SubsetTest
+2026-09-04T07:39:38.7539415Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.google.gson.SubsetTest
+2026-09-04T07:39:38.7540131Z [INFO] Running com.google.gson.ToNumberPolicyTest
+2026-09-04T07:39:38.7541052Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.ToNumberPolicyTest
+2026-09-04T07:39:38.7541735Z [INFO] Running com.google.gson.FieldNamingPolicyTest
+2026-09-04T07:39:38.7542432Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.FieldNamingPolicyTest
+2026-09-04T07:39:38.7543129Z [INFO] Running com.google.gson.JavaSerializationTest
+2026-09-04T07:39:38.7543798Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.google.gson.JavaSerializationTest
+2026-09-04T07:39:38.7544487Z [INFO] Running com.google.gson.JsonArrayAsListSuiteTest
+2026-09-04T07:39:38.9653241Z [INFO] Tests run: 404, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.205 s -- in com.google.gson.JsonArrayAsListSuiteTest
+2026-09-04T07:39:38.9654058Z [INFO] Running com.google.gson.ObjectTypeAdapterTest
+2026-09-04T07:39:38.9852194Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in com.google.gson.ObjectTypeAdapterTest
+2026-09-04T07:39:38.9858272Z [INFO] Running com.google.gson.metrics.PerformanceTest
+2026-09-04T07:39:38.9860422Z [WARNING] Tests run: 12, Failures: 0, Errors: 0, Skipped: 11, Time elapsed: 0 s -- in com.google.gson.metrics.PerformanceTest
+2026-09-04T07:39:38.9861947Z [INFO] Running com.google.gson.reflect.TypeTokenTest
+2026-09-04T07:39:38.9938019Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.google.gson.reflect.TypeTokenTest
+2026-09-04T07:39:38.9943494Z [INFO] Running com.google.gson.InnerClassExclusionStrategyTest
+2026-09-04T07:39:38.9955764Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.InnerClassExclusionStrategyTest
+2026-09-04T07:39:38.9961683Z [INFO] Running com.google.gson.LongSerializationPolicyTest
+2026-09-04T07:39:38.9962900Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.LongSerializationPolicyTest
+2026-09-04T07:39:38.9964526Z [INFO] Running com.google.gson.TypeAdapterTest
+2026-09-04T07:39:38.9981596Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.TypeAdapterTest
+2026-09-04T07:39:39.0002704Z [INFO] Running com.google.gson.JsonParserParameterizedTest
+2026-09-04T07:39:39.0049685Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.google.gson.JsonParserParameterizedTest
+2026-09-04T07:39:39.0050772Z [INFO] Running com.google.gson.ObjectTypeAdapterParameterizedTest
+2026-09-04T07:39:39.0098789Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.google.gson.ObjectTypeAdapterParameterizedTest
+2026-09-04T07:39:39.0100173Z [INFO] Running com.google.gson.JsonParserTest
+2026-09-04T07:39:39.0222417Z [INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.google.gson.JsonParserTest
+2026-09-04T07:39:39.0224774Z [INFO] Running com.google.gson.JsonStreamParserTest
+2026-09-04T07:39:39.0236542Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.JsonStreamParserTest
+2026-09-04T07:39:39.0248252Z [INFO] Running com.google.gson.GsonTest
+2026-09-04T07:39:39.0356266Z [INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.google.gson.GsonTest
+2026-09-04T07:39:39.0359987Z [INFO] Running com.google.gson.OverrideCoreTypeAdaptersTest
+2026-09-04T07:39:39.0361350Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.OverrideCoreTypeAdaptersTest
+2026-09-04T07:39:39.0363251Z [INFO] Running com.google.gson.stream.JsonReaderPathTest
+2026-09-04T07:39:39.0394277Z [WARNING] Tests run: 30, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.003 s -- in com.google.gson.stream.JsonReaderPathTest
+2026-09-04T07:39:39.0412933Z [INFO] Running com.google.gson.stream.JsonWriterTest
+2026-09-04T07:39:39.0538882Z [INFO] Tests run: 55, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.google.gson.stream.JsonWriterTest
+2026-09-04T07:39:39.0541051Z [INFO] Running com.google.gson.stream.JsonReaderTest
+2026-09-04T07:39:39.1033567Z [WARNING] Tests run: 162, Failures: 0, Errors: 0, Skipped: 3, Time elapsed: 0.041 s -- in com.google.gson.stream.JsonReaderTest
+2026-09-04T07:39:39.1047355Z [INFO] Running com.google.gson.CommentsTest
+2026-09-04T07:39:39.1083218Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.CommentsTest
+2026-09-04T07:39:39.1101800Z [INFO] Running com.google.gson.VersionExclusionStrategyTest
+2026-09-04T07:39:39.1102941Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.VersionExclusionStrategyTest
+2026-09-04T07:39:39.1104030Z [INFO] Running com.google.gson.FieldAttributesTest
+2026-09-04T07:39:39.1104838Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.FieldAttributesTest
+2026-09-04T07:39:39.1105820Z [INFO] Running com.google.gson.GsonTypeAdapterTest
+2026-09-04T07:39:39.1106617Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.GsonTypeAdapterTest
+2026-09-04T07:39:39.1107425Z [INFO] Running com.google.gson.GsonBuilderTest
+2026-09-04T07:39:39.1108217Z [WARNING] Tests run: 22, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 s -- in com.google.gson.GsonBuilderTest
+2026-09-04T07:39:39.1109008Z [INFO] Running com.google.gson.JsonObjectAsMapTest
+2026-09-04T07:39:39.1109813Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.JsonObjectAsMapTest
+2026-09-04T07:39:39.1321051Z [INFO] 
+2026-09-04T07:39:39.1321519Z [INFO] Results:
+2026-09-04T07:39:39.1322016Z [INFO] 
+2026-09-04T07:39:39.1325674Z [INFO] Tests run: 4633, Failures: 0, Errors: 0, Skipped: 20
+2026-09-04T07:39:39.1326433Z [INFO] 
+2026-09-04T07:39:39.1345549Z [INFO] 
+2026-09-04T07:39:39.1346299Z [INFO] ------------< com.google.code.gson:test-graal-native-image >------------
+2026-09-04T07:39:39.1347045Z [INFO] Building Test: GraalVM Native Image 2.14.1-SNAPSHOT                [3/3]
+2026-09-04T07:39:39.1348103Z [INFO]   from test-graal-native-image/pom.xml
+2026-09-04T07:39:39.1348651Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-09-04T07:39:40.0207241Z [INFO] 
+2026-09-04T07:39:40.0208349Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ test-graal-native-image ---
+2026-09-04T07:39:40.0882623Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+2026-09-04T07:39:40.0938046Z [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+2026-09-04T07:39:40.0938921Z [INFO] 
+2026-09-04T07:39:40.0939510Z [INFO] --- resources:3.4.0:resources (default-resources) @ test-graal-native-image ---
+2026-09-04T07:39:40.1567767Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/test-graal-native-image/src/main/resources
+2026-09-04T07:39:40.1568813Z [INFO] 
+2026-09-04T07:39:40.1569218Z [INFO] --- compiler:3.15.0:compile (default-compile) @ test-graal-native-image ---
+2026-09-04T07:39:40.1912969Z [INFO] No sources to compile
+2026-09-04T07:39:40.1923829Z [INFO] 
+2026-09-04T07:39:40.1924921Z [INFO] --- resources:3.4.0:testResources (default-testResources) @ test-graal-native-image ---
+2026-09-04T07:39:40.1956556Z [INFO] Copying 1 resource from src/test/resources to target/test-classes
+2026-09-04T07:39:40.1975786Z [INFO] 
+2026-09-04T07:39:40.1981317Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ test-graal-native-image ---
+2026-09-04T07:39:40.2100114Z [INFO] Recompiling the module because of changed dependency.
+2026-09-04T07:39:40.2130828Z [INFO] Compiling 2 source files with javac [debug deprecation release 17] to target/test-classes
+2026-09-04T07:39:41.1129552Z [INFO] 
+2026-09-04T07:39:41.1130996Z [INFO] --- surefire:3.5.6:test (default-test) @ test-graal-native-image ---
+2026-09-04T07:39:41.1598000Z [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+2026-09-04T07:39:41.7079100Z [INFO] 
+2026-09-04T07:39:41.7080076Z [INFO] -------------------------------------------------------
+2026-09-04T07:39:41.7081035Z [INFO]  T E S T S
+2026-09-04T07:39:41.7081592Z [INFO] -------------------------------------------------------
+2026-09-04T07:39:42.2063050Z [INFO] Running com.google.gson.native_test.ReflectionTest
+2026-09-04T07:39:42.2926895Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.078 s -- in com.google.gson.native_test.ReflectionTest
+2026-09-04T07:39:42.2928369Z [INFO] Running com.google.gson.native_test.Java17RecordReflectionTest
+2026-09-04T07:39:42.3134062Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in com.google.gson.native_test.Java17RecordReflectionTest
+2026-09-04T07:39:42.3382020Z [INFO] 
+2026-09-04T07:39:42.3382640Z [INFO] Results:
+2026-09-04T07:39:42.3383202Z [INFO] 
+2026-09-04T07:39:42.3384550Z [INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0
+2026-09-04T07:39:42.3384999Z [INFO] 
+2026-09-04T07:39:42.3405742Z [INFO] 
+2026-09-04T07:39:42.3406357Z [INFO] --- native:1.1.7:test (test-native) @ test-graal-native-image ---
+2026-09-04T07:39:42.3456109Z [INFO] Using configuration from maven-surefire-plugin, execution id "default-test"
+2026-09-04T07:39:42.3473564Z [INFO] ====================
+2026-09-04T07:39:42.3474086Z [INFO] Initializing project: Test: GraalVM Native Image
+2026-09-04T07:39:42.3474483Z [INFO] ====================
+2026-09-04T07:39:42.3483716Z [WARNING] No jdk toolchain configuration found
+2026-09-04T07:39:42.3485037Z [INFO] Found GraalVM installation from GRAALVM_HOME variable.
+2026-09-04T07:39:42.5856205Z [INFO] Downloaded GraalVM reachability metadata repository from file:/home/runner/.m2/repository/org/graalvm/buildtools/graalvm-reachability-metadata/1.1.7/graalvm-reachability-metadata-1.1.7-repository.zip
+2026-09-04T07:39:42.8323840Z [INFO] Using GraalVM reachability metadata repository version 1.0.8
+2026-09-04T07:39:42.8397576Z [INFO] [graalvm reachability metadata repository for com.google.code.gson:gson:2.14.1-SNAPSHOT]: Configuration directory not found. Trying latest version.
+2026-09-04T07:39:42.8399737Z [INFO] [graalvm reachability metadata repository for com.google.code.gson:gson:2.14.1-SNAPSHOT]: Configuration directory is com.google.code.gson/gson/2.14.0
+2026-09-04T07:39:42.8862816Z [INFO] [graalvm reachability metadata repository for com.google.errorprone:error_prone_annotations:2.50.0]: Configuration directory not found. Trying latest version.
+2026-09-04T07:39:42.8867464Z [INFO] [graalvm reachability metadata repository for com.google.errorprone:error_prone_annotations:2.50.0]: Configuration directory is com.google.errorprone/error_prone_annotations/2.6.0
+2026-09-04T07:39:42.8868905Z [INFO] [graalvm reachability metadata repository for org.junit.jupiter:junit-jupiter:6.0.3]: Configuration directory not found. Trying latest version.
+2026-09-04T07:39:42.8870124Z [INFO] [graalvm reachability metadata repository for org.junit.jupiter:junit-jupiter:6.0.3]: Latest version not found!
+2026-09-04T07:39:42.8871201Z [INFO] [graalvm reachability metadata repository for org.junit.jupiter:junit-jupiter:6.0.3]: missing.
+2026-09-04T07:39:42.8872303Z [INFO] [graalvm reachability metadata repository for org.junit.jupiter:junit-jupiter-api:6.0.3]: Configuration directory not found. Trying latest version.
+2026-09-04T07:39:42.8873730Z [INFO] [graalvm reachability metadata repository for org.junit.jupiter:junit-jupiter-api:6.0.3]: Configuration directory is org.junit.jupiter/junit-jupiter-api/5.8.2
+2026-09-04T07:39:42.8875083Z [INFO] [graalvm reachability metadata repository for org.opentest4j:opentest4j:1.3.0]: Configuration directory is org.opentest4j/opentest4j/1.2.0
+2026-09-04T07:39:42.8876402Z [INFO] [graalvm reachability metadata repository for org.junit.platform:junit-platform-commons:6.0.3]: Configuration directory not found. Trying latest version.
+2026-09-04T07:39:42.8877808Z [INFO] [graalvm reachability metadata repository for org.junit.platform:junit-platform-commons:6.0.3]: Configuration directory is org.junit.platform/junit-platform-commons/1.8.2
+2026-09-04T07:39:42.8879168Z [INFO] [graalvm reachability metadata repository for org.junit.jupiter:junit-jupiter-params:6.0.3]: Configuration directory is org.junit.jupiter/junit-jupiter-params/5.9.2
+2026-09-04T07:39:42.8882135Z [INFO] [graalvm reachability metadata repository for org.junit.jupiter:junit-jupiter-engine:6.0.3]: Configuration directory is org.junit.jupiter/junit-jupiter-engine/5.8.2
+2026-09-04T07:39:42.8887274Z [INFO] [graalvm reachability metadata repository for org.junit.platform:junit-platform-launcher:6.0.3]: Configuration directory is org.junit.platform/junit-platform-launcher/1.9.2
+2026-09-04T07:39:42.8890227Z [INFO] [graalvm reachability metadata repository for org.junit.platform:junit-platform-launcher:6.0.3]: Configuration directory is org.junit.platform/junit-platform-reporting/1.9.2
+2026-09-04T07:39:42.8894856Z [INFO] [graalvm reachability metadata repository for org.junit.platform:junit-platform-engine:6.0.3]: Configuration directory not found. Trying latest version.
+2026-09-04T07:39:42.8896197Z [INFO] [graalvm reachability metadata repository for org.junit.platform:junit-platform-engine:6.0.3]: Configuration directory is org.junit.platform/junit-platform-engine/1.10.4
+2026-09-04T07:39:42.8897669Z [INFO] [graalvm reachability metadata repository for org.apiguardian:apiguardian-api:1.1.2]: Configuration directory is org.apiguardian/apiguardian-api/1.1.2
+2026-09-04T07:39:42.8899891Z [INFO] [graalvm reachability metadata repository for org.jspecify:jspecify:1.0.0]: Configuration directory is org.jspecify/jspecify/1.0.0
+2026-09-04T07:39:42.8904945Z [INFO] [graalvm reachability metadata repository for com.google.truth:truth:1.4.5]: Configuration directory is com.google.truth/truth/1.1.3
+2026-09-04T07:39:42.8915767Z [INFO] [graalvm reachability metadata repository for com.google.guava:guava:33.4.3-android]: Configuration directory not found. Trying latest version.
+2026-09-04T07:39:42.8917072Z [INFO] [graalvm reachability metadata repository for com.google.guava:guava:33.4.3-android]: Configuration directory is com.google.guava/guava/33.6.0-jre
+2026-09-04T07:39:42.8918411Z [INFO] [graalvm reachability metadata repository for com.google.guava:failureaccess:1.0.2]: Configuration directory is com.google.guava/failureaccess/1.0.1
+2026-09-04T07:39:42.8919913Z [INFO] [graalvm reachability metadata repository for com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava]: Configuration directory is com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava
+2026-09-04T07:39:42.8929509Z [INFO] [graalvm reachability metadata repository for org.checkerframework:checker-qual:3.43.0]: Configuration directory is org.checkerframework/checker-qual/3.12.0
+2026-09-04T07:39:42.8931928Z [INFO] [graalvm reachability metadata repository for com.google.j2objc:j2objc-annotations:3.0.0]: Configuration directory is com.google.j2objc/j2objc-annotations/1.3
+2026-09-04T07:39:42.8933084Z [INFO] [graalvm reachability metadata repository for junit:junit:4.13.2]: Configuration directory is junit/junit/4.13.2
+2026-09-04T07:39:42.8934033Z [INFO] [graalvm reachability metadata repository for org.hamcrest:hamcrest-core:1.3]: Configuration directory is org.hamcrest/hamcrest-core/1.3
+2026-09-04T07:39:42.8935537Z [INFO] [graalvm reachability metadata repository for com.google.auto.value:auto-value-annotations:1.11.0]: Configuration directory is com.google.auto.value/auto-value-annotations/1.10
+2026-09-04T07:39:42.8951930Z [INFO] [graalvm reachability metadata repository for org.ow2.asm:asm:9.8]: Configuration directory is org.ow2.asm/asm/9.4
+2026-09-04T07:39:43.3627758Z [WARNING] No jdk toolchain configuration found
+2026-09-04T07:39:43.3711990Z [INFO] Executing: /opt/hostedtoolcache/graalvm-jdk-21_linux-x64_bin/21.0.0/x64/graalvm-jdk-21.0.12+7.1/bin/native-image -cp /home/runner/work/gson/gson/test-graal-native-image/target/test-classes:/home/runner/work/gson/gson/gson/target/classes:/home/runner/.m2/repository/com/google/errorprone/error_prone_annotations/2.50.0/error_prone_annotations-2.50.0.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter/6.0.3/junit-jupiter-6.0.3.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-api/6.0.3/junit-jupiter-api-6.0.3.jar:/home/runner/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-commons/6.0.3/junit-platform-commons-6.0.3.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-params/6.0.3/junit-jupiter-params-6.0.3.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-engine/6.0.3/junit-jupiter-engine-6.0.3.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-launcher/6.0.3/junit-platform-launcher-6.0.3.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-engine/6.0.3/junit-platform-engine-6.0.3.jar:/home/runner/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/runner/.m2/repository/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar:/home/runner/.m2/repository/com/google/truth/truth/1.4.5/truth-1.4.5.jar:/home/runner/.m2/repository/com/google/guava/guava/33.4.3-android/guava-33.4.3-android.jar:/home/runner/.m2/repository/com/google/guava/failureaccess/1.0.2/failureaccess-1.0.2.jar:/home/runner/.m2/repository/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:/home/runner/.m2/repository/org/checkerframework/checker-qual/3.43.0/checker-qual-3.43.0.jar:/home/runner/.m2/repository/com/google/j2objc/j2objc-annotations/3.0.0/j2objc-annotations-3.0.0.jar:/home/runner/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/home/runner/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/runner/.m2/repository/com/google/auto/value/auto-value-annotations/1.11.0/auto-value-annotations-1.11.0.jar:/home/runner/.m2/repository/org/ow2/asm/asm/9.8/asm-9.8.jar:/home/runner/.m2/repository/org/graalvm/buildtools/native-maven-plugin/1.1.7/native-maven-plugin-1.1.7.jar:/home/runner/.m2/repository/org/graalvm/buildtools/utils/1.1.7/utils-1.1.7.jar:/home/runner/.m2/repository/org/graalvm/buildtools/graalvm-reachability-metadata/1.1.7/graalvm-reachability-metadata-1.1.7.jar:/home/runner/.m2/repository/org/graalvm/buildtools/junit-platform-native/1.1.7/junit-platform-native-1.1.7.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-reporting/6.0.3/junit-platform-reporting-6.0.3.jar:/home/runner/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/runner/.m2/repository/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-launcher/6.0.3/junit-platform-launcher-6.0.3.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-engine/6.0.3/junit-platform-engine-6.0.3.jar:/home/runner/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-commons/6.0.3/junit-platform-commons-6.0.3.jar:/home/runner/.m2/repository/org/opentest4j/reporting/open-test-reporting-tooling-spi/0.2.4/open-test-reporting-tooling-spi-0.2.4.jar --no-fallback -Ob --color=never -o /home/runner/work/gson/gson/test-graal-native-image/target/native-tests -Djunit.platform.listeners.uid.tracking.enabled=true -Djunit.platform.listeners.uid.tracking.output.dir=/home/runner/work/gson/gson/test-graal-native-image/target/maven-surefire-plugin-test-ids -H:ConfigurationFileDirectories=/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/junit/junit/4.13.2,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/org.junit.platform/junit-platform-engine/1.10.4,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/com.google.guava/guava/33.6.0-jre,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/org.junit.jupiter/junit-jupiter-engine/5.8.2,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/org.junit.platform/junit-platform-launcher/1.9.2,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/org.checkerframework/checker-qual/3.12.0,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/org.ow2.asm/asm/9.4,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/org.hamcrest/hamcrest-core/1.3,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/org.junit.jupiter/junit-jupiter-api/5.8.2,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/org.opentest4j/opentest4j/1.2.0,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/org.jspecify/jspecify/1.0.0,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/com.google.errorprone/error_prone_annotations/2.6.0,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/org.junit.platform/junit-platform-reporting/1.9.2,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/org.apiguardian/apiguardian-api/1.1.2,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/org.junit.jupiter/junit-jupiter-params/5.9.2,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/com.google.truth/truth/1.1.3,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/com.google.code.gson/gson/2.14.0,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/com.google.guava/failureaccess/1.0.1,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/com.google.j2objc/j2objc-annotations/1.3,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/org.junit.platform/junit-platform-commons/1.8.2,/home/runner/work/gson/gson/test-graal-native-image/target/graalvm-reachability-metadata/1472f14ad9b43ec75b923ec392d8d87522904075/com.google.auto.value/auto-value-annotations/1.10 -H:+ReportExceptionStackTraces --features=org.graalvm.junit.platform.JUnitPlatformFeature --exclude-config .*.jar META-INF\/native-image\/org.junit.*.properties.* org.graalvm.junit.platform.NativeImageJUnitLauncher
+2026-09-04T07:39:45.4848528Z ========================================================================================================================
+2026-09-04T07:39:45.4857670Z GraalVM Native Image: Generating 'native-tests' (executable)...
+2026-09-04T07:39:45.4858325Z ========================================================================================================================
+2026-09-04T07:39:45.4858937Z For detailed information and explanations on the build output, visit:
+2026-09-04T07:39:45.4859650Z https://github.com/oracle/graal/blob/master/docs/reference-manual/native-image/BuildOutput.md
+2026-09-04T07:39:45.4860385Z ------------------------------------------------------------------------------------------------------------------------
+2026-09-04T07:39:47.9385275Z Warning: Found typeReached condition in JSON configuration files. The typeReached condition is not supported by this version of GraalVM and will be considered as always true. Please consider upgrading to the latest GraalVM version to be able to use all the latest features.
+2026-09-04T07:39:48.7090202Z [1/8] Initializing...                                                                                    (4.7s @ 0.12GB)
+2026-09-04T07:39:48.7095983Z  Java version: 21.0.12+7-LTS, vendor version: Oracle GraalVM 21.0.12+7.1
+2026-09-04T07:39:48.7096741Z  Graal compiler: optimization level: b, target machine: x86-64-v3, PGO: off
+2026-09-04T07:39:48.7108003Z  C compiler: gcc (linux, x86_64, 13.3.0)
+2026-09-04T07:39:48.7109001Z  Garbage collector: Serial GC (max heap size: 80% of RAM)
+2026-09-04T07:39:48.7109670Z  2 user-specific feature(s):
+2026-09-04T07:39:48.7111317Z  - com.oracle.svm.thirdparty.gson.GsonFeature
+2026-09-04T07:39:48.7111806Z  - org.graalvm.junit.platform.JUnitPlatformFeature
+2026-09-04T07:39:48.7119290Z ------------------------------------------------------------------------------------------------------------------------
+2026-09-04T07:39:48.7120889Z Build resources:
+2026-09-04T07:39:48.7121665Z  - 8.85GB of memory (56.7% of 15.61GB system memory, determined at start)
+2026-09-04T07:39:48.7122427Z  - 4 thread(s) (100.0% of 4 available processor(s), determined at start)
+2026-09-04T07:39:48.8916182Z [junit-platform-native] Running in 'test listener' mode using files matching pattern [junit-platform-unique-ids*] found in folder [/home/runner/work/gson/gson/test-graal-native-image/target/maven-surefire-plugin-test-ids] and its subfolders.
+2026-09-04T07:40:17.2019922Z [2/8] Performing analysis...  [*****]                                                                   (28.3s @ 0.90GB)
+2026-09-04T07:40:17.2042151Z     8,952 reachable types   (84.7% of   10,572 total)
+2026-09-04T07:40:17.2090781Z    11,902 reachable fields  (58.8% of   20,235 total)
+2026-09-04T07:40:17.2463035Z    42,918 reachable methods (57.1% of   75,137 total)
+2026-09-04T07:40:17.2463851Z     2,914 types,   844 fields, and 5,243 methods registered for reflection
+2026-09-04T07:40:17.2466511Z        60 types,    71 fields, and    52 methods registered for JNI access
+2026-09-04T07:40:17.2467341Z         4 native libraries: dl, pthread, rt, z
+2026-09-04T07:40:20.5069289Z [3/8] Building universe...                                                                               (3.3s @ 0.85GB)
+2026-09-04T07:40:24.2073581Z [4/8] Parsing methods...      [**]                                                                       (3.7s @ 0.73GB)
+2026-09-04T07:40:25.8272211Z [5/8] Inlining methods...     [***]                                                                      (1.4s @ 0.68GB)
+2026-09-04T07:40:38.7972229Z [6/8] Compiling methods...    [****]                                                                    (13.0s @ 1.20GB)
+2026-09-04T07:40:41.8320818Z [7/8] Laying out methods...   [**]                                                                       (3.0s @ 0.71GB)
+2026-09-04T07:40:44.4552413Z [8/8] Creating image...       [**]                                                                       (2.6s @ 1.03GB)
+2026-09-04T07:40:44.4562523Z   12.61MB (38.15%) for code area:    28,185 compilation units
+2026-09-04T07:40:44.4563178Z   15.88MB (48.05%) for image heap:  225,893 objects and 121 resources
+2026-09-04T07:40:44.4563854Z    4.56MB (13.80%) for other data
+2026-09-04T07:40:44.4564227Z   33.05MB in total
+2026-09-04T07:40:44.4564764Z ------------------------------------------------------------------------------------------------------------------------
+2026-09-04T07:40:44.4576036Z Top 10 origins of code area:                                Top 10 object types in image heap:
+2026-09-04T07:40:44.4576950Z    5.40MB java.base                                            4.03MB byte[] for code metadata
+2026-09-04T07:40:44.4577753Z    3.15MB java.xml                                             3.04MB byte[] for java.lang.String
+2026-09-04T07:40:44.4578496Z    1.80MB svm.jar (Native Image)                               1.64MB java.lang.String
+2026-09-04T07:40:44.4579229Z  359.42kB junit-jupiter-engine-6.0.3.jar                       1.56MB java.lang.Class
+2026-09-04T07:40:44.4580017Z  194.55kB junit-platform-launcher-6.0.3.jar                    1.20MB byte[] for general heap data
+2026-09-04T07:40:44.4580953Z  162.62kB jdk.zipfs                                          729.37kB byte[] for reflection metadata
+2026-09-04T07:40:44.4581836Z  133.17kB java.logging                                       419.63kB com.oracle.svm.core.hub.DynamicHubCompanion
+2026-09-04T07:40:44.4583018Z  126.77kB com.oracle.svm.svm_enterprise                      368.03kB java.util.HashMap$Node
+2026-09-04T07:40:44.4583782Z  124.86kB junit-platform-engine-6.0.3.jar                    257.00kB int[][]
+2026-09-04T07:40:44.4584720Z  121.59kB guava-33.4.3-android.jar                           256.50kB c.o.svm.core.hub.DynamicHub$ReflectionMetadata
+2026-09-04T07:40:44.4585457Z  898.77kB for 32 more packages                                 2.41MB for 2081 more object types
+2026-09-04T07:40:44.4587154Z                               Use '-H:+BuildReport' to create a report with more details.
+2026-09-04T07:40:44.4587734Z ------------------------------------------------------------------------------------------------------------------------
+2026-09-04T07:40:44.4588311Z Security report:
+2026-09-04T07:40:44.4597813Z  - Binary includes Java deserialization.
+2026-09-04T07:40:44.4598453Z  - Use '--enable-sbom' to embed a Software Bill of Materials (SBOM) in the binary.
+2026-09-04T07:40:44.4609358Z ------------------------------------------------------------------------------------------------------------------------
+2026-09-04T07:40:44.4616659Z Recommendations:
+2026-09-04T07:40:44.4617113Z  G1GC: Use the G1 GC ('--gc=G1') for improved latency and throughput.
+2026-09-04T07:40:44.4617525Z  PGO:  Use Profile-Guided Optimizations ('--pgo') for improved throughput.
+2026-09-04T07:40:44.4618006Z  INIT: Adopt '--strict-image-heap' to prepare for the next GraalVM release.
+2026-09-04T07:40:44.4618397Z  HEAP: Set max heap for improved and more predictable memory usage.
+2026-09-04T07:40:44.4618776Z  CPU:  Enable more CPU features with '-march=native' for improved performance.
+2026-09-04T07:40:44.4730060Z ------------------------------------------------------------------------------------------------------------------------
+2026-09-04T07:40:44.4741150Z                        7.1s (11.7% of total time) in 129 GCs | Peak RSS: 2.32GB | CPU load: 3.54
+2026-09-04T07:40:44.4743383Z ------------------------------------------------------------------------------------------------------------------------
+2026-09-04T07:40:44.4743912Z Produced artifacts:
+2026-09-04T07:40:44.4749883Z  /home/runner/work/gson/gson/test-graal-native-image/target/native-tests (executable)
+2026-09-04T07:40:44.4750873Z ========================================================================================================================
+2026-09-04T07:40:44.4756043Z Finished generating 'native-tests' in 1m 0s.
+2026-09-04T07:40:44.8095918Z [INFO] Executing: /home/runner/work/gson/gson/test-graal-native-image/target/native-tests --xml-output-dir /home/runner/work/gson/gson/test-graal-native-image/target/native-test-reports -Djunit.platform.listeners.uid.tracking.enabled=true -Djunit.platform.listeners.uid.tracking.output.dir=/home/runner/work/gson/gson/test-graal-native-image/target/maven-surefire-plugin-test-ids
+2026-09-04T07:40:44.8152922Z [junit-platform-native] Running in 'test listener' mode using files matching pattern [junit-platform-unique-ids*] found in folder [/home/runner/work/gson/gson/test-graal-native-image/target/maven-surefire-plugin-test-ids] and its subfolders.
+2026-09-04T07:40:44.8178080Z JUnit Platform on Native Image - report
+2026-09-04T07:40:44.8178638Z ----------------------------------------
+2026-09-04T07:40:44.8178925Z 
+2026-09-04T07:40:44.8233275Z com.google.gson.native_test.ReflectionTest > testGenerics() SUCCESSFUL
+2026-09-04T07:40:44.8233669Z 
+2026-09-04T07:40:44.8234387Z com.google.gson.native_test.ReflectionTest > testCustomDefaultConstructor() SUCCESSFUL
+2026-09-04T07:40:44.8234813Z 
+2026-09-04T07:40:44.8235254Z com.google.gson.native_test.ReflectionTest > testCustomClassAdapter() SUCCESSFUL
+2026-09-04T07:40:44.8235650Z 
+2026-09-04T07:40:44.8236159Z com.google.gson.native_test.ReflectionTest > testClassWithoutDefaultConstructor() SUCCESSFUL
+2026-09-04T07:40:44.8237374Z 
+2026-09-04T07:40:44.8237775Z com.google.gson.native_test.ReflectionTest > testCustomFieldAdapter() SUCCESSFUL
+2026-09-04T07:40:44.8238121Z 
+2026-09-04T07:40:44.8238617Z com.google.gson.native_test.ReflectionTest > testInstanceCreator() SUCCESSFUL
+2026-09-04T07:40:44.8238926Z 
+2026-09-04T07:40:44.8239224Z com.google.gson.native_test.ReflectionTest > testSerializedName() SUCCESSFUL
+2026-09-04T07:40:44.8239665Z 
+2026-09-04T07:40:44.8239883Z com.google.gson.native_test.ReflectionTest > testFinalField() SUCCESSFUL
+2026-09-04T07:40:44.8240188Z 
+2026-09-04T07:40:44.8240362Z com.google.gson.native_test.ReflectionTest > testCustomAdapter() SUCCESSFUL
+2026-09-04T07:40:44.8240864Z 
+2026-09-04T07:40:44.8241065Z com.google.gson.native_test.ReflectionTest > testDefaultConstructor() SUCCESSFUL
+2026-09-04T07:40:44.8241295Z 
+2026-09-04T07:40:44.8241514Z com.google.gson.native_test.Java17RecordReflectionTest > testCustomAccessor() SUCCESSFUL
+2026-09-04T07:40:44.8241748Z 
+2026-09-04T07:40:44.8241991Z com.google.gson.native_test.Java17RecordReflectionTest > testPrivateRecord() SUCCESSFUL
+2026-09-04T07:40:44.8242266Z 
+2026-09-04T07:40:44.8242481Z com.google.gson.native_test.Java17RecordReflectionTest > testCustomClassAdapter() SUCCESSFUL
+2026-09-04T07:40:44.8242773Z 
+2026-09-04T07:40:44.8243495Z com.google.gson.native_test.Java17RecordReflectionTest > testCustomFieldAdapter() SUCCESSFUL
+2026-09-04T07:40:44.8243984Z 
+2026-09-04T07:40:44.8244312Z com.google.gson.native_test.Java17RecordReflectionTest > testLocalRecordSerialization() SUCCESSFUL
+2026-09-04T07:40:44.8244638Z 
+2026-09-04T07:40:44.8244898Z com.google.gson.native_test.Java17RecordReflectionTest > testLocalRecord() SUCCESSFUL
+2026-09-04T07:40:44.8245201Z 
+2026-09-04T07:40:44.8245524Z com.google.gson.native_test.Java17RecordReflectionTest > testCustomConstructor() SUCCESSFUL
+2026-09-04T07:40:44.8245885Z 
+2026-09-04T07:40:44.8246111Z com.google.gson.native_test.Java17RecordReflectionTest > testPublicRecord() SUCCESSFUL
+2026-09-04T07:40:44.8246499Z 
+2026-09-04T07:40:44.8246710Z com.google.gson.native_test.Java17RecordReflectionTest > testSerializedName() SUCCESSFUL
+2026-09-04T07:40:44.8247107Z 
+2026-09-04T07:40:44.8247387Z com.google.gson.native_test.Java17RecordReflectionTest > testCustomAdapter() SUCCESSFUL
+2026-09-04T07:40:44.8249945Z 
+2026-09-04T07:40:44.8255127Z 
+2026-09-04T07:40:44.8255714Z Test run finished after 4 ms
+2026-09-04T07:40:44.8256321Z [         3 containers found      ]
+2026-09-04T07:40:44.8256859Z [         0 containers skipped    ]
+2026-09-04T07:40:44.8257301Z [         3 containers started    ]
+2026-09-04T07:40:44.8257714Z [         0 containers aborted    ]
+2026-09-04T07:40:44.8258135Z [         3 containers successful ]
+2026-09-04T07:40:44.8258554Z [         0 containers failed     ]
+2026-09-04T07:40:44.8258945Z [        20 tests found           ]
+2026-09-04T07:40:44.8259365Z [         0 tests skipped         ]
+2026-09-04T07:40:44.8259920Z [        20 tests started         ]
+2026-09-04T07:40:44.8260403Z [         0 tests aborted         ]
+2026-09-04T07:40:44.8261068Z [        20 tests successful      ]
+2026-09-04T07:40:44.8261516Z [         0 tests failed          ]
+2026-09-04T07:40:44.8261812Z 
+2026-09-04T07:40:44.8262194Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:40:44.8262857Z [INFO] Reactor Summary for Gson Parent 2.14.1-SNAPSHOT:
+2026-09-04T07:40:44.8263369Z [INFO] 
+2026-09-04T07:40:44.8263825Z [INFO] Gson Parent ........................................ SUCCESS [  1.796 s]
+2026-09-04T07:40:44.8264673Z [INFO] Gson ............................................... SUCCESS [ 35.957 s]
+2026-09-04T07:40:44.8265276Z [INFO] Test: GraalVM Native Image ......................... SUCCESS [01:05 min]
+2026-09-04T07:40:44.8265876Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:40:44.8266390Z [INFO] BUILD SUCCESS
+2026-09-04T07:40:44.8266874Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:40:44.8267372Z [INFO] Total time:  01:50 min
+2026-09-04T07:40:44.8267778Z [INFO] Finished at: 2026-09-04T07:40:44Z
+2026-09-04T07:40:44.8268281Z [INFO] ------------------------------------------------------------------------
+2026-09-04T07:40:44.8441713Z ##[group]Run touch optcd-5.txt
+2026-09-04T07:40:44.8441998Z [36;1mtouch optcd-5.txt[0m
+2026-09-04T07:40:44.8460292Z shell: /usr/bin/bash -e {0}
+2026-09-04T07:40:44.8461017Z env:
+2026-09-04T07:40:44.8461363Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:40:44.8461739Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:40:44.8462117Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:40:44.8462494Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:40:44.8462820Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:40:44.8463201Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:40:44.8463527Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:40:44.8463965Z   GRAALVM_HOME: /opt/hostedtoolcache/graalvm-jdk-21_linux-x64_bin/21.0.0/x64/graalvm-jdk-21.0.12+7.1
+2026-09-04T07:40:44.8464578Z   JAVA_HOME: /opt/hostedtoolcache/graalvm-jdk-21_linux-x64_bin/21.0.0/x64/graalvm-jdk-21.0.12+7.1
+2026-09-04T07:40:44.8464944Z ##[endgroup]
+2026-09-04T07:40:44.8556018Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-04T07:40:44.8557193Z ##[group]Run actions/upload-artifact@v4
+2026-09-04T07:40:44.8557560Z with:
+2026-09-04T07:40:44.8557799Z   name: inotifywait-native-image-test (21)
+2026-09-04T07:40:44.8558177Z   path: /home/runner/inotifywait-log-native-image-test (21).csv
+2026-09-04T07:40:44.8558501Z   if-no-files-found: warn
+2026-09-04T07:40:44.8558767Z   compression-level: 6
+2026-09-04T07:40:44.8559008Z   overwrite: false
+2026-09-04T07:40:44.8559245Z   include-hidden-files: false
+2026-09-04T07:40:44.8559491Z env:
+2026-09-04T07:40:44.8559763Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-09-04T07:40:44.8560235Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:40:44.8560779Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-09-04T07:40:44.8561165Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:40:44.8561514Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:40:44.8561877Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-09-04T07:40:44.8562227Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-09-04T07:40:44.8562672Z   GRAALVM_HOME: /opt/hostedtoolcache/graalvm-jdk-21_linux-x64_bin/21.0.0/x64/graalvm-jdk-21.0.12+7.1
+2026-09-04T07:40:44.8563182Z   JAVA_HOME: /opt/hostedtoolcache/graalvm-jdk-21_linux-x64_bin/21.0.0/x64/graalvm-jdk-21.0.12+7.1
+2026-09-04T07:40:44.8563625Z ##[endgroup]
+2026-09-04T07:40:44.9783006Z (node:2727) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-04T07:40:44.9783630Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-04T07:40:44.9815968Z With the provided path, there will be 1 file uploaded
+2026-09-04T07:40:44.9820114Z Artifact name is valid!
+2026-09-04T07:40:44.9820839Z Root directory input is valid!
+2026-09-04T07:40:45.2495426Z Beginning upload of artifact content to blob storage
+2026-09-04T07:40:45.2681391Z (node:2727) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-04T07:40:45.4577649Z Uploaded bytes 53080
+2026-09-04T07:40:45.4957883Z Finished uploading artifact content to blob storage!
+2026-09-04T07:40:45.4958553Z SHA256 digest of uploaded artifact zip is 5cedda749d05c2f0d5d1f53806e0bc5576c30dab028355d70d2506e41843069a
+2026-09-04T07:40:45.4960981Z Finalizing artifact upload
+2026-09-04T07:40:45.7090784Z Artifact inotifywait-native-image-test (21).zip successfully finalized. Artifact ID 9927892546
+2026-09-04T07:40:45.7091765Z Artifact inotifywait-native-image-test (21) has been successfully uploaded! Final size is 53080 bytes. Artifact ID is 9927892546
+2026-09-04T07:40:45.7096803Z Artifact download URL: https://github.com/atanuroy911/gson/actions/runs/33849635845/artifacts/9927892546
+2026-09-04T07:40:45.7237871Z Post job cleanup.
+2026-09-04T07:40:45.8215855Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/gson/gson --files-from manifest.txt --use-compress-program zstdmt
+2026-09-04T07:40:46.1531844Z Failed to save: Unable to reserve cache with key setup-graalvm-Linux-maven-54d6cf3fdc484699667bbaed4dbae25f9a0a3aa7871d212484a098a067310682, another job may be creating this cache.
+2026-09-04T07:40:46.1571319Z Cache saved with the key: setup-graalvm-Linux-maven-54d6cf3fdc484699667bbaed4dbae25f9a0a3aa7871d212484a098a067310682
+2026-09-04T07:40:46.1819769Z Post job cleanup.
+2026-09-04T07:40:46.2615241Z [command]/usr/bin/git version
+2026-09-04T07:40:46.2661895Z git version 2.55.0
+2026-09-04T07:40:46.2692824Z Temporarily overriding HOME='/home/runner/work/_temp/8d8a1292-727c-4e6f-9cbd-601cf7de9d47' before making global git config changes
+2026-09-04T07:40:46.2693662Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-04T07:40:46.2698759Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/gson/gson
+2026-09-04T07:40:46.2724404Z Removing SSH command configuration
+2026-09-04T07:40:46.2730732Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-04T07:40:46.2760796Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-04T07:40:46.2931755Z Removing HTTP extra header
+2026-09-04T07:40:46.2936357Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-04T07:40:46.2959554Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-04T07:40:46.3122986Z Removing includeIf entries pointing to credentials config files
+2026-09-04T07:40:46.3127063Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-04T07:40:46.3150127Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-04T07:40:46.3418355Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-04T07:40:46.3419263Z Post job cleanup.
+2026-09-04T07:40:46.4295724Z (node:2855) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-04T07:40:46.4296293Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-04T07:40:46.4410460Z Cleaning up orphan processes
+2026-09-04T07:40:46.4661329Z Terminate orphan process: pid (1962) (python3)
+2026-09-04T07:40:46.4673305Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

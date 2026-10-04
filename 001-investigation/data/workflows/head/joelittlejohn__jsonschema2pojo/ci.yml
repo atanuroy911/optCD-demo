@@ -1,0 +1,33 @@
+---
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java_version: [17]
+      max-parallel: 4
+    name: Test JDK ${{ matrix.java_version }}
+    steps:
+      - name: Setup Maven Action
+        uses: s4u/setup-maven-action@v1.19.0
+        with:
+          checkout-fetch-depth: 0
+          java-version: ${{ matrix.java_version }}
+          java-distribution: temurin
+      - name: Verify with Maven
+        run: ./mvnw verify -B
+      - name: Verify jsonschema2pojo-gradle-plugin integration tests
+        run: |
+          ./mvnw -U -B install -DskipTests -Dmaven.javadoc.skip -Dmaven.site.skip -pl jsonschema2pojo-gradle-plugin -am
+          ./mvnw -U -B install -pl jsonschema2pojo-gradle-plugin

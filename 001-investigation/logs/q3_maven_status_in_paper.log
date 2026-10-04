@@ -1,0 +1,15 @@
+{
+  "paper_all_results": {
+    "jobs_with_maven_status": 30,
+    "maven_status_rows": 48
+  },
+  "paper_maven_only_results_fixer_input": {
+    "jobs_with_maven_status": 29,
+    "maven_status_rows": 47
+  },
+  "fixer_experiment_total_commands": 216,
+  "commands_whose_prompt_included_maven_status": 29,
+  "commands_where_maven_status_was_the_only_unused_dir": 5,
+  "of_those_with_maven_status_gemini_gave_a_fix": 15,
+  "commands_where_maven_status_still_unused_after_fix": 6
+}

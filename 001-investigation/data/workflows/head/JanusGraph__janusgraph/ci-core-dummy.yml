@@ -1,0 +1,92 @@
+# Copyright 2023 JanusGraph Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: CI Core
+
+on:
+  pull_request:
+    paths:
+    - 'docs/**'
+    - '.github/workflows/ci-docs.yml'
+    - '.github/ISSUE_TEMPLATE/**'
+    - 'requirements.txt'
+    - 'mkdocs.yml'
+    - 'docs.Dockerfile'
+    - '*.md'
+
+jobs:
+  build-all:
+    runs-on: ubuntu-22.04
+    steps:
+      - run: 'echo "No build required"'
+
+  tests:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        include:
+          - module: driver
+            java: 11
+          - module: server
+            java: 11
+          - module: test
+            java: 11
+          - module: inmemory
+            args: "-Dtest.skip.tp=false"
+            java: 11
+          - module: berkeleyje
+            java: 11
+          - module: lucene
+            java: 11
+          - module: driver
+            java: 17
+          - module: driver
+            java: 21
+          - module: driver
+            java: 25
+          - module: server
+            java: 17
+          - module: server
+            java: 21
+          - module: server
+            java: 25
+          - module: test
+            java: 17
+          - module: test
+            java: 21
+          - module: test
+            java: 25
+          - module: inmemory
+            args: "-Dtest.skip.tp=false"
+            java: 17
+          - module: inmemory
+            args: "-Dtest.skip.tp=false"
+            java: 21
+          - module: inmemory
+            args: "-Dtest.skip.tp=false"
+            java: 25
+          - module: berkeleyje
+            java: 17
+          - module: berkeleyje
+            java: 21
+          - module: berkeleyje
+            java: 25
+          - module: lucene
+            java: 17
+          - module: lucene
+            java: 21
+          - module: lucene
+            java: 25
+    steps:
+      - run: 'echo "No build required"'

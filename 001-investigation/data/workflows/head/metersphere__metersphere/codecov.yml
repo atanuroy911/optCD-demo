@@ -1,0 +1,42 @@
+on:
+  pull_request:
+    branches:
+      - v3.*
+    paths:
+      - "backend/**"
+      - "pom.xml"
+
+# If two events are triggered within a short time in the same PR, cancel the run of the oldest event
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+name: MeterSphere 覆盖率统计
+
+permissions:
+  pull-requests: write
+
+jobs:
+  generic_handler:
+    name: 覆盖率统计
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 21
+          cache: 'maven'
+          cache-dependency-path: '**/pom.xml' # optional
+          check-latest: true
+
+      - name: Remove monitoring-engine JAR
+        run: rm -rf ~/.m2/repository/io/metersphere/monitoring-engine
+
+      - name: Build with Maven - other
+        run: mvn -B package -DskipAntRunForJenkins --file pom.xml -pl '!frontend'
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

@@ -1,0 +1,30 @@
+name: Atmopshere 3.x CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java-version: [18, 21, 22]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up JDK ${{ matrix.java-version }}
+      uses: actions/setup-java@v2
+      with:
+        java-version: ${{ matrix.java-version }}
+        distribution: 'temurin'
+
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
+    - name: Test with Maven
+      run: mvn -B test --file pom.xml

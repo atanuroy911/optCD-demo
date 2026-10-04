@@ -1,0 +1,76 @@
+name: Deploy Documentation
+
+on:
+  workflow_dispatch:
+    inputs:
+      releaseversion:
+        description: 'Version to publish the documentation for. This should be a tag that exists in the repository.'
+        type: string
+        required: true
+      copyDocsToCurrent:
+        description: "Mark docs as 'latest'? This will create a redirect from /current to the version being published. This should only be set for the latest version of the documentation."
+        required: true
+        type: boolean
+        default: false
+
+env:
+  VERSION: ${{ github.event.inputs.releaseversion }}
+
+jobs:
+  deploy-documentation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: refs/tags/${{ github.event.inputs.releaseversion }}
+
+      - name: Set up JDK
+        uses: actions/setup-java@v6
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+          cache-dependency-path: '**/pom.xml'
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: Set projects Maven version to GitHub Action GUI set version
+        run: ./mvnw versions:set "-DnewVersion=${{ github.event.inputs.releaseversion }}" --no-transfer-progress
+
+      - name: Build with Maven
+        run: ./mvnw -B --no-transfer-progress package -DskipTests
+
+      - name: Build documentation with Maven
+        run: ./mvnw -B --no-transfer-progress  -pl spring-boot-admin-docs site
+
+      - name: Deploy documentation to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.9.0
+        with:
+          branch: gh-pages
+          folder: spring-boot-admin-docs/target/generated-docs/build
+          target-folder: ${{ github.event.inputs.releaseversion }}
+          clean: true
+
+      - name: Deploy redirect for /current to /${{ github.event.inputs.releaseversion }}
+        uses: JamesIves/github-pages-deploy-action@v4.9.0
+        if: github.event.inputs.copyDocsToCurrent == 'true'
+        with:
+          branch: gh-pages
+          folder: spring-boot-admin-docs/target/generated-docs/build/current
+          target-folder: /current
+          clean: true
+
+      - name: Deploy deeplink redirect for /current/* to /${{ github.event.inputs.releaseversion }}/*
+        uses: JamesIves/github-pages-deploy-action@v4.9.0
+        if: github.event.inputs.copyDocsToCurrent == 'true'
+        with:
+          branch: gh-pages
+          folder: spring-boot-admin-docs/target/generated-docs/build/current
+          target-folder: /
+          clean: false

@@ -1,0 +1,207 @@
+name: server CI
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/pull_request_server.yml'
+      - 'benchmark/**'
+      - 'conf/**'
+      - 'extensions/database/src/**'
+      - 'extensions/database/tests/**'
+      - 'extensions/database/pom.xml'
+      - 'extensions/jython/src/**'
+      - 'extensions/jython/tests/**'
+      - 'extensions/jython/pom.xml'
+      - 'extensions/pc-axis/src/**'
+      - 'extensions/pc-axis/pom.xml'
+      - 'extensions/wikibase/src/**'
+      - 'extensions/wikibase/tests/**'
+      - 'extensions/wikibase/pom.xml'
+      - 'extensions/pom.xml'
+      - 'graphics/**'
+      - 'main/resources/**'
+      - 'main/src/**'
+      - 'main/tests/data/**'
+      - 'main/tests/server/**'
+      - 'main/pom.xml'
+      - 'modules/**'
+      - 'packaging/**'
+      - 'server/**'
+      - 'pom.xml'
+      - 'refine'
+      - 'refine.bat'
+      - 'refine.ini'
+    branches:
+      - master
+
+permissions: read-all
+
+jobs:
+  linux_server_tests:
+    strategy:
+      matrix:
+        java: [ 25 ] # We only test a single version so coverage stats don't bounce around.
+
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 'postgres'
+          POSTGRES_DB: test_db
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      mysql:
+        image: mysql:8
+        ports:
+          - 3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        options: >-
+          --health-cmd "mysqladmin ping"
+          --health-interval 5s
+          --health-timeout 2s
+          --health-retries 3
+
+    steps:
+      - name: Set up secrets
+        run: |
+          echo "COVERALLS_TOKEN=$(echo eUVUVGRHOFJhQm9GMFJBYTNibjVhcWFEblpac1lmMlE3Cg== | base64 -d)" >> $GITHUB_ENV
+
+      - uses: actions/checkout@v7
+
+      - name: Set up Java ${{ matrix.java }}
+        uses: actions/setup-java@v6.0.1
+        with:
+          distribution: 'temurin'
+          java-version: ${{ matrix.java }}
+          cache: 'maven'
+
+      - name: Check Java linting
+        id: java_linting
+        run: |
+          mvn -T 4 -B compile test-compile formatter:validate impsort:check javadoc:javadoc -Ddoclint=html,syntax,accessibility,reference
+
+      - name: Populate databases with test data
+        id: populate_databases_with_test_data
+        run: |
+          mysql -u root -h 127.0.0.1 -P ${{ job.services.mysql.ports[3306] }} -proot -e 'CREATE DATABASE test_db;'
+          mysql -u root -h 127.0.0.1 -P ${{ job.services.mysql.ports[3306] }} -proot < extensions/database/tests/conf/test-mysql.sql
+          psql -U postgres test_db -h 127.0.0.1 -p ${{ job.services.postgres.ports[5432] }} < extensions/database/tests/conf/test-pgsql.sql
+        env:
+          PGPASSWORD: postgres
+
+      - name: Build and test with Maven
+        run: bash .github/scripts/run-unit-tests.sh "${{ job.services.mysql.ports[3306] }}" "${{ job.services.postgres.ports[5432] }}" -T 4 -B
+
+      - name: Coveralls server
+        uses: coverallsapp/github-action@v2
+        with:
+          base-path: server/src
+          files: server/target/site/jacoco/jacoco.xml
+          format: jacoco
+          flag-name: Java-${{ matrix.java }}-server
+          fail-on-error: false
+          parallel: true
+
+      - name: Coveralls main
+        uses: coverallsapp/github-action@v2
+        with:
+          base-path: main/src
+          files: main/target/site/jacoco/jacoco.xml
+          format: jacoco
+          flag-name: Java-${{ matrix.java }}-main
+          fail-on-error: false
+          parallel: true
+
+      - name: Coveralls core
+        uses: coverallsapp/github-action@v2
+        with:
+          base-path: modules/core/src/main/java
+          files: modules/core/target/site/jacoco/jacoco.xml
+          format: jacoco
+          flag-name: Java-${{ matrix.java }}-core
+          fail-on-error: false
+          parallel: true
+
+      - name: Coveralls grel
+        uses: coverallsapp/github-action@v2
+        with:
+          base-path: modules/grel/src/main/java
+          files: modules/grel/target/site/jacoco/jacoco.xml
+          format: jacoco
+          flag-name: Java-${{ matrix.java }}-grel
+          fail-on-error: false
+          parallel: true
+
+      - name: Coveralls database
+        uses: coverallsapp/github-action@v2
+        with:
+          base-path: extensions/database/src
+          files: extensions/database/target/site/jacoco/jacoco.xml
+          github-token: ${{ env.COVERALLS_TOKEN }}
+          format: jacoco
+          flag-name: Java-${{ matrix.java }}-database
+          fail-on-error: false
+          parallel: true
+
+      - name: Coveralls wikibase
+        uses: coverallsapp/github-action@v2
+        with:
+          base-path: extensions/wikibase/src
+          files: extensions/wikibase/target/site/jacoco/jacoco.xml
+          github-token: ${{ env.COVERALLS_TOKEN }}
+          format: jacoco
+          flag-name: Java-${{ matrix.java }}-wikibase
+          fail-on-error: false
+          parallel: true
+
+      - name: Coveralls jython
+        uses: coverallsapp/github-action@v2
+        with:
+          base-path: extensions/jython/src
+          files: extensions/jython/target/site/jacoco/jacoco.xml
+          github-token: ${{ env.COVERALLS_TOKEN }}
+          format: jacoco
+          flag-name: Java-${{ matrix.java }}-jython
+          fail-on-error: false
+          parallel: true
+
+  windows_server_tests:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Java 26
+        uses: actions/setup-java@v6.0.1
+        with:
+          distribution: 'temurin'
+          java-version: 26
+          cache: 'maven'
+
+      - name: Check Java linting
+        id: java_linting
+        run: |
+          mvn -B formatter:validate impsort:check
+
+      - name: Build and test with Maven
+        run: mvn -T 4 -B jacoco:prepare-agent test
+
+  finish:
+    needs: linux_server_tests
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      # Only really needed if we're testing in separate jobs (e.g. multiple Java versions)
+      - name: Close parallel build
+        uses: coverallsapp/github-action@v2
+        with:
+          parallel-finished: true

@@ -1,0 +1,47 @@
+name: CI
+on:
+  workflow_call:
+    inputs:
+      branch:
+        required: true
+        type: 'string'
+      jdk:
+        default: 8
+        type: 'string'
+      os:
+        default: ubuntu-latest
+        type: 'string'
+      profile:
+        default: ''
+        type: 'string'
+      container:
+        default: ''
+        type: 'string'
+jobs:
+  Test:
+    name: Run tests
+    runs-on: ${{ inputs.os }}
+    container: ${{ inputs.container || null }}
+    steps:
+      - name: Install container dependencies
+        if: ${{ inputs.container != '' }}
+        run: |
+          apt-get update && apt-get install -y git maven openssl libssl-dev libapr1t64
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.branch }}
+      - name: Install JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: ${{ inputs.jdk }}
+          distribution: temurin
+      - name: Run tests
+        if: ${{ runner.os != 'Linux' || inputs.container != ''  }}
+        run: mvn -s .github/maven-ci-settings.xml -q clean verify -B -Pcheckstyle ${{ inputs.profile }}
+      - name: Run tests
+        if: ${{ runner.os == 'Linux' && inputs.container == '' }}
+        run: |
+          # io_uring testing requires more locked memory for kernel ring buffers than the default 8MB limit
+          sudo prlimit --pid $$ --memlock=16777216:16777216
+          mvn -s .github/maven-ci-settings.xml -q clean verify -B -Pcheckstyle ${{ inputs.profile }}

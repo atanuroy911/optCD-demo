@@ -171,3 +171,5 @@ cython_debug/
 __MACOSX/
 
 *.pdf
+# keep every log of the investigation (professor asked to retain all)
+!001-investigation/**/*.log

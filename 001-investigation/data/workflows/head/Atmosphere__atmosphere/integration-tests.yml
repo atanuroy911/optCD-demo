@@ -1,0 +1,70 @@
+name: "CI: Integration Tests"
+
+# Isolation lane for modules/integration-tests — NOT recovered coverage.
+#
+# ci.yml's Core "Run All Tests" step excludes this module (-pl
+# '!modules/integration-tests') so its integration suites run here in
+# parallel instead of serializing the Core job. When this lane was first
+# added it claimed the module's tests "ran nowhere"; that was wrong — the
+# Core full-reactor `mvn test` already ran them unfiltered, because
+# ${test.groups} is only bound by the -Pcore-integration /
+# -Pfull-integration profiles and the default build leaves surefire's
+# <groups> filter empty (see .harness/drift-log.md, 2026-07-01).
+#
+# The test step runs the default build (no profile), which applies no tag
+# filter — the FULL suite executes: transports (WebSocket/SSE/gRPC/
+# long-poll), MCP (http/stateless/ws/authorization), agent + coordinator
+# WebSocket, structured output, long-term memory backends, Kafka/Redis
+# clustering, and checkpoint E2E. ubuntu-latest provides Docker for the
+# Testcontainers suites; the checkpoint E2E tests fabricate journal events
+# and need no LLM keys. No -Dgroups flag: the module POM pins surefire's
+# <groups> to ${test.groups}, and explicit POM configuration shadows the
+# `groups` CLI user property, so a -Dgroups here is dead (verified: a
+# flaky-tagged test still runs under -Dgroups='!flaky' with this config).
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ '**' ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'LICENSE'
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'LICENSE'
+
+jobs:
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v6
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        # Supply-chain hardening: GPG-verify the Temurin JDK archive (setup-java >= v5.5.0)
+        verify-signature: true
+        cache: 'maven'
+
+    # -am builds modules/integration-tests' upstream dependency closure (cpr, ai,
+    # mcp, agent, coordinator, grpc, wasync, …) so the test step can resolve them.
+    - name: Build integration-tests and dependencies
+      run: ./mvnw -B clean install -pl modules/integration-tests -am -DskipTests -Dgpg.skip=true
+
+    - name: Run full integration suite
+      run: ./mvnw -B test -pl modules/integration-tests -Dgpg.skip=true
+
+    - name: Upload test results
+      if: failure()
+      uses: actions/upload-artifact@v7
+      with:
+        name: integration-test-results
+        path: modules/integration-tests/target/surefire-reports/
