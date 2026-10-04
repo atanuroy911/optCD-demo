@@ -78,6 +78,14 @@ GitHub account) rather than just reading the paper.
    exposed by letting real results reach this code path at all. Fixed by
    clamping to the last known step.
 
+   **Correction (2026-10-04):** this diagnosis was wrong. The index
+   overflowed because a *spurious extra marker* was counted: the marker test
+   is the substring check `"optcd" in file`, and our fork branch is named
+   `optcd-run`, so git's ref lock file `.git/refs/heads/optcd-run.lock`
+   matched and shifted every step index by one. The clamp hid the shift,
+   mapping overflowing directories to the job's last step. See
+   `001-investigation/evidence/step_marker_substring_bug.md`.
+
 7. **Deprecated Gemini model.** `gemini-1.5-flash`, hardcoded in the
    original fixer, has been fully retired by Google since the paper was
    published; the next fallback we tried (`gemini-2.5-flash`) is also

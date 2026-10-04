@@ -15,7 +15,8 @@ Three real GitHub Actions executions were analyzed:
    as a sanity baseline. Full run history: `run-history/20260904T054153Z/`.
 2. **`google/gson` (multi-module Maven reactor, 6 sub-modules, 7 CI jobs)**
    — its real, unmodified `build.yml`, run as-is. Full run history:
-   `run-history/20260904T054153Z/` (later section) and `out.txt` copied to
+   `run-history/20260904T073800Z/` (corrected 2026-10-04; an earlier version
+   wrongly cited `20260904T054153Z`, which is a jsoup run) and `out.txt` copied to
    `evidence/gson-real-build-out.txt`.
 3. **Two purpose-built experiment workflows**, added to the `gson` fork
    specifically to isolate questions the real projects' own workflows don't
@@ -376,6 +377,6 @@ flow; the full Maven log's module context lines for reactor attribution).
 | `evidence/research-isolated.yml` | Experiment 2 workflow (four non-Maven variants — §4a, clean) |
 | `evidence/experiment2-isolated-out.txt` | Experiment 2 OptCD report: only variant A flagged unused |
 | `evidence/experiment2-inotify-timeline.csv` | Raw inotify timeline for all four variants, timestamps included |
-| `../run-history/20260904T054153Z/` | Full git/gh/Gemini transcript for the real `gson` build run |
+| `../run-history/20260904T073800Z/` | Full git/gh/Gemini transcript for the real `gson` build run (`20260904T054153Z` is the jsoup run) |
 | `../run-history/20260906T121321Z/` | Full transcript for Experiment 1 |
 | `../run-history/20260906T121658Z/` | Full transcript for Experiment 2 |

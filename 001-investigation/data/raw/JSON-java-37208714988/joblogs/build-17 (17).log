@@ -1,0 +1,920 @@
+﻿2026-10-04T14:17:36.9868870Z Current runner version: '2.337.0'
+2026-10-04T14:17:36.9893388Z ##[group]Runner Image Provisioner
+2026-10-04T14:17:36.9894375Z Hosted Compute Agent
+2026-10-04T14:17:36.9894986Z Version: 20260901.588
+2026-10-04T14:17:36.9895622Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-04T14:17:36.9896467Z Build Date: 2026-09-01T19:56:44Z
+2026-10-04T14:17:36.9897158Z Worker ID: {57207d18-61a5-4b22-b50f-56d87acc8223}
+2026-10-04T14:17:36.9897909Z Azure Region: westus
+2026-10-04T14:17:36.9898511Z ##[endgroup]
+2026-10-04T14:17:36.9900146Z ##[group]Operating System
+2026-10-04T14:17:36.9901101Z Ubuntu
+2026-10-04T14:17:36.9901646Z 24.04.5
+2026-10-04T14:17:36.9902211Z LTS
+2026-10-04T14:17:36.9902749Z ##[endgroup]
+2026-10-04T14:17:36.9903398Z ##[group]Runner Image
+2026-10-04T14:17:36.9904113Z Image: ubuntu-24.04
+2026-10-04T14:17:36.9904736Z Version: 20260927.320.1
+2026-10-04T14:17:36.9906172Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-04T14:17:36.9907807Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+2026-10-04T14:17:36.9908824Z ##[endgroup]
+2026-10-04T14:17:36.9910026Z ##[group]GITHUB_TOKEN Permissions
+2026-10-04T14:17:36.9912127Z Contents: read
+2026-10-04T14:17:36.9912753Z Metadata: read
+2026-10-04T14:17:36.9913478Z Packages: read
+2026-10-04T14:17:36.9914063Z ##[endgroup]
+2026-10-04T14:17:36.9916065Z Secret source: Actions
+2026-10-04T14:17:36.9917068Z Cache mode: write
+2026-10-04T14:17:36.9917790Z Prepare workflow directory
+2026-10-04T14:17:37.0253770Z Prepare all required actions
+2026-10-04T14:17:37.0303669Z Getting action download info
+2026-10-04T14:17:37.4096958Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-04T14:17:37.5406839Z Download action repository 'actions/checkout@v5' (SHA:fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09)
+2026-10-04T14:17:37.5744345Z Download action repository 'actions/setup-java@v5' (SHA:b6effb05e454b25005698d916606bdc6ffcbf961)
+2026-10-04T14:17:38.1917995Z Download action repository 'actions/upload-artifact@v5' (SHA:330a01c490aca151604b8cf639adc76d48f6c5d4)
+2026-10-04T14:17:38.3878556Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-04T14:17:38.6791519Z Complete job name: build-17 (17)
+2026-10-04T14:17:38.7822628Z ##[group]Run actions/setup-python@v5
+2026-10-04T14:17:38.7824085Z with:
+2026-10-04T14:17:38.7824925Z   python-version: 3.10
+2026-10-04T14:17:38.7825863Z   check-latest: false
+2026-10-04T14:17:38.7835587Z   token: ***
+2026-10-04T14:17:38.7836475Z   update-environment: true
+2026-10-04T14:17:38.7837486Z   allow-prereleases: false
+2026-10-04T14:17:38.7838459Z   freethreaded: false
+2026-10-04T14:17:38.7839614Z ##[endgroup]
+2026-10-04T14:17:38.9376000Z ##[group]Installed versions
+2026-10-04T14:17:38.9434960Z (node:2157) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-04T14:17:38.9439204Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-04T14:17:38.9441274Z Successfully set up CPython (3.10.21)
+2026-10-04T14:17:38.9443073Z ##[endgroup]
+2026-10-04T14:17:38.9785247Z ##[group]Run python -m pip install --upgrade pip
+2026-10-04T14:17:38.9786754Z [36;1mpython -m pip install --upgrade pip[0m
+2026-10-04T14:17:38.9787967Z [36;1mpip install inotify[0m
+2026-10-04T14:17:39.0075251Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:17:39.0076442Z env:
+2026-10-04T14:17:39.0077616Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:39.0079530Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:17:39.0081652Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:39.0083718Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:39.0085455Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:39.0087145Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:17:39.0088742Z ##[endgroup]
+2026-10-04T14:17:39.7129315Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.10.21/x64/lib/python3.10/site-packages (26.2.1)
+2026-10-04T14:17:40.5125053Z Collecting inotify
+2026-10-04T14:17:40.5608451Z   Downloading inotify-0.2.12-py2.py3-none-any.whl.metadata (7.2 kB)
+2026-10-04T14:17:40.5775248Z Collecting build (from inotify)
+2026-10-04T14:17:40.5807638Z   Downloading build-1.6.1-py3-none-any.whl.metadata (5.6 kB)
+2026-10-04T14:17:40.5988678Z Collecting packaging>=24.0 (from build->inotify)
+2026-10-04T14:17:40.6020550Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-10-04T14:17:40.6112934Z Collecting pyproject_hooks (from build->inotify)
+2026-10-04T14:17:40.6143646Z   Downloading pyproject_hooks-1.3.3-py3-none-any.whl.metadata (1.3 kB)
+2026-10-04T14:17:40.6512996Z Collecting tomli>=1.1.0 (from build->inotify)
+2026-10-04T14:17:40.6545931Z   Downloading tomli-2.4.1-py3-none-any.whl.metadata (10 kB)
+2026-10-04T14:17:40.6620181Z Downloading inotify-0.2.12-py2.py3-none-any.whl (20 kB)
+2026-10-04T14:17:40.6669191Z Downloading build-1.6.1-py3-none-any.whl (31 kB)
+2026-10-04T14:17:40.6739038Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-10-04T14:17:40.6831182Z Downloading tomli-2.4.1-py3-none-any.whl (14 kB)
+2026-10-04T14:17:40.6884297Z Downloading pyproject_hooks-1.3.3-py3-none-any.whl (10 kB)
+2026-10-04T14:17:40.7258582Z Installing collected packages: tomli, pyproject_hooks, packaging, build, inotify
+2026-10-04T14:17:40.8502983Z 
+2026-10-04T14:17:40.8518173Z Successfully installed build-1.6.1 inotify-0.2.12 packaging-26.3 pyproject_hooks-1.3.3 tomli-2.4.1
+2026-10-04T14:17:40.8989580Z ##[group]Run python3 -c "
+2026-10-04T14:17:40.8989976Z [36;1mpython3 -c "[0m
+2026-10-04T14:17:40.8990261Z [36;1mimport inotify.adapters[0m
+2026-10-04T14:17:40.8990576Z [36;1mimport inotify.constants[0m
+2026-10-04T14:17:40.8991245Z [36;1mimport os[0m
+2026-10-04T14:17:40.8991577Z [36;1mfrom datetime import datetime, timezone[0m
+2026-10-04T14:17:40.8992118Z [36;1mwith open('/home/runner/inotifywait-log-build-17 (17).csv', 'w') as log_file:[0m
+2026-10-04T14:17:40.8992969Z [36;1m  i = inotify.adapters.InotifyTree('/home/runner/work/JSON-java/JSON-java', inotify.constants.IN_CREATE | inotify.constants.IN_ACCESS)[0m
+2026-10-04T14:17:40.8993684Z [36;1m  for event in i.event_gen(yield_nones=False):[0m
+2026-10-04T14:17:40.8994100Z [36;1m    (_, type_names, path, filename) = event[0m
+2026-10-04T14:17:40.8994557Z [36;1m    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f') + 'Z'[0m
+2026-10-04T14:17:40.8995013Z [36;1m    events = ','.join(type_names)[0m
+2026-10-04T14:17:40.8995457Z [36;1m    log_file.write(f'{now};{path};{filename};{events}\n')[0m
+2026-10-04T14:17:40.8995875Z [36;1m    log_file.flush()[0m
+2026-10-04T14:17:40.8996186Z [36;1m    os.fsync(log_file.fileno())[0m
+2026-10-04T14:17:40.8996504Z [36;1m" &[0m
+2026-10-04T14:17:40.9061596Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:17:40.9061918Z env:
+2026-10-04T14:17:40.9062268Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:40.9062789Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:17:40.9063294Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:40.9063743Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:40.9064180Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:40.9064627Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:17:40.9065005Z ##[endgroup]
+2026-10-04T14:17:45.9252865Z ##[group]Run actions/checkout@v5
+2026-10-04T14:17:45.9253169Z with:
+2026-10-04T14:17:45.9253388Z   repository: atanuroy911/JSON-java
+2026-10-04T14:17:45.9256141Z   token: ***
+2026-10-04T14:17:45.9256349Z   ssh-strict: true
+2026-10-04T14:17:45.9256553Z   ssh-user: git
+2026-10-04T14:17:45.9256768Z   persist-credentials: true
+2026-10-04T14:17:45.9257001Z   clean: true
+2026-10-04T14:17:45.9257408Z   sparse-checkout-cone-mode: true
+2026-10-04T14:17:45.9257663Z   fetch-depth: 1
+2026-10-04T14:17:45.9257861Z   fetch-tags: false
+2026-10-04T14:17:45.9258067Z   show-progress: true
+2026-10-04T14:17:45.9258280Z   lfs: false
+2026-10-04T14:17:45.9258469Z   submodules: false
+2026-10-04T14:17:45.9258685Z   set-safe-directory: true
+2026-10-04T14:17:45.9258930Z   allow-unsafe-pr-checkout: false
+2026-10-04T14:17:45.9259172Z env:
+2026-10-04T14:17:45.9259426Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:45.9259884Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:17:45.9260316Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:45.9260691Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:45.9261270Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:45.9261653Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:17:45.9261975Z ##[endgroup]
+2026-10-04T14:17:46.0283156Z Syncing repository: atanuroy911/JSON-java
+2026-10-04T14:17:46.0302212Z ##[group]Getting Git version info
+2026-10-04T14:17:46.0331572Z Working directory is '/home/runner/work/JSON-java/JSON-java'
+2026-10-04T14:17:46.0363933Z [command]/usr/bin/git version
+2026-10-04T14:17:46.0622475Z git version 2.55.0
+2026-10-04T14:17:46.0648774Z ##[endgroup]
+2026-10-04T14:17:46.0662379Z Temporarily overriding HOME='/home/runner/work/_temp/76ed0c65-118a-40ea-925b-bdd0b6c63f46' before making global git config changes
+2026-10-04T14:17:46.0664310Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-04T14:17:46.0667287Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/JSON-java/JSON-java
+2026-10-04T14:17:46.0751878Z Deleting the contents of '/home/runner/work/JSON-java/JSON-java'
+2026-10-04T14:17:46.0753288Z ##[group]Initializing the repository
+2026-10-04T14:17:46.0759575Z [command]/usr/bin/git init /home/runner/work/JSON-java/JSON-java
+2026-10-04T14:17:46.1072872Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-04T14:17:46.1074583Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-04T14:17:46.1076588Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-04T14:17:46.1078334Z hint: call:
+2026-10-04T14:17:46.1078914Z hint:
+2026-10-04T14:17:46.1079505Z hint: 	git config --global init.defaultBranch <name>
+2026-10-04T14:17:46.1080175Z hint:
+2026-10-04T14:17:46.1081075Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-04T14:17:46.1082117Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-04T14:17:46.1082913Z hint:
+2026-10-04T14:17:46.1083384Z hint: 	git branch -m <name>
+2026-10-04T14:17:46.1083906Z hint:
+2026-10-04T14:17:46.1085476Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-04T14:17:46.1086778Z Initialized empty Git repository in /home/runner/work/JSON-java/JSON-java/.git/
+2026-10-04T14:17:46.1117353Z [command]/usr/bin/git remote add origin https://github.com/atanuroy911/JSON-java
+2026-10-04T14:17:46.1381425Z ##[endgroup]
+2026-10-04T14:17:46.1382186Z ##[group]Disabling automatic garbage collection
+2026-10-04T14:17:46.1382873Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-04T14:17:46.1441207Z ##[endgroup]
+2026-10-04T14:17:46.1441783Z ##[group]Setting up auth
+2026-10-04T14:17:46.1451303Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-04T14:17:46.1498933Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-04T14:17:46.2165158Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-04T14:17:46.2202134Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-04T14:17:46.2436070Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-04T14:17:46.2479745Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-04T14:17:46.2714805Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-04T14:17:46.2982524Z ##[endgroup]
+2026-10-04T14:17:46.2983950Z ##[group]Fetching the repository
+2026-10-04T14:17:46.2993504Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f3d44d53d735d800d844d1cc209666bb5985b741:refs/remotes/origin/optcd-run
+2026-10-04T14:17:47.5505116Z From https://github.com/atanuroy911/JSON-java
+2026-10-04T14:17:47.5505928Z  * [new ref]         f3d44d53d735d800d844d1cc209666bb5985b741 -> origin/optcd-run
+2026-10-04T14:17:47.5512035Z ##[endgroup]
+2026-10-04T14:17:47.5512891Z ##[group]Determining the checkout info
+2026-10-04T14:17:47.5515440Z ##[endgroup]
+2026-10-04T14:17:47.5523503Z [command]/usr/bin/git sparse-checkout disable
+2026-10-04T14:17:47.5592930Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-04T14:17:47.5628752Z ##[group]Checking out the ref
+2026-10-04T14:17:47.5634668Z [command]/usr/bin/git checkout --progress --force -B optcd-run refs/remotes/origin/optcd-run
+2026-10-04T14:17:47.6253534Z Switched to a new branch 'optcd-run'
+2026-10-04T14:17:47.6264832Z branch 'optcd-run' set up to track 'origin/optcd-run'.
+2026-10-04T14:17:47.6270656Z ##[endgroup]
+2026-10-04T14:17:47.6321803Z [command]/usr/bin/git log -1 --format=%H
+2026-10-04T14:17:47.6352843Z f3d44d53d735d800d844d1cc209666bb5985b741
+2026-10-04T14:17:47.6490263Z ##[group]Run touch optcd-3.txt
+2026-10-04T14:17:47.6490576Z [36;1mtouch optcd-3.txt[0m
+2026-10-04T14:17:47.6554301Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:17:47.6554565Z env:
+2026-10-04T14:17:47.6554832Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:47.6555276Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:17:47.6555714Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:47.6556135Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:47.6556545Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:47.6556949Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:17:47.6557286Z ##[endgroup]
+2026-10-04T14:17:47.6762611Z ##[group]Run actions/setup-java@v5
+2026-10-04T14:17:47.6762898Z with:
+2026-10-04T14:17:47.6763101Z   distribution: temurin
+2026-10-04T14:17:47.6763322Z   java-version: 17
+2026-10-04T14:17:47.6763519Z   cache: maven
+2026-10-04T14:17:47.6763714Z   java-package: jdk
+2026-10-04T14:17:47.6763926Z   check-latest: false
+2026-10-04T14:17:47.6764133Z   set-default: true
+2026-10-04T14:17:47.6764354Z   verify-signature: false
+2026-10-04T14:17:47.6764574Z   server-id: github
+2026-10-04T14:17:47.6764791Z   server-username: GITHUB_ACTOR
+2026-10-04T14:17:47.6765042Z   server-password: GITHUB_TOKEN
+2026-10-04T14:17:47.6765285Z   overwrite-settings: true
+2026-10-04T14:17:47.6765510Z   job-status: success
+2026-10-04T14:17:47.6768190Z   token: ***
+2026-10-04T14:17:47.6768408Z   show-download-progress: false
+2026-10-04T14:17:47.6768662Z env:
+2026-10-04T14:17:47.6768919Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:47.6769366Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:17:47.6769793Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:47.6770173Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:47.6770547Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:47.6771223Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:17:47.6771716Z ##[endgroup]
+2026-10-04T14:17:47.8244284Z ##[group]Installed distributions
+2026-10-04T14:17:47.8311513Z Resolved Java 17.0.20+1 from tool-cache
+2026-10-04T14:17:47.8312096Z Setting Java 17.0.20+1 as the default
+2026-10-04T14:17:47.8323787Z Creating toolchains.xml for JDK version 17 from temurin
+2026-10-04T14:17:47.8397820Z Writing to /home/runner/.m2/toolchains.xml
+2026-10-04T14:17:47.8398434Z 
+2026-10-04T14:17:47.8398657Z Java configuration:
+2026-10-04T14:17:47.8399119Z   Distribution: temurin
+2026-10-04T14:17:47.8399572Z   Version: 17.0.20+1
+2026-10-04T14:17:47.8400257Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:17:47.8401124Z 
+2026-10-04T14:17:47.8401616Z ##[endgroup]
+2026-10-04T14:17:47.8419311Z Creating settings.xml with server-id: github
+2026-10-04T14:17:47.8422177Z Writing to /home/runner/.m2/settings.xml
+2026-10-04T14:17:47.8425719Z Configured MAVEN_ARGS to include -ntp to suppress Maven transfer progress logs. Set 'show-download-progress: true' to keep the download progress output.
+2026-10-04T14:17:48.1441348Z maven cache is not found
+2026-10-04T14:17:48.1805771Z ##[group]Run touch optcd-4.txt
+2026-10-04T14:17:48.1806312Z [36;1mtouch optcd-4.txt[0m
+2026-10-04T14:17:48.1892056Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:17:48.1892317Z env:
+2026-10-04T14:17:48.1892595Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:48.1893064Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:17:48.1893501Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:48.1893889Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:48.1894275Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:48.1894660Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:17:48.1895089Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:17:48.1895567Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:17:48.1895992Z   MAVEN_ARGS: -ntp
+2026-10-04T14:17:48.1896233Z ##[endgroup]
+2026-10-04T14:17:48.2042130Z ##[group]Run mvn clean compile -D maven.compiler.source=17 -D maven.compiler.target=17 -D maven.test.skip=true -D maven.site.skip=true -D maven.javadoc.skip=true
+2026-10-04T14:17:48.2043241Z [36;1mmvn clean compile -D maven.compiler.source=17 -D maven.compiler.target=17 -D maven.test.skip=true -D maven.site.skip=true -D maven.javadoc.skip=true[0m
+2026-10-04T14:17:48.2102806Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:17:48.2103057Z env:
+2026-10-04T14:17:48.2103333Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:48.2103782Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:17:48.2104226Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:48.2104607Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:48.2104993Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:17:48.2105399Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:17:48.2105890Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:17:48.2106379Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:17:48.2106777Z   MAVEN_ARGS: -ntp
+2026-10-04T14:17:48.2106984Z ##[endgroup]
+2026-10-04T14:17:51.8082011Z [INFO] Scanning for projects...
+2026-10-04T14:17:59.6321540Z [INFO] Inspecting build with total of 1 modules
+2026-10-04T14:17:59.6403514Z [INFO] Installing Central Publishing features
+2026-10-04T14:17:59.6501480Z [INFO] 
+2026-10-04T14:17:59.6521614Z [INFO] ---------------------------< org.json:json >----------------------------
+2026-10-04T14:17:59.6522328Z [INFO] Building JSON in Java 20260814
+2026-10-04T14:17:59.6522811Z [INFO]   from pom.xml
+2026-10-04T14:17:59.6523366Z [INFO] -------------------------------[ bundle ]-------------------------------
+2026-10-04T14:17:59.7249395Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:17:59.7272136Z The plugin org.apache.maven.plugins:maven-resources-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:17:59.7282036Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:17:59.7283047Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-resources-plugin failed compatibility check
+2026-10-04T14:17:59.7320395Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-resources-plugin
+2026-10-04T14:17:59.8433599Z [INFO] Selected plugin org.apache.maven.plugins:maven-resources-plugin:3.5.0
+2026-10-04T14:18:00.1005585Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-3: 
+2026-10-04T14:18:00.1007475Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-3 has unmet prerequisites: 
+2026-10-04T14:18:00.1023367Z 	Required Maven version 4.0.0-rc-6 is not met by current version 3.9.16
+2026-10-04T14:18:00.1024538Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-install-plugin failed compatibility check
+2026-10-04T14:18:00.1026057Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-install-plugin
+2026-10-04T14:18:00.2129680Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-2: 
+2026-10-04T14:18:00.2130961Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-2 has unmet prerequisites: 
+2026-10-04T14:18:00.2132136Z 	Required Maven version 4.0.0-rc-2 is not met by current version 3.9.16
+2026-10-04T14:18:00.2481325Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:00.2482518Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:00.2483636Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:00.2912122Z [INFO] Selected plugin org.apache.maven.plugins:maven-install-plugin:3.2.0
+2026-10-04T14:18:00.3445288Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-3: 
+2026-10-04T14:18:00.3446745Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-3 has unmet prerequisites: 
+2026-10-04T14:18:00.3447864Z 	Required Maven version 4.0.0-rc-6 is not met by current version 3.9.16
+2026-10-04T14:18:00.3448935Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-deploy-plugin failed compatibility check
+2026-10-04T14:18:00.3455844Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-deploy-plugin
+2026-10-04T14:18:00.3987663Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-2: 
+2026-10-04T14:18:00.3988833Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-2 has unmet prerequisites: 
+2026-10-04T14:18:00.3989852Z 	Required Maven version 4.0.0-rc-2 is not met by current version 3.9.16
+2026-10-04T14:18:00.4348320Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:00.4349520Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:00.4372340Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:00.4703994Z [INFO] Selected plugin org.apache.maven.plugins:maven-deploy-plugin:3.2.0
+2026-10-04T14:18:01.1466044Z [INFO] 
+2026-10-04T14:18:01.1467041Z [INFO] --- clean:3.2.0:clean (default-clean) @ json ---
+2026-10-04T14:18:01.2362855Z [INFO] 
+2026-10-04T14:18:01.2363843Z [INFO] --- resources:3.5.0:resources (default-resources) @ json ---
+2026-10-04T14:18:01.5843111Z [INFO] skip non existing resourceDirectory /home/runner/work/JSON-java/JSON-java/src/main/resources
+2026-10-04T14:18:01.5847948Z [INFO] 
+2026-10-04T14:18:01.5848620Z [INFO] --- compiler:3.11.0:compile (default-compile) @ json ---
+2026-10-04T14:18:02.3650312Z [INFO] Changes detected - recompiling the module! :source
+2026-10-04T14:18:02.3657000Z [INFO] Compiling 26 source files with javac [debug target 1.8] to target/classes
+2026-10-04T14:18:04.5164478Z [WARNING] bootstrap class path not set in conjunction with -source 8
+2026-10-04T14:18:04.5183007Z [INFO] /home/runner/work/JSON-java/JSON-java/src/main/java/org/json/JSONMLParserConfiguration.java: Some input files use or override a deprecated API.
+2026-10-04T14:18:04.5201433Z [INFO] /home/runner/work/JSON-java/JSON-java/src/main/java/org/json/JSONMLParserConfiguration.java: Recompile with -Xlint:deprecation for details.
+2026-10-04T14:18:04.5203021Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:04.5203805Z [INFO] BUILD SUCCESS
+2026-10-04T14:18:04.5204363Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:04.5205040Z [INFO] Total time:  12.740 s
+2026-10-04T14:18:04.5205526Z [INFO] Finished at: 2026-10-04T14:18:04Z
+2026-10-04T14:18:04.5206189Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:04.5545534Z ##[group]Run touch optcd-5.txt
+2026-10-04T14:18:04.5545850Z [36;1mtouch optcd-5.txt[0m
+2026-10-04T14:18:04.5609665Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:18:04.5609916Z env:
+2026-10-04T14:18:04.5610185Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:04.5610635Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:04.5611355Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:04.5611733Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:04.5612105Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:04.5612495Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:04.5612921Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:04.5613415Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:04.5613815Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:04.5614050Z ##[endgroup]
+2026-10-04T14:18:04.5733931Z ##[group]Run mvn test -D maven.compiler.source=17 -D maven.compiler.target=17
+2026-10-04T14:18:04.5734530Z [36;1mmvn test -D maven.compiler.source=17 -D maven.compiler.target=17[0m
+2026-10-04T14:18:04.5790531Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:18:04.5791120Z env:
+2026-10-04T14:18:04.5791404Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:04.5791849Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:04.5792270Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:04.5792661Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:04.5793061Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:04.5793448Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:04.5793882Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:04.5794392Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:04.5794782Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:04.5794992Z ##[endgroup]
+2026-10-04T14:18:05.7992016Z [INFO] Scanning for projects...
+2026-10-04T14:18:06.5722032Z [INFO] Inspecting build with total of 1 modules
+2026-10-04T14:18:06.5743255Z [INFO] Installing Central Publishing features
+2026-10-04T14:18:06.5835808Z [INFO] 
+2026-10-04T14:18:06.5857756Z [INFO] ---------------------------< org.json:json >----------------------------
+2026-10-04T14:18:06.5871550Z [INFO] Building JSON in Java 20260814
+2026-10-04T14:18:06.5872239Z [INFO]   from pom.xml
+2026-10-04T14:18:06.5872951Z [INFO] -------------------------------[ bundle ]-------------------------------
+2026-10-04T14:18:06.6023001Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:06.6044717Z The plugin org.apache.maven.plugins:maven-resources-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:06.6047991Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:06.6049264Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-resources-plugin failed compatibility check
+2026-10-04T14:18:06.6051296Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-resources-plugin
+2026-10-04T14:18:06.6139119Z [INFO] Selected plugin org.apache.maven.plugins:maven-resources-plugin:3.5.0
+2026-10-04T14:18:06.6354718Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-3: 
+2026-10-04T14:18:06.6361866Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-3 has unmet prerequisites: 
+2026-10-04T14:18:06.6400307Z 	Required Maven version 4.0.0-rc-6 is not met by current version 3.9.16
+2026-10-04T14:18:06.6404392Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-install-plugin failed compatibility check
+2026-10-04T14:18:06.6454926Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-install-plugin
+2026-10-04T14:18:06.6457400Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-2: 
+2026-10-04T14:18:06.6459096Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-2 has unmet prerequisites: 
+2026-10-04T14:18:06.6485559Z 	Required Maven version 4.0.0-rc-2 is not met by current version 3.9.16
+2026-10-04T14:18:06.6487217Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:06.6488658Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:06.6490295Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:06.6539533Z [INFO] Selected plugin org.apache.maven.plugins:maven-install-plugin:3.2.0
+2026-10-04T14:18:06.6631186Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-3: 
+2026-10-04T14:18:06.6634755Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-3 has unmet prerequisites: 
+2026-10-04T14:18:06.6636555Z 	Required Maven version 4.0.0-rc-6 is not met by current version 3.9.16
+2026-10-04T14:18:06.6638547Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-deploy-plugin failed compatibility check
+2026-10-04T14:18:06.6640588Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-deploy-plugin
+2026-10-04T14:18:06.6644683Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-2: 
+2026-10-04T14:18:06.6645624Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-2 has unmet prerequisites: 
+2026-10-04T14:18:06.6646622Z 	Required Maven version 4.0.0-rc-2 is not met by current version 3.9.16
+2026-10-04T14:18:06.6681485Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:06.6686528Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:06.6688349Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:06.6732889Z [INFO] Selected plugin org.apache.maven.plugins:maven-deploy-plugin:3.2.0
+2026-10-04T14:18:07.4634383Z [INFO] 
+2026-10-04T14:18:07.4642184Z [INFO] --- resources:3.5.0:resources (default-resources) @ json ---
+2026-10-04T14:18:07.5477481Z [INFO] skip non existing resourceDirectory /home/runner/work/JSON-java/JSON-java/src/main/resources
+2026-10-04T14:18:07.5483782Z [INFO] 
+2026-10-04T14:18:07.5485023Z [INFO] --- compiler:3.11.0:compile (default-compile) @ json ---
+2026-10-04T14:18:07.6613769Z [INFO] Nothing to compile - all classes are up to date
+2026-10-04T14:18:07.6622135Z [INFO] 
+2026-10-04T14:18:07.6623016Z [INFO] --- resources:3.5.0:testResources (default-testResources) @ json ---
+2026-10-04T14:18:07.6691861Z [INFO] Copying 9 resources from src/test/resources to target/test-classes
+2026-10-04T14:18:07.6741418Z [INFO] 
+2026-10-04T14:18:07.6763824Z [INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ json ---
+2026-10-04T14:18:07.6826556Z [INFO] Changes detected - recompiling the module! :source
+2026-10-04T14:18:07.6872606Z [INFO] Compiling 59 source files with javac [debug target 1.8] to target/test-classes
+2026-10-04T14:18:10.1887431Z [WARNING] bootstrap class path not set in conjunction with -source 8
+2026-10-04T14:18:10.1893240Z [INFO] /home/runner/work/JSON-java/JSON-java/src/test/java/org/json/junit/JSONObjectTest.java: /home/runner/work/JSON-java/JSON-java/src/test/java/org/json/junit/JSONObjectTest.java uses or overrides a deprecated API.
+2026-10-04T14:18:10.1912459Z [INFO] /home/runner/work/JSON-java/JSON-java/src/test/java/org/json/junit/JSONObjectTest.java: Recompile with -Xlint:deprecation for details.
+2026-10-04T14:18:10.1914621Z [INFO] 
+2026-10-04T14:18:10.1916753Z [INFO] --- surefire:3.6.0:test (default-test) @ json ---
+2026-10-04T14:18:10.9912347Z [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+2026-10-04T14:18:11.2952683Z [INFO] 
+2026-10-04T14:18:11.2972058Z [INFO] -------------------------------------------------------
+2026-10-04T14:18:11.2983691Z [INFO]  T E S T S
+2026-10-04T14:18:11.2984347Z [INFO] -------------------------------------------------------
+2026-10-04T14:18:12.1412207Z [INFO] Running org.json.junit.JSONTokenerTest
+2026-10-04T14:18:12.2382290Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.066 s -- in org.json.junit.JSONTokenerTest
+2026-10-04T14:18:12.2411672Z [INFO] Running org.json.junit.CDLTest
+2026-10-04T14:18:12.2552030Z [INFO] Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.040 s -- in org.json.junit.CDLTest
+2026-10-04T14:18:12.2611671Z [INFO] Running org.json.junit.JSONObjectRecordTest
+2026-10-04T14:18:12.2792281Z [WARNING] Tests run: 8, Failures: 0, Errors: 0, Skipped: 4, Time elapsed: 0.024 s -- in org.json.junit.JSONObjectRecordTest
+2026-10-04T14:18:12.2811446Z [INFO] Running org.json.junit.JSONParserConfigurationTest
+2026-10-04T14:18:12.3769045Z [INFO] Tests run: 51, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.098 s -- in org.json.junit.JSONParserConfigurationTest
+2026-10-04T14:18:12.3781816Z [INFO] Running org.json.junit.CookieListTest
+2026-10-04T14:18:12.4182521Z SLF4J(W): No SLF4J providers were found.
+2026-10-04T14:18:12.4183867Z SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+2026-10-04T14:18:12.4185706Z SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+2026-10-04T14:18:12.4362096Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.058 s -- in org.json.junit.CookieListTest
+2026-10-04T14:18:12.4421557Z [INFO] Running org.json.junit.XMLTokenerTest
+2026-10-04T14:18:12.4473200Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.json.junit.XMLTokenerTest
+2026-10-04T14:18:12.4511476Z [INFO] Running org.json.junit.JSONObjectNumberTest
+2026-10-04T14:18:12.6562316Z [INFO] Tests run: 216, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.187 s -- in org.json.junit.JSONObjectNumberTest
+2026-10-04T14:18:12.6581434Z [INFO] Running org.json.junit.JSONPointerTest
+2026-10-04T14:18:12.6712192Z [INFO] Tests run: 38, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.043 s -- in org.json.junit.JSONPointerTest
+2026-10-04T14:18:12.6713465Z [INFO] Running org.json.junit.XMLConfigurationTest
+2026-10-04T14:18:12.7638155Z [INFO] Tests run: 53, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.086 s -- in org.json.junit.XMLConfigurationTest
+2026-10-04T14:18:12.7642591Z [INFO] Running org.json.junit.HTTPTest
+2026-10-04T14:18:12.7689167Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in org.json.junit.HTTPTest
+2026-10-04T14:18:12.7702072Z [INFO] Running org.json.junit.PropertyTest
+2026-10-04T14:18:12.7777951Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.json.junit.PropertyTest
+2026-10-04T14:18:12.7801416Z [INFO] Running org.json.junit.JSONStringTest
+2026-10-04T14:18:12.7863810Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in org.json.junit.JSONStringTest
+2026-10-04T14:18:12.7901567Z [INFO] Running org.json.junit.JSONObjectTest
+2026-10-04T14:18:13.4392128Z new BigDecimal(testData[]) : 69 ms
+2026-10-04T14:18:13.4405313Z NUMBER_PATTERN.matcher(testData[]).matches() : 40 ms
+2026-10-04T14:18:13.4647667Z [WARNING] Tests run: 167, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.665 s -- in org.json.junit.JSONObjectTest
+2026-10-04T14:18:13.4701796Z [INFO] Running org.json.junit.JSONObjectLocaleTest
+2026-10-04T14:18:13.4725925Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in org.json.junit.JSONObjectLocaleTest
+2026-10-04T14:18:13.4783279Z [INFO] Running org.json.junit.JSONArrayTest
+2026-10-04T14:18:13.4872036Z [WARNING] Tests run: 55, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.036 s -- in org.json.junit.JSONArrayTest
+2026-10-04T14:18:13.4931473Z [INFO] Running org.json.junit.JSONMLTest
+2026-10-04T14:18:13.5142208Z [INFO] Tests run: 36, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s -- in org.json.junit.JSONMLTest
+2026-10-04T14:18:13.5172127Z [INFO] Running org.json.junit.StringBuilderWriterTest
+2026-10-04T14:18:13.5182623Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in org.json.junit.StringBuilderWriterTest
+2026-10-04T14:18:13.5232163Z [INFO] Running org.json.junit.XMLTest
+2026-10-04T14:18:13.6197457Z [INFO] Tests run: 71, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.084 s -- in org.json.junit.XMLTest
+2026-10-04T14:18:13.6216323Z [INFO] Running org.json.junit.JSONStringerTest
+2026-10-04T14:18:13.6262038Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in org.json.junit.JSONStringerTest
+2026-10-04T14:18:13.6263356Z [INFO] Running org.json.junit.EnumTest
+2026-10-04T14:18:13.6293334Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in org.json.junit.EnumTest
+2026-10-04T14:18:13.6322170Z [INFO] Running org.json.junit.HTTPTokenerTest
+2026-10-04T14:18:13.6352230Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.json.junit.HTTPTokenerTest
+2026-10-04T14:18:13.6381990Z [INFO] Running org.json.junit.CookieTest
+2026-10-04T14:18:13.6413028Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.json.junit.CookieTest
+2026-10-04T14:18:13.6734305Z [INFO] 
+2026-10-04T14:18:13.6734875Z [INFO] Results:
+2026-10-04T14:18:13.6735338Z [INFO] 
+2026-10-04T14:18:13.6738419Z [INFO] Tests run: 809, Failures: 0, Errors: 0, Skipped: 6
+2026-10-04T14:18:13.6739067Z [INFO] 
+2026-10-04T14:18:13.6764190Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:13.6764892Z [INFO] BUILD SUCCESS
+2026-10-04T14:18:13.6765444Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:13.6776244Z [INFO] Total time:  7.902 s
+2026-10-04T14:18:13.6778535Z [INFO] Finished at: 2026-10-04T14:18:13Z
+2026-10-04T14:18:13.6779437Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:13.7010097Z ##[group]Run touch optcd-6.txt
+2026-10-04T14:18:13.7010404Z [36;1mtouch optcd-6.txt[0m
+2026-10-04T14:18:13.7074378Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:18:13.7074629Z env:
+2026-10-04T14:18:13.7074896Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:13.7075365Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:13.7075800Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:13.7076192Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:13.7076590Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:13.7076984Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:13.7077423Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:13.7077917Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:13.7078305Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:13.7078538Z ##[endgroup]
+2026-10-04T14:18:13.7214527Z ##[group]Run mvn surefire-report:report-only -D maven.compiler.source=17 -D maven.compiler.target=17
+2026-10-04T14:18:13.7215842Z [36;1mmvn surefire-report:report-only -D maven.compiler.source=17 -D maven.compiler.target=17[0m
+2026-10-04T14:18:13.7217396Z [36;1mmvn site -D generateReports=false -D maven.compiler.source=17 -D maven.compiler.target=17[0m
+2026-10-04T14:18:13.7300392Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:18:13.7301151Z env:
+2026-10-04T14:18:13.7301614Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:13.7302403Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:13.7303180Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:13.7303870Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:13.7304585Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:13.7305334Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:13.7306124Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:13.7307019Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:13.7307744Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:13.7308110Z ##[endgroup]
+2026-10-04T14:18:14.9765163Z [INFO] Scanning for projects...
+2026-10-04T14:18:15.7351425Z [INFO] Inspecting build with total of 1 modules
+2026-10-04T14:18:15.7381571Z [INFO] Installing Central Publishing features
+2026-10-04T14:18:15.7561888Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:15.7591933Z The plugin org.apache.maven.plugins:maven-resources-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:15.7614659Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:15.7661796Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-resources-plugin failed compatibility check
+2026-10-04T14:18:15.7691432Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-resources-plugin
+2026-10-04T14:18:15.7721739Z [INFO] Selected plugin org.apache.maven.plugins:maven-resources-plugin:3.5.0
+2026-10-04T14:18:15.7906742Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-3: 
+2026-10-04T14:18:15.7924468Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-3 has unmet prerequisites: 
+2026-10-04T14:18:15.7947766Z 	Required Maven version 4.0.0-rc-6 is not met by current version 3.9.16
+2026-10-04T14:18:15.7962469Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-install-plugin failed compatibility check
+2026-10-04T14:18:15.7991967Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-install-plugin
+2026-10-04T14:18:15.7998553Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-2: 
+2026-10-04T14:18:15.7999884Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-2 has unmet prerequisites: 
+2026-10-04T14:18:15.8001558Z 	Required Maven version 4.0.0-rc-2 is not met by current version 3.9.16
+2026-10-04T14:18:15.8041587Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:15.8042820Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:15.8044232Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:15.8079849Z [INFO] Selected plugin org.apache.maven.plugins:maven-install-plugin:3.2.0
+2026-10-04T14:18:15.8151670Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-3: 
+2026-10-04T14:18:15.8153025Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-3 has unmet prerequisites: 
+2026-10-04T14:18:15.8178612Z 	Required Maven version 4.0.0-rc-6 is not met by current version 3.9.16
+2026-10-04T14:18:15.8179988Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-deploy-plugin failed compatibility check
+2026-10-04T14:18:15.8182377Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-deploy-plugin
+2026-10-04T14:18:15.8186769Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-2: 
+2026-10-04T14:18:15.8187964Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-2 has unmet prerequisites: 
+2026-10-04T14:18:15.8189622Z 	Required Maven version 4.0.0-rc-2 is not met by current version 3.9.16
+2026-10-04T14:18:15.8219728Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:15.8221219Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:15.8227164Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:15.8271842Z [INFO] Selected plugin org.apache.maven.plugins:maven-deploy-plugin:3.2.0
+2026-10-04T14:18:17.0332033Z [INFO] 
+2026-10-04T14:18:17.0357123Z [INFO] ---------------------------< org.json:json >----------------------------
+2026-10-04T14:18:17.0422512Z [INFO] Building JSON in Java 20260814
+2026-10-04T14:18:17.0441416Z [INFO]   from pom.xml
+2026-10-04T14:18:17.0456756Z [INFO] -------------------------------[ bundle ]-------------------------------
+2026-10-04T14:18:17.0457720Z [INFO] 
+2026-10-04T14:18:17.0506628Z [INFO] --- surefire-report:3.6.0:report-only (default-cli) @ json ---
+2026-10-04T14:18:19.9806783Z [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
+2026-10-04T14:18:20.0458789Z [WARNING] Unable to locate Test Source XRef to link to -- DISABLED
+2026-10-04T14:18:20.8712052Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:20.8741499Z [INFO] BUILD SUCCESS
+2026-10-04T14:18:20.8742258Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:20.8748132Z [INFO] Total time:  5.923 s
+2026-10-04T14:18:20.8749154Z [INFO] Finished at: 2026-10-04T14:18:20Z
+2026-10-04T14:18:20.8749949Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:22.1741968Z [INFO] Scanning for projects...
+2026-10-04T14:18:22.9189349Z [INFO] Inspecting build with total of 1 modules
+2026-10-04T14:18:22.9218187Z [INFO] Installing Central Publishing features
+2026-10-04T14:18:22.9311677Z [INFO] 
+2026-10-04T14:18:22.9321781Z [INFO] ---------------------------< org.json:json >----------------------------
+2026-10-04T14:18:22.9351901Z [INFO] Building JSON in Java 20260814
+2026-10-04T14:18:22.9371958Z [INFO]   from pom.xml
+2026-10-04T14:18:22.9372756Z [INFO] -------------------------------[ bundle ]-------------------------------
+2026-10-04T14:18:22.9481842Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:22.9501831Z The plugin org.apache.maven.plugins:maven-resources-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:22.9503313Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:22.9504650Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-resources-plugin failed compatibility check
+2026-10-04T14:18:22.9506201Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-resources-plugin
+2026-10-04T14:18:22.9591780Z [INFO] Selected plugin org.apache.maven.plugins:maven-resources-plugin:3.5.0
+2026-10-04T14:18:22.9799292Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-3: 
+2026-10-04T14:18:22.9800590Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-3 has unmet prerequisites: 
+2026-10-04T14:18:22.9807844Z 	Required Maven version 4.0.0-rc-6 is not met by current version 3.9.16
+2026-10-04T14:18:22.9841956Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-install-plugin failed compatibility check
+2026-10-04T14:18:22.9851848Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-install-plugin
+2026-10-04T14:18:22.9911767Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-2: 
+2026-10-04T14:18:22.9926047Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-2 has unmet prerequisites: 
+2026-10-04T14:18:22.9927839Z 	Required Maven version 4.0.0-rc-2 is not met by current version 3.9.16
+2026-10-04T14:18:22.9933784Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:22.9937147Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:22.9938224Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:22.9985846Z [INFO] Selected plugin org.apache.maven.plugins:maven-install-plugin:3.2.0
+2026-10-04T14:18:23.0025476Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-3: 
+2026-10-04T14:18:23.0051980Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-3 has unmet prerequisites: 
+2026-10-04T14:18:23.0066939Z 	Required Maven version 4.0.0-rc-6 is not met by current version 3.9.16
+2026-10-04T14:18:23.0068353Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-deploy-plugin failed compatibility check
+2026-10-04T14:18:23.0069956Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-deploy-plugin
+2026-10-04T14:18:23.0105844Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-2: 
+2026-10-04T14:18:23.0131794Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-2 has unmet prerequisites: 
+2026-10-04T14:18:23.0133052Z 	Required Maven version 4.0.0-rc-2 is not met by current version 3.9.16
+2026-10-04T14:18:23.0141847Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:23.0143175Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:23.0144672Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:23.0170346Z [INFO] Selected plugin org.apache.maven.plugins:maven-deploy-plugin:3.2.0
+2026-10-04T14:18:23.0925637Z [INFO] 
+2026-10-04T14:18:23.0961895Z [INFO] --- site:3.12.1:site (default-site) @ json ---
+2026-10-04T14:18:27.7923162Z [INFO] Rendering site with default locale English (en)
+2026-10-04T14:18:27.8202385Z [INFO] Relativizing decoration links with respect to localized project URL: https://github.com/douglascrockford/JSON-java
+2026-10-04T14:18:27.8374354Z [INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+2026-10-04T14:18:27.8522270Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:27.8523557Z [INFO] BUILD SUCCESS
+2026-10-04T14:18:27.8524368Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:27.8529981Z [INFO] Total time:  5.706 s
+2026-10-04T14:18:27.8532172Z [INFO] Finished at: 2026-10-04T14:18:27Z
+2026-10-04T14:18:27.8532965Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:27.8854572Z ##[group]Run touch optcd-7.txt
+2026-10-04T14:18:27.8854900Z [36;1mtouch optcd-7.txt[0m
+2026-10-04T14:18:27.8918711Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:18:27.8918962Z env:
+2026-10-04T14:18:27.8919231Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:27.8919680Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:27.8920131Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:27.8920550Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:27.8921202Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:27.8921713Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:27.8922182Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:27.8922703Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:27.8923110Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:27.8923361Z ##[endgroup]
+2026-10-04T14:18:27.9074534Z ##[group]Run actions/upload-artifact@v5
+2026-10-04T14:18:27.9074834Z with:
+2026-10-04T14:18:27.9075028Z   name: Test Results 17
+2026-10-04T14:18:27.9075269Z   path: target/surefire-reports/
+2026-10-04T14:18:27.9075530Z   if-no-files-found: warn
+2026-10-04T14:18:27.9075766Z   compression-level: 6
+2026-10-04T14:18:27.9075982Z   overwrite: false
+2026-10-04T14:18:27.9076205Z   include-hidden-files: false
+2026-10-04T14:18:27.9076746Z env:
+2026-10-04T14:18:27.9077001Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:27.9077434Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:27.9077856Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:27.9078236Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:27.9078621Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:27.9079005Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:27.9079468Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:27.9079952Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:27.9080331Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:27.9080531Z ##[endgroup]
+2026-10-04T14:18:28.0724887Z (node:2755) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-04T14:18:28.0725691Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-04T14:18:28.0861136Z With the provided path, there will be 44 files uploaded
+2026-10-04T14:18:28.0866718Z Artifact name is valid!
+2026-10-04T14:18:28.0867362Z Root directory input is valid!
+2026-10-04T14:18:28.4787559Z Beginning upload of artifact content to blob storage
+2026-10-04T14:18:28.5452920Z (node:2755) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-04T14:18:28.9494602Z Uploaded bytes 49031
+2026-10-04T14:18:29.0260677Z Finished uploading artifact content to blob storage!
+2026-10-04T14:18:29.0262338Z SHA256 digest of uploaded artifact zip is 533dbdd8f98de530cebe8ce50d9badb4a7b634e9b47aa00d6c9ba3959701a64e
+2026-10-04T14:18:29.0264067Z Finalizing artifact upload
+2026-10-04T14:18:29.2792058Z Artifact Test Results 17.zip successfully finalized. Artifact ID 11305728347
+2026-10-04T14:18:29.2793724Z Artifact Test Results 17 has been successfully uploaded! Final size is 49031 bytes. Artifact ID is 11305728347
+2026-10-04T14:18:29.2798127Z Artifact download URL: https://github.com/atanuroy911/JSON-java/actions/runs/37208714988/artifacts/11305728347
+2026-10-04T14:18:29.2932968Z ##[group]Run touch optcd-8.txt
+2026-10-04T14:18:29.2933501Z [36;1mtouch optcd-8.txt[0m
+2026-10-04T14:18:29.3023771Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:18:29.3024034Z env:
+2026-10-04T14:18:29.3024309Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:29.3024777Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:29.3025233Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:29.3025623Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:29.3026039Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:29.3026439Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:29.3026903Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:29.3027388Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:29.3027769Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:29.3028008Z ##[endgroup]
+2026-10-04T14:18:29.3177161Z ##[group]Run actions/upload-artifact@v5
+2026-10-04T14:18:29.3177616Z with:
+2026-10-04T14:18:29.3177966Z   name: Test Report 17
+2026-10-04T14:18:29.3178335Z   path: target/site/
+2026-10-04T14:18:29.3178721Z   if-no-files-found: warn
+2026-10-04T14:18:29.3179050Z   compression-level: 6
+2026-10-04T14:18:29.3179385Z   overwrite: false
+2026-10-04T14:18:29.3179780Z   include-hidden-files: false
+2026-10-04T14:18:29.3180091Z env:
+2026-10-04T14:18:29.3180501Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:29.3181233Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:29.3182021Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:29.3182532Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:29.3182990Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:29.3183531Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:29.3184283Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:29.3184906Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:29.3185378Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:29.3185723Z ##[endgroup]
+2026-10-04T14:18:29.4795136Z (node:2769) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-04T14:18:29.4796904Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-04T14:18:29.4969623Z With the provided path, there will be 15 files uploaded
+2026-10-04T14:18:29.4972531Z Artifact name is valid!
+2026-10-04T14:18:29.4973324Z Root directory input is valid!
+2026-10-04T14:18:29.8794487Z Beginning upload of artifact content to blob storage
+2026-10-04T14:18:29.9203380Z (node:2769) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-04T14:18:30.2605580Z Uploaded bytes 16211
+2026-10-04T14:18:30.3369859Z Finished uploading artifact content to blob storage!
+2026-10-04T14:18:30.3371290Z SHA256 digest of uploaded artifact zip is 5eaf4809cdfe5560a1a166ab924c92356c85389d237e8572702a7d00eef001f1
+2026-10-04T14:18:30.3373143Z Finalizing artifact upload
+2026-10-04T14:18:30.6117582Z Artifact Test Report 17.zip successfully finalized. Artifact ID 11305838056
+2026-10-04T14:18:30.6118956Z Artifact Test Report 17 has been successfully uploaded! Final size is 16211 bytes. Artifact ID is 11305838056
+2026-10-04T14:18:30.6120458Z Artifact download URL: https://github.com/atanuroy911/JSON-java/actions/runs/37208714988/artifacts/11305838056
+2026-10-04T14:18:30.6227717Z ##[group]Run touch optcd-9.txt
+2026-10-04T14:18:30.6228030Z [36;1mtouch optcd-9.txt[0m
+2026-10-04T14:18:30.6291665Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:18:30.6291928Z env:
+2026-10-04T14:18:30.6292216Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:30.6292703Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:30.6293164Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:30.6293596Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:30.6294015Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:30.6294433Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:30.6294901Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:30.6295422Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:30.6295858Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:30.6296106Z ##[endgroup]
+2026-10-04T14:18:30.6416825Z ##[group]Run mvn clean package -D maven.compiler.source=17 -D maven.compiler.target=17 -D maven.test.skip=true -D maven.site.skip=true
+2026-10-04T14:18:30.6417778Z [36;1mmvn clean package -D maven.compiler.source=17 -D maven.compiler.target=17 -D maven.test.skip=true -D maven.site.skip=true[0m
+2026-10-04T14:18:30.6474594Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:18:30.6474850Z env:
+2026-10-04T14:18:30.6475135Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:30.6475597Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:30.6476046Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:30.6476444Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:30.6476835Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:30.6477226Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:30.6477886Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:30.6478389Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:30.6478780Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:30.6479000Z ##[endgroup]
+2026-10-04T14:18:31.8581651Z [INFO] Scanning for projects...
+2026-10-04T14:18:32.6458485Z [INFO] Inspecting build with total of 1 modules
+2026-10-04T14:18:32.6475930Z [INFO] Installing Central Publishing features
+2026-10-04T14:18:32.6562275Z [INFO] 
+2026-10-04T14:18:32.6588264Z [INFO] ---------------------------< org.json:json >----------------------------
+2026-10-04T14:18:32.6589172Z [INFO] Building JSON in Java 20260814
+2026-10-04T14:18:32.6589815Z [INFO]   from pom.xml
+2026-10-04T14:18:32.6590529Z [INFO] -------------------------------[ bundle ]-------------------------------
+2026-10-04T14:18:32.6749005Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:32.6771952Z The plugin org.apache.maven.plugins:maven-resources-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:32.6777729Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:32.6778931Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-resources-plugin failed compatibility check
+2026-10-04T14:18:32.6780396Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-resources-plugin
+2026-10-04T14:18:32.6869708Z [INFO] Selected plugin org.apache.maven.plugins:maven-resources-plugin:3.5.0
+2026-10-04T14:18:32.7101603Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-3: 
+2026-10-04T14:18:32.7102843Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-3 has unmet prerequisites: 
+2026-10-04T14:18:32.7109463Z 	Required Maven version 4.0.0-rc-6 is not met by current version 3.9.16
+2026-10-04T14:18:32.7141784Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-install-plugin failed compatibility check
+2026-10-04T14:18:32.7161612Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-install-plugin
+2026-10-04T14:18:32.7193066Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-2: 
+2026-10-04T14:18:32.7194237Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-2 has unmet prerequisites: 
+2026-10-04T14:18:32.7195505Z 	Required Maven version 4.0.0-rc-2 is not met by current version 3.9.16
+2026-10-04T14:18:32.7228471Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:32.7229679Z The plugin org.apache.maven.plugins:maven-install-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:32.7231246Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:32.7285815Z [INFO] Selected plugin org.apache.maven.plugins:maven-install-plugin:3.2.0
+2026-10-04T14:18:32.7329254Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-3: 
+2026-10-04T14:18:32.7361924Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-3 has unmet prerequisites: 
+2026-10-04T14:18:32.7379769Z 	Required Maven version 4.0.0-rc-6 is not met by current version 3.9.16
+2026-10-04T14:18:32.7381532Z [INFO] Latest version of plugin org.apache.maven.plugins:maven-deploy-plugin failed compatibility check
+2026-10-04T14:18:32.7383054Z [INFO] Looking for compatible RELEASE version of plugin org.apache.maven.plugins:maven-deploy-plugin
+2026-10-04T14:18:32.7389157Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-2: 
+2026-10-04T14:18:32.7390320Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-2 has unmet prerequisites: 
+2026-10-04T14:18:32.7391741Z 	Required Maven version 4.0.0-rc-2 is not met by current version 3.9.16
+2026-10-04T14:18:32.7423476Z [WARNING] Ignoring incompatible plugin version 4.0.0-beta-1: 
+2026-10-04T14:18:32.7424702Z The plugin org.apache.maven.plugins:maven-deploy-plugin:4.0.0-beta-1 has unmet prerequisites: 
+2026-10-04T14:18:32.7429867Z 	Required Maven version 4.0.0-beta-3 is not met by current version 3.9.16
+2026-10-04T14:18:32.7475363Z [INFO] Selected plugin org.apache.maven.plugins:maven-deploy-plugin:3.2.0
+2026-10-04T14:18:32.8352679Z [WARNING] Parameter 'additionalparam' is unknown for plugin 'maven-javadoc-plugin:3.5.0:jar (attach-javadocs)'
+2026-10-04T14:18:32.8732170Z [INFO] 
+2026-10-04T14:18:32.8741728Z [INFO] --- clean:3.2.0:clean (default-clean) @ json ---
+2026-10-04T14:18:32.9303165Z [INFO] Deleting /home/runner/work/JSON-java/JSON-java/target
+2026-10-04T14:18:32.9524710Z [INFO] 
+2026-10-04T14:18:32.9562334Z [INFO] --- resources:3.5.0:resources (default-resources) @ json ---
+2026-10-04T14:18:33.0404435Z [INFO] skip non existing resourceDirectory /home/runner/work/JSON-java/JSON-java/src/main/resources
+2026-10-04T14:18:33.0413434Z [INFO] 
+2026-10-04T14:18:33.0415163Z [INFO] --- compiler:3.11.0:compile (default-compile) @ json ---
+2026-10-04T14:18:33.1378557Z [INFO] Changes detected - recompiling the module! :source
+2026-10-04T14:18:33.1395111Z [INFO] Compiling 26 source files with javac [debug target 1.8] to target/classes
+2026-10-04T14:18:34.6208737Z [WARNING] bootstrap class path not set in conjunction with -source 8
+2026-10-04T14:18:34.6211345Z [INFO] /home/runner/work/JSON-java/JSON-java/src/main/java/org/json/JSONMLParserConfiguration.java: Some input files use or override a deprecated API.
+2026-10-04T14:18:34.6223633Z [INFO] /home/runner/work/JSON-java/JSON-java/src/main/java/org/json/JSONMLParserConfiguration.java: Recompile with -Xlint:deprecation for details.
+2026-10-04T14:18:34.6225083Z [INFO] 
+2026-10-04T14:18:34.6225884Z [INFO] --- resources:3.5.0:testResources (default-testResources) @ json ---
+2026-10-04T14:18:34.6249238Z [INFO] Not copying test resources
+2026-10-04T14:18:34.6265632Z [INFO] 
+2026-10-04T14:18:34.6266470Z [INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ json ---
+2026-10-04T14:18:34.6301608Z [INFO] Not compiling test sources
+2026-10-04T14:18:34.6303252Z [INFO] 
+2026-10-04T14:18:34.6304082Z [INFO] --- surefire:3.6.0:test (default-test) @ json ---
+2026-10-04T14:18:34.7566800Z [INFO] Tests are skipped.
+2026-10-04T14:18:34.7567492Z [INFO] 
+2026-10-04T14:18:34.7568031Z [INFO] --- bundle:5.1.9:bundle (default-bundle) @ json ---
+2026-10-04T14:18:35.8094575Z [INFO] Building bundle: /home/runner/work/JSON-java/JSON-java/target/json-20260814.jar
+2026-10-04T14:18:35.8392245Z [INFO] Writing manifest: /home/runner/work/JSON-java/JSON-java/target/classes/META-INF/MANIFEST.MF
+2026-10-04T14:18:35.8421509Z [INFO] 
+2026-10-04T14:18:35.8431654Z [INFO] --- source:3.3.0:jar-no-fork (attach-sources) @ json ---
+2026-10-04T14:18:36.9132864Z [INFO] Building jar: /home/runner/work/JSON-java/JSON-java/target/json-20260814-sources.jar
+2026-10-04T14:18:36.9892413Z [INFO] 
+2026-10-04T14:18:36.9902582Z [INFO] --- javadoc:3.5.0:jar (attach-javadocs) @ json ---
+2026-10-04T14:18:38.0039838Z [INFO] No previous run data found, generating javadoc.
+2026-10-04T14:18:40.5066606Z [WARNING] Javadoc Warnings
+2026-10-04T14:18:40.5101465Z ##[warning][WARNING] /home/runner/work/JSON-java/JSON-java/src/main/java/org/json/JSONObject.java:491: warning: no comment
+2026-10-04T14:18:40.5121057Z [WARNING] public JSONObject(Object bean, JSONParserConfiguration jsonParserConfiguration) {
+2026-10-04T14:18:40.5121934Z [WARNING] ^
+2026-10-04T14:18:40.5122372Z [WARNING] 1 warning
+2026-10-04T14:18:40.5376299Z [INFO] Building jar: /home/runner/work/JSON-java/JSON-java/target/json-20260814-javadoc.jar
+2026-10-04T14:18:40.5922117Z [INFO] 
+2026-10-04T14:18:40.5923389Z [INFO] --- moditect:1.0.0.Final:add-module-info (add-module-infos) @ json ---
+2026-10-04T14:18:40.9910500Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:40.9911633Z [INFO] BUILD SUCCESS
+2026-10-04T14:18:40.9912217Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:40.9928772Z [INFO] Total time:  9.172 s
+2026-10-04T14:18:40.9933396Z [INFO] Finished at: 2026-10-04T14:18:40Z
+2026-10-04T14:18:40.9934361Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:18:41.0327030Z ##[group]Run touch optcd-10.txt
+2026-10-04T14:18:41.0327360Z [36;1mtouch optcd-10.txt[0m
+2026-10-04T14:18:41.0390428Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:18:41.0390709Z env:
+2026-10-04T14:18:41.0391261Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:41.0391744Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:41.0392211Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:41.0392635Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:41.0393047Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:41.0393450Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:41.0393893Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:41.0394394Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:41.0394807Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:41.0395057Z ##[endgroup]
+2026-10-04T14:18:41.0532313Z ##[group]Run actions/upload-artifact@v5
+2026-10-04T14:18:41.0532624Z with:
+2026-10-04T14:18:41.0532836Z   name: Package Jar 17
+2026-10-04T14:18:41.0533064Z   path: target/*.jar
+2026-10-04T14:18:41.0533296Z   if-no-files-found: warn
+2026-10-04T14:18:41.0533538Z   compression-level: 6
+2026-10-04T14:18:41.0533754Z   overwrite: false
+2026-10-04T14:18:41.0533981Z   include-hidden-files: false
+2026-10-04T14:18:41.0534220Z env:
+2026-10-04T14:18:41.0534481Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:41.0534929Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:41.0535363Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:41.0535756Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:41.0536137Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:41.0536535Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:41.0537010Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:41.0537508Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:41.0537898Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:41.0538112Z ##[endgroup]
+2026-10-04T14:18:41.2137353Z (node:2924) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-04T14:18:41.2138214Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-04T14:18:41.2212239Z With the provided path, there will be 3 files uploaded
+2026-10-04T14:18:41.2219129Z Artifact name is valid!
+2026-10-04T14:18:41.2220054Z Root directory input is valid!
+2026-10-04T14:18:41.6207695Z Beginning upload of artifact content to blob storage
+2026-10-04T14:18:41.6609606Z (node:2924) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-04T14:18:42.2711926Z Uploaded bytes 454602
+2026-10-04T14:18:42.3480312Z Finished uploading artifact content to blob storage!
+2026-10-04T14:18:42.3482040Z SHA256 digest of uploaded artifact zip is e25fc225986a02f0445f6e0580192ec151b6ee2115092e54c542bfb8d3358ca0
+2026-10-04T14:18:42.3483277Z Finalizing artifact upload
+2026-10-04T14:18:42.6243897Z Artifact Package Jar 17.zip successfully finalized. Artifact ID 11305748236
+2026-10-04T14:18:42.6245519Z Artifact Package Jar 17 has been successfully uploaded! Final size is 454602 bytes. Artifact ID is 11305748236
+2026-10-04T14:18:42.6247059Z Artifact download URL: https://github.com/atanuroy911/JSON-java/actions/runs/37208714988/artifacts/11305748236
+2026-10-04T14:18:42.6360187Z ##[group]Run touch optcd-11.txt
+2026-10-04T14:18:42.6360513Z [36;1mtouch optcd-11.txt[0m
+2026-10-04T14:18:42.6424504Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:18:42.6425240Z env:
+2026-10-04T14:18:42.6425738Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:42.6426560Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:42.6427177Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:42.6427602Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:42.6428031Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:42.6428455Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:42.6428907Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:42.6429413Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:42.6429815Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:42.6430075Z ##[endgroup]
+2026-10-04T14:18:42.6579885Z ##[group]Run actions/upload-artifact@v4
+2026-10-04T14:18:42.6580208Z with:
+2026-10-04T14:18:42.6580444Z   name: inotifywait-build-17 (17)
+2026-10-04T14:18:42.6581055Z   path: /home/runner/inotifywait-log-build-17 (17).csv
+2026-10-04T14:18:42.6581415Z   if-no-files-found: warn
+2026-10-04T14:18:42.6581671Z   compression-level: 6
+2026-10-04T14:18:42.6581906Z   overwrite: false
+2026-10-04T14:18:42.6582132Z   include-hidden-files: false
+2026-10-04T14:18:42.6582417Z env:
+2026-10-04T14:18:42.6582683Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:42.6583127Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:18:42.6583559Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:42.6583955Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:42.6584348Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:18:42.6584777Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:18:42.6585215Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:42.6585714Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:18:42.6586103Z   MAVEN_ARGS: -ntp
+2026-10-04T14:18:42.6586325Z ##[endgroup]
+2026-10-04T14:18:42.8239609Z (node:2938) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-04T14:18:42.8240550Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-04T14:18:42.8287444Z With the provided path, there will be 1 file uploaded
+2026-10-04T14:18:42.8294003Z Artifact name is valid!
+2026-10-04T14:18:42.8294936Z Root directory input is valid!
+2026-10-04T14:18:43.1921755Z Beginning upload of artifact content to blob storage
+2026-10-04T14:18:43.2157642Z (node:2938) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-04T14:18:43.5561737Z Uploaded bytes 25763
+2026-10-04T14:18:43.6326248Z Finished uploading artifact content to blob storage!
+2026-10-04T14:18:43.6327182Z SHA256 digest of uploaded artifact zip is c890df0571e7d88ac10c65e8daf76a158429ccf5c374e998f1fd9a78f2a40e33
+2026-10-04T14:18:43.6328647Z Finalizing artifact upload
+2026-10-04T14:18:43.9017011Z Artifact inotifywait-build-17 (17).zip successfully finalized. Artifact ID 11305892871
+2026-10-04T14:18:43.9018664Z Artifact inotifywait-build-17 (17) has been successfully uploaded! Final size is 25763 bytes. Artifact ID is 11305892871
+2026-10-04T14:18:43.9025288Z Artifact download URL: https://github.com/atanuroy911/JSON-java/actions/runs/37208714988/artifacts/11305892871
+2026-10-04T14:18:43.9206363Z Post job cleanup.
+2026-10-04T14:18:44.0734797Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/JSON-java/JSON-java --files-from manifest.txt --use-compress-program zstdmt
+2026-10-04T14:18:44.5894127Z Failed to save: Unable to reserve cache with key setup-java-Linux-x64-maven-40ec934311391a1ed94a0338139b7f537e4a16010256806a0a9af7d3f3fc2790, another job may be creating this cache.
+2026-10-04T14:18:44.6106604Z Post job cleanup.
+2026-10-04T14:18:44.6950347Z [command]/usr/bin/git version
+2026-10-04T14:18:44.6993780Z git version 2.55.0
+2026-10-04T14:18:44.7035525Z Temporarily overriding HOME='/home/runner/work/_temp/f3f59be3-d5e0-478c-bfe7-1bbf257174d6' before making global git config changes
+2026-10-04T14:18:44.7037146Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-04T14:18:44.7046291Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/JSON-java/JSON-java
+2026-10-04T14:18:44.7086584Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-04T14:18:44.7132423Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-04T14:18:44.7393362Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-04T14:18:44.7422355Z http.https://github.com/.extraheader
+2026-10-04T14:18:44.7434974Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-04T14:18:44.7480213Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-04T14:18:44.7781987Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-04T14:18:44.7843395Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-04T14:18:44.8314687Z Post job cleanup.
+2026-10-04T14:18:44.9606472Z (node:3066) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-04T14:18:44.9607460Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-04T14:18:44.9770713Z Cleaning up orphan processes
+2026-10-04T14:18:45.0110459Z Terminate orphan process: pid (2217) (python3)
+2026-10-04T14:18:45.0214751Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-python@v5, actions/upload-artifact@v4, actions/upload-artifact@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,73 @@
+C:\Users\atanu\Desktop\OptCD - Shanto Maam\optcd\fixer.py:7: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+Logging this run's full git/gh/Gemini transcript to: C:\Users\atanu\Desktop\OptCD - Shanto Maam\001-investigation\logs\optcd-runs\20261004T141907Z
+Invocation: optcd.py C:/Users/atanu/Desktop/gson/.github/workflows/e2-sequential.yml C:/Users/atanu/Desktop/gson/.github/workflows/opt-e2-sequential.yml atanuroy911 gson C:/Users/atanu/Desktop/OptCD - Shanto Maam/001-investigation/results/E2-sequential-out.txt --log-dir C:/Users/atanu/Desktop/OptCD - Shanto Maam/001-investigation/logs/optcd-runs
+Finished modifying the original YAML file to find unused directories.
+Pushed the modified YAML file to remote repository.
+Waiting until modified YAML workflow starts.
+Modified YAML workflow started with run_id: 37208820120
+Waiting until modified YAML workflow is completed.
+Run status of modified workflow (run_id: 37208820120) is: in_progress
+Modified YAML workflow completed.
+Analysis for job build (17): [["/home/runner/work/gson/gson/test-shrinker/target/maven-status/maven-compiler-plugin/testCompile/", "surefire:3.5.6:test (default-test) @ test-shrinker", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/test-jpms/target/maven-status/maven-compiler-plugin/testCompile/", "surefire:3.5.6:test (default-test) @ test-jpms", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/test-jpms/target/surefire-reports/", "surefire:3.5.6:test (default-test) @ test-jpms", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/test-graal-native-image/target/maven-status/", "surefire:3.5.6:test (default-test) @ test-graal-native-image", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/test-graal-native-image/target/surefire-reports/", "surefire:3.5.6:test (default-test) @ test-graal-native-image", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/proto/target/maven-status/maven-compiler-plugin/testCompile/", "surefire:3.5.6:test (default-test) @ proto", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/proto/target/surefire-reports/", "surefire:3.5.6:test (default-test) @ proto", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/metrics/target/maven-status/", "surefire:3.5.6:test (default-test) @ gson-metrics", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/extras/target/surefire-reports/", "surefire:3.5.6:test (default-test) @ gson-extras", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/extras/target/maven-status/maven-compiler-plugin/testCompile/", "surefire:3.5.6:test (default-test) @ gson-extras", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/gson/target/surefire-reports/", "surefire:3.5.6:test (default-test) @ gson", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/target/", "spotless:3.8.0:check (default) @ gson-parent", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/proto/target/maven-status/maven-compiler-plugin/compile/", "protobuf:5.1.7:generate-test (default) @ proto", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/gson/target/maven-status/maven-compiler-plugin/testCompile/", "proguard:2.7.0:proguard (obfuscate-test-class) @ gson", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/extras/target/javadoc-bundle-options/", "javadoc:3.12.0:jar (default-cli) @ gson-extras", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/gson/target/javadoc-bundle-options/", "javadoc:3.12.0:jar (default-cli) @ gson", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/test-shrinker/target/maven-status/maven-compiler-plugin/compile/", "compiler:3.15.0:testCompile (default-testCompile) @ test-shrinker", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/extras/target/maven-status/maven-compiler-plugin/compile/", "compiler:3.15.0:testCompile (default-testCompile) @ gson-extras", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/test-jpms/target/maven-status/maven-compiler-plugin/compile/", "compiler:3.15.0:compile (default-compile) @ test-jpms", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/gson/target/maven-status/maven-compiler-plugin/compile/", "bnd:6.4.0:bnd-process (default) @ gson", "mvn verify javadoc:jar", "Build with Maven"], ["/home/runner/work/gson/gson/.git/hooks/", "Not responsible by maven plugins", "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1", "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"]]
+responsible_plugins_maven: [{"Unused directory": "/home/runner/work/gson/gson/test-shrinker/target/maven-status/maven-compiler-plugin/testCompile/", "Responsible plugin": "surefire:3.5.6:test (default-test) @ test-shrinker", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/test-jpms/target/maven-status/maven-compiler-plugin/testCompile/", "Responsible plugin": "surefire:3.5.6:test (default-test) @ test-jpms", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/test-jpms/target/surefire-reports/", "Responsible plugin": "surefire:3.5.6:test (default-test) @ test-jpms", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/test-graal-native-image/target/maven-status/", "Responsible plugin": "surefire:3.5.6:test (default-test) @ test-graal-native-image", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/test-graal-native-image/target/surefire-reports/", "Responsible plugin": "surefire:3.5.6:test (default-test) @ test-graal-native-image", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/proto/target/maven-status/maven-compiler-plugin/testCompile/", "Responsible plugin": "surefire:3.5.6:test (default-test) @ proto", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/proto/target/surefire-reports/", "Responsible plugin": "surefire:3.5.6:test (default-test) @ proto", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/metrics/target/maven-status/", "Responsible plugin": "surefire:3.5.6:test (default-test) @ gson-metrics", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/extras/target/surefire-reports/", "Responsible plugin": "surefire:3.5.6:test (default-test) @ gson-extras", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/extras/target/maven-status/maven-compiler-plugin/testCompile/", "Responsible plugin": "surefire:3.5.6:test (default-test) @ gson-extras", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/gson/target/surefire-reports/", "Responsible plugin": "surefire:3.5.6:test (default-test) @ gson", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/target/", "Responsible plugin": "spotless:3.8.0:check (default) @ gson-parent", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/proto/target/maven-status/maven-compiler-plugin/compile/", "Responsible plugin": "protobuf:5.1.7:generate-test (default) @ proto", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/gson/target/maven-status/maven-compiler-plugin/testCompile/", "Responsible plugin": "proguard:2.7.0:proguard (obfuscate-test-class) @ gson", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/extras/target/javadoc-bundle-options/", "Responsible plugin": "javadoc:3.12.0:jar (default-cli) @ gson-extras", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/gson/target/javadoc-bundle-options/", "Responsible plugin": "javadoc:3.12.0:jar (default-cli) @ gson", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/test-shrinker/target/maven-status/maven-compiler-plugin/compile/", "Responsible plugin": "compiler:3.15.0:testCompile (default-testCompile) @ test-shrinker", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/extras/target/maven-status/maven-compiler-plugin/compile/", "Responsible plugin": "compiler:3.15.0:testCompile (default-testCompile) @ gson-extras", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/test-jpms/target/maven-status/maven-compiler-plugin/compile/", "Responsible plugin": "compiler:3.15.0:compile (default-compile) @ test-jpms", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}, {"Unused directory": "/home/runner/work/gson/gson/gson/target/maven-status/maven-compiler-plugin/compile/", "Responsible plugin": "bnd:6.4.0:bnd-process (default) @ gson", "Responsible command": "mvn verify javadoc:jar", "Name of the step": "Build with Maven"}]
+Finding and testing fixes for unused directories.
+Fix suggestion for the command 'mvn verify javadoc:jar' is:
+mvn verify javadoc:jar -Dmaven.compiler.useIncrementalCompilation=false
+Fix suggestion for the command 'mvn verify javadoc:jar' is:
+mvn verify javadoc:jar -DdisableXmlReport=true
+Fix suggestion for the command 'mvn verify javadoc:jar' is:
+mvn verify javadoc:jar -Dmaven.compiler.useIncrementalCompilation=false
+Fix suggestion for the command 'mvn verify javadoc:jar' is:
+mvn verify javadoc:jar -Dspotless.check.skip=true
+Fix suggestion for the command 'mvn verify javadoc:jar' is:
+mvn verify javadoc:jar -Dmaven.compiler.useIncrementalCompilation=false
+Fix suggestion for the command 'mvn verify javadoc:jar' is:
+mvn verify javadoc:jar -Dmaven.javadoc.skip=true
+Fix suggestion for the command 'mvn verify javadoc:jar' is: 'mvn verify javadoc:jar -DdisableXmlReport=true -Dmaven.compiler.useIncrementalCompilation=false -Dmaven.javadoc.skip=true -Dspotless.check.skip=true'
+Pushed the modified YAML file to remote repository.
+Waiting until modified YAML workflow starts.
+Modified YAML workflow started with run_id: 37209120987
+Waiting until modified YAML workflow is completed.
+Run status of modified workflow (run_id: 37209120987) is: in_progress
+Traceback (most recent call last):
+  File "C:\Users\atanu\Desktop\OptCD - Shanto Maam\optcd.py", line 16, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\atanu\Desktop\OptCD - Shanto Maam\optcd\cli.py", line 161, in main
+    fixer.run_fixer(
+    ~~~~~~~~~~~~~~~^
+        responsible_plugins_maven,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        initial_output_file=args.output_file,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\atanu\Desktop\OptCD - Shanto Maam\optcd\fixer.py", line 144, in run_fixer
+    new_responsible_plugins_maven = rerun_and_analyze()
+  File "C:\Users\atanu\Desktop\OptCD - Shanto Maam\optcd\cli.py", line 156, in rerun_and_analyze
+    return run_and_analyze(
+        owner, repo, path_to_yaml_file, branch, workflow_file,
+        path_to_local_repo, "temp_out.txt", args.input_yaml,
+    )
+  File "C:\Users\atanu\Desktop\OptCD - Shanto Maam\optcd\cli.py", line 63, in run_and_analyze
+    gh_ops.wait_for_completion(owner, repo, run["databaseId"])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\atanu\Desktop\OptCD - Shanto Maam\optcd\gh_ops.py", line 49, in wait_for_completion
+    status = _gh_json(["run", "view", str(run_id), "--repo", f"{owner}/{repo}", "--json", "status"])["status"]
+             ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\atanu\Desktop\OptCD - Shanto Maam\optcd\gh_ops.py", line 20, in _gh_json
+    out = _gh(args).stdout.strip()
+          ~~~^^^^^^
+  File "C:\Users\atanu\Desktop\OptCD - Shanto Maam\optcd\gh_ops.py", line 15, in _gh
+    raise RuntimeError(f"gh {' '.join(args)} failed:\n{result.stderr}")
+RuntimeError: gh run view 37209120987 --repo atanuroy911/gson --json status failed:
+

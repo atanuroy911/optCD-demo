@@ -151,10 +151,13 @@ run data.
 - The opposite error exists in the paper's own data: a failure-only
   diagnostic was flagged as unused and sent to Gemini.
 
-**Does not establish (yet):**
-- The per-file mechanism for these specific repos (the upload step's
-  `IN_ACCESS` being the only read). That was shown generically in
-  `000-research/` Experiment 2. A planned controlled run (JSON-java's real
-  workflow with and without its upload steps) would show it on a
-  real-world workflow.
+**Mechanism, confirmed on a real workflow (E1):** JSON-java's real job run
+with and without its upload steps. With uploads, `target/site/` is read 15
+times, all inside the upload step, and is never flagged. Without them it is
+read 0 times and OptCD flags `target/site/css/`. Nothing else changed. See
+`evidence/E1_E2_controlled_experiments.md`.
+
+**Does not establish:**
 - Human downloads through the UI, which are unobservable.
+- Why 6 of the 8 failure-only uploads were not flagged in the paper's runs
+  (no raw data for those runs).

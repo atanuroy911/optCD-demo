@@ -1,0 +1,53 @@
+{
+  "timing_offset_ms_by_goal": {
+    "compiler:compile": {
+      "n": 6,
+      "min": 77.3,
+      "median": 111.7,
+      "max": 3077.0,
+      "negative": 0
+    },
+    "compiler:testCompile": {
+      "n": 6,
+      "min": 89.2,
+      "median": 170.85000000000002,
+      "max": 2857.1,
+      "negative": 0
+    },
+    "surefire:test": {
+      "n": 5,
+      "min": 316.3,
+      "median": 550.4,
+      "max": 1121.9,
+      "negative": 0
+    }
+  },
+  "nearest_rule_on_first_file_event": {
+    "compiler:compile": {
+      "correct": 1,
+      "wrong": 5
+    },
+    "compiler:testCompile": {
+      "correct": 0,
+      "wrong": 6
+    },
+    "surefire:test": {
+      "correct": 5,
+      "wrong": 0
+    }
+  },
+  "mapper_compare": {
+    "original": {
+      "not-attributed-to-maven": 21
+    },
+    "rewrite": {
+      "correct": 8,
+      "not-attributed-to-maven": 1,
+      "unverifiable": 1,
+      "wrong-goal": 2,
+      "wrong-plugin": 9
+    }
+  },
+  "original_skipped_no_own_timestamp": 21,
+  "original_index_error": 0
+}

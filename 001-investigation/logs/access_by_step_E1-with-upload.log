@@ -1,0 +1,27 @@
+
+== target/site/
+   ACCESS     15  during step: Upload Test Report 17
+   CREATE      4  during step: Upload Test Results 17
+   DELETE     15  during step: Package Jar 17
+   IN_IGNORED     4  during step: Package Jar 17
+
+== target/surefire-reports/
+   ACCESS     29  during step: Build Test Report 17
+   ACCESS     44  during step: Upload Test Results 17
+   CREATE     20  during step: Build Test Report 17
+   CREATE     24  during step: Run Tests 17
+   DELETE     44  during step: Package Jar 17
+   IN_IGNORED     1  during step: Package Jar 17
+
+== target/json-
+   ACCESS      9  during step: Package Jar 17
+   ACCESS      9  during step: Upload Package Results 17
+   CREATE      4  during step: Package Jar 17
+   DELETE      1  during step: Package Jar 17
+
+== target/reports/
+   CREATE     35  during step: Build Test Report 17
+   DELETE     35  during step: Package Jar 17
+   IN_IGNORED     6  during step: Package Jar 17
+
+saved C:\Users\atanu\Desktop\OptCD - Shanto Maam\001-investigation\results\access_by_step_JSON-java-37208714988_build-17_17.csv

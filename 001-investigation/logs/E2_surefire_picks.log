@@ -1,0 +1,10 @@
+SEQ gson                     picks: surefire:3.5.6:test (default-test) @ gson               | same module 
+SEQ test-jpms                picks: surefire:3.5.6:test (default-test) @ test-jpms          | same module 
+SEQ test-graal-native-image  picks: surefire:3.5.6:test (default-test) @ test-graal-native- | same module 
+SEQ gson-extras              picks: surefire:3.5.6:test (default-test) @ gson-extras        | same module 
+SEQ proto                    picks: surefire:3.5.6:test (default-test) @ proto              | same module 
+PAR gson                     picks: surefire:3.5.6:test (default-test) @ gson               | same module 
+PAR test-jpms                picks: proguard:2.7.0:proguard (default) @ test-shrinker       | OTHER MODULE  <- wrong
+PAR test-graal-native-image  picks: spotless:3.8.0:check (default) @ test-jpms              | OTHER MODULE  <- wrong
+PAR gson-extras              picks: proguard:2.7.0:proguard (default) @ test-shrinker       | OTHER MODULE  <- wrong
+PAR proto                    picks: exec:3.6.3:java (r8) @ test-shrinker                    | OTHER MODULE  <- wrong

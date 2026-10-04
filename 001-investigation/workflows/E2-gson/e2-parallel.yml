@@ -1,0 +1,27 @@
+# 001-investigation E2 (e2-parallel): gson build.yml "build" job, JDK 17 only.
+# Only difference between variants: "-T 4" (parallel module builds) on the Maven command.
+name: E2 e2-parallel
+'on':
+  workflow_dispatch: null
+env:
+  MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+jobs:
+  build:
+    name: Build on JDK ${{ matrix.java }}
+    strategy:
+      matrix:
+        java:
+        - 17
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - name: Set up JDK ${{ matrix.java }}
+      uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95
+      with:
+        distribution: temurin
+        java-version: ${{ matrix.java }}
+        cache: maven
+    - name: Build with Maven
+      run: mvn -T 4 verify javadoc:jar

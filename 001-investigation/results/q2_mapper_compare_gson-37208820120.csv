@@ -1,0 +1,22 @@
+job,unused_dir,original_attribution,original_verdict,rewrite_attribution,rewrite_verdict,expected
+build (17),/home/runner/work/gson/gson/target/,<skipped: no own timestamp>,not-attributed-to-maven,spotless:3.8.0:check (default) @ gson-parent,unverifiable,
+build (17),/home/runner/work/gson/gson/metrics/target/maven-status/,<skipped: no own timestamp>,not-attributed-to-maven,surefire:3.5.6:test (default-test) @ gson-metrics,wrong-plugin,compiler
+build (17),/home/runner/work/gson/gson/test-graal-native-image/target/maven-status/,<skipped: no own timestamp>,not-attributed-to-maven,surefire:3.5.6:test (default-test) @ test-graal-native-image,wrong-plugin,compiler
+build (17),/home/runner/work/gson/gson/test-graal-native-image/target/surefire-reports/,<skipped: no own timestamp>,not-attributed-to-maven,surefire:3.5.6:test (default-test) @ test-graal-native-image,correct,surefire:test
+build (17),/home/runner/work/gson/gson/test-jpms/target/surefire-reports/,<skipped: no own timestamp>,not-attributed-to-maven,surefire:3.5.6:test (default-test) @ test-jpms,correct,surefire:test
+build (17),/home/runner/work/gson/gson/test-jpms/target/maven-status/maven-compiler-plugin/compile/,<skipped: no own timestamp>,not-attributed-to-maven,compiler:3.15.0:compile (default-compile) @ test-jpms,correct,compiler:compile
+build (17),/home/runner/work/gson/gson/test-jpms/target/maven-status/maven-compiler-plugin/testCompile/,<skipped: no own timestamp>,not-attributed-to-maven,surefire:3.5.6:test (default-test) @ test-jpms,wrong-plugin,compiler:testCompile
+build (17),/home/runner/work/gson/gson/extras/target/javadoc-bundle-options/,<skipped: no own timestamp>,not-attributed-to-maven,javadoc:3.12.0:jar (default-cli) @ gson-extras,correct,javadoc
+build (17),/home/runner/work/gson/gson/extras/target/maven-status/maven-compiler-plugin/compile/,<skipped: no own timestamp>,not-attributed-to-maven,compiler:3.15.0:testCompile (default-testCompile) @ gson-extras,wrong-goal,compiler:compile
+build (17),/home/runner/work/gson/gson/extras/target/maven-status/maven-compiler-plugin/testCompile/,<skipped: no own timestamp>,not-attributed-to-maven,surefire:3.5.6:test (default-test) @ gson-extras,wrong-plugin,compiler:testCompile
+build (17),/home/runner/work/gson/gson/extras/target/surefire-reports/,<skipped: no own timestamp>,not-attributed-to-maven,surefire:3.5.6:test (default-test) @ gson-extras,correct,surefire:test
+build (17),/home/runner/work/gson/gson/proto/target/surefire-reports/,<skipped: no own timestamp>,not-attributed-to-maven,surefire:3.5.6:test (default-test) @ proto,correct,surefire:test
+build (17),/home/runner/work/gson/gson/proto/target/maven-status/maven-compiler-plugin/testCompile/,<skipped: no own timestamp>,not-attributed-to-maven,surefire:3.5.6:test (default-test) @ proto,wrong-plugin,compiler:testCompile
+build (17),/home/runner/work/gson/gson/proto/target/maven-status/maven-compiler-plugin/compile/,<skipped: no own timestamp>,not-attributed-to-maven,protobuf:5.1.7:generate-test (default) @ proto,wrong-plugin,compiler:compile
+build (17),/home/runner/work/gson/gson/test-shrinker/target/maven-status/maven-compiler-plugin/compile/,<skipped: no own timestamp>,not-attributed-to-maven,compiler:3.15.0:testCompile (default-testCompile) @ test-shrinker,wrong-goal,compiler:compile
+build (17),/home/runner/work/gson/gson/test-shrinker/target/maven-status/maven-compiler-plugin/testCompile/,<skipped: no own timestamp>,not-attributed-to-maven,surefire:3.5.6:test (default-test) @ test-shrinker,wrong-plugin,compiler:testCompile
+build (17),/home/runner/work/gson/gson/.git/hooks/,<skipped: no own timestamp>,not-attributed-to-maven,Not responsible by maven plugins,not-attributed-to-maven,
+build (17),/home/runner/work/gson/gson/gson/target/maven-status/maven-compiler-plugin/testCompile/,<skipped: no own timestamp>,not-attributed-to-maven,proguard:2.7.0:proguard (obfuscate-test-class) @ gson,wrong-plugin,compiler:testCompile
+build (17),/home/runner/work/gson/gson/gson/target/maven-status/maven-compiler-plugin/compile/,<skipped: no own timestamp>,not-attributed-to-maven,bnd:6.4.0:bnd-process (default) @ gson,wrong-plugin,compiler:compile
+build (17),/home/runner/work/gson/gson/gson/target/javadoc-bundle-options/,<skipped: no own timestamp>,not-attributed-to-maven,javadoc:3.12.0:jar (default-cli) @ gson,correct,javadoc
+build (17),/home/runner/work/gson/gson/gson/target/surefire-reports/,<skipped: no own timestamp>,not-attributed-to-maven,surefire:3.5.6:test (default-test) @ gson,correct,surefire:test

@@ -1,0 +1,19 @@
+== E1 with-upload: unused dirs reported by OptCD
+    target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/
+    target/reports/css/
+    target/reports/fonts/
+    target/reports/images/profiles/
+    target/reports/images/logos/
+    target/javadoc-bundle-options/
+    target/maven-status/maven-compiler-plugin/compile/default-compile/
+    target/classes/META-INF/
+    .git/hooks/
+== E1 no-upload: unused dirs reported by OptCD
+    target/reports/css/
+    target/reports/js/
+    target/reports/img/
+    target/site/css/
+    target/javadoc-bundle-options/
+    target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/
+    target/classes/META-INF/
+    .git/hooks/

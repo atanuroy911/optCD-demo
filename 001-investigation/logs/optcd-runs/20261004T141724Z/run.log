@@ -1,0 +1,322 @@
+[14:17:24] Invocation: optcd.py ../JSON-java/.github/workflows/e1-with-upload.yml ../JSON-java/.github/workflows/opt-e1-with-upload.yml atanuroy911 JSON-java 001-investigation/results/E1-with-upload-out.txt --log-dir 001-investigation/logs/optcd-runs
+[14:17:24] git git rev-parse --abbrev-ref HEAD (cwd=../JSON-java) -> exit 0
+  stdout: optcd-run
+  stderr: 
+[14:17:24] Finished modifying the original YAML file to find unused directories.
+[14:17:25] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 1
+  stdout: 
+  stderr: HTTP 404: workflow .github/workflows/opt-e1-with-upload.yml not found on the default branch (https://api.github.com/repos/atanuroy911/JSON-java/actions/workflows/.github%2Fworkflows%2Fopt-e1-with-upload.yml)
+[14:17:26] git git fetch (cwd=../JSON-java) -> exit 0
+  stdout: 
+  stderr: 
+[14:17:26] git git rebase origin/optcd-run (cwd=../JSON-java) -> exit 0
+  stdout: Current branch optcd-run is up to date.
+  stderr: 
+[14:17:28] git git push origin optcd-run (cwd=../JSON-java) -> exit 0
+  stdout: 
+  stderr: Everything up-to-date
+[14:17:28] git git add .github/workflows/opt-e1-with-upload.yml (cwd=../JSON-java) -> exit 0
+  stdout: 
+  stderr: 
+[14:17:28] git git commit -m add modified YAML file (cwd=../JSON-java) -> exit 0
+  stdout: [optcd-run f3d44d5] add modified YAML file
+ 1 file changed, 92 insertions(+)
+ create mode 100644 .github/workflows/opt-e1-with-upload.yml
+  stderr: 
+[14:17:30] git git push --set-upstream origin optcd-run (cwd=../JSON-java) -> exit 0
+  stdout: branch 'optcd-run' set up to track 'origin/optcd-run'.
+  stderr: To https://github.com/atanuroy911/JSON-java.git
+   5adefa3..f3d44d5  optcd-run -> optcd-run
+[14:17:30] Pushed the modified YAML file to remote repository.
+[14:17:30] Waiting until modified YAML workflow starts.
+[14:17:32] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 1
+  stdout: 
+  stderr: HTTP 404: workflow .github/workflows/opt-e1-with-upload.yml not found on the default branch (https://api.github.com/repos/atanuroy911/JSON-java/actions/workflows/.github%2Fworkflows%2Fopt-e1-with-upload.yml)
+[14:17:43] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208714988,"headSha":"f3d44d53d735d800d844d1cc209666bb5985b741","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:17:43] Modified YAML workflow started with run_id: 37208714988
+[14:17:43] Waiting until modified YAML workflow is completed.
+[14:17:44] gh run view 37208714988 --repo atanuroy911/JSON-java --json status -> exit 0
+  stdout: {"status":"in_progress"}
+  stderr: 
+[14:17:44] Run status of modified workflow (run_id: 37208714988) is: in_progress
+[14:17:56] gh run view 37208714988 --repo atanuroy911/JSON-java --json status -> exit 0
+  stdout: {"status":"in_progress"}
+  stderr: 
+[14:18:07] gh run view 37208714988 --repo atanuroy911/JSON-java --json status -> exit 0
+  stdout: {"status":"in_progress"}
+  stderr: 
+[14:18:18] gh run view 37208714988 --repo atanuroy911/JSON-java --json status -> exit 0
+  stdout: {"status":"in_progress"}
+  stderr: 
+[14:18:29] gh run view 37208714988 --repo atanuroy911/JSON-java --json status -> exit 0
+  stdout: {"status":"in_progress"}
+  stderr: 
+[14:18:41] gh run view 37208714988 --repo atanuroy911/JSON-java --json status -> exit 0
+  stdout: {"status":"in_progress"}
+  stderr: 
+[14:18:52] gh run view 37208714988 --repo atanuroy911/JSON-java --json status -> exit 0
+  stdout: {"status":"completed"}
+  stderr: 
+[14:18:52] Modified YAML workflow completed.
+[14:18:53] gh run list --repo atanuroy911/JSON-java --status queued --json databaseId,headSha -> exit 0
+  stdout: []
+  stderr: 
+[14:18:53] gh run list --repo atanuroy911/JSON-java --status in_progress --json databaseId,headSha -> exit 0
+  stdout: []
+  stderr: 
+[14:18:55] gh run view 37208714988 --repo atanuroy911/JSON-java --json jobs -> exit 0
+  stdout: {"jobs":[{"completedAt":"2026-10-04T14:18:47Z","conclusion":"success","databaseId":111455293330,"name":"build-17 (17)","startedAt":"2026-10-04T14:17:34Z","status":"completed","steps":[{"completedAt":"2026-10-04T14:17:38Z","conclusion":"success","name":"Set up job","number":1,"startedAt":"2026-10-04T14:17:36Z","status":"completed"},{"completedAt":"2026-10-04T14:17:38Z","conclusion":"success","name":"Setup Python 3.10","number":2,"startedAt":"2026-10-04T14:17:38Z","status":"completed"},{"completedAt":"2026-10-04T14:17:40Z","conclusion":"success","name":"Install dependencies","number":3,"startedAt":"2026-10-04T14:17:38Z","status":"completed"},{"completedAt":"2026-10-04T14:17:45Z","conclusion":"success","name":"Run inotifywait","number":4,"startedAt":"2026-10-04T14:17:40Z","status":"completed"},{"completedAt":"2026-10-04T14:17:47Z","conclusion":"success","name":"Run actions/checkout@v5","number":5,"startedAt":"2026-10-04T14:17:45Z","status":"completed"},{"completedAt":"2026-10-04T14:17:47Z","conclusion":"success","name":"Run touch optcd-3.txt","number":6,"startedAt":"2026-10-04T14:17:47Z","status":"completed"},{"completedAt":"2026-10-04T14:17:48Z","conclusion":"success","name":"Set up JDK 17","number":7,"startedAt":"2026-10-04T14:17:47Z","status":"completed"},{"completedAt":"2026-10-04T14:17:48Z","conclusion":"success","name":"Run touch optcd-4.txt","number":8,"startedAt":"2026-10-04T14:17:48Z","status":"completed"},{"completedAt":"2026-10-04T14:18:04Z","conclusion":"success","name":"Compile Java 17","number":9,"startedAt":"2026-10-04T14:17:48Z","status":"completed"},{"completedAt":"2026-10-04T14:18:04Z","conclusion":"success","name":"Run touch optcd-5.txt","number":10,"startedAt":"2026-10-04T14:18:04Z","status":"completed"},{"completedAt":"2026-10-04T14:18:13Z","conclusion":"success","name":"Run Tests 17","number":11,"startedAt":"2026-10-04T14:18:04Z","status":"completed"},{"completedAt":"2026-10-04T14:18:13Z","conclusion":"success","name":"Run touch optcd-6.txt","number":12,"startedAt":"2026-10-04T14:18:13Z","status":"completed"},{"completedAt":"2026-10-04T14:18:27Z","conclusion":"success","name":"Build Test Report 17","number":13,"startedAt":"2026-10-04T14:18:13Z","status":"completed"},{"completedAt":"2026-10-04T14:18:27Z","conclusion":"success","name":"Run touch optcd-7.txt","number":14,"startedAt":"2026-10-04T14:18:27Z","status":"completed"},{"completedAt":"2026-10-04T14:18:29Z","conclusion":"success","name":"Upload Test Results 17","number":15,"startedAt":"2026-10-04T14:18:27Z","status":"completed"},{"completedAt":"2026-10-04T14:18:29Z","conclusion":"success","name":"Run touch optcd-8.txt","number":16,"startedAt":"2026-10-04T14:18:29Z","status":"completed"},{"completedAt":"2026-10-04T14:18:30Z","conclusion":"success","name":"Upload Test Report 17","number":17,"startedAt":"2026-10-04T14:18:29Z","status":"completed"},{"completedAt":"2026-10-04T14:18:30Z","conclusion":"success","name":"Run touch optcd-9.txt","number":18,"startedAt":"2026-10-04T14:18:30Z","status":"completed"},{"completedAt":"2026-10-04T14:18:41Z","conclusion":"success","name":"Package Jar 17","number":19,"startedAt":"2026-10-04T14:18:30Z","status":"completed"},{"completedAt":"2026-10-04T14:18:41Z","conclusion":"success","name":"Run touch optcd-10.txt","number":20,"startedAt":"2026-10-04T14:18:41Z","status":"completed"},{"completedAt":"2026-10-04T14:18:42Z","conclusion":"success","name":"Upload Package Results 17","number":21,"startedAt":"2026-10-04T14:18:41Z","status":"completed"},{"completedAt":"2026-10-04T14:18:42Z","conclusion":"success","name":"Run touch optcd-11.txt","number":22,"startedAt":"2026-10-04T14:18:42Z","status":"completed"},{"completedAt":"2026-10-04T14:18:43Z","conclusion":"success","name":"Upload inotifywait logs","number":23,"startedAt":"2026-10-04T14:18:42Z","status":"completed"},{"completedAt":"2026-10-04T14:18:44Z","conclusion":"success","name":"Post Set up JDK 17","number":44,"startedAt":"2026-10-04T14:18:43Z","status":"completed"},{"completedAt":"2026-10-04T14:18:44Z","conclusion":"success","name":"Post Run actions/checkout@v5","number":45,"startedAt":"2026-10-04T14:18:44Z","status":"completed"},{"completedAt":"2026-10-04T14:18:44Z","conclusion":"success","name":"Post Setup Python 3.10","number":46,"startedAt":"2026-10-04T14:18:44Z","status":"completed"},{"completedAt":"2026-10-04T14:18:45Z","conclusion":"success","name":"Complete job","number":47,"startedAt":"2026-10-04T14:18:44Z","status":"completed"}],"url":"https://github.com/atanuroy911/JSON-java/actions/runs/37208714988/job/111455293330"}]}
+  stderr: 
+[14:19:01] gh run download 37208714988 --repo atanuroy911/JSON-java -D JSON-java-e1-with-upload -> exit 0
+  stdout: 
+  stderr: 
+[14:19:03] GET https://api.github.com/repos/atanuroy911/JSON-java/actions/jobs/111455293330/logs -> 200 (80473 bytes)
+[14:19:03] Analysis for job build-17 (17): [["/home/runner/work/JSON-java/JSON-java/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/", "surefire:3.6.0:test (default-test) @ json", "mvn surefire-report:report-only -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}\nmvn site -D generateReports=false -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}\n", "Build Test Report ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/reports/css/", "surefire-report:3.6.0:report-only (default-cli) @ json", "actions/upload-artifact@v5", "Upload Test Results ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/reports/fonts/", "surefire-report:3.6.0:report-only (default-cli) @ json", "actions/upload-artifact@v5", "Upload Test Results ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/reports/images/profiles/", "surefire-report:3.6.0:report-only (default-cli) @ json", "actions/upload-artifact@v5", "Upload Test Results ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/reports/images/logos/", "surefire-report:3.6.0:report-only (default-cli) @ json", "actions/upload-artifact@v5", "Upload Test Results ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/javadoc-bundle-options/", "javadoc:3.5.0:jar (attach-javadocs) @ json", "actions/upload-artifact@v5", "Upload Package Results ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/maven-status/maven-compiler-plugin/compile/default-compile/", "compiler:3.11.0:compile (default-compile) @ json", "actions/upload-artifact@v5", "Upload Package Results ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/classes/META-INF/", "bundle:5.1.9:bundle (default-bundle) @ json", "actions/upload-artifact@v5", "Upload Package Results ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/.git/hooks/", "Not responsible by maven plugins", "actions/checkout@v5", "actions/checkout@v5"]]
+[14:19:03] responsible_plugins_maven: [{"Unused directory": "/home/runner/work/JSON-java/JSON-java/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/", "Responsible plugin": "surefire:3.6.0:test (default-test) @ json", "Responsible command": "mvn surefire-report:report-only -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}\nmvn site -D generateReports=false -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}\n", "Name of the step": "Build Test Report ${{ matrix.java }}"}, {"Unused directory": "/home/runner/work/JSON-java/JSON-java/target/reports/css/", "Responsible plugin": "surefire-report:3.6.0:report-only (default-cli) @ json", "Responsible command": "actions/upload-artifact@v5", "Name of the step": "Upload Test Results ${{ matrix.java }}"}, {"Unused directory": "/home/runner/work/JSON-java/JSON-java/target/reports/fonts/", "Responsible plugin": "surefire-report:3.6.0:report-only (default-cli) @ json", "Responsible command": "actions/upload-artifact@v5", "Name of the step": "Upload Test Results ${{ matrix.java }}"}, {"Unused directory": "/home/runner/work/JSON-java/JSON-java/target/reports/images/profiles/", "Responsible plugin": "surefire-report:3.6.0:report-only (default-cli) @ json", "Responsible command": "actions/upload-artifact@v5", "Name of the step": "Upload Test Results ${{ matrix.java }}"}, {"Unused directory": "/home/runner/work/JSON-java/JSON-java/target/reports/images/logos/", "Responsible plugin": "surefire-report:3.6.0:report-only (default-cli) @ json", "Responsible command": "actions/upload-artifact@v5", "Name of the step": "Upload Test Results ${{ matrix.java }}"}, {"Unused directory": "/home/runner/work/JSON-java/JSON-java/target/javadoc-bundle-options/", "Responsible plugin": "javadoc:3.5.0:jar (attach-javadocs) @ json", "Responsible command": "actions/upload-artifact@v5", "Name of the step": "Upload Package Results ${{ matrix.java }}"}, {"Unused directory": "/home/runner/work/JSON-java/JSON-java/target/maven-status/maven-compiler-plugin/compile/default-compile/", "Responsible plugin": "compiler:3.11.0:compile (default-compile) @ json", "Responsible command": "actions/upload-artifact@v5", "Name of the step": "Upload Package Results ${{ matrix.java }}"}, {"Unused directory": "/home/runner/work/JSON-java/JSON-java/target/classes/META-INF/", "Responsible plugin": "bundle:5.1.9:bundle (default-bundle) @ json", "Responsible command": "actions/upload-artifact@v5", "Name of the step": "Upload Package Results ${{ matrix.java }}"}]
+[14:19:03] Finding and testing fixes for unused directories.
+[14:19:14] Gemini prompt:
+The command `mvn surefire-report:report-only -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}
+mvn site -D generateReports=false -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}
+` creates the following unused directory:/home/runner/work/JSON-java/JSON-java/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/
+while running the plugin `surefire:3.6.0:test (default-test) @ json`:
+We can skip creating any files that are being created in this directory by updating the command. The fix normally include skipping the execution of the plugin responsible.
+Please suggest an updated command to avoid creating this unnecessary directory. Note that your command should not stop the test runs. For example, using -DskipTests would prevent Maven tests from running, which is not acceptable. Therefore, your solution should not include such options.
+A valid fix would disable the generation of the unused directory without affecting the test runs. For example `-DdisableXmlReport=true` would disable generation of surefire reports directory without affecting test runs and is considered a valid fix if unused directory is surefire-reports.
+Provide only the new command without additional explanation, code formatting, or backticks.
+---
+Gemini response:
+mvn surefire-report:report-only -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }} -D maven.compiler.useIncrementalCompilation=falsemvn site -D generateReports=false -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }} -D maven.compiler.useIncrementalCompilation=false
+===
+[14:19:14] Fix suggestion for the command 'mvn surefire-report:report-only -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}
+mvn site -D generateReports=false -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}
+' is:
+mvn surefire-report:report-only -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }} -D maven.compiler.useIncrementalCompilation=falsemvn site -D generateReports=false -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }} -D maven.compiler.useIncrementalCompilation=false
+[14:19:26] Fix suggestion for the command 'mvn surefire-report:report-only -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}
+mvn site -D generateReports=false -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}
+' is: 'mvn surefire-report:report-only -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}
+mvn site -D generateReports=false -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}
+ maven.compiler.useIncrementalCompilation=false maven.compiler.useIncrementalCompilation=falsemvn'
+[14:19:28] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208714988,"headSha":"f3d44d53d735d800d844d1cc209666bb5985b741","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:19:29] git git fetch (cwd=../JSON-java) -> exit 0
+  stdout: 
+  stderr: 
+[14:19:29] git git rebase origin/optcd-run (cwd=../JSON-java) -> exit 1
+  stdout: 
+  stderr: error: cannot rebase: You have unstaged changes.
+error: Please commit or stash them.
+[14:19:30] git git push origin optcd-run (cwd=../JSON-java) -> exit 0
+  stdout: 
+  stderr: Everything up-to-date
+[14:19:30] git git add .github/workflows/opt-e1-with-upload.yml (cwd=../JSON-java) -> exit 0
+  stdout: 
+  stderr: 
+[14:19:31] git git commit -m add modified YAML file (cwd=../JSON-java) -> exit 0
+  stdout: [optcd-run 8132d8d] add modified YAML file
+ 1 file changed, 78 insertions(+), 77 deletions(-)
+  stderr: 
+[14:19:33] git git push --set-upstream origin optcd-run (cwd=../JSON-java) -> exit 0
+  stdout: branch 'optcd-run' set up to track 'origin/optcd-run'.
+  stderr: To https://github.com/atanuroy911/JSON-java.git
+   f3d44d5..8132d8d  optcd-run -> optcd-run
+[14:19:33] Pushed the modified YAML file to remote repository.
+[14:19:33] Waiting until modified YAML workflow starts.
+[14:19:34] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208714988,"headSha":"f3d44d53d735d800d844d1cc209666bb5985b741","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:19:46] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:19:46] Modified YAML workflow started with run_id: 37208839185
+[14:19:46] Waiting until modified YAML workflow is completed.
+[14:19:47] gh run view 37208839185 --repo atanuroy911/JSON-java --json status -> exit 0
+  stdout: {"status":"in_progress"}
+  stderr: 
+[14:19:47] Run status of modified workflow (run_id: 37208839185) is: in_progress
+[14:19:58] gh run view 37208839185 --repo atanuroy911/JSON-java --json status -> exit 0
+  stdout: {"status":"in_progress"}
+  stderr: 
+[14:20:10] gh run view 37208839185 --repo atanuroy911/JSON-java --json status -> exit 0
+  stdout: {"status":"in_progress"}
+  stderr: 
+[14:20:21] gh run view 37208839185 --repo atanuroy911/JSON-java --json status -> exit 0
+  stdout: {"status":"completed"}
+  stderr: 
+[14:20:21] Modified YAML workflow completed.
+[14:20:22] gh run list --repo atanuroy911/JSON-java --status queued --json databaseId,headSha -> exit 0
+  stdout: []
+  stderr: 
+[14:20:23] gh run list --repo atanuroy911/JSON-java --status in_progress --json databaseId,headSha -> exit 0
+  stdout: []
+  stderr: 
+[14:20:24] gh run view 37208839185 --repo atanuroy911/JSON-java --json jobs -> exit 0
+  stdout: {"jobs":[{"completedAt":"2026-10-04T14:20:15Z","conclusion":"failure","databaseId":111455659229,"name":"build-17 (17)","startedAt":"2026-10-04T14:19:37Z","status":"completed","steps":[{"completedAt":"2026-10-04T14:19:40Z","conclusion":"success","name":"Set up job","number":1,"startedAt":"2026-10-04T14:19:38Z","status":"completed"},{"completedAt":"2026-10-04T14:19:40Z","conclusion":"success","name":"Setup Python 3.10","number":2,"startedAt":"2026-10-04T14:19:40Z","status":"completed"},{"completedAt":"2026-10-04T14:19:43Z","conclusion":"success","name":"Install dependencies","number":3,"startedAt":"2026-10-04T14:19:40Z","status":"completed"},{"completedAt":"2026-10-04T14:19:48Z","conclusion":"success","name":"Run inotifywait","number":4,"startedAt":"2026-10-04T14:19:43Z","status":"completed"},{"completedAt":"2026-10-04T14:19:48Z","conclusion":"success","name":"Run actions/checkout@v5","number":5,"startedAt":"2026-10-04T14:19:48Z","status":"completed"},{"completedAt":"2026-10-04T14:19:48Z","conclusion":"success","name":"Run touch optcd-3.txt","number":6,"startedAt":"2026-10-04T14:19:48Z","status":"completed"},{"completedAt":"2026-10-04T14:19:51Z","conclusion":"success","name":"Set up JDK 17","number":7,"startedAt":"2026-10-04T14:19:48Z","status":"completed"},{"completedAt":"2026-10-04T14:19:51Z","conclusion":"success","name":"Run touch optcd-4.txt","number":8,"startedAt":"2026-10-04T14:19:51Z","status":"completed"},{"completedAt":"2026-10-04T14:19:57Z","conclusion":"success","name":"Compile Java 17","number":9,"startedAt":"2026-10-04T14:19:51Z","status":"completed"},{"completedAt":"2026-10-04T14:19:57Z","conclusion":"success","name":"Run touch optcd-5.txt","number":10,"startedAt":"2026-10-04T14:19:57Z","status":"completed"},{"completedAt":"2026-10-04T14:20:05Z","conclusion":"success","name":"Run Tests 17","number":11,"startedAt":"2026-10-04T14:19:57Z","status":"completed"},{"completedAt":"2026-10-04T14:20:05Z","conclusion":"success","name":"Run touch optcd-6.txt","number":12,"startedAt":"2026-10-04T14:20:05Z","status":"completed"},{"completedAt":"2026-10-04T14:20:12Z","conclusion":"failure","name":"Build Test Report 17","number":13,"startedAt":"2026-10-04T14:20:05Z","status":"completed"},{"completedAt":"2026-10-04T14:20:12Z","conclusion":"skipped","name":"Run touch optcd-7.txt","number":14,"startedAt":"2026-10-04T14:20:12Z","status":"completed"},{"completedAt":"2026-10-04T14:20:12Z","conclusion":"skipped","name":"Upload Test Results 17","number":15,"startedAt":"2026-10-04T14:20:12Z","status":"completed"},{"completedAt":"2026-10-04T14:20:12Z","conclusion":"skipped","name":"Run touch optcd-8.txt","number":16,"startedAt":"2026-10-04T14:20:12Z","status":"completed"},{"completedAt":"2026-10-04T14:20:12Z","conclusion":"skipped","name":"Upload Test Report 17","number":17,"startedAt":"2026-10-04T14:20:12Z","status":"completed"},{"completedAt":"2026-10-04T14:20:12Z","conclusion":"skipped","name":"Run touch optcd-9.txt","number":18,"startedAt":"2026-10-04T14:20:12Z","status":"completed"},{"completedAt":"2026-10-04T14:20:12Z","conclusion":"skipped","name":"Package Jar 17","number":19,"startedAt":"2026-10-04T14:20:12Z","status":"completed"},{"completedAt":"2026-10-04T14:20:12Z","conclusion":"skipped","name":"Run touch optcd-10.txt","number":20,"startedAt":"2026-10-04T14:20:12Z","status":"completed"},{"completedAt":"2026-10-04T14:20:12Z","conclusion":"skipped","name":"Upload Package Results 17","number":21,"startedAt":"2026-10-04T14:20:12Z","status":"completed"},{"completedAt":"2026-10-04T14:20:12Z","conclusion":"skipped","name":"Run touch optcd-11.txt","number":22,"startedAt":"2026-10-04T14:20:12Z","status":"completed"},{"completedAt":"2026-10-04T14:20:12Z","conclusion":"skipped","name":"Upload inotifywait logs","number":23,"startedAt":"2026-10-04T14:20:12Z","status":"completed"},{"completedAt":"2026-10-04T14:20:12Z","conclusion":"success","name":"Post Set up JDK 17","number":44,"startedAt":"2026-10-04T14:20:12Z","status":"completed"},{"completedAt":"2026-10-04T14:20:13Z","conclusion":"success","name":"Post Run actions/checkout@v5","number":45,"startedAt":"2026-10-04T14:20:12Z","status":"completed"},{"completedAt":"2026-10-04T14:20:13Z","conclusion":"skipped","name":"Post Setup Python 3.10","number":46,"startedAt":"2026-10-04T14:20:13Z","status":"completed"},{"completedAt":"2026-10-04T14:20:13Z","conclusion":"success","name":"Complete job","number":47,"startedAt":"2026-10-04T14:20:13Z","status":"completed"}],"url":"https://github.com/atanuroy911/JSON-java/actions/runs/37208839185/job/111455659229"}]}
+  stderr: 
+[14:20:25] gh run download 37208839185 --repo atanuroy911/JSON-java -D JSON-java-e1-with-upload -> exit 1
+  stdout: 
+  stderr: no valid artifacts found to download
+[14:20:27] GET https://api.github.com/repos/atanuroy911/JSON-java/actions/jobs/111455659229/logs -> 200 (55044 bytes)
+[14:20:27] Analysis for job build-17 (17): [["/home/runner/work/JSON-java/JSON-java/.git/hooks/", "Not responsible by maven plugins", "actions/checkout@v5", "actions/checkout@v5"], ["/home/runner/work/JSON-java/JSON-java/target/classes/META-INF/", "Not responsible by maven plugins", "actions/upload-artifact@v5", "Upload Package Results ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/", "Not responsible by maven plugins", "mvn surefire-report:report-only -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}\nmvn site -D generateReports=false -D maven.compiler.source=${{ matrix.java }} -D maven.compiler.target=${{ matrix.java }}\n", "Build Test Report ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/maven-status/maven-compiler-plugin/compile/default-compile/", "Not responsible by maven plugins", "actions/upload-artifact@v5", "Upload Package Results ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/javadoc-bundle-options/", "Not responsible by maven plugins", "actions/upload-artifact@v5", "Upload Package Results ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/reports/css/", "Not responsible by maven plugins", "actions/upload-artifact@v5", "Upload Test Results ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/reports/fonts/", "Not responsible by maven plugins", "actions/upload-artifact@v5", "Upload Test Results ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/reports/images/profiles/", "Not responsible by maven plugins", "actions/upload-artifact@v5", "Upload Test Results ${{ matrix.java }}"], ["/home/runner/work/JSON-java/JSON-java/target/reports/images/logos/", "Not responsible by maven plugins", "actions/upload-artifact@v5", "Upload Test Results ${{ matrix.java }}"]]
+[14:20:53] Gemini prompt:
+The command `actions/upload-artifact@v5` creates the following unused directory:/home/runner/work/JSON-java/JSON-java/target/reports/css/
+while running the plugin `surefire-report:3.6.0:report-only (default-cli) @ json`:
+We can skip creating any files that are being created in this directory by updating the command. The fix normally include skipping the execution of the plugin responsible.
+Please suggest an updated command to avoid creating this unnecessary directory. Note that your command should not stop the test runs. For example, using -DskipTests would prevent Maven tests from running, which is not acceptable. Therefore, your solution should not include such options.
+A valid fix would disable the generation of the unused directory without affecting the test runs. For example `-DdisableXmlReport=true` would disable generation of surefire reports directory without affecting test runs and is considered a valid fix if unused directory is surefire-reports.
+Provide only the new command without additional explanation, code formatting, or backticks.
+---
+Gemini response:
+-DskipSurefireReport=true
+===
+[14:20:53] Fix suggestion for the command 'actions/upload-artifact@v5' is:
+-DskipSurefireReport=true
+[14:21:22] Gemini prompt:
+The command `actions/upload-artifact@v5` creates the following unused directory:/home/runner/work/JSON-java/JSON-java/target/reports/fonts/
+while running the plugin `surefire-report:3.6.0:report-only (default-cli) @ json`:
+We can skip creating any files that are being created in this directory by updating the command. The fix normally include skipping the execution of the plugin responsible.
+Please suggest an updated command to avoid creating this unnecessary directory. Note that your command should not stop the test runs. For example, using -DskipTests would prevent Maven tests from running, which is not acceptable. Therefore, your solution should not include such options.
+A valid fix would disable the generation of the unused directory without affecting the test runs. For example `-DdisableXmlReport=true` would disable generation of surefire reports directory without affecting test runs and is considered a valid fix if unused directory is surefire-reports.
+Provide only the new command without additional explanation, code formatting, or backticks.
+---
+Gemini response:
+mvn surefire-report:report-only -DskipSurefireReport=true
+===
+[14:21:22] Fix suggestion for the command 'actions/upload-artifact@v5' is:
+mvn surefire-report:report-only -DskipSurefireReport=true
+[14:21:50] Gemini prompt:
+The command `actions/upload-artifact@v5` creates the following unused directory:/home/runner/work/JSON-java/JSON-java/target/reports/images/profiles/
+while running the plugin `surefire-report:3.6.0:report-only (default-cli) @ json`:
+We can skip creating any files that are being created in this directory by updating the command. The fix normally include skipping the execution of the plugin responsible.
+Please suggest an updated command to avoid creating this unnecessary directory. Note that your command should not stop the test runs. For example, using -DskipTests would prevent Maven tests from running, which is not acceptable. Therefore, your solution should not include such options.
+A valid fix would disable the generation of the unused directory without affecting the test runs. For example `-DdisableXmlReport=true` would disable generation of surefire reports directory without affecting test runs and is considered a valid fix if unused directory is surefire-reports.
+Provide only the new command without additional explanation, code formatting, or backticks.
+---
+Gemini response:
+mvn surefire-report:3.6.0:report-only -Dsurefire.report.skip=true
+===
+[14:21:50] Fix suggestion for the command 'actions/upload-artifact@v5' is:
+mvn surefire-report:3.6.0:report-only -Dsurefire.report.skip=true
+[14:22:11] Gemini prompt:
+The command `actions/upload-artifact@v5` creates the following unused directory:/home/runner/work/JSON-java/JSON-java/target/reports/images/logos/
+while running the plugin `surefire-report:3.6.0:report-only (default-cli) @ json`:
+We can skip creating any files that are being created in this directory by updating the command. The fix normally include skipping the execution of the plugin responsible.
+Please suggest an updated command to avoid creating this unnecessary directory. Note that your command should not stop the test runs. For example, using -DskipTests would prevent Maven tests from running, which is not acceptable. Therefore, your solution should not include such options.
+A valid fix would disable the generation of the unused directory without affecting the test runs. For example `-DdisableXmlReport=true` would disable generation of surefire reports directory without affecting test runs and is considered a valid fix if unused directory is surefire-reports.
+Provide only the new command without additional explanation, code formatting, or backticks.
+---
+Gemini response:
+mvn surefire-report:report-only -DskipSurefireReport=true
+===
+[14:22:11] Fix suggestion for the command 'actions/upload-artifact@v5' is:
+mvn surefire-report:report-only -DskipSurefireReport=true
+[14:22:38] Gemini prompt:
+The command `actions/upload-artifact@v5` creates the following unused directory:/home/runner/work/JSON-java/JSON-java/target/javadoc-bundle-options/
+while running the plugin `javadoc:3.5.0:jar (attach-javadocs) @ json`:
+We can skip creating any files that are being created in this directory by updating the command. The fix normally include skipping the execution of the plugin responsible.
+Please suggest an updated command to avoid creating this unnecessary directory. Note that your command should not stop the test runs. For example, using -DskipTests would prevent Maven tests from running, which is not acceptable. Therefore, your solution should not include such options.
+A valid fix would disable the generation of the unused directory without affecting the test runs. For example `-DdisableXmlReport=true` would disable generation of surefire reports directory without affecting test runs and is considered a valid fix if unused directory is surefire-reports.
+Provide only the new command without additional explanation, code formatting, or backticks.
+---
+Gemini response:
+mvn -B package --file pom.xml -Dmaven.javadoc.skip=true
+===
+[14:22:38] Fix suggestion for the command 'actions/upload-artifact@v5' is:
+mvn -B package --file pom.xml -Dmaven.javadoc.skip=true
+[14:23:09] Gemini prompt:
+The command `actions/upload-artifact@v5` creates the following unused directory:/home/runner/work/JSON-java/JSON-java/target/maven-status/maven-compiler-plugin/compile/default-compile/
+while running the plugin `compiler:3.11.0:compile (default-compile) @ json`:
+We can skip creating any files that are being created in this directory by updating the command. The fix normally include skipping the execution of the plugin responsible.
+Please suggest an updated command to avoid creating this unnecessary directory. Note that your command should not stop the test runs. For example, using -DskipTests would prevent Maven tests from running, which is not acceptable. Therefore, your solution should not include such options.
+A valid fix would disable the generation of the unused directory without affecting the test runs. For example `-DdisableXmlReport=true` would disable generation of surefire reports directory without affecting test runs and is considered a valid fix if unused directory is surefire-reports.
+Provide only the new command without additional explanation, code formatting, or backticks.
+---
+Gemini response:
+mvn test -Dmaven.compiler.useIncrementalCompilation=false
+===
+[14:23:09] Fix suggestion for the command 'actions/upload-artifact@v5' is:
+mvn test -Dmaven.compiler.useIncrementalCompilation=false
+[14:23:44] Gemini prompt:
+The command `actions/upload-artifact@v5` creates the following unused directory:/home/runner/work/JSON-java/JSON-java/target/classes/META-INF/
+while running the plugin `bundle:5.1.9:bundle (default-bundle) @ json`:
+We can skip creating any files that are being created in this directory by updating the command. The fix normally include skipping the execution of the plugin responsible.
+Please suggest an updated command to avoid creating this unnecessary directory. Note that your command should not stop the test runs. For example, using -DskipTests would prevent Maven tests from running, which is not acceptable. Therefore, your solution should not include such options.
+A valid fix would disable the generation of the unused directory without affecting the test runs. For example `-DdisableXmlReport=true` would disable generation of surefire reports directory without affecting test runs and is considered a valid fix if unused directory is surefire-reports.
+Provide only the new command without additional explanation, code formatting, or backticks.
+---
+Gemini response:
+mvn -B package --file pom.xml -Dmaven.bundle.skip=true
+===
+[14:23:44] Fix suggestion for the command 'actions/upload-artifact@v5' is:
+mvn -B package --file pom.xml -Dmaven.bundle.skip=true
+[14:23:56] Fix suggestion for the command 'actions/upload-artifact@v5' is: 'actions/upload-artifact@v5 --file -B -Dmaven.bundle.skip=true -Dmaven.compiler.useIncrementalCompilation=false -Dmaven.javadoc.skip=true -DskipSurefireReport=true -Dsurefire.report.skip=true mvn package pom.xml surefire-report:3.6.0:report-only surefire-report:report-only test'
+[14:23:58] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:23:59] git git fetch (cwd=../JSON-java) -> exit 0
+  stdout: 
+  stderr: 
+[14:23:59] git git rebase origin/optcd-run (cwd=../JSON-java) -> exit 0
+  stdout: Current branch optcd-run is up to date.
+  stderr: 
+[14:24:01] git git push origin optcd-run (cwd=../JSON-java) -> exit 0
+  stdout: 
+  stderr: Everything up-to-date
+[14:24:01] git git add .github/workflows/opt-e1-with-upload.yml (cwd=../JSON-java) -> exit 0
+  stdout: 
+  stderr: 
+[14:24:01] git git commit -m add modified YAML file (cwd=../JSON-java) -> exit 1
+  stdout: On branch optcd-run
+Your branch is up to date with 'origin/optcd-run'.
+
+nothing to commit, working tree clean
+  stderr: 
+[14:24:02] git git push --set-upstream origin optcd-run (cwd=../JSON-java) -> exit 0
+  stdout: branch 'optcd-run' set up to track 'origin/optcd-run'.
+  stderr: Everything up-to-date
+[14:24:02] Pushed the modified YAML file to remote repository.
+[14:24:02] Waiting until modified YAML workflow starts.
+[14:24:04] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:24:15] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:24:27] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:24:38] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:24:49] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:25:01] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:25:12] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:25:23] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:25:34] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:25:46] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:25:57] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:26:09] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:26:20] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 
+[14:26:31] gh run list --repo atanuroy911/JSON-java --workflow .github/workflows/opt-e1-with-upload.yml --limit 1 --json databaseId,headSha,name -> exit 0
+  stdout: [{"databaseId":37208839185,"headSha":"8132d8d0896642c7248d6878c84ae834fcce826f","name":"Modified E1 e1-with-upload"}]
+  stderr: 

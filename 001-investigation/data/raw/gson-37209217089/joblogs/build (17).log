@@ -1,0 +1,1223 @@
+﻿2026-10-04T14:25:42.5164628Z Current runner version: '2.337.0'
+2026-10-04T14:25:42.5190454Z ##[group]Runner Image Provisioner
+2026-10-04T14:25:42.5191387Z Hosted Compute Agent
+2026-10-04T14:25:42.5191981Z Version: 20260901.588
+2026-10-04T14:25:42.5192731Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+2026-10-04T14:25:42.5193458Z Build Date: 2026-09-01T19:56:44Z
+2026-10-04T14:25:42.5194408Z Worker ID: {84e25abc-ed97-4a14-b9f6-e53c398161e4}
+2026-10-04T14:25:42.5195180Z Azure Region: westus
+2026-10-04T14:25:42.5195763Z ##[endgroup]
+2026-10-04T14:25:42.5197521Z ##[group]Operating System
+2026-10-04T14:25:42.5198168Z Ubuntu
+2026-10-04T14:25:42.5198747Z 24.04.5
+2026-10-04T14:25:42.5199270Z LTS
+2026-10-04T14:25:42.5199866Z ##[endgroup]
+2026-10-04T14:25:42.5200934Z ##[group]Runner Image
+2026-10-04T14:25:42.5201542Z Image: ubuntu-24.04
+2026-10-04T14:25:42.5202098Z Version: 20260927.320.1
+2026-10-04T14:25:42.5203432Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-04T14:25:42.5205634Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+2026-10-04T14:25:42.5206710Z ##[endgroup]
+2026-10-04T14:25:42.5208081Z ##[group]GITHUB_TOKEN Permissions
+2026-10-04T14:25:42.5210268Z Contents: read
+2026-10-04T14:25:42.5211018Z Metadata: read
+2026-10-04T14:25:42.5211599Z Packages: read
+2026-10-04T14:25:42.5212155Z ##[endgroup]
+2026-10-04T14:25:42.5214790Z Secret source: Actions
+2026-10-04T14:25:42.5215763Z Cache mode: write
+2026-10-04T14:25:42.5216548Z Prepare workflow directory
+2026-10-04T14:25:42.5629676Z Prepare all required actions
+2026-10-04T14:25:42.5680876Z Getting action download info
+2026-10-04T14:25:42.9390052Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-04T14:25:43.0812804Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-04T14:25:43.1175292Z Download action repository 'actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95' (SHA:03ad4de0992f5dab5e18fcb136590ce7c4a0ac95)
+2026-10-04T14:25:43.6262616Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-04T14:25:43.8664826Z Complete job name: build (17)
+2026-10-04T14:25:43.9439159Z ##[group]Run actions/setup-python@v5
+2026-10-04T14:25:43.9440171Z with:
+2026-10-04T14:25:43.9440650Z   python-version: 3.10
+2026-10-04T14:25:43.9441175Z   check-latest: false
+2026-10-04T14:25:43.9445889Z   token: ***
+2026-10-04T14:25:43.9446526Z   update-environment: true
+2026-10-04T14:25:43.9447096Z   allow-prereleases: false
+2026-10-04T14:25:43.9447629Z   freethreaded: false
+2026-10-04T14:25:43.9448447Z env:
+2026-10-04T14:25:43.9449100Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-10-04T14:25:43.9449852Z ##[endgroup]
+2026-10-04T14:25:44.0962799Z ##[group]Installed versions
+2026-10-04T14:25:44.1048232Z (node:2204) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-04T14:25:44.1050428Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-04T14:25:44.1051319Z Successfully set up CPython (3.10.21)
+2026-10-04T14:25:44.1052619Z ##[endgroup]
+2026-10-04T14:25:44.1319315Z ##[group]Run python -m pip install --upgrade pip
+2026-10-04T14:25:44.1320194Z [36;1mpython -m pip install --upgrade pip[0m
+2026-10-04T14:25:44.1320836Z [36;1mpip install inotify[0m
+2026-10-04T14:25:44.2044849Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:25:44.2045522Z env:
+2026-10-04T14:25:44.2046161Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-10-04T14:25:44.2047088Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:44.2048045Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:25:44.2048988Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:44.2049835Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:44.2051025Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:44.2051903Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:25:44.2052580Z ##[endgroup]
+2026-10-04T14:25:47.4102765Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.10.21/x64/lib/python3.10/site-packages (26.2.1)
+2026-10-04T14:25:48.0840766Z Collecting inotify
+2026-10-04T14:25:48.1330678Z   Downloading inotify-0.2.12-py2.py3-none-any.whl.metadata (7.2 kB)
+2026-10-04T14:25:48.1513452Z Collecting build (from inotify)
+2026-10-04T14:25:48.1547110Z   Downloading build-1.6.1-py3-none-any.whl.metadata (5.6 kB)
+2026-10-04T14:25:48.1738250Z Collecting packaging>=24.0 (from build->inotify)
+2026-10-04T14:25:48.1769875Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-10-04T14:25:48.1871526Z Collecting pyproject_hooks (from build->inotify)
+2026-10-04T14:25:48.1904772Z   Downloading pyproject_hooks-1.3.3-py3-none-any.whl.metadata (1.3 kB)
+2026-10-04T14:25:48.2275418Z Collecting tomli>=1.1.0 (from build->inotify)
+2026-10-04T14:25:48.2306586Z   Downloading tomli-2.4.1-py3-none-any.whl.metadata (10 kB)
+2026-10-04T14:25:48.2396560Z Downloading inotify-0.2.12-py2.py3-none-any.whl (20 kB)
+2026-10-04T14:25:48.2450048Z Downloading build-1.6.1-py3-none-any.whl (31 kB)
+2026-10-04T14:25:48.2515210Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-10-04T14:25:48.2608595Z Downloading tomli-2.4.1-py3-none-any.whl (14 kB)
+2026-10-04T14:25:48.2674292Z Downloading pyproject_hooks-1.3.3-py3-none-any.whl (10 kB)
+2026-10-04T14:25:48.3073053Z Installing collected packages: tomli, pyproject_hooks, packaging, build, inotify
+2026-10-04T14:25:48.4319238Z 
+2026-10-04T14:25:48.4342471Z Successfully installed build-1.6.1 inotify-0.2.12 packaging-26.3 pyproject_hooks-1.3.3 tomli-2.4.1
+2026-10-04T14:25:48.4828321Z ##[group]Run python3 -c "
+2026-10-04T14:25:48.4828684Z [36;1mpython3 -c "[0m
+2026-10-04T14:25:48.4828935Z [36;1mimport inotify.adapters[0m
+2026-10-04T14:25:48.4829240Z [36;1mimport inotify.constants[0m
+2026-10-04T14:25:48.4829516Z [36;1mimport os[0m
+2026-10-04T14:25:48.4829801Z [36;1mfrom datetime import datetime, timezone[0m
+2026-10-04T14:25:48.4830272Z [36;1mwith open('/home/runner/inotifywait-log-build (17).csv', 'w') as log_file:[0m
+2026-10-04T14:25:48.4831039Z [36;1m  i = inotify.adapters.InotifyTree('/home/runner/work/gson/gson', inotify.constants.IN_CREATE | inotify.constants.IN_ACCESS)[0m
+2026-10-04T14:25:48.4831702Z [36;1m  for event in i.event_gen(yield_nones=False):[0m
+2026-10-04T14:25:48.4832081Z [36;1m    (_, type_names, path, filename) = event[0m
+2026-10-04T14:25:48.4832533Z [36;1m    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f') + 'Z'[0m
+2026-10-04T14:25:48.4832961Z [36;1m    events = ','.join(type_names)[0m
+2026-10-04T14:25:48.4833371Z [36;1m    log_file.write(f'{now};{path};{filename};{events}\n')[0m
+2026-10-04T14:25:48.4833724Z [36;1m    log_file.flush()[0m
+2026-10-04T14:25:48.4834277Z [36;1m    os.fsync(log_file.fileno())[0m
+2026-10-04T14:25:48.4834578Z [36;1m" &[0m
+2026-10-04T14:25:48.4902193Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:25:48.4902474Z env:
+2026-10-04T14:25:48.4902787Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-10-04T14:25:48.4903242Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:48.4903695Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:25:48.4904461Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:48.4904869Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:48.4905265Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:48.4905658Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:25:48.4906009Z ##[endgroup]
+2026-10-04T14:25:53.5110609Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-10-04T14:25:53.5111026Z with:
+2026-10-04T14:25:53.5111254Z   persist-credentials: false
+2026-10-04T14:25:53.5111705Z   repository: atanuroy911/gson
+2026-10-04T14:25:53.5114306Z   token: ***
+2026-10-04T14:25:53.5114520Z   ssh-strict: true
+2026-10-04T14:25:53.5114731Z   ssh-user: git
+2026-10-04T14:25:53.5114934Z   clean: true
+2026-10-04T14:25:53.5115147Z   sparse-checkout-cone-mode: true
+2026-10-04T14:25:53.5115410Z   fetch-depth: 1
+2026-10-04T14:25:53.5115610Z   fetch-tags: false
+2026-10-04T14:25:53.5115821Z   show-progress: true
+2026-10-04T14:25:53.5116028Z   lfs: false
+2026-10-04T14:25:53.5116217Z   submodules: false
+2026-10-04T14:25:53.5116433Z   set-safe-directory: true
+2026-10-04T14:25:53.5116679Z   allow-unsafe-pr-checkout: false
+2026-10-04T14:25:53.5116928Z env:
+2026-10-04T14:25:53.5117204Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-10-04T14:25:53.5117661Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:53.5118093Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:25:53.5118514Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:53.5118900Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:53.5119277Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:53.5119655Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:25:53.5119985Z ##[endgroup]
+2026-10-04T14:25:53.5927386Z Syncing repository: atanuroy911/gson
+2026-10-04T14:25:53.5928532Z ##[group]Getting Git version info
+2026-10-04T14:25:53.5929244Z Working directory is '/home/runner/work/gson/gson'
+2026-10-04T14:25:53.5984735Z [command]/usr/bin/git version
+2026-10-04T14:25:53.6100035Z git version 2.55.0
+2026-10-04T14:25:53.6122141Z ##[endgroup]
+2026-10-04T14:25:53.6145469Z Temporarily overriding HOME='/home/runner/work/_temp/cdc2c85e-7748-4242-96d6-915ae5c7a045' before making global git config changes
+2026-10-04T14:25:53.6147573Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-04T14:25:53.6149735Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/gson/gson
+2026-10-04T14:25:53.6195268Z Deleting the contents of '/home/runner/work/gson/gson'
+2026-10-04T14:25:53.6198841Z ##[group]Determining repository object format
+2026-10-04T14:25:53.6200821Z ##[endgroup]
+2026-10-04T14:25:53.6201629Z ##[group]Initializing the repository
+2026-10-04T14:25:53.6206956Z [command]/usr/bin/git init /home/runner/work/gson/gson
+2026-10-04T14:25:53.6358536Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-04T14:25:53.6359397Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-04T14:25:53.6359959Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-04T14:25:53.6360805Z hint: call:
+2026-10-04T14:25:53.6361013Z hint:
+2026-10-04T14:25:53.6361323Z hint: 	git config --global init.defaultBranch <name>
+2026-10-04T14:25:53.6361910Z hint:
+2026-10-04T14:25:53.6362393Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-04T14:25:53.6363360Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-04T14:25:53.6382163Z hint:
+2026-10-04T14:25:53.6382415Z hint: 	git branch -m <name>
+2026-10-04T14:25:53.6382669Z hint:
+2026-10-04T14:25:53.6383244Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-04T14:25:53.6384064Z Initialized empty Git repository in /home/runner/work/gson/gson/.git/
+2026-10-04T14:25:53.6396995Z [command]/usr/bin/git remote add origin https://github.com/atanuroy911/gson
+2026-10-04T14:25:53.6447889Z ##[endgroup]
+2026-10-04T14:25:53.6448746Z ##[group]Disabling automatic garbage collection
+2026-10-04T14:25:53.6453593Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-04T14:25:53.6507418Z ##[endgroup]
+2026-10-04T14:25:53.6509505Z ##[group]Setting up auth
+2026-10-04T14:25:53.6511249Z Removing SSH command configuration
+2026-10-04T14:25:53.6513660Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-04T14:25:53.6553355Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-04T14:25:53.6981248Z Removing HTTP extra header
+2026-10-04T14:25:53.6987831Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-04T14:25:53.7027188Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-04T14:25:53.7263505Z Removing includeIf entries pointing to credentials config files
+2026-10-04T14:25:53.7269116Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-04T14:25:53.7335733Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-04T14:25:53.7581830Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-f04c25e2-ce54-4c3c-8cfc-5a8197e98083.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-04T14:25:53.7625536Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/gson/gson/.git.path /home/runner/work/_temp/git-credentials-f04c25e2-ce54-4c3c-8cfc-5a8197e98083.config
+2026-10-04T14:25:53.7663522Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-f04c25e2-ce54-4c3c-8cfc-5a8197e98083.config
+2026-10-04T14:25:53.7705567Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-f04c25e2-ce54-4c3c-8cfc-5a8197e98083.config
+2026-10-04T14:25:53.7746112Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-f04c25e2-ce54-4c3c-8cfc-5a8197e98083.config
+2026-10-04T14:25:53.7805410Z ##[endgroup]
+2026-10-04T14:25:53.7806023Z ##[group]Fetching the repository
+2026-10-04T14:25:53.7813460Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +084627f60ddd8e42a9198ba3c80859f96a0437e6:refs/remotes/origin/optcd-run
+2026-10-04T14:25:54.2997187Z From https://github.com/atanuroy911/gson
+2026-10-04T14:25:54.2998469Z  * [new ref]         084627f60ddd8e42a9198ba3c80859f96a0437e6 -> origin/optcd-run
+2026-10-04T14:25:54.3012180Z [command]/usr/bin/git branch --list --remote origin/optcd-run
+2026-10-04T14:25:54.3052042Z   origin/optcd-run
+2026-10-04T14:25:54.3065753Z [command]/usr/bin/git rev-parse refs/remotes/origin/optcd-run
+2026-10-04T14:25:54.3099631Z 084627f60ddd8e42a9198ba3c80859f96a0437e6
+2026-10-04T14:25:54.3107417Z ##[endgroup]
+2026-10-04T14:25:54.3109161Z ##[group]Determining the checkout info
+2026-10-04T14:25:54.3110432Z ##[endgroup]
+2026-10-04T14:25:54.3114133Z [command]/usr/bin/git sparse-checkout disable
+2026-10-04T14:25:54.3200219Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-04T14:25:54.3244793Z ##[group]Checking out the ref
+2026-10-04T14:25:54.3250294Z [command]/usr/bin/git checkout --progress --force -B optcd-run refs/remotes/origin/optcd-run
+2026-10-04T14:25:54.3874747Z Switched to a new branch 'optcd-run'
+2026-10-04T14:25:54.3885248Z branch 'optcd-run' set up to track 'origin/optcd-run'.
+2026-10-04T14:25:54.3898081Z ##[endgroup]
+2026-10-04T14:25:54.3964409Z [command]/usr/bin/git log -1 --format=%H
+2026-10-04T14:25:54.3983432Z 084627f60ddd8e42a9198ba3c80859f96a0437e6
+2026-10-04T14:25:54.3996538Z ##[group]Removing auth
+2026-10-04T14:25:54.3997224Z Removing SSH command configuration
+2026-10-04T14:25:54.4002418Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-04T14:25:54.4051823Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-04T14:25:54.4337468Z Removing HTTP extra header
+2026-10-04T14:25:54.4338727Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-04T14:25:54.4379806Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-04T14:25:54.4629242Z Removing includeIf entries pointing to credentials config files
+2026-10-04T14:25:54.4633112Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-04T14:25:54.4666969Z includeif.gitdir:/home/runner/work/gson/gson/.git.path
+2026-10-04T14:25:54.4669219Z includeif.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path
+2026-10-04T14:25:54.4670105Z includeif.gitdir:/github/workspace/.git.path
+2026-10-04T14:25:54.4674748Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-04T14:25:54.4681359Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/gson/gson/.git.path
+2026-10-04T14:25:54.4713562Z /home/runner/work/_temp/git-credentials-f04c25e2-ce54-4c3c-8cfc-5a8197e98083.config
+2026-10-04T14:25:54.4734183Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/gson/gson/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-f04c25e2\-ce54\-4c3c\-8cfc\-5a8197e98083\.config
+2026-10-04T14:25:54.4776394Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path
+2026-10-04T14:25:54.4807209Z /home/runner/work/_temp/git-credentials-f04c25e2-ce54-4c3c-8cfc-5a8197e98083.config
+2026-10-04T14:25:54.4818119Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/gson/gson/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-f04c25e2\-ce54\-4c3c\-8cfc\-5a8197e98083\.config
+2026-10-04T14:25:54.4864251Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-04T14:25:54.4907754Z /github/runner_temp/git-credentials-f04c25e2-ce54-4c3c-8cfc-5a8197e98083.config
+2026-10-04T14:25:54.4911646Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-f04c25e2\-ce54\-4c3c\-8cfc\-5a8197e98083\.config
+2026-10-04T14:25:54.4984171Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-04T14:25:54.5013620Z /github/runner_temp/git-credentials-f04c25e2-ce54-4c3c-8cfc-5a8197e98083.config
+2026-10-04T14:25:54.5022118Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-f04c25e2\-ce54\-4c3c\-8cfc\-5a8197e98083\.config
+2026-10-04T14:25:54.5063485Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-04T14:25:54.5303085Z Removing credentials config '/home/runner/work/_temp/git-credentials-f04c25e2-ce54-4c3c-8cfc-5a8197e98083.config'
+2026-10-04T14:25:54.5314948Z ##[endgroup]
+2026-10-04T14:25:54.5424893Z ##[group]Run touch optcd-3.txt
+2026-10-04T14:25:54.5425229Z [36;1mtouch optcd-3.txt[0m
+2026-10-04T14:25:54.5489080Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:25:54.5489343Z env:
+2026-10-04T14:25:54.5489639Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-10-04T14:25:54.5490080Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:54.5490543Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:25:54.5490985Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:54.5491366Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:54.5491754Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:54.5492139Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:25:54.5492647Z ##[endgroup]
+2026-10-04T14:25:54.5726094Z ##[group]Run actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95
+2026-10-04T14:25:54.5726509Z with:
+2026-10-04T14:25:54.5726715Z   distribution: temurin
+2026-10-04T14:25:54.5726949Z   java-version: 17
+2026-10-04T14:25:54.5727151Z   cache: maven
+2026-10-04T14:25:54.5727349Z   java-package: jdk
+2026-10-04T14:25:54.5727560Z   check-latest: false
+2026-10-04T14:25:54.5727769Z   set-default: true
+2026-10-04T14:25:54.5727976Z   verify-signature: false
+2026-10-04T14:25:54.5728202Z   server-id: github
+2026-10-04T14:25:54.5728413Z   server-username: GITHUB_ACTOR
+2026-10-04T14:25:54.5728669Z   server-password: GITHUB_TOKEN
+2026-10-04T14:25:54.5728924Z   overwrite-settings: true
+2026-10-04T14:25:54.5729161Z   job-status: success
+2026-10-04T14:25:54.5731514Z   token: ***
+2026-10-04T14:25:54.5731745Z   show-download-progress: false
+2026-10-04T14:25:54.5731994Z env:
+2026-10-04T14:25:54.5732269Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-10-04T14:25:54.5732734Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:54.5733169Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:25:54.5733600Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:54.5734285Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:54.5734686Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:54.5735074Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:25:54.5735402Z ##[endgroup]
+2026-10-04T14:25:54.7270224Z ##[group]Installed distributions
+2026-10-04T14:25:54.7332263Z Resolved Java 17.0.20+1 from tool-cache
+2026-10-04T14:25:54.7332943Z Setting Java 17.0.20+1 as the default
+2026-10-04T14:25:54.7349612Z Creating toolchains.xml for JDK version 17 from temurin
+2026-10-04T14:25:54.7472084Z Writing to /home/runner/.m2/toolchains.xml
+2026-10-04T14:25:54.7472633Z 
+2026-10-04T14:25:54.7473112Z Java configuration:
+2026-10-04T14:25:54.7474297Z   Distribution: temurin
+2026-10-04T14:25:54.7474903Z   Version: 17.0.20+1
+2026-10-04T14:25:54.7476059Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:25:54.7476639Z 
+2026-10-04T14:25:54.7477250Z ##[endgroup]
+2026-10-04T14:25:54.7496057Z Creating settings.xml with server-id: github
+2026-10-04T14:25:54.7505134Z Writing to /home/runner/.m2/settings.xml
+2026-10-04T14:25:55.1140522Z Cache hit for: setup-java-Linux-x64-maven-54d6cf3fdc484699667bbaed4dbae25f9a0a3aa7871d212484a098a067310682
+2026-10-04T14:25:56.3924965Z Received 0 of 131750612 (0.0%), 0.0 MBs/sec
+2026-10-04T14:25:57.2906885Z Received 131750612 of 131750612 (100.0%), 66.0 MBs/sec
+2026-10-04T14:25:57.2908128Z Cache Size: ~126 MB (131750612 B)
+2026-10-04T14:25:57.2976856Z [command]/usr/bin/tar -xf /home/runner/work/_temp/8aa64fcd-9150-4b94-9601-2ba4ca6e9d80/cache.tzst -P -C /home/runner/work/gson/gson --use-compress-program unzstd
+2026-10-04T14:25:57.6371304Z Cache restored successfully
+2026-10-04T14:25:57.6434954Z Cache restored from key: setup-java-Linux-x64-maven-54d6cf3fdc484699667bbaed4dbae25f9a0a3aa7871d212484a098a067310682
+2026-10-04T14:25:57.7347856Z ##[group]Run touch optcd-4.txt
+2026-10-04T14:25:57.7348185Z [36;1mtouch optcd-4.txt[0m
+2026-10-04T14:25:57.7418786Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:25:57.7419073Z env:
+2026-10-04T14:25:57.7419446Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-10-04T14:25:57.7419983Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:57.7420453Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:25:57.7421004Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:57.7421499Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:57.7422023Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:57.7422428Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:25:57.7423076Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:25:57.7424097Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:25:57.7424551Z ##[endgroup]
+2026-10-04T14:25:57.7564341Z ##[group]Run mvn -T 4 verify javadoc:jar
+2026-10-04T14:25:57.7564769Z [36;1mmvn -T 4 verify javadoc:jar[0m
+2026-10-04T14:25:57.7633755Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:25:57.7634443Z env:
+2026-10-04T14:25:57.7634817Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-10-04T14:25:57.7635284Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:57.7635728Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:25:57.7636536Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:57.7637113Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:57.7637519Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:25:57.7638123Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:25:57.7638571Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:25:57.7639092Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:25:57.7639788Z ##[endgroup]
+2026-10-04T14:25:58.8296600Z Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)
+2026-10-04T14:25:58.8300666Z Maven home: /usr/share/apache-maven-3.9.16
+2026-10-04T14:25:58.8301722Z Java version: 17.0.20.1, vendor: Eclipse Adoptium, runtime: /usr/lib/jvm/temurin-17-jdk-amd64
+2026-10-04T14:25:58.8302797Z Default locale: en, platform encoding: UTF-8
+2026-10-04T14:25:58.8303618Z OS name: "linux", version: "6.17.0-1022-azure", arch: "amd64", family: "unix"
+2026-10-04T14:26:00.4555194Z [INFO] Scanning for projects...
+2026-10-04T14:26:00.8091089Z [INFO] Inspecting build with total of 8 modules
+2026-10-04T14:26:00.8121327Z [INFO] Installing Central Publishing features
+2026-10-04T14:26:00.8180192Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:26:00.8214705Z [INFO] Reactor Build Order:
+2026-10-04T14:26:00.8215575Z [INFO] 
+2026-10-04T14:26:00.8244404Z [INFO] Gson Parent                                                        [pom]
+2026-10-04T14:26:00.8245431Z [INFO] Gson                                                               [jar]
+2026-10-04T14:26:00.8246421Z [INFO] Test: Java Platform Module System (JPMS)                           [jar]
+2026-10-04T14:26:00.8247474Z [INFO] Test: GraalVM Native Image                                         [jar]
+2026-10-04T14:26:00.8248529Z [INFO] Test: Code shrinking (ProGuard / R8)                               [jar]
+2026-10-04T14:26:00.8249533Z [INFO] Gson Extras                                                        [jar]
+2026-10-04T14:26:00.8250475Z [INFO] Gson Metrics                                                       [jar]
+2026-10-04T14:26:00.8253133Z [INFO] Gson Protobuf Support                                              [jar]
+2026-10-04T14:26:00.9034897Z [INFO] 
+2026-10-04T14:26:00.9036480Z [INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+2026-10-04T14:26:00.9115412Z [INFO] 
+2026-10-04T14:26:00.9118072Z [INFO] ------------------< com.google.code.gson:gson-parent >------------------
+2026-10-04T14:26:00.9135076Z [INFO] Building Gson Parent 2.14.1-SNAPSHOT                               [1/8]
+2026-10-04T14:26:00.9136107Z [INFO]   from pom.xml
+2026-10-04T14:26:00.9136849Z [INFO] --------------------------------[ pom ]---------------------------------
+2026-10-04T14:26:00.9592719Z [WARNING] *****************************************************************
+2026-10-04T14:26:00.9605107Z [WARNING] * Your build is requesting parallel execution, but this         *
+2026-10-04T14:26:00.9606365Z [WARNING] * project contains the following plugin(s) that have goals not  *
+2026-10-04T14:26:00.9607574Z [WARNING] * marked as thread-safe to support parallel execution.          *
+2026-10-04T14:26:00.9609195Z [WARNING] * While this /may/ work fine, please look for plugin updates    *
+2026-10-04T14:26:00.9610341Z [WARNING] * and/or request plugins be made thread-safe.                   *
+2026-10-04T14:26:00.9611728Z [WARNING] * If reporting an issue, report it against the plugin in        *
+2026-10-04T14:26:00.9612863Z [WARNING] * question, not against Apache Maven.                           *
+2026-10-04T14:26:00.9614035Z [WARNING] *****************************************************************
+2026-10-04T14:26:00.9615101Z [WARNING] The following plugins are not marked as thread-safe in Gson Parent:
+2026-10-04T14:26:00.9616273Z [WARNING]   org.apache.maven.plugins:maven-artifact-plugin:3.6.1
+2026-10-04T14:26:00.9617106Z [WARNING] 
+2026-10-04T14:26:00.9617929Z [WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+2026-10-04T14:26:00.9618980Z [WARNING] *****************************************************************
+2026-10-04T14:26:00.9674615Z [INFO] 
+2026-10-04T14:26:00.9675295Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ gson-parent ---
+2026-10-04T14:26:01.1512137Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+2026-10-04T14:26:01.1646654Z [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+2026-10-04T14:26:01.1648790Z [INFO] 
+2026-10-04T14:26:01.1649623Z [INFO] --- spotless:3.8.0:check (default) @ gson-parent ---
+2026-10-04T14:26:01.6815076Z [INFO] Index file does not exist. Fallback to an empty index
+2026-10-04T14:26:01.7212817Z [INFO] Spotless.Format is keeping 24 files clean - 0 needs changes to be clean, 24 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:26:01.7258859Z [INFO] 
+2026-10-04T14:26:01.7259564Z [INFO] --- artifact:3.6.1:buildinfo (default) @ gson-parent ---
+2026-10-04T14:26:02.2425846Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-10-04T14:26:02.2426822Z [INFO] 
+2026-10-04T14:26:02.2427586Z [INFO] --- javadoc:3.12.0:jar (default-cli) @ gson-parent ---
+2026-10-04T14:26:02.6379934Z [INFO] Not executing Javadoc as the project is not a Java classpath-capable package
+2026-10-04T14:26:02.6417328Z [INFO] 
+2026-10-04T14:26:02.6444962Z [INFO] ---------------------< com.google.code.gson:gson >----------------------
+2026-10-04T14:26:02.6446194Z [INFO] Building Gson 2.14.1-SNAPSHOT                                      [2/8]
+2026-10-04T14:26:02.6447144Z [INFO]   from gson/pom.xml
+2026-10-04T14:26:02.6447965Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-10-04T14:26:02.7166722Z [WARNING] *****************************************************************
+2026-10-04T14:26:02.7195398Z [WARNING] * Your build is requesting parallel execution, but this         *
+2026-10-04T14:26:02.7196855Z [WARNING] * project contains the following plugin(s) that have goals not  *
+2026-10-04T14:26:02.7225068Z [WARNING] * marked as thread-safe to support parallel execution.          *
+2026-10-04T14:26:02.7254990Z [WARNING] * While this /may/ work fine, please look for plugin updates    *
+2026-10-04T14:26:02.7275179Z [WARNING] * and/or request plugins be made thread-safe.                   *
+2026-10-04T14:26:02.7285013Z [WARNING] * If reporting an issue, report it against the plugin in        *
+2026-10-04T14:26:02.7315165Z [WARNING] * question, not against Apache Maven.                           *
+2026-10-04T14:26:02.7344654Z [WARNING] *****************************************************************
+2026-10-04T14:26:02.7345497Z [WARNING] The following plugins are not marked as thread-safe in Gson:
+2026-10-04T14:26:02.7346425Z [WARNING]   org.apache.maven.plugins:maven-artifact-plugin:3.6.1
+2026-10-04T14:26:02.7347033Z [WARNING] 
+2026-10-04T14:26:02.7347662Z [WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+2026-10-04T14:26:02.7348517Z [WARNING] *****************************************************************
+2026-10-04T14:26:02.7494954Z [INFO] 
+2026-10-04T14:26:02.7505482Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ gson ---
+2026-10-04T14:26:02.7506976Z [INFO] 
+2026-10-04T14:26:02.7507830Z [INFO] --- templating:3.1.0:filter-sources (filtering-java-templates) @ gson ---
+2026-10-04T14:26:02.7977174Z [INFO] Copying files with filtering to temporary directory.
+2026-10-04T14:26:02.8057616Z [INFO] Copying 1 resource from src/main/java-templates to target/templates-tmp4151517166
+2026-10-04T14:26:02.8301811Z [INFO] Copied 1 files to output directory: /home/runner/work/gson/gson/gson/target/generated-sources/java-templates
+2026-10-04T14:26:02.8303373Z [INFO] Source directory: /home/runner/work/gson/gson/gson/target/generated-sources/java-templates added.
+2026-10-04T14:26:02.8304890Z [INFO] 
+2026-10-04T14:26:02.8305699Z [INFO] --- resources:3.5.0:resources (default-resources) @ gson ---
+2026-10-04T14:26:02.8800631Z [INFO] Copying 1 resource from src/main/resources to target/classes
+2026-10-04T14:26:02.8838336Z [INFO] 
+2026-10-04T14:26:02.8841912Z [INFO] --- compiler:3.15.0:compile (default-compile) @ gson ---
+2026-10-04T14:26:03.0183256Z [INFO] Recompiling the module because of changed source code.
+2026-10-04T14:26:03.0382877Z [INFO] Compiling 86 source files with javac [debug deprecation release 8] to target/classes
+2026-10-04T14:26:05.7411971Z [INFO] 
+2026-10-04T14:26:05.7416071Z [INFO] --- bnd:6.4.0:bnd-process (default) @ gson ---
+2026-10-04T14:26:06.3774836Z [WARNING] /home/runner/work/gson/gson/gson/pom.xml [0:0]: Export com.google.gson,  has 1,  private references [com.google.gson.internal]
+2026-10-04T14:26:06.3786238Z [INFO] 
+2026-10-04T14:26:06.3790021Z [INFO] --- resources:3.5.0:testResources (default-testResources) @ gson ---
+2026-10-04T14:26:06.3814204Z [INFO] Copying 1 resource from src/test/resources to target/test-classes
+2026-10-04T14:26:06.3818074Z [INFO] 
+2026-10-04T14:26:06.3818880Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ gson ---
+2026-10-04T14:26:06.3950561Z [INFO] Recompiling the module because of changed dependency.
+2026-10-04T14:26:06.3962088Z [INFO] Compiling 123 source files with javac [debug deprecation release 17] to target/test-classes
+2026-10-04T14:26:11.5441860Z [INFO] 
+2026-10-04T14:26:11.5457600Z [INFO] --- resources:3.5.0:copy-resources (pre-obfuscate-class) @ gson ---
+2026-10-04T14:26:11.5590953Z [INFO] Copying 2 resources from target/test-classes/com/google/gson/functional to target/test-classes-obfuscated-injar/com/google/gson/functional
+2026-10-04T14:26:11.5596826Z [INFO] 
+2026-10-04T14:26:11.5598051Z [INFO] --- proguard:2.7.0:proguard (obfuscate-test-class) @ gson ---
+2026-10-04T14:26:11.7021553Z [INFO] execute ProGuard [-injars, '/home/runner/work/gson/gson/gson/target/test-classes-obfuscated-injar'(!META-INF/maven/**,**/*.class), -libraryjars, '/home/runner/.m2/repository/com/google/errorprone/error_prone_annotations/2.50.0/error_prone_annotations-2.50.0.jar', -outjars, '/home/runner/work/gson/gson/gson/target/test-classes-obfuscated-outjar', -include, '/home/runner/work/gson/gson/gson/src/test/resources/testcases-proguard.conf', -libraryjars, '/home/runner/work/gson/gson/gson/target/classes', -libraryjars, '/usr/lib/jvm/temurin-17-jdk-amd64/jmods/java.base.jmod', -printmapping, '/home/runner/work/gson/gson/gson/target/proguard_map.txt', -printseeds, '/home/runner/work/gson/gson/gson/target/proguard_seed.txt']
+2026-10-04T14:26:11.7357500Z [INFO] proguard jar: [/home/runner/.m2/repository/com/guardsquare/proguard-base/7.9.1/proguard-base-7.9.1.jar, /home/runner/.m2/repository/com/guardsquare/proguard-core/9.3.2/proguard-core-9.3.2.jar]
+2026-10-04T14:26:12.2844949Z  [proguard] ProGuard, version 7.9.1
+2026-10-04T14:26:13.6265646Z [INFO] 
+2026-10-04T14:26:13.6266271Z [INFO] --- resources:3.5.0:copy-resources (post-obfuscate-class) @ gson ---
+2026-10-04T14:26:13.6283121Z [INFO] Copying 2 resources from target/test-classes-obfuscated-outjar/com/google/gson/functional to target/test-classes/com/google/gson/functional
+2026-10-04T14:26:13.6295701Z [INFO] 
+2026-10-04T14:26:13.6296239Z [INFO] --- surefire:3.5.6:test (default-test) @ gson ---
+2026-10-04T14:26:13.7363088Z [INFO] Using auto detected provider org.apache.maven.surefire.junit4.JUnit4Provider
+2026-10-04T14:26:13.7687286Z [INFO] 
+2026-10-04T14:26:13.7688549Z [INFO] -------------------------------------------------------
+2026-10-04T14:26:13.7689521Z [INFO]  T E S T S
+2026-10-04T14:26:13.7690202Z [INFO] -------------------------------------------------------
+2026-10-04T14:26:13.8555944Z OpenJDK 64-Bit Server VM warning: Ignoring option --illegal-access=deny; support was removed in 17.0
+2026-10-04T14:26:14.1224901Z [INFO] Running com.google.gson.GenericArrayTypeTest
+2026-10-04T14:26:14.2180200Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.076 s -- in com.google.gson.GenericArrayTypeTest
+2026-10-04T14:26:14.2195152Z [INFO] Running com.google.gson.JsonObjectAsMapTest
+2026-10-04T14:26:14.2251799Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.google.gson.JsonObjectAsMapTest
+2026-10-04T14:26:14.2252975Z [INFO] Running com.google.gson.GsonBuilderTest
+2026-10-04T14:26:14.3695634Z [WARNING] Tests run: 22, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.129 s -- in com.google.gson.GsonBuilderTest
+2026-10-04T14:26:14.3697418Z [INFO] Running com.google.gson.JavaSerializationTest
+2026-10-04T14:26:14.4271781Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.056 s -- in com.google.gson.JavaSerializationTest
+2026-10-04T14:26:14.4295542Z [INFO] Running com.google.gson.JsonParserParameterizedTest
+2026-10-04T14:26:14.4538715Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in com.google.gson.JsonParserParameterizedTest
+2026-10-04T14:26:14.4540367Z [INFO] Running com.google.gson.ExposeAnnotationExclusionStrategyTest
+2026-10-04T14:26:14.4696255Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.google.gson.ExposeAnnotationExclusionStrategyTest
+2026-10-04T14:26:14.4705053Z [INFO] Running com.google.gson.JsonObjectAsMapSuiteTest
+2026-10-04T14:26:15.1643619Z [INFO] Tests run: 906, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.601 s -- in com.google.gson.JsonObjectAsMapSuiteTest
+2026-10-04T14:26:15.1715011Z [INFO] Running com.google.gson.LongSerializationPolicyTest
+2026-10-04T14:26:15.1740348Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.LongSerializationPolicyTest
+2026-10-04T14:26:15.1754650Z [INFO] Running com.google.gson.ParameterizedTypeTest
+2026-10-04T14:26:15.1802050Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.ParameterizedTypeTest
+2026-10-04T14:26:15.1824659Z [INFO] Running com.google.gson.DefaultMapJsonSerializerTest
+2026-10-04T14:26:15.1845757Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.DefaultMapJsonSerializerTest
+2026-10-04T14:26:15.1847031Z [INFO] Running com.google.gson.JsonArrayTest
+2026-10-04T14:26:15.1884788Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.JsonArrayTest
+2026-10-04T14:26:15.1914686Z [INFO] Running com.google.gson.DefaultInetAddressTypeAdapterTest
+2026-10-04T14:26:15.1975013Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.DefaultInetAddressTypeAdapterTest
+2026-10-04T14:26:15.2064702Z [INFO] Running com.google.gson.functional.FieldExclusionTest
+2026-10-04T14:26:15.2124930Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.FieldExclusionTest
+2026-10-04T14:26:15.2154614Z [INFO] Running com.google.gson.functional.DefaultTypeAdaptersTest
+2026-10-04T14:26:15.4820337Z [INFO] Tests run: 80, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.271 s -- in com.google.gson.functional.DefaultTypeAdaptersTest
+2026-10-04T14:26:15.4821877Z [INFO] Running com.google.gson.functional.InterfaceTest
+2026-10-04T14:26:15.4935291Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.InterfaceTest
+2026-10-04T14:26:15.5548248Z [INFO] Running com.google.gson.functional.LeniencyTest
+2026-10-04T14:26:15.5585367Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.functional.LeniencyTest
+2026-10-04T14:26:15.5587192Z [INFO] Running com.google.gson.functional.TypeHierarchyAdapterTest
+2026-10-04T14:26:15.5601129Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.google.gson.functional.TypeHierarchyAdapterTest
+2026-10-04T14:26:15.5614972Z [INFO] Running com.google.gson.functional.FieldNamingTest
+2026-10-04T14:26:15.5805847Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.google.gson.functional.FieldNamingTest
+2026-10-04T14:26:15.5807580Z [INFO] Running com.google.gson.functional.PrettyPrintingTest
+2026-10-04T14:26:15.5809340Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.google.gson.functional.PrettyPrintingTest
+2026-10-04T14:26:15.5810839Z [INFO] Running com.google.gson.functional.StringTest
+2026-10-04T14:26:15.5812400Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.google.gson.functional.StringTest
+2026-10-04T14:26:15.5814110Z [INFO] Running com.google.gson.functional.TypeAdapterPrecedenceTest
+2026-10-04T14:26:15.5816076Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.google.gson.functional.TypeAdapterPrecedenceTest
+2026-10-04T14:26:15.5817642Z [INFO] Running com.google.gson.functional.PrimitiveCharacterTest
+2026-10-04T14:26:15.5819372Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.google.gson.functional.PrimitiveCharacterTest
+2026-10-04T14:26:15.5820985Z [INFO] Running com.google.gson.functional.StreamingTypeAdaptersTest
+2026-10-04T14:26:15.6251305Z [INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 s -- in com.google.gson.functional.StreamingTypeAdaptersTest
+2026-10-04T14:26:15.6281412Z [INFO] Running com.google.gson.functional.JsonAdapterAnnotationOnFieldsTest
+2026-10-04T14:26:15.6459886Z [INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in com.google.gson.functional.JsonAdapterAnnotationOnFieldsTest
+2026-10-04T14:26:15.6462379Z [INFO] Running com.google.gson.functional.CollectionTest
+2026-10-04T14:26:15.7032516Z [INFO] Tests run: 30, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in com.google.gson.functional.CollectionTest
+2026-10-04T14:26:15.7052489Z [INFO] Running com.google.gson.functional.CustomSerializerTest
+2026-10-04T14:26:15.7416106Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.google.gson.functional.CustomSerializerTest
+2026-10-04T14:26:15.7417307Z [INFO] Running com.google.gson.functional.TreeTypeAdaptersTest
+2026-10-04T14:26:15.7418605Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.google.gson.functional.TreeTypeAdaptersTest
+2026-10-04T14:26:15.7419568Z [INFO] Running com.google.gson.functional.InstanceCreatorTest
+2026-10-04T14:26:15.7420880Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.google.gson.functional.InstanceCreatorTest
+2026-10-04T14:26:15.7421814Z [INFO] Running com.google.gson.functional.SerializedNameTest
+2026-10-04T14:26:15.7423015Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.SerializedNameTest
+2026-10-04T14:26:15.7424142Z [INFO] Running com.google.gson.functional.PrimitiveTest
+2026-10-04T14:26:15.7743244Z [INFO] Tests run: 106, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 s -- in com.google.gson.functional.PrimitiveTest
+2026-10-04T14:26:15.7745292Z [INFO] Running com.google.gson.functional.ReflectionAccessFilterTest
+2026-10-04T14:26:15.8008400Z [INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in com.google.gson.functional.ReflectionAccessFilterTest
+2026-10-04T14:26:15.8010544Z [INFO] Running com.google.gson.functional.VersioningTest
+2026-10-04T14:26:15.8119798Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.google.gson.functional.VersioningTest
+2026-10-04T14:26:15.8144790Z [INFO] Running com.google.gson.functional.CustomDeserializerTest
+2026-10-04T14:26:15.8289382Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.google.gson.functional.CustomDeserializerTest
+2026-10-04T14:26:15.8290977Z [INFO] Running com.google.gson.functional.SecurityTest
+2026-10-04T14:26:15.8292748Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.SecurityTest
+2026-10-04T14:26:15.8294527Z [INFO] Running com.google.gson.functional.MapAsArrayTypeAdapterTest
+2026-10-04T14:26:15.8416996Z [WARNING] Tests run: 11, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.012 s -- in com.google.gson.functional.MapAsArrayTypeAdapterTest
+2026-10-04T14:26:15.8419239Z [INFO] Running com.google.gson.functional.JsonParserTest
+2026-10-04T14:26:15.8477105Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.google.gson.functional.JsonParserTest
+2026-10-04T14:26:15.8478260Z [INFO] Running com.google.gson.functional.DelegateTypeAdapterTest
+2026-10-04T14:26:15.8526258Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.google.gson.functional.DelegateTypeAdapterTest
+2026-10-04T14:26:15.8528005Z [INFO] Running com.google.gson.functional.ReflectionAccessTest
+2026-10-04T14:26:15.8625485Z WARNING: A terminally deprecated method in java.lang.System has been called
+2026-10-04T14:26:15.8627566Z WARNING: System::setSecurityManager has been called by com.google.gson.functional.ReflectionAccessTest (file:/home/runner/work/gson/gson/gson/target/test-classes/)
+2026-10-04T14:26:15.8630016Z WARNING: Please consider reporting this to the maintainers of com.google.gson.functional.ReflectionAccessTest
+2026-10-04T14:26:15.8631547Z WARNING: System::setSecurityManager will be removed in a future release
+2026-10-04T14:26:15.8879885Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.032 s -- in com.google.gson.functional.ReflectionAccessTest
+2026-10-04T14:26:15.8881682Z [INFO] Running com.google.gson.functional.ObjectTest
+2026-10-04T14:26:15.9163625Z [INFO] Tests run: 50, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in com.google.gson.functional.ObjectTest
+2026-10-04T14:26:15.9165544Z [INFO] Running com.google.gson.functional.NumberLimitsTest
+2026-10-04T14:26:15.9745773Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.050 s -- in com.google.gson.functional.NumberLimitsTest
+2026-10-04T14:26:15.9747592Z [INFO] Running com.google.gson.functional.JsonAdapterAnnotationOnClassesTest
+2026-10-04T14:26:15.9877181Z [INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.google.gson.functional.JsonAdapterAnnotationOnClassesTest
+2026-10-04T14:26:15.9879227Z [INFO] Running com.google.gson.functional.MapTest
+2026-10-04T14:26:16.0376378Z [INFO] Tests run: 54, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.041 s -- in com.google.gson.functional.MapTest
+2026-10-04T14:26:16.0389618Z [INFO] Running com.google.gson.functional.InheritanceTest
+2026-10-04T14:26:16.0398475Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.google.gson.functional.InheritanceTest
+2026-10-04T14:26:16.0399649Z [INFO] Running com.google.gson.functional.JavaUtilConcurrentAtomicTest
+2026-10-04T14:26:16.0695400Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.google.gson.functional.JavaUtilConcurrentAtomicTest
+2026-10-04T14:26:16.0708757Z [INFO] Running com.google.gson.functional.CustomTypeAdaptersTest
+2026-10-04T14:26:16.0919582Z [WARNING] Tests run: 21, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 0.016 s -- in com.google.gson.functional.CustomTypeAdaptersTest
+2026-10-04T14:26:16.0921357Z [INFO] Running com.google.gson.functional.JsonTreeTest
+2026-10-04T14:26:16.0944153Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.functional.JsonTreeTest
+2026-10-04T14:26:16.0990790Z [INFO] Running com.google.gson.functional.EnumWithObfuscatedTest
+2026-10-04T14:26:16.1156419Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.EnumWithObfuscatedTest
+2026-10-04T14:26:16.1157618Z [INFO] Running com.google.gson.functional.MoreSpecificTypeSerializationTest
+2026-10-04T14:26:16.1159269Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.google.gson.functional.MoreSpecificTypeSerializationTest
+2026-10-04T14:26:16.1160479Z [INFO] Running com.google.gson.functional.ReusedTypeVariablesFullyResolveTest
+2026-10-04T14:26:16.1162260Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.functional.ReusedTypeVariablesFullyResolveTest
+2026-10-04T14:26:16.1164132Z [INFO] Running com.google.gson.functional.RuntimeTypeAdapterFactoryFunctionalTest
+2026-10-04T14:26:16.1205895Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.RuntimeTypeAdapterFactoryFunctionalTest
+2026-10-04T14:26:16.1349274Z [INFO] Running com.google.gson.functional.NamingPolicyTest
+2026-10-04T14:26:16.1374769Z [INFO] Tests run: 22, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.NamingPolicyTest
+2026-10-04T14:26:16.1395186Z [INFO] Running com.google.gson.functional.GsonVersionDiagnosticsTest
+2026-10-04T14:26:16.1445819Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.GsonVersionDiagnosticsTest
+2026-10-04T14:26:16.1519068Z [INFO] Running com.google.gson.functional.UncategorizedTest
+2026-10-04T14:26:16.1520375Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.UncategorizedTest
+2026-10-04T14:26:16.1527710Z [INFO] Running com.google.gson.functional.ReadersWritersTest
+2026-10-04T14:26:16.1529017Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.ReadersWritersTest
+2026-10-04T14:26:16.1534054Z [INFO] Running com.google.gson.functional.ToNumberPolicyFunctionalTest
+2026-10-04T14:26:16.1536900Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.ToNumberPolicyFunctionalTest
+2026-10-04T14:26:16.1540879Z [INFO] Running com.google.gson.functional.RawSerializationTest
+2026-10-04T14:26:16.1545532Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.functional.RawSerializationTest
+2026-10-04T14:26:16.1547086Z [INFO] Running com.google.gson.functional.TypeVariableTest
+2026-10-04T14:26:16.1548246Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.TypeVariableTest
+2026-10-04T14:26:16.1549472Z [INFO] Running com.google.gson.functional.ParameterizedTypesTest
+2026-10-04T14:26:16.1550773Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.google.gson.functional.ParameterizedTypesTest
+2026-10-04T14:26:16.1552099Z [INFO] Running com.google.gson.functional.JsonAdapterSerializerDeserializerTest
+2026-10-04T14:26:16.1659276Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.google.gson.functional.JsonAdapterSerializerDeserializerTest
+2026-10-04T14:26:16.1660885Z [INFO] Running com.google.gson.functional.PrintFormattingTest
+2026-10-04T14:26:16.1662117Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.google.gson.functional.PrintFormattingTest
+2026-10-04T14:26:16.1663452Z [INFO] Running com.google.gson.functional.ExclusionStrategyFunctionalTest
+2026-10-04T14:26:16.1665148Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.ExclusionStrategyFunctionalTest
+2026-10-04T14:26:16.1666882Z [INFO] Running com.google.gson.functional.ExposeFieldsTest
+2026-10-04T14:26:16.1770560Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.google.gson.functional.ExposeFieldsTest
+2026-10-04T14:26:16.1774147Z [INFO] Running com.google.gson.functional.EnumTest
+2026-10-04T14:26:16.2066611Z [INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.google.gson.functional.EnumTest
+2026-10-04T14:26:16.2067907Z [INFO] Running com.google.gson.functional.EscapingTest
+2026-10-04T14:26:16.2069182Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.EscapingTest
+2026-10-04T14:26:16.2070613Z [INFO] Running com.google.gson.functional.NullObjectAndFieldTest
+2026-10-04T14:26:16.2072538Z [INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.google.gson.functional.NullObjectAndFieldTest
+2026-10-04T14:26:16.2074174Z [INFO] Running com.google.gson.functional.ConcurrencyTest
+2026-10-04T14:26:16.2595719Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in com.google.gson.functional.ConcurrencyTest
+2026-10-04T14:26:16.2771392Z [INFO] Running com.google.gson.functional.FormattingStyleTest
+2026-10-04T14:26:16.2801835Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.google.gson.functional.FormattingStyleTest
+2026-10-04T14:26:16.3375201Z [INFO] Running com.google.gson.functional.Java17RecordTest
+2026-10-04T14:26:16.4085496Z [INFO] Tests run: 25, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.101 s -- in com.google.gson.functional.Java17RecordTest
+2026-10-04T14:26:16.4165115Z [INFO] Running com.google.gson.functional.JavaUtilTest
+2026-10-04T14:26:16.4205186Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.google.gson.functional.JavaUtilTest
+2026-10-04T14:26:16.4215613Z [INFO] Running com.google.gson.functional.CircularReferenceTest
+2026-10-04T14:26:16.4234928Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s -- in com.google.gson.functional.CircularReferenceTest
+2026-10-04T14:26:16.4284853Z [INFO] Running com.google.gson.functional.TypeAdapterRuntimeTypeWrapperTest
+2026-10-04T14:26:16.5254177Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.google.gson.functional.TypeAdapterRuntimeTypeWrapperTest
+2026-10-04T14:26:16.5536390Z [INFO] Running com.google.gson.functional.ArrayTest
+2026-10-04T14:26:16.5625455Z [INFO] Tests run: 28, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.ArrayTest
+2026-10-04T14:26:16.5634723Z [INFO] Running com.google.gson.functional.InternationalizationTest
+2026-10-04T14:26:16.5652770Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.functional.InternationalizationTest
+2026-10-04T14:26:16.5654283Z [INFO] Running com.google.gson.JsonArrayAsListSuiteTest
+2026-10-04T14:26:16.8747724Z [INFO] Tests run: 404, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.370 s -- in com.google.gson.JsonArrayAsListSuiteTest
+2026-10-04T14:26:16.9055214Z [INFO] Running com.google.gson.GsonTypeAdapterTest
+2026-10-04T14:26:16.9060610Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.GsonTypeAdapterTest
+2026-10-04T14:26:16.9061904Z [INFO] Running com.google.gson.JsonArrayAsListTest
+2026-10-04T14:26:16.9063030Z [INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.JsonArrayAsListTest
+2026-10-04T14:26:16.9064527Z [INFO] Running com.google.gson.FieldAttributesTest
+2026-10-04T14:26:16.9065648Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.google.gson.FieldAttributesTest
+2026-10-04T14:26:16.9066824Z [INFO] Running com.google.gson.GsonTest
+2026-10-04T14:26:16.9068203Z [INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.GsonTest
+2026-10-04T14:26:16.9070330Z [INFO] Running com.google.gson.ObjectTypeAdapterParameterizedTest
+2026-10-04T14:26:16.9074205Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.ObjectTypeAdapterParameterizedTest
+2026-10-04T14:26:16.9075444Z [INFO] Running com.google.gson.ToNumberPolicyTest
+2026-10-04T14:26:16.9076481Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.ToNumberPolicyTest
+2026-10-04T14:26:16.9077463Z [INFO] Running com.google.gson.JsonNullTest
+2026-10-04T14:26:16.9078418Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.JsonNullTest
+2026-10-04T14:26:16.9079484Z [INFO] Running com.google.gson.OverrideCoreTypeAdaptersTest
+2026-10-04T14:26:16.9080605Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.OverrideCoreTypeAdaptersTest
+2026-10-04T14:26:16.9081643Z [INFO] Running com.google.gson.JsonParserTest
+2026-10-04T14:26:16.9350507Z [INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.google.gson.JsonParserTest
+2026-10-04T14:26:16.9352380Z [INFO] Running com.google.gson.MixedStreamTest
+2026-10-04T14:26:16.9500122Z [INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.google.gson.MixedStreamTest
+2026-10-04T14:26:16.9514937Z [INFO] Running com.google.gson.stream.JsonWriterTest
+2026-10-04T14:26:16.9686641Z [INFO] Tests run: 55, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.google.gson.stream.JsonWriterTest
+2026-10-04T14:26:16.9688236Z [INFO] Running com.google.gson.stream.JsonReaderTest
+2026-10-04T14:26:17.0252437Z [WARNING] Tests run: 162, Failures: 0, Errors: 0, Skipped: 3, Time elapsed: 0.053 s -- in com.google.gson.stream.JsonReaderTest
+2026-10-04T14:26:17.0325490Z [INFO] Running com.google.gson.stream.JsonReaderPathTest
+2026-10-04T14:26:17.0412723Z [WARNING] Tests run: 30, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.001 s -- in com.google.gson.stream.JsonReaderPathTest
+2026-10-04T14:26:17.0414280Z [INFO] Running com.google.gson.CommentsTest
+2026-10-04T14:26:17.0440324Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.CommentsTest
+2026-10-04T14:26:17.0441583Z [INFO] Running com.google.gson.JsonStreamParserTest
+2026-10-04T14:26:17.0444851Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.JsonStreamParserTest
+2026-10-04T14:26:17.0445884Z [INFO] Running com.google.gson.JsonObjectTest
+2026-10-04T14:26:17.0446821Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.JsonObjectTest
+2026-10-04T14:26:17.0447900Z [INFO] Running com.google.gson.VersionExclusionStrategyTest
+2026-10-04T14:26:17.0449005Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.VersionExclusionStrategyTest
+2026-10-04T14:26:17.0450142Z [INFO] Running com.google.gson.JsonPrimitiveTest
+2026-10-04T14:26:17.0451150Z [INFO] Tests run: 31, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.JsonPrimitiveTest
+2026-10-04T14:26:17.0452206Z [INFO] Running com.google.gson.TypeAdapterTest
+2026-10-04T14:26:17.0453236Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.TypeAdapterTest
+2026-10-04T14:26:17.0454524Z [INFO] Running com.google.gson.ObjectTypeAdapterTest
+2026-10-04T14:26:17.1056893Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 s -- in com.google.gson.ObjectTypeAdapterTest
+2026-10-04T14:26:17.1058275Z [INFO] Running com.google.gson.metrics.PerformanceTest
+2026-10-04T14:26:17.1059907Z [WARNING] Tests run: 12, Failures: 0, Errors: 0, Skipped: 11, Time elapsed: 0 s -- in com.google.gson.metrics.PerformanceTest
+2026-10-04T14:26:17.1061470Z [INFO] Running com.google.gson.FieldNamingPolicyTest
+2026-10-04T14:26:17.1063122Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.FieldNamingPolicyTest
+2026-10-04T14:26:17.1065001Z [INFO] Running com.google.gson.reflect.TypeTokenTest
+2026-10-04T14:26:17.1307773Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.google.gson.reflect.TypeTokenTest
+2026-10-04T14:26:17.1525120Z [INFO] Running com.google.gson.SubsetTest
+2026-10-04T14:26:17.1685893Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.SubsetTest
+2026-10-04T14:26:17.1814128Z [INFO] Running com.google.gson.InnerClassExclusionStrategyTest
+2026-10-04T14:26:17.1815565Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.InnerClassExclusionStrategyTest
+2026-10-04T14:26:17.1816997Z [INFO] Running com.google.gson.internal.UnsafeAllocatorInstantiationTest
+2026-10-04T14:26:17.1818465Z [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.UnsafeAllocatorInstantiationTest
+2026-10-04T14:26:17.1819951Z [INFO] Running com.google.gson.internal.bind.RecursiveTypesResolveTest
+2026-10-04T14:26:17.1821395Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.bind.RecursiveTypesResolveTest
+2026-10-04T14:26:17.1822777Z [INFO] Running com.google.gson.internal.bind.JsonTreeWriterTest
+2026-10-04T14:26:17.1824307Z [INFO] Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.internal.bind.JsonTreeWriterTest
+2026-10-04T14:26:17.1825680Z [INFO] Running com.google.gson.internal.bind.JsonElementReaderTest
+2026-10-04T14:26:17.1827015Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in com.google.gson.internal.bind.JsonElementReaderTest
+2026-10-04T14:26:17.1828340Z [INFO] Running com.google.gson.internal.bind.JsonTreeReaderTest
+2026-10-04T14:26:17.1829609Z [INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.bind.JsonTreeReaderTest
+2026-10-04T14:26:17.1831071Z [INFO] Running com.google.gson.internal.bind.Java17ReflectiveTypeAdapterFactoryTest
+2026-10-04T14:26:17.1832672Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.bind.Java17ReflectiveTypeAdapterFactoryTest
+2026-10-04T14:26:17.1844733Z [INFO] Running com.google.gson.internal.bind.util.ISO8601UtilsTest
+2026-10-04T14:26:17.1846228Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.google.gson.internal.bind.util.ISO8601UtilsTest
+2026-10-04T14:26:17.1848142Z [INFO] Running com.google.gson.internal.bind.DefaultDateTypeAdapterTest
+2026-10-04T14:26:17.3416513Z [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.166 s -- in com.google.gson.internal.bind.DefaultDateTypeAdapterTest
+2026-10-04T14:26:17.3418546Z [INFO] Running com.google.gson.internal.StreamsTest
+2026-10-04T14:26:17.3420403Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.StreamsTest
+2026-10-04T14:26:17.3422014Z [INFO] Running com.google.gson.internal.LinkedTreeMapSuiteTest
+2026-10-04T14:26:17.7845977Z [INFO] Tests run: 1860, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.338 s -- in com.google.gson.internal.LinkedTreeMapSuiteTest
+2026-10-04T14:26:17.7847315Z [INFO] Running com.google.gson.internal.ConstructorConstructorTest
+2026-10-04T14:26:17.7848536Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.ConstructorConstructorTest
+2026-10-04T14:26:17.7849763Z [INFO] Running com.google.gson.internal.LazilyParsedNumberTest
+2026-10-04T14:26:17.7851007Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.LazilyParsedNumberTest
+2026-10-04T14:26:17.7852235Z [INFO] Running com.google.gson.internal.reflect.Java17ReflectionHelperTest
+2026-10-04T14:26:17.7853538Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.reflect.Java17ReflectionHelperTest
+2026-10-04T14:26:17.7855438Z [INFO] Running com.google.gson.internal.GsonTypesTest
+2026-10-04T14:26:17.7868608Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.google.gson.internal.GsonTypesTest
+2026-10-04T14:26:17.7869826Z [INFO] Running com.google.gson.internal.LinkedTreeMapTest
+2026-10-04T14:26:17.7894773Z [INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.LinkedTreeMapTest
+2026-10-04T14:26:17.7897653Z [INFO] Running com.google.gson.internal.GsonBuildConfigTest
+2026-10-04T14:26:17.7898809Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.GsonBuildConfigTest
+2026-10-04T14:26:17.7899932Z [INFO] Running com.google.gson.internal.JavaVersionTest
+2026-10-04T14:26:17.7901031Z [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.JavaVersionTest
+2026-10-04T14:26:17.7902200Z [INFO] Running com.google.gson.internal.sql.SqlTypesGsonTest
+2026-10-04T14:26:17.7903396Z [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.sql.SqlTypesGsonTest
+2026-10-04T14:26:17.7904827Z [INFO] Running com.google.gson.internal.sql.SqlTypesSupportTest
+2026-10-04T14:26:17.7915355Z [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in com.google.gson.internal.sql.SqlTypesSupportTest
+2026-10-04T14:26:17.8365742Z [INFO] 
+2026-10-04T14:26:17.8366873Z [INFO] Results:
+2026-10-04T14:26:17.8368056Z [INFO] 
+2026-10-04T14:26:17.8368970Z [INFO] Tests run: 4633, Failures: 0, Errors: 0, Skipped: 19
+2026-10-04T14:26:17.8370271Z [INFO] 
+2026-10-04T14:26:17.8370963Z [INFO] 
+2026-10-04T14:26:17.8371982Z [INFO] --- jar:3.5.1:jar (default-jar) @ gson ---
+2026-10-04T14:26:18.0002610Z [INFO] Building jar: /home/runner/work/gson/gson/gson/target/gson-2.14.1-SNAPSHOT.jar
+2026-10-04T14:26:18.0869499Z [INFO] 
+2026-10-04T14:26:18.0870995Z [INFO] --- moditect:1.3.0.Final:add-module-info (add-module-info) @ gson ---
+2026-10-04T14:26:18.4315047Z [INFO] 
+2026-10-04T14:26:18.4326484Z [INFO] --- failsafe:3.5.6:integration-test (default) @ gson ---
+2026-10-04T14:26:18.5090469Z [INFO] Using auto detected provider org.apache.maven.surefire.junit4.JUnit4Provider
+2026-10-04T14:26:18.5255298Z [INFO] 
+2026-10-04T14:26:18.5256134Z [INFO] -------------------------------------------------------
+2026-10-04T14:26:18.5257089Z [INFO]  T E S T S
+2026-10-04T14:26:18.5257951Z [INFO] -------------------------------------------------------
+2026-10-04T14:26:18.7964924Z [INFO] Running com.google.gson.integration.OSGiManifestIT
+2026-10-04T14:26:18.9500401Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.149 s -- in com.google.gson.integration.OSGiManifestIT
+2026-10-04T14:26:18.9606796Z [INFO] 
+2026-10-04T14:26:18.9607511Z [INFO] Results:
+2026-10-04T14:26:18.9608095Z [INFO] 
+2026-10-04T14:26:18.9610674Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+2026-10-04T14:26:18.9612155Z [INFO] 
+2026-10-04T14:26:18.9663617Z [INFO] 
+2026-10-04T14:26:18.9668145Z [INFO] --- spotless:3.8.0:check (default) @ gson ---
+2026-10-04T14:26:18.9884123Z [INFO] Index file does not exist. Fallback to an empty index
+2026-10-04T14:26:18.9911937Z [INFO] Spotless.Format is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:26:24.3749336Z [INFO] Spotless.Java is keeping 209 files clean - 0 needs changes to be clean, 209 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:26:24.3753242Z [INFO] 
+2026-10-04T14:26:24.3778263Z [INFO] --- artifact:3.6.1:buildinfo (default) @ gson ---
+2026-10-04T14:26:24.3779329Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-10-04T14:26:24.3780585Z [INFO] 
+2026-10-04T14:26:24.3781382Z [INFO] --- failsafe:3.5.6:verify (default) @ gson ---
+2026-10-04T14:26:24.6054443Z [INFO] 
+2026-10-04T14:26:24.6054963Z [INFO] --- javadoc:3.12.0:jar (default-cli) @ gson ---
+2026-10-04T14:26:29.0025528Z [INFO] Building jar: /home/runner/work/gson/gson/gson/target/gson-2.14.1-SNAPSHOT-javadoc.jar
+2026-10-04T14:26:29.0810039Z [INFO] 
+2026-10-04T14:26:29.0810795Z [INFO] -------------------< com.google.code.gson:test-jpms >-------------------
+2026-10-04T14:26:29.0811582Z [INFO] Building Test: Java Platform Module System (JPMS) 2.14.1-SNAPSHOT  [3/8]
+2026-10-04T14:26:29.0812182Z [INFO]   from test-jpms/pom.xml
+2026-10-04T14:26:29.0812552Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-10-04T14:26:29.0827173Z [INFO] 
+2026-10-04T14:26:29.0854850Z [INFO] ------------< com.google.code.gson:test-graal-native-image >------------
+2026-10-04T14:26:29.0903580Z [INFO] Building Test: GraalVM Native Image 2.14.1-SNAPSHOT                [4/8]
+2026-10-04T14:26:29.0920567Z [INFO]   from test-graal-native-image/pom.xml
+2026-10-04T14:26:29.0964778Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-10-04T14:26:29.0984928Z [INFO] 
+2026-10-04T14:26:29.0996666Z [INFO] -----------------< com.google.code.gson:test-shrinker >-----------------
+2026-10-04T14:26:29.1014802Z [INFO] Building Test: Code shrinking (ProGuard / R8) 2.14.1-SNAPSHOT      [5/8]
+2026-10-04T14:26:29.1037261Z [INFO]   from test-shrinker/pom.xml
+2026-10-04T14:26:29.1038227Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-10-04T14:26:29.1039140Z [INFO] 
+2026-10-04T14:26:29.1039896Z [INFO] ------------------< com.google.code.gson:gson-extras >------------------
+2026-10-04T14:26:29.1041083Z [INFO] Building Gson Extras 2.14.1-SNAPSHOT                               [6/8]
+2026-10-04T14:26:29.1041990Z [INFO]   from extras/pom.xml
+2026-10-04T14:26:29.1042774Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-10-04T14:26:29.1043783Z [WARNING] *****************************************************************
+2026-10-04T14:26:29.1045066Z [WARNING] * Your build is requesting parallel execution, but this         *
+2026-10-04T14:26:29.1046183Z [WARNING] * project contains the following plugin(s) that have goals not  *
+2026-10-04T14:26:29.1047282Z [WARNING] * marked as thread-safe to support parallel execution.          *
+2026-10-04T14:26:29.1048372Z [WARNING] * While this /may/ work fine, please look for plugin updates    *
+2026-10-04T14:26:29.1049455Z [WARNING] * and/or request plugins be made thread-safe.                   *
+2026-10-04T14:26:29.1050539Z [WARNING] * If reporting an issue, report it against the plugin in        *
+2026-10-04T14:26:29.1051626Z [WARNING] * question, not against Apache Maven.                           *
+2026-10-04T14:26:29.1052596Z [WARNING] *****************************************************************
+2026-10-04T14:26:29.1054010Z [WARNING] The following plugins are not marked as thread-safe in Test: Java Platform Module System (JPMS):
+2026-10-04T14:26:29.1055394Z [WARNING]   org.apache.maven.plugins:maven-artifact-plugin:3.6.1
+2026-10-04T14:26:29.1056236Z [WARNING] 
+2026-10-04T14:26:29.1057080Z [WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+2026-10-04T14:26:29.1058161Z [WARNING] *****************************************************************
+2026-10-04T14:26:29.1059066Z [WARNING] *****************************************************************
+2026-10-04T14:26:29.1060070Z [WARNING] * Your build is requesting parallel execution, but this         *
+2026-10-04T14:26:29.1061203Z [WARNING] * project contains the following plugin(s) that have goals not  *
+2026-10-04T14:26:29.1062344Z [WARNING] * marked as thread-safe to support parallel execution.          *
+2026-10-04T14:26:29.1063461Z [WARNING] * While this /may/ work fine, please look for plugin updates    *
+2026-10-04T14:26:29.1064798Z [WARNING] * and/or request plugins be made thread-safe.                   *
+2026-10-04T14:26:29.1065960Z [WARNING] * If reporting an issue, report it against the plugin in        *
+2026-10-04T14:26:29.1067536Z [WARNING] * question, not against Apache Maven.                           *
+2026-10-04T14:26:29.1069033Z [WARNING] *****************************************************************
+2026-10-04T14:26:29.1070635Z [WARNING] The following plugins are not marked as thread-safe in Gson Extras:
+2026-10-04T14:26:29.1071829Z [WARNING]   org.apache.maven.plugins:maven-artifact-plugin:3.6.1
+2026-10-04T14:26:29.1072658Z [WARNING] 
+2026-10-04T14:26:29.1073501Z [WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+2026-10-04T14:26:29.1074861Z [WARNING] *****************************************************************
+2026-10-04T14:26:29.1075743Z [WARNING] *****************************************************************
+2026-10-04T14:26:29.1076662Z [WARNING] * Your build is requesting parallel execution, but this         *
+2026-10-04T14:26:29.1077617Z [WARNING] * project contains the following plugin(s) that have goals not  *
+2026-10-04T14:26:29.1078634Z [WARNING] * marked as thread-safe to support parallel execution.          *
+2026-10-04T14:26:29.1079653Z [WARNING] * While this /may/ work fine, please look for plugin updates    *
+2026-10-04T14:26:29.1080733Z [WARNING] * and/or request plugins be made thread-safe.                   *
+2026-10-04T14:26:29.1081847Z [WARNING] * If reporting an issue, report it against the plugin in        *
+2026-10-04T14:26:29.1082915Z [WARNING] * question, not against Apache Maven.                           *
+2026-10-04T14:26:29.1084138Z [WARNING] *****************************************************************
+2026-10-04T14:26:29.1085252Z [WARNING] The following plugins are not marked as thread-safe in Test: GraalVM Native Image:
+2026-10-04T14:26:29.1086566Z [WARNING]   org.apache.maven.plugins:maven-artifact-plugin:3.6.1
+2026-10-04T14:26:29.1087481Z [WARNING] 
+2026-10-04T14:26:29.1088323Z [WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+2026-10-04T14:26:29.1089501Z [WARNING] *****************************************************************
+2026-10-04T14:26:29.1090297Z [INFO] 
+2026-10-04T14:26:29.1091008Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ gson-extras ---
+2026-10-04T14:26:29.1092080Z [INFO] 
+2026-10-04T14:26:29.1092828Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ test-jpms ---
+2026-10-04T14:26:29.1094480Z [INFO] 
+2026-10-04T14:26:29.1096265Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ test-graal-native-image ---
+2026-10-04T14:26:29.1781055Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+2026-10-04T14:26:29.1816318Z [WARNING] *****************************************************************
+2026-10-04T14:26:29.1838300Z [WARNING] * Your build is requesting parallel execution, but this         *
+2026-10-04T14:26:29.1844796Z [WARNING] * project contains the following plugin(s) that have goals not  *
+2026-10-04T14:26:29.1874890Z [WARNING] * marked as thread-safe to support parallel execution.          *
+2026-10-04T14:26:29.1904830Z [WARNING] * While this /may/ work fine, please look for plugin updates    *
+2026-10-04T14:26:29.1914624Z [WARNING] * and/or request plugins be made thread-safe.                   *
+2026-10-04T14:26:29.1934792Z [WARNING] * If reporting an issue, report it against the plugin in        *
+2026-10-04T14:26:29.1964762Z [WARNING] * question, not against Apache Maven.                           *
+2026-10-04T14:26:29.1994728Z [WARNING] *****************************************************************
+2026-10-04T14:26:29.2000622Z [WARNING] The following plugins are not marked as thread-safe in Test: Code shrinking (ProGuard / R8):
+2026-10-04T14:26:29.2026832Z [WARNING]   org.apache.maven.plugins:maven-artifact-plugin:3.6.1
+2026-10-04T14:26:29.2038145Z [WARNING] 
+2026-10-04T14:26:29.2105172Z [WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+2026-10-04T14:26:29.2133365Z [WARNING] *****************************************************************
+2026-10-04T14:26:29.2151329Z [INFO] 
+2026-10-04T14:26:29.2173642Z [INFO] --- resources:3.4.0:resources (default-resources) @ test-graal-native-image ---
+2026-10-04T14:26:29.2194447Z [INFO] 
+2026-10-04T14:26:29.2200864Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ test-shrinker ---
+2026-10-04T14:26:29.2201910Z [INFO] 
+2026-10-04T14:26:29.2218584Z [INFO] --- resources:3.4.0:resources (default-resources) @ gson-extras ---
+2026-10-04T14:26:29.2220211Z [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+2026-10-04T14:26:29.2221269Z [INFO] 
+2026-10-04T14:26:29.2222020Z [INFO] --- resources:3.4.0:resources (default-resources) @ test-jpms ---
+2026-10-04T14:26:29.2223268Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/test-jpms/src/main/resources
+2026-10-04T14:26:29.2224613Z [INFO] 
+2026-10-04T14:26:29.2225341Z [INFO] --- compiler:3.15.0:compile (default-compile) @ test-jpms ---
+2026-10-04T14:26:29.2381043Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/extras/src/main/resources
+2026-10-04T14:26:29.2384820Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/test-graal-native-image/src/main/resources
+2026-10-04T14:26:29.2385792Z [INFO] 
+2026-10-04T14:26:29.2386439Z [INFO] --- compiler:3.15.0:compile (default-compile) @ test-graal-native-image ---
+2026-10-04T14:26:29.2414752Z [INFO] 
+2026-10-04T14:26:29.2415357Z [INFO] --- compiler:3.15.0:compile (default-compile) @ gson-extras ---
+2026-10-04T14:26:29.2505124Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+2026-10-04T14:26:29.2595195Z [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+2026-10-04T14:26:29.2596238Z [INFO] 
+2026-10-04T14:26:29.2619436Z [INFO] --- resources:3.4.0:resources (default-resources) @ test-shrinker ---
+2026-10-04T14:26:29.2715113Z [INFO] No sources to compile
+2026-10-04T14:26:29.2744898Z [INFO] 
+2026-10-04T14:26:29.2751416Z [INFO] --- resources:3.4.0:testResources (default-testResources) @ test-graal-native-image ---
+2026-10-04T14:26:29.2875242Z [INFO] Copying 1 resource from src/test/resources to target/test-classes
+2026-10-04T14:26:29.2897252Z [INFO] 
+2026-10-04T14:26:29.2916745Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ test-graal-native-image ---
+2026-10-04T14:26:29.2954849Z [INFO] Recompiling the module because of changed dependency.
+2026-10-04T14:26:29.2985123Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/test-shrinker/src/main/resources
+2026-10-04T14:26:29.2986586Z [INFO] 
+2026-10-04T14:26:29.3014758Z [INFO] --- compiler:3.15.0:compile (default-compile) @ test-shrinker ---
+2026-10-04T14:26:29.3045053Z [INFO] Compiling 7 source files with javac [debug deprecation release 8] to target/classes
+2026-10-04T14:26:29.3074621Z [INFO] Recompiling the module because of changed dependency.
+2026-10-04T14:26:29.3104996Z [INFO] Compiling 2 source files with javac [debug deprecation release 17] to target/test-classes
+2026-10-04T14:26:29.3471369Z [INFO] Recompiling the module because of changed dependency.
+2026-10-04T14:26:29.3502976Z [INFO] Compiling 1 source file with javac [debug deprecation release 11] to target/classes
+2026-10-04T14:26:29.3645410Z [INFO] Recompiling the module because of changed dependency.
+2026-10-04T14:26:29.3725220Z [INFO] Compiling 18 source files with javac [debug deprecation release 8] to target/classes
+2026-10-04T14:26:29.4097490Z [INFO] 
+2026-10-04T14:26:29.4125159Z [INFO] --- resources:3.4.0:testResources (default-testResources) @ test-jpms ---
+2026-10-04T14:26:29.4126791Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/test-jpms/src/test/resources
+2026-10-04T14:26:29.4154767Z [INFO] 
+2026-10-04T14:26:29.4185032Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ test-jpms ---
+2026-10-04T14:26:29.4445392Z [INFO] Recompiling the module because of changed dependency.
+2026-10-04T14:26:29.4475341Z [INFO] Compiling 5 source files with javac [debug deprecation release 11 module-path] to target/test-classes
+2026-10-04T14:26:29.6016014Z [INFO] 
+2026-10-04T14:26:29.6024823Z [INFO] --- resources:3.4.0:testResources (default-testResources) @ gson-extras ---
+2026-10-04T14:26:29.6143004Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/extras/src/test/resources
+2026-10-04T14:26:29.6144281Z [INFO] 
+2026-10-04T14:26:29.6144913Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ gson-extras ---
+2026-10-04T14:26:29.6145753Z [INFO] Recompiling the module because of changed dependency.
+2026-10-04T14:26:29.6194911Z [INFO] Compiling 4 source files with javac [debug deprecation release 11] to target/test-classes
+2026-10-04T14:26:29.6284738Z [INFO] 
+2026-10-04T14:26:29.6345008Z [INFO] --- resources:3.4.0:testResources (default-testResources) @ test-shrinker ---
+2026-10-04T14:26:29.6374925Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/test-shrinker/src/test/resources
+2026-10-04T14:26:29.6389608Z [INFO] 
+2026-10-04T14:26:29.6431945Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ test-shrinker ---
+2026-10-04T14:26:29.6514853Z [INFO] Recompiling the module because of changed dependency.
+2026-10-04T14:26:29.6605413Z [INFO] Compiling 1 source file with javac [debug deprecation release 11] to target/test-classes
+2026-10-04T14:26:29.7894866Z [INFO] 
+2026-10-04T14:26:29.7895608Z [INFO] --- surefire:3.5.6:test (default-test) @ test-jpms ---
+2026-10-04T14:26:29.7985159Z [INFO] 
+2026-10-04T14:26:29.8045107Z [INFO] --- surefire:3.5.6:test (default-test) @ test-graal-native-image ---
+2026-10-04T14:26:29.8935618Z [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+2026-10-04T14:26:29.8955077Z [INFO] Using auto detected provider org.apache.maven.surefire.junit4.JUnit4Provider
+2026-10-04T14:26:29.9064905Z [INFO] 
+2026-10-04T14:26:29.9092963Z [INFO] --- surefire:3.5.6:test (default-test) @ test-shrinker ---
+2026-10-04T14:26:29.9331598Z [INFO] 
+2026-10-04T14:26:29.9345140Z [INFO] -------------------------------------------------------
+2026-10-04T14:26:29.9377405Z [INFO]  T E S T S
+2026-10-04T14:26:29.9405047Z [INFO] -------------------------------------------------------
+2026-10-04T14:26:29.9438466Z [INFO] 
+2026-10-04T14:26:29.9474960Z [INFO] -------------------------------------------------------
+2026-10-04T14:26:29.9507965Z [INFO]  T E S T S
+2026-10-04T14:26:29.9534292Z [INFO] -------------------------------------------------------
+2026-10-04T14:26:29.9916849Z [INFO] 
+2026-10-04T14:26:29.9955558Z [INFO] --- surefire:3.5.6:test (default-test) @ gson-extras ---
+2026-10-04T14:26:29.9991297Z [INFO] Using auto detected provider org.apache.maven.surefire.junit4.JUnit4Provider
+2026-10-04T14:26:30.0057047Z [INFO] 
+2026-10-04T14:26:30.0092318Z [INFO] -------------------------------------------------------
+2026-10-04T14:26:30.0100040Z [INFO]  T E S T S
+2026-10-04T14:26:30.0123215Z [INFO] -------------------------------------------------------
+2026-10-04T14:26:30.0272697Z [INFO] 
+2026-10-04T14:26:30.0314763Z [INFO] --- jar:3.5.1:jar (default-jar) @ test-shrinker ---
+2026-10-04T14:26:30.3145470Z [INFO] Building jar: /home/runner/work/gson/gson/test-shrinker/target/test-shrinker-2.14.1-SNAPSHOT.jar
+2026-10-04T14:26:30.4709553Z [INFO] 
+2026-10-04T14:26:30.4745019Z [INFO] --- proguard:2.7.0:proguard (default) @ test-shrinker ---
+2026-10-04T14:26:30.5205198Z [INFO] Running com.google.gson.typeadapters.RuntimeTypeAdapterFactoryTest
+2026-10-04T14:26:30.7420750Z [INFO] execute ProGuard [-injars, '/home/runner/work/gson/gson/test-shrinker/target/test-shrinker-2.14.1-SNAPSHOT.jar'(!META-INF/maven/**), -injars, '/home/runner/work/gson/gson/gson/target/classes'(!META-INF/MANIFEST.MF,!META-INF/maven/**), -injars, '/home/runner/.m2/repository/com/google/errorprone/error_prone_annotations/2.50.0/error_prone_annotations-2.50.0.jar'(!META-INF/MANIFEST.MF,!META-INF/maven/**), -outjars, '/home/runner/work/gson/gson/test-shrinker/target/proguard-output.jar', -include, '/home/runner/work/gson/gson/test-shrinker/proguard.pro', -libraryjars, '/usr/lib/jvm/temurin-17-jdk-amd64/jmods/java.base.jmod', -libraryjars, '/usr/lib/jvm/temurin-17-jdk-amd64/jmods/java.sql.jmod', -libraryjars, '/usr/lib/jvm/temurin-17-jdk-amd64/jmods/java.compiler.jmod', -printmapping, '/home/runner/work/gson/gson/test-shrinker/target/proguard_map.txt', -printseeds, '/home/runner/work/gson/gson/test-shrinker/target/proguard_seed.txt', -include, /home/runner/work/gson/gson/test-shrinker/../gson/src/main/resources/META-INF/proguard/gson.pro]
+2026-10-04T14:26:30.8504456Z [INFO] proguard jar: [/home/runner/.m2/repository/com/guardsquare/proguard-base/7.9.1/proguard-base-7.9.1.jar, /home/runner/.m2/repository/com/guardsquare/proguard-core/9.3.2/proguard-core-9.3.2.jar]
+2026-10-04T14:26:30.8886315Z [INFO] Running com.google.gson.jpms_test.ModuleTest
+2026-10-04T14:26:31.0529440Z [INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.511 s -- in com.google.gson.typeadapters.RuntimeTypeAdapterFactoryTest
+2026-10-04T14:26:31.0575035Z [INFO] Running com.google.gson.typeadapters.UtcDateTypeAdapterTest
+2026-10-04T14:26:31.1485423Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.252 s -- in com.google.gson.jpms_test.ModuleTest
+2026-10-04T14:26:31.1557137Z [INFO] Running com.google.gson.jpms_test.ExportedPackagesTest
+2026-10-04T14:26:31.3115456Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.159 s -- in com.google.gson.jpms_test.ExportedPackagesTest
+2026-10-04T14:26:31.3177297Z [INFO] Running com.google.gson.jpms_test.ReflectionInaccessibleTest
+2026-10-04T14:26:31.3845507Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.067 s -- in com.google.gson.jpms_test.ReflectionInaccessibleTest
+2026-10-04T14:26:31.3914946Z [INFO] Running com.google.gson.jpms_test.opened.ReflectionTest
+2026-10-04T14:26:31.3995466Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.google.gson.jpms_test.opened.ReflectionTest
+2026-10-04T14:26:31.4559949Z [INFO] 
+2026-10-04T14:26:31.4607312Z [INFO] Results:
+2026-10-04T14:26:31.4704805Z [INFO] 
+2026-10-04T14:26:31.4740954Z [INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0
+2026-10-04T14:26:31.4806696Z [INFO] 
+2026-10-04T14:26:31.4866445Z [INFO] 
+2026-10-04T14:26:31.4935446Z [INFO] --- jar:3.5.1:jar (default-jar) @ test-jpms ---
+2026-10-04T14:26:31.5205763Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.457 s -- in com.google.gson.typeadapters.UtcDateTypeAdapterTest
+2026-10-04T14:26:31.5207165Z [INFO] Running com.google.gson.typeadapters.PostConstructAdapterFactoryTest
+2026-10-04T14:26:31.5687872Z [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in com.google.gson.typeadapters.PostConstructAdapterFactoryTest
+2026-10-04T14:26:31.5744945Z [INFO] Running com.google.gson.interceptors.InterceptorTest
+2026-10-04T14:26:31.6426172Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 s -- in com.google.gson.interceptors.InterceptorTest
+2026-10-04T14:26:31.7068777Z [INFO] 
+2026-10-04T14:26:31.7164782Z [INFO] Results:
+2026-10-04T14:26:31.7225043Z [INFO] 
+2026-10-04T14:26:31.7264955Z [INFO] Tests run: 30, Failures: 0, Errors: 0, Skipped: 0
+2026-10-04T14:26:31.7314713Z [INFO] 
+2026-10-04T14:26:31.7344856Z [INFO] 
+2026-10-04T14:26:31.7404759Z [INFO] --- jar:3.5.1:jar (default-jar) @ gson-extras ---
+2026-10-04T14:26:31.9149602Z [INFO] Building jar: /home/runner/work/gson/gson/test-jpms/target/test-jpms-2.14.1-SNAPSHOT.jar
+2026-10-04T14:26:31.9195516Z [INFO] Building jar: /home/runner/work/gson/gson/extras/target/gson-extras-2.14.1-SNAPSHOT.jar
+2026-10-04T14:26:32.0175151Z [INFO] 
+2026-10-04T14:26:32.0214826Z [INFO] --- spotless:3.8.0:check (default) @ gson-extras ---
+2026-10-04T14:26:32.0726940Z [INFO] 
+2026-10-04T14:26:32.0746220Z [INFO] --- spotless:3.8.0:check (default) @ test-jpms ---
+2026-10-04T14:26:32.1895093Z [INFO] Running com.google.gson.native_test.Java17RecordReflectionTest
+2026-10-04T14:26:32.2800226Z [INFO] Index file does not exist. Fallback to an empty index
+2026-10-04T14:26:32.2902747Z [INFO] Spotless.Format is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:26:32.2923210Z [INFO] Index file does not exist. Fallback to an empty index
+2026-10-04T14:26:32.2925259Z [INFO] Spotless.Format is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:26:32.5323524Z  [proguard] ProGuard, version 7.9.1
+2026-10-04T14:26:32.7965679Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.602 s -- in com.google.gson.native_test.Java17RecordReflectionTest
+2026-10-04T14:26:32.7995700Z [INFO] Running com.google.gson.native_test.ReflectionTest
+2026-10-04T14:26:32.8885595Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.088 s -- in com.google.gson.native_test.ReflectionTest
+2026-10-04T14:26:32.9403754Z [INFO] 
+2026-10-04T14:26:32.9447083Z [INFO] Results:
+2026-10-04T14:26:32.9498628Z [INFO] 
+2026-10-04T14:26:32.9554745Z [INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0
+2026-10-04T14:26:32.9564574Z [INFO] 
+2026-10-04T14:26:32.9616044Z [INFO] 
+2026-10-04T14:26:32.9664860Z [INFO] --- jar:3.5.1:jar (default-jar) @ test-graal-native-image ---
+2026-10-04T14:26:32.9700305Z [INFO] Skipping packaging of the jar
+2026-10-04T14:26:32.9774608Z [INFO] 
+2026-10-04T14:26:32.9824883Z [INFO] --- spotless:3.8.0:check (default) @ test-graal-native-image ---
+2026-10-04T14:26:32.9904766Z [INFO] Index file does not exist. Fallback to an empty index
+2026-10-04T14:26:32.9995480Z [INFO] Spotless.Format is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:26:33.0075971Z [INFO] Spotless.Java is keeping 6 files clean - 0 needs changes to be clean, 6 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:26:33.0094483Z [INFO] 
+2026-10-04T14:26:33.0154708Z [INFO] --- artifact:3.6.1:buildinfo (default) @ test-jpms ---
+2026-10-04T14:26:33.3253171Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-10-04T14:26:33.3314768Z [INFO] 
+2026-10-04T14:26:33.3364976Z [INFO] --- javadoc:3.12.0:jar (default-cli) @ test-jpms ---
+2026-10-04T14:26:33.3417243Z [INFO] Spotless.Java is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:26:33.3444455Z [INFO] 
+2026-10-04T14:26:33.3490343Z [INFO] --- artifact:3.6.1:buildinfo (default) @ test-graal-native-image ---
+2026-10-04T14:26:33.3514633Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-10-04T14:26:33.3531977Z [INFO] 
+2026-10-04T14:26:33.3564682Z [INFO] --- javadoc:3.12.0:jar (default-cli) @ test-graal-native-image ---
+2026-10-04T14:26:33.4461119Z [INFO] Spotless.Java is keeping 11 files clean - 0 needs changes to be clean, 11 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:26:33.4514821Z [INFO] 
+2026-10-04T14:26:33.4544737Z [INFO] --- artifact:3.6.1:buildinfo (default) @ gson-extras ---
+2026-10-04T14:26:33.4554690Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-10-04T14:26:33.4584367Z [INFO] 
+2026-10-04T14:26:33.4604738Z [INFO] --- javadoc:3.12.0:jar (default-cli) @ gson-extras ---
+2026-10-04T14:26:33.6356386Z [INFO] Skipping javadoc generation
+2026-10-04T14:26:33.6357396Z [INFO] 
+2026-10-04T14:26:33.6445298Z [INFO] -----------------< com.google.code.gson:gson-metrics >------------------
+2026-10-04T14:26:33.6504989Z [INFO] Building Gson Metrics 2.14.1-SNAPSHOT                              [7/8]
+2026-10-04T14:26:33.6554259Z [INFO]   from metrics/pom.xml
+2026-10-04T14:26:33.6594744Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-10-04T14:26:33.6664991Z [INFO] Skipping javadoc generation
+2026-10-04T14:26:33.6674719Z [INFO] 
+2026-10-04T14:26:33.6755071Z [INFO] ---------------------< com.google.code.gson:proto >---------------------
+2026-10-04T14:26:33.6805003Z [INFO] Building Gson Protobuf Support 2.14.1-SNAPSHOT                     [8/8]
+2026-10-04T14:26:33.6835003Z [INFO]   from proto/pom.xml
+2026-10-04T14:26:33.6864743Z [INFO] --------------------------------[ jar ]---------------------------------
+2026-10-04T14:26:33.6925299Z [WARNING] *****************************************************************
+2026-10-04T14:26:33.6985146Z [WARNING] * Your build is requesting parallel execution, but this         *
+2026-10-04T14:26:33.7015037Z [WARNING] * project contains the following plugin(s) that have goals not  *
+2026-10-04T14:26:33.7045190Z [WARNING] * marked as thread-safe to support parallel execution.          *
+2026-10-04T14:26:33.7105257Z [WARNING] * While this /may/ work fine, please look for plugin updates    *
+2026-10-04T14:26:33.7109968Z [WARNING] * and/or request plugins be made thread-safe.                   *
+2026-10-04T14:26:33.7165223Z [WARNING] * If reporting an issue, report it against the plugin in        *
+2026-10-04T14:26:33.7195101Z [WARNING] * question, not against Apache Maven.                           *
+2026-10-04T14:26:33.7255587Z [WARNING] *****************************************************************
+2026-10-04T14:26:33.7304909Z [WARNING] The following plugins are not marked as thread-safe in Gson Metrics:
+2026-10-04T14:26:33.7322667Z [WARNING]   org.apache.maven.plugins:maven-artifact-plugin:3.6.1
+2026-10-04T14:26:33.7386855Z [WARNING] 
+2026-10-04T14:26:33.7418258Z [WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+2026-10-04T14:26:33.7462789Z [WARNING] *****************************************************************
+2026-10-04T14:26:33.7513202Z [WARNING] *****************************************************************
+2026-10-04T14:26:33.7589073Z [WARNING] * Your build is requesting parallel execution, but this         *
+2026-10-04T14:26:33.7613405Z [WARNING] * project contains the following plugin(s) that have goals not  *
+2026-10-04T14:26:33.7686449Z [WARNING] * marked as thread-safe to support parallel execution.          *
+2026-10-04T14:26:33.7773628Z [WARNING] * While this /may/ work fine, please look for plugin updates    *
+2026-10-04T14:26:33.7867113Z [WARNING] * and/or request plugins be made thread-safe.                   *
+2026-10-04T14:26:33.7892418Z [WARNING] * If reporting an issue, report it against the plugin in        *
+2026-10-04T14:26:33.7960471Z [WARNING] * question, not against Apache Maven.                           *
+2026-10-04T14:26:33.7994910Z [WARNING] *****************************************************************
+2026-10-04T14:26:33.8525106Z [WARNING] The following plugins are not marked as thread-safe in Gson Protobuf Support:
+2026-10-04T14:26:33.8545897Z [WARNING]   org.apache.maven.plugins:maven-artifact-plugin:3.6.1
+2026-10-04T14:26:33.8703530Z [WARNING] 
+2026-10-04T14:26:33.8752237Z [WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+2026-10-04T14:26:33.8814793Z [WARNING] *****************************************************************
+2026-10-04T14:26:33.8821297Z [INFO] 
+2026-10-04T14:26:33.9160871Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ proto ---
+2026-10-04T14:26:33.9445711Z [INFO] 
+2026-10-04T14:26:33.9725802Z [INFO] --- resources:3.4.0:resources (default-resources) @ proto ---
+2026-10-04T14:26:33.9995782Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/proto/src/main/resources
+2026-10-04T14:26:34.0014519Z [INFO] 
+2026-10-04T14:26:34.0041669Z [INFO] --- compiler:3.15.0:compile (default-compile) @ proto ---
+2026-10-04T14:26:34.0047668Z [INFO] Recompiling the module because of changed dependency.
+2026-10-04T14:26:34.0049733Z [INFO] Compiling 3 source files with javac [debug deprecation release 8] to target/classes
+2026-10-04T14:26:34.0051458Z [INFO] 
+2026-10-04T14:26:34.0052276Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ gson-metrics ---
+2026-10-04T14:26:34.0054518Z [INFO] 
+2026-10-04T14:26:34.0055466Z [INFO] --- resources:3.4.0:resources (default-resources) @ gson-metrics ---
+2026-10-04T14:26:34.0057002Z [INFO] Copying 1 resource from src/main/resources to target/classes
+2026-10-04T14:26:34.0057651Z [INFO] 
+2026-10-04T14:26:34.0062370Z [INFO] --- compiler:3.15.0:compile (default-compile) @ gson-metrics ---
+2026-10-04T14:26:34.0063324Z [INFO] Recompiling the module because of changed dependency.
+2026-10-04T14:26:34.0064515Z [INFO] Compiling 6 source files with javac [debug deprecation release 8] to target/classes
+2026-10-04T14:26:34.0479693Z  [proguard] Note: com.google.gson.internal.GsonTypes calls 'Class.getDeclaringClass'
+2026-10-04T14:26:34.4412206Z [INFO] 
+2026-10-04T14:26:34.4424963Z [INFO] --- protobuf:5.1.7:generate-test (default) @ proto ---
+2026-10-04T14:26:34.5473145Z [INFO] 
+2026-10-04T14:26:34.5816944Z [INFO] --- resources:3.4.0:testResources (default-testResources) @ gson-metrics ---
+2026-10-04T14:26:34.5820389Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/metrics/src/test/resources
+2026-10-04T14:26:34.5821392Z [INFO] 
+2026-10-04T14:26:34.5822009Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ gson-metrics ---
+2026-10-04T14:26:34.5822772Z [INFO] No sources to compile
+2026-10-04T14:26:34.5823194Z [INFO] 
+2026-10-04T14:26:34.5823681Z [INFO] --- surefire:3.5.6:test (default-test) @ gson-metrics ---
+2026-10-04T14:26:34.5824592Z [INFO] No tests to run.
+2026-10-04T14:26:34.5824991Z [INFO] 
+2026-10-04T14:26:34.5825455Z [INFO] --- jar:3.5.1:jar (default-jar) @ gson-metrics ---
+2026-10-04T14:26:34.5826414Z [INFO] Building jar: /home/runner/work/gson/gson/metrics/target/gson-metrics-2.14.1-SNAPSHOT.jar
+2026-10-04T14:26:34.5827780Z  [proguard] Note: com.google.gson.internal.UnsafeAllocator: can't find dynamically referenced class sun.misc.Unsafe
+2026-10-04T14:26:34.5828820Z [INFO] 
+2026-10-04T14:26:34.5829318Z [INFO] --- spotless:3.8.0:check (default) @ gson-metrics ---
+2026-10-04T14:26:34.6639112Z [INFO] Index file does not exist. Fallback to an empty index
+2026-10-04T14:26:34.6705623Z [INFO] Spotless.Format is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:26:34.7359891Z  [proguard] Note: com.google.gson.internal.UnsafeAllocator accesses a declared field 'theUnsafe' dynamically
+2026-10-04T14:26:34.7362401Z  [proguard] Note: com.google.gson.internal.UnsafeAllocator accesses a method 'allocateInstance(java.lang.Class)' dynamically
+2026-10-04T14:26:34.8086157Z  [proguard] Note: com.google.gson.internal.reflect.ReflectionHelper$RecordSupportedHelper accesses a method 'getType()' dynamically
+2026-10-04T14:26:34.9666328Z [INFO] Spotless.Java is keeping 6 files clean - 0 needs changes to be clean, 6 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:26:34.9668358Z [INFO] 
+2026-10-04T14:26:35.0028568Z [INFO] --- artifact:3.6.1:buildinfo (default) @ gson-metrics ---
+2026-10-04T14:26:35.0030075Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-10-04T14:26:35.0335380Z [INFO] 
+2026-10-04T14:26:35.0646409Z [INFO] --- javadoc:3.12.0:jar (default-cli) @ gson-metrics ---
+2026-10-04T14:26:35.0647159Z [INFO] Skipping javadoc generation
+2026-10-04T14:26:35.2919326Z [INFO] Registering "/home/runner/work/gson/gson/proto/target/generated-test-sources/protobuf" as a Maven test source root for compiler plugins
+2026-10-04T14:26:35.2922225Z  [proguard] Warning: can't derive deserialized type from fromJson() invocation in com/example/Main.fromJson(Lcom/google/gson/Gson;Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+2026-10-04T14:26:35.3486585Z  [proguard] Warning: can't derive serialized type from toJson() invocation in com/example/Main.lambda$testTypeTokenWriteRead$2(Lcom/google/gson/Gson;Ljava/util/function/Supplier;)Ljava/lang/String;
+2026-10-04T14:26:35.3515466Z  [proguard] Warning: can't derive deserialized type from fromJson() invocation in com/example/NoSerializedNameMain.runTestNoArgsConstructor()Ljava/lang/String;
+2026-10-04T14:26:35.4176321Z  [proguard] Warning: can't derive deserialized type from fromJson() invocation in com/example/NoSerializedNameMain.runTestNoJdkUnsafe()Ljava/lang/String;
+2026-10-04T14:26:35.4236178Z  [proguard] Warning: can't derive deserialized type from fromJson() invocation in com/example/NoSerializedNameMain.runTestHasArgsConstructor()Ljava/lang/String;
+2026-10-04T14:26:35.4825709Z [INFO] All sources will be compiled, as no previous build data was detected
+2026-10-04T14:26:35.4855291Z [INFO] Generating source code from 4 proto source files and 0 descriptor files (discovered a total of 4 proto source files and 0 descriptor files)
+2026-10-04T14:26:35.5406226Z [INFO] Invoking protoc. Enable debug logs (--debug --errors) for more details
+2026-10-04T14:26:35.5408133Z [INFO] protoc (pid 2998) returned exit code 0 (success) after 192ms
+2026-10-04T14:26:35.6246420Z [INFO] PROTOC SUCCEEDED: Protoc invocation succeeded.
+2026-10-04T14:26:35.6304636Z [INFO] 
+2026-10-04T14:26:35.7057939Z [INFO] --- resources:3.4.0:testResources (default-testResources) @ proto ---
+2026-10-04T14:26:35.7060021Z [INFO] skip non existing resourceDirectory /home/runner/work/gson/gson/proto/src/test/resources
+2026-10-04T14:26:35.7417243Z [INFO] 
+2026-10-04T14:26:35.7484950Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ proto ---
+2026-10-04T14:26:35.8235795Z [INFO] Recompiling the module because of changed dependency.
+2026-10-04T14:26:35.8295183Z [INFO] Compiling 39 source files with javac [debug deprecation release 11] to target/test-classes
+2026-10-04T14:26:40.1695303Z [INFO] Building jar: /home/runner/work/gson/gson/extras/target/gson-extras-2.14.1-SNAPSHOT-javadoc.jar
+2026-10-04T14:26:40.5595098Z [INFO] 
+2026-10-04T14:26:40.5596194Z [INFO] --- surefire:3.5.6:test (default-test) @ proto ---
+2026-10-04T14:26:40.5714266Z [INFO] Using auto detected provider org.apache.maven.surefire.junit4.JUnit4Provider
+2026-10-04T14:26:40.5797116Z [INFO] 
+2026-10-04T14:26:40.5824761Z [INFO] -------------------------------------------------------
+2026-10-04T14:26:40.5828156Z [INFO]  T E S T S
+2026-10-04T14:26:40.5867362Z [INFO] -------------------------------------------------------
+2026-10-04T14:26:41.1980300Z [INFO] 
+2026-10-04T14:26:41.2015537Z [INFO] --- shade:3.6.2:shade (default) @ test-shrinker ---
+2026-10-04T14:26:41.3150695Z [INFO] Running com.google.gson.protobuf.functional.StructTypeAdapterTest
+2026-10-04T14:26:41.3224882Z [INFO] Replacing original artifact with shaded artifact.
+2026-10-04T14:26:41.3254672Z [INFO] 
+2026-10-04T14:26:41.3284747Z [INFO] --- exec:3.6.3:java (r8) @ test-shrinker ---
+2026-10-04T14:26:41.6977876Z [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.381 s -- in com.google.gson.protobuf.functional.StructTypeAdapterTest
+2026-10-04T14:26:41.6998933Z [INFO] Running com.google.gson.protobuf.functional.ProtosWithPrimitiveTypesTest
+2026-10-04T14:26:41.7335555Z [INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in com.google.gson.protobuf.functional.ProtosWithPrimitiveTypesTest
+2026-10-04T14:26:41.7365132Z [INFO] Running com.google.gson.protobuf.functional.ProtosWithAnnotationsTest
+2026-10-04T14:26:41.8141598Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.080 s -- in com.google.gson.protobuf.functional.ProtosWithAnnotationsTest
+2026-10-04T14:26:41.8155454Z [INFO] Running com.google.gson.protobuf.functional.LegacyProtoTypeAdapterFactoryTest
+2026-10-04T14:26:42.5280073Z [INFO] Tests run: 128, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.703 s -- in com.google.gson.protobuf.functional.LegacyProtoTypeAdapterFactoryTest
+2026-10-04T14:26:42.5308718Z [INFO] Running com.google.gson.protobuf.functional.ProtosWithAnnotationsAndJsonNamesTest
+2026-10-04T14:26:42.5577293Z [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.google.gson.protobuf.functional.ProtosWithAnnotationsAndJsonNamesTest
+2026-10-04T14:26:42.5606517Z [INFO] Running com.google.gson.protobuf.functional.ProtosWithComplexAndRepeatedFieldsTest
+2026-10-04T14:26:42.5796177Z [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in com.google.gson.protobuf.functional.ProtosWithComplexAndRepeatedFieldsTest
+2026-10-04T14:26:42.6163362Z [INFO] 
+2026-10-04T14:26:42.6164224Z [INFO] Results:
+2026-10-04T14:26:42.6164547Z [INFO] 
+2026-10-04T14:26:42.6164904Z [INFO] Tests run: 157, Failures: 0, Errors: 0, Skipped: 0
+2026-10-04T14:26:42.6165515Z [INFO] 
+2026-10-04T14:26:42.6179760Z [INFO] 
+2026-10-04T14:26:42.6180178Z [INFO] --- jar:3.5.1:jar (default-jar) @ proto ---
+2026-10-04T14:26:42.6525143Z [INFO] Building jar: /home/runner/work/gson/gson/proto/target/gson-proto.jar
+2026-10-04T14:26:42.6591462Z [INFO] 
+2026-10-04T14:26:42.6592252Z [INFO] --- spotless:3.8.0:check (default) @ proto ---
+2026-10-04T14:26:42.6763587Z [INFO] Index file does not exist. Fallback to an empty index
+2026-10-04T14:26:42.6786502Z [INFO] Spotless.Format is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:26:43.2544612Z [INFO] Spotless.Java is keeping 10 files clean - 0 needs changes to be clean, 10 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:26:43.2549131Z [INFO] 
+2026-10-04T14:26:43.2549867Z [INFO] --- artifact:3.6.1:buildinfo (default) @ proto ---
+2026-10-04T14:26:43.2912056Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-10-04T14:26:43.2929182Z [INFO] 
+2026-10-04T14:26:43.2930196Z [INFO] --- javadoc:3.12.0:jar (default-cli) @ proto ---
+2026-10-04T14:26:45.5683055Z [INFO] Building jar: /home/runner/work/gson/gson/proto/target/gson-proto-javadoc.jar
+2026-10-04T14:27:01.4043500Z [INFO] 
+2026-10-04T14:27:01.4044858Z [INFO] --- failsafe:3.5.6:integration-test (default) @ test-shrinker ---
+2026-10-04T14:27:01.4599559Z [INFO] Using auto detected provider org.apache.maven.surefire.junit4.JUnit4Provider
+2026-10-04T14:27:01.4749106Z [INFO] 
+2026-10-04T14:27:01.4749952Z [INFO] -------------------------------------------------------
+2026-10-04T14:27:01.4750758Z [INFO]  T E S T S
+2026-10-04T14:27:01.4751476Z [INFO] -------------------------------------------------------
+2026-10-04T14:27:01.7355000Z [INFO] Running com.google.gson.it.ShrinkingIT
+2026-10-04T14:27:02.1720254Z [WARNING] Tests run: 10, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.433 s -- in com.google.gson.it.ShrinkingIT
+2026-10-04T14:27:02.1807226Z [INFO] 
+2026-10-04T14:27:02.1807950Z [INFO] Results:
+2026-10-04T14:27:02.1808702Z [INFO] 
+2026-10-04T14:27:02.1810780Z [INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 1
+2026-10-04T14:27:02.1811613Z [INFO] 
+2026-10-04T14:27:02.1855176Z [INFO] 
+2026-10-04T14:27:02.1859560Z [INFO] --- spotless:3.8.0:check (default) @ test-shrinker ---
+2026-10-04T14:27:02.3549436Z [INFO] Index file does not exist. Fallback to an empty index
+2026-10-04T14:27:02.3598029Z [INFO] Spotless.Format is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:27:02.8116853Z [INFO] Spotless.Java is keeping 19 files clean - 0 needs changes to be clean, 19 were already clean, 0 were skipped because caching determined they were already clean
+2026-10-04T14:27:02.8124810Z [INFO] 
+2026-10-04T14:27:02.8125395Z [INFO] --- artifact:3.6.1:buildinfo (default) @ test-shrinker ---
+2026-10-04T14:27:02.9460437Z [INFO] Auto-skipping goal because module skips install and/or deploy
+2026-10-04T14:27:02.9461509Z [INFO] 
+2026-10-04T14:27:02.9462463Z [INFO] --- failsafe:3.5.6:verify (default) @ test-shrinker ---
+2026-10-04T14:27:02.9520790Z [INFO] 
+2026-10-04T14:27:02.9522565Z [INFO] --- javadoc:3.12.0:jar (default-cli) @ test-shrinker ---
+2026-10-04T14:27:03.1379128Z [INFO] Skipping javadoc generation
+2026-10-04T14:27:03.1396866Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:27:03.1399205Z [INFO] Reactor Summary for Gson Parent 2.14.1-SNAPSHOT:
+2026-10-04T14:27:03.1400651Z [INFO] 
+2026-10-04T14:27:03.1401404Z [INFO] Gson Parent ........................................ SUCCESS [  1.728 s]
+2026-10-04T14:27:03.1402631Z [INFO] Gson ............................................... SUCCESS [ 26.440 s]
+2026-10-04T14:27:03.1403748Z [INFO] Test: Java Platform Module System (JPMS) ........... SUCCESS [  4.550 s]
+2026-10-04T14:27:03.1405282Z [INFO] Test: GraalVM Native Image ......................... SUCCESS [  4.549 s]
+2026-10-04T14:27:03.1406367Z [INFO] Test: Code shrinking (ProGuard / R8) ............... SUCCESS [ 34.054 s]
+2026-10-04T14:27:03.1408407Z [INFO] Gson Extras ........................................ SUCCESS [ 11.221 s]
+2026-10-04T14:27:03.1409446Z [INFO] Gson Metrics ....................................... SUCCESS [  1.279 s]
+2026-10-04T14:27:03.1410492Z [INFO] Gson Protobuf Support .............................. SUCCESS [ 11.951 s]
+2026-10-04T14:27:03.1411531Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:27:03.1412362Z [INFO] BUILD SUCCESS
+2026-10-04T14:27:03.1413083Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:27:03.1414254Z [INFO] Total time:  01:02 min (Wall Clock)
+2026-10-04T14:27:03.1415859Z [INFO] Finished at: 2026-10-04T14:27:03Z
+2026-10-04T14:27:03.1416719Z [INFO] ------------------------------------------------------------------------
+2026-10-04T14:27:03.2186813Z ##[group]Run touch optcd-5.txt
+2026-10-04T14:27:03.2188876Z [36;1mtouch optcd-5.txt[0m
+2026-10-04T14:27:03.2262115Z shell: /usr/bin/bash -e {0}
+2026-10-04T14:27:03.2262388Z env:
+2026-10-04T14:27:03.2262688Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-10-04T14:27:03.2263135Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:27:03.2263591Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:27:03.2264324Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:27:03.2264723Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:27:03.2265151Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:27:03.2265553Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:27:03.2265994Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:27:03.2266517Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:27:03.2266904Z ##[endgroup]
+2026-10-04T14:27:03.2422278Z ##[group]Run actions/upload-artifact@v4
+2026-10-04T14:27:03.2422586Z with:
+2026-10-04T14:27:03.2422797Z   name: inotifywait-build (17)
+2026-10-04T14:27:03.2423105Z   path: /home/runner/inotifywait-log-build (17).csv
+2026-10-04T14:27:03.2423442Z   if-no-files-found: warn
+2026-10-04T14:27:03.2423685Z   compression-level: 6
+2026-10-04T14:27:03.2424275Z   overwrite: false
+2026-10-04T14:27:03.2424511Z   include-hidden-files: false
+2026-10-04T14:27:03.2424761Z env:
+2026-10-04T14:27:03.2425052Z   MAVEN_ARGS: --show-version --batch-mode --no-transfer-progress
+2026-10-04T14:27:03.2425506Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:27:03.2425938Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib/pkgconfig
+2026-10-04T14:27:03.2426372Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:27:03.2426756Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:27:03.2427171Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.21/x64
+2026-10-04T14:27:03.2427575Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.21/x64/lib
+2026-10-04T14:27:03.2428008Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:27:03.2428494Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-1/x64
+2026-10-04T14:27:03.2428890Z ##[endgroup]
+2026-10-04T14:27:03.4081158Z (node:3198) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-04T14:27:03.4081923Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-04T14:27:03.4128105Z With the provided path, there will be 1 file uploaded
+2026-10-04T14:27:03.4135805Z Artifact name is valid!
+2026-10-04T14:27:03.4136312Z Root directory input is valid!
+2026-10-04T14:27:03.7889116Z Beginning upload of artifact content to blob storage
+2026-10-04T14:27:03.8305951Z (node:3198) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-04T14:27:04.3037467Z Uploaded bytes 123359
+2026-10-04T14:27:04.3819926Z Finished uploading artifact content to blob storage!
+2026-10-04T14:27:04.3820812Z SHA256 digest of uploaded artifact zip is 49f0df2edc20a7e4c68a439f695d83f6d228ed420c0babe4708a16bd1f1ab469
+2026-10-04T14:27:04.3822797Z Finalizing artifact upload
+2026-10-04T14:27:04.6416519Z Artifact inotifywait-build (17).zip successfully finalized. Artifact ID 11305468217
+2026-10-04T14:27:04.6418131Z Artifact inotifywait-build (17) has been successfully uploaded! Final size is 123359 bytes. Artifact ID is 11305468217
+2026-10-04T14:27:04.6425001Z Artifact download URL: https://github.com/atanuroy911/gson/actions/runs/37209217089/artifacts/11305468217
+2026-10-04T14:27:04.6635998Z Post job cleanup.
+2026-10-04T14:27:04.7950413Z Cache hit occurred on the primary key setup-java-Linux-x64-maven-54d6cf3fdc484699667bbaed4dbae25f9a0a3aa7871d212484a098a067310682, not saving cache.
+2026-10-04T14:27:04.8150390Z Post job cleanup.
+2026-10-04T14:27:04.9146663Z [command]/usr/bin/git version
+2026-10-04T14:27:04.9222452Z git version 2.55.0
+2026-10-04T14:27:04.9267332Z Temporarily overriding HOME='/home/runner/work/_temp/4eec772a-3800-4161-9f76-8e33bca39709' before making global git config changes
+2026-10-04T14:27:04.9268568Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-04T14:27:04.9271814Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/gson/gson
+2026-10-04T14:27:04.9309707Z Removing SSH command configuration
+2026-10-04T14:27:04.9316913Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-04T14:27:04.9363376Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-04T14:27:04.9635895Z Removing HTTP extra header
+2026-10-04T14:27:04.9641703Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-04T14:27:04.9693757Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-04T14:27:04.9970736Z Removing includeIf entries pointing to credentials config files
+2026-10-04T14:27:04.9979789Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-04T14:27:05.0019806Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-04T14:27:05.0425887Z Post job cleanup.
+2026-10-04T14:27:05.1661942Z (node:3315) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-04T14:27:05.1663383Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-04T14:27:05.1845290Z Cleaning up orphan processes
+2026-10-04T14:27:05.2231113Z Terminate orphan process: pid (2262) (python3)
+2026-10-04T14:27:05.2247118Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -88,9 +88,11 @@ differs from the module in the path. Examples (seata, command
 | `config/seata-config-nacos/target/surefire-reports/` | `maven-pmd-plugin:3.8:pmd @ seata-discovery-namingserver` |
 | `discovery/seata-discovery-zk/target/surefire-reports/` | `maven-compiler-plugin:3.8.1:testCompile @ seata-core` |
 
-**Limit:** seata is the only parallel-build repo in the paper's dataset.
-A controlled experiment (same project, sequential vs `-T`) is planned to
-test H1 beyond one repo.
+**Confirmed beyond seata (E2).** seata is the only parallel-build repo in
+the paper's dataset, so a controlled run was added: gson's real `build` job,
+same commit, sequential vs `mvn -T 4`. `surefire:test` attribution dropped
+from 5/5 correct to 1/5, and all 4 errors blamed a plugin from a different
+module. See `evidence/E1_E2_controlled_experiments.md`.
 
 ### H2. Nested builds hide the real producer
 
