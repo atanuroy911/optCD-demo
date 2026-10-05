@@ -63,7 +63,7 @@ Evidence: `evidence/q2_attribution_errors.md`, `evidence/E1_E2_controlled_experi
   |---|---|---|
   | Parallel builds (`mvn -T`): blames a plugin from another module | 47 | wrong rate 34.8% vs 4.7% sequential; **E2:** gson `surefire` 5/5 correct sequential vs 1/5 with `-T 4`, all errors cross-module |
   | Nested builds (`maven-invoker-plugin`): all outputs blamed on `invoker:run` | 38 | paper data (fabric8 kubernetes-client) |
-  | Timing at plugin boundaries: blames the neighboring plugin | 25 | raw September gson data; compiler `maven-status` 1/52 correct vs `surefire` 21/22 |
+  | Timing at plugin boundaries: blames the neighboring plugin | 25 | raw September gson data; compiler `maven-status` 1/56 correct vs `surefire` 22/23 |
 
 - **Reproducibility.** On today's GitHub runners the paper's original
   mapper attributes **nothing** for gson: every directory's own creation

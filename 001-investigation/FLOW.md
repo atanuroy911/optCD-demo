@@ -339,3 +339,37 @@ Write-up: `evidence/E1_E2_controlled_experiments.md`. Updated
 **State of the forks afterwards.** `atanuroy911/gson` and
 `atanuroy911/JSON-java`: unrelated workflows disabled manually; re-enable
 with `gh workflow enable <file> --repo <fork>` if needed. No runs in flight.
+
+## 2026-10-05: Step 11, nondeterminism found in my timing script, fixed
+
+While preparing the meeting runbook, re-running
+`q2_timing_and_mapper_compare.py` on unchanged raw data gave E2-sequential
+`surefire` 4/4 instead of 5/5. Five repeated runs showed the `gson` module's
+row appearing in some runs and missing in others.
+
+**Cause.** `module_dir_for` iterated a Python `set` (hash-randomized order).
+The repo root `/home/runner/work/gson/gson/` and the module
+`/home/runner/work/gson/gson/gson/` both end in `gson`, so for artifact
+`gson` the tie went either way. When the root won, no `surefire-reports`
+was found there and the row was dropped.
+
+**Fix.** Rank candidates deterministically: exact name match, then longest
+name, then deeper path. Re-ran each raw dataset 4 times; results are now
+identical every run.
+
+**Corrected figures** (the conclusions do not change):
+
+| Run | Measure | Before | After |
+|---|---|---|---|
+| gson Sept (`33849635845`) | `surefire:test` | 21/22 correct | **22/23** |
+| | `compiler:compile` | 1/28 | **1/31** |
+| | `compiler:testCompile` | 0/24 | **0/25** |
+| | wrong compiler picks that blame a later plugin | 51 of 52 | **52 of 55** |
+| E2 sequential (`37208820120`) | `surefire:test` | 5/5 | 5/5 (unchanged) |
+| E2 parallel (`37209217089`) | `surefire:test` | 1/5 | 1/5 (unchanged) |
+
+Updated `README.md` and `evidence/q2_attribution_errors.md`. The figures in
+Step 6 above are the pre-fix values, kept as originally recorded.
+
+Also added `scripts/show_headlines.py`, which prints the key numbers for
+each question from saved results (no network, no CI), for presenting.

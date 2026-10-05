@@ -83,14 +83,22 @@ def module_dirs(events):
 
 
 def module_dir_for(artifact, dirs):
-    best = None
-    for d in dirs:
+    """Pick the module directory for an artifactId.
+
+    Preference: exact name match, then longest matching name, then the
+    deeper path. The last rule matters because the repo root's last path
+    segment is the repo name (/home/runner/work/gson/gson/), which can tie
+    with a module of the same name (/home/runner/work/gson/gson/gson/).
+    Iterating a set here made the choice depend on hash ordering, so results
+    varied between runs; candidates are now ranked deterministically.
+    """
+    a = artifact.lower()
+    candidates = []
+    for d in sorted(dirs):
         name = d.rstrip("/").split("/")[-1].lower()
-        a = artifact.lower()
         if name == a or name in a or a in name:
-            if best is None or len(name) > len(best.rstrip("/").split("/")[-1]):
-                best = d
-    return best
+            candidates.append(((name == a, len(name), len(d)), d))
+    return max(candidates)[1] if candidates else None
 
 
 def timing(log_text, events):

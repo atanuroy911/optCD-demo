@@ -1,23 +1,23 @@
 {
   "timing_offset_ms_by_goal": {
     "compiler:compile": {
-      "n": 28,
-      "min": -15640.2,
-      "median": 603.2,
+      "n": 31,
+      "min": -17940.5,
+      "median": 662.5,
       "max": 9785.3,
-      "negative": 2
+      "negative": 3
     },
     "compiler:testCompile": {
-      "n": 24,
+      "n": 25,
       "min": 105.5,
-      "median": 1127.65,
-      "max": 12367.7,
+      "median": 1143.2,
+      "max": 13585.3,
       "negative": 0
     },
     "surefire:test": {
-      "n": 22,
+      "n": 23,
       "min": 334.2,
-      "median": 789.2,
+      "median": 905.6,
       "max": 4460.1,
       "negative": 0
     }
@@ -25,14 +25,14 @@
   "nearest_rule_on_first_file_event": {
     "compiler:compile": {
       "correct": 1,
-      "wrong": 27
+      "wrong": 30
     },
     "compiler:testCompile": {
       "correct": 0,
-      "wrong": 24
+      "wrong": 25
     },
     "surefire:test": {
-      "correct": 21,
+      "correct": 22,
       "wrong": 1
     }
   },

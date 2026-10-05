@@ -149,9 +149,9 @@ events, not our mapper, keeps our rewrite's fallback out of this test.
 
 | True producer | Exclusive output dir | Median offset (file event minus own log line) | Rule picks correctly | Picks wrongly |
 |---|---|---|---|---|
-| `surefire:test` | `target/surefire-reports/` | +789 ms | **21** | 1 |
-| `compiler:compile` | `target/maven-status/maven-compiler-plugin/compile/` | +603 ms | 1 | **27** |
-| `compiler:testCompile` | `target/maven-status/maven-compiler-plugin/testCompile/` | +1128 ms | 0 | **24** |
+| `surefire:test` | `target/surefire-reports/` | +906 ms | **22** | 1 |
+| `compiler:compile` | `target/maven-status/maven-compiler-plugin/compile/` | +663 ms | 1 | **30** |
+| `compiler:testCompile` | `target/maven-status/maven-compiler-plugin/testCompile/` | +1143 ms | 0 | **25** |
 
 (`target/classes` was excluded as a marker after a first attempt: it is
 written first by `resources:resources`, which runs before the compiler.)
@@ -178,7 +178,7 @@ window, so it stays robust.
 **Two datasets, opposite directions, same weakness.** In the paper's
 autumn-2024 data, wrong same-module picks mostly fell on the *preceding*
 plugin (20 vs 5). In our September-2026 data they fall on the *following*
-plugin (51 of 52). Which direction errors take depends on the environment:
+plugin (52 of 55 wrong picks). Which direction errors take depends on the environment:
 runner speed, watcher lag, log-line timestamping. In both, they concentrate
 on directories written at a plugin's boundary, with `maven-status` the
 worst case (43% wrong in the paper data, 98% here).
